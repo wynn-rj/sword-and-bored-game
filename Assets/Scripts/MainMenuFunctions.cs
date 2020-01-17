@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuFunctions : MonoBehaviour
 {
-    private void OnStart()
+    /*private void Start()
     {
-        SceneManager.LoadSceneAsync("SampleScene");
-    }
+       SceneManager.LoadSceneAsync("SampleScene");
+    }*/
     public void StartButtonPressed()
     {       
         Debug.Log("Pressed Start");
