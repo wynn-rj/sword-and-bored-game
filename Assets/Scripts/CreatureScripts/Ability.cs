@@ -1,0 +1,26 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class Ability : ScriptableObject
+{
+    public enum ActionTypes { Action, BonusAction, Reaction };
+
+    public string AttackName;
+
+    public ActionTypes TypeOfActionRequired;
+
+    public abstract void Initialize(GameObject obj);
+    public abstract void TriggerAbility();
+
+    public int Roll(int dice)
+    {
+        return Random.Range(1, dice);
+    }
+
+    public int Roll()
+    {
+        return Roll(20);
+    }
+
+}
