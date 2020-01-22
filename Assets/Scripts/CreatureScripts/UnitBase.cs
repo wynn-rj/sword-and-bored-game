@@ -13,10 +13,6 @@ public class UnitBase : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        if (agent)
-        {
-            Debug.Log("Yeet Lum");
-        }
     }
     
 
