@@ -216,7 +216,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49011668}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cfbe605db6a7c74a82436b6724fa5fa, type: 3}
   m_Name: 
@@ -1221,13 +1221,31 @@ GameObject:
   m_Component:
   - component: {fileID: 1834200227}
   - component: {fileID: 1834200228}
+  - component: {fileID: 1834200229}
+  - component: {fileID: 1834200226}
   m_Layer: 0
-  m_Name: UnityBattleManager
+  m_Name: BattleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1834200226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834200225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87022dd29b579455b9aff4cb516e40e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileIndictor: {fileID: 721681012}
+  lm:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!4 &1834200227
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,14 +1269,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1834200225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acdc39dc7dab3f7bba5f980c5c541fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: d991aa808ff0780caaf756394ff718c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entities:
+  Entities:
   - {fileID: 751453380}
   - {fileID: 858212423}
-  _battleManager:
-    _activePlayer: {fileID: 0}
+  ActivePlayer: {fileID: 0}
+--- !u!114 &1834200229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834200225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d93fe9c1aafda01ad5fe8a2d5b2af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeGameObject: {fileID: 0}
+  EventHandler: {fileID: 0}
 --- !u!1 &2024764592
 GameObject:
   m_ObjectHideFlags: 0
