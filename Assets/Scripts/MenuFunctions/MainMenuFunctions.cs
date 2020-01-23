@@ -7,7 +7,7 @@ public class MainMenuFunctions : MonoBehaviour
     public GameObject confirmQuitPanel;
     public void StartButtonPressed()
     {       
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("PauseCreationScene");
     }
 
     public void ExitButtonPressed()
