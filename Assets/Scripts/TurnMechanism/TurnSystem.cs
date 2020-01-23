@@ -21,10 +21,7 @@ namespace SwordAndBored.TurnMechanism
             {
                 Destroy(gameObject);
             }
-        }
 
-        private void Start()
-        {
             EventHandler = GetComponent<MoveEventHandler>();
         }
 
