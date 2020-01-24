@@ -14,7 +14,7 @@ public class MeleeAttackAbility : Ability
         
     }
 
-    public override void TriggerAbility()
+    public override void TriggerAbility(GameObject target)
     {
         
     }
