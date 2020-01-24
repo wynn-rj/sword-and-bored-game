@@ -19,7 +19,8 @@ public class MoveEventHandler : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, lm))
         {
-            Vector3 spot = hit.collider.GetComponent<Tile>().GetPos();
+            GameObject tile = hit.collider.gameObject;
+            Vector3 spot = tile.GetComponent<Tile>().GetPos();
             tileIndictor.transform.position = spot;
             if (Input.GetButtonDown("Fire1"))
             {

@@ -11,7 +11,7 @@ public abstract class Ability : ScriptableObject
     public ActionTypes TypeOfActionRequired;
 
     public abstract void Initialize(GameObject obj);
-    public abstract void TriggerAbility();
+    public abstract void TriggerAbility(GameObject target);
 
     public int Roll(int dice)
     {
