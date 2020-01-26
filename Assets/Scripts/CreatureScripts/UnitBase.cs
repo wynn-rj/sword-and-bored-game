@@ -21,12 +21,12 @@ public class UnitBase : MonoBehaviour
         agent.destination = pos;
     }
 
-    public int Roll(int dice)
+    static public int Roll(int dice)
     {
         return Random.Range(1, dice);
     }
 
-    public int Roll()
+    static public int Roll()
     {
         return Roll(20);
     }
