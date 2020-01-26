@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 
-public class CreditsMenuFunctions : MonoBehaviour
+namespace SwordAndBored.UI.MenuFunctions
 {
-    public GameObject mainMenuCanvas;
-    public void MainMenuButtonPressed()
+    public class CreditsMenuFunctions : MonoBehaviour
     {
-        mainMenuCanvas.SetActive(true);
-        gameObject.SetActive(false);        
+        public GameObject mainMenuCanvas;
+        public void MainMenuButtonPressed()
+        {
+            mainMenuCanvas.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
+
 }
