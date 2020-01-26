@@ -14,6 +14,8 @@ public class UniqueCreature : CreatureBase
         {
             ability.Initialize(transform.gameObject);
         }
+
+        health = maxHealth;
     }
 
     public void UseAbility(int i, GameObject target)

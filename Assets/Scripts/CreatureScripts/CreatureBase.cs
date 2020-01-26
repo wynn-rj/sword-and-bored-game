@@ -6,11 +6,11 @@ public class CreatureBase : UnitBase
 {
     public string creatureName;
     public int maxHealth;
-    int health;
+    public int health;
 
-    bool Action = true;
-    bool Bonus = true;
-    bool Reaction = true;
+    bool action = true;
+    bool bonus = true;
+    bool reaction = true;
 
     public int maxMovement;
     int movement;
@@ -23,10 +23,18 @@ public class CreatureBase : UnitBase
     
     public void StartTurn()
     {
-        Action = true;
-        Bonus = true;
-        Reaction = true;
+        action = true;
+        bonus = true;
+        reaction = true;
         movement = maxMovement;
+    }
+
+    void Update()
+    {
+        if (health <= 0)
+        {
+            Destroy(transform.gameObject);
+        }    
     }
 }
 
