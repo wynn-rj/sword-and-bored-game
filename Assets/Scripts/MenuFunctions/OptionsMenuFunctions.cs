@@ -4,62 +4,87 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
-public class OptionsMenuFunctions : MonoBehaviour
+namespace SwordAndBored.UI.MenuFunctions
 {
-    public GameObject previousCanvas;
-    public AudioMixer audioMixer;
-    public Slider volumeSlider;
-    public TMP_Dropdown resolutionDropdown;
-    public Resolution[] resolutions;
 
-    void Start()
+    public class OptionsMenuFunctions : MonoBehaviour
     {
-        resolutions = Screen.resolutions;
+        public GameObject previousCanvas;
+        public AudioMixer audioMixer;
+        public Slider volumeSlider;
+        public TMP_Dropdown qualityDropdown;
+        public Toggle fullscreenToggle;
+        public TMP_Dropdown resolutionDropdown;
+        public Resolution[] resolutions;
 
-        resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
-        int currentResIndex = 0;
-        for (int i =0; i<resolutions.Length; i++)
+        void Start()
         {
-            options.Add(resolutions[i].width + "X" + resolutions[i].height + " (" + resolutions[i].refreshRate + "Hz)");
+            /* Default Resolution Settings */
+            int currentHeight = PlayerPrefs.GetInt("savedHeight", Screen.currentResolution.height);
+            int currentWidth = PlayerPrefs.GetInt("savedWidth", Screen.currentResolution.width);
+            int currentRefreshRate = PlayerPrefs.GetInt("savedRefreshRate", Screen.currentResolution.refreshRate);
+            resolutions = Screen.resolutions;
 
-            if (resolutions[i].height == Screen.currentResolution.height && resolutions[i].width == Screen.currentResolution.width)
+            resolutionDropdown.ClearOptions();
+            List<string> options = new List<string>();
+            int currentResIndex = 5;
+            for (int i = 0; i < resolutions.Length; i++)
             {
-                currentResIndex = i;
+                options.Add(resolutions[i].width + "X" + resolutions[i].height + " (" + resolutions[i].refreshRate + "Hz)");
+
+                if (resolutions[i].height == currentHeight && resolutions[i].width == currentWidth && resolutions[i].refreshRate == currentRefreshRate)
+                {
+                    currentResIndex = i;
+                }
             }
+            resolutionDropdown.AddOptions(options);
+            resolutionDropdown.value = currentResIndex;
+            resolutionDropdown.RefreshShownValue();
+
+            /* Default Volume Settings */
+            float savedVolume = PlayerPrefs.GetFloat("masterVolume", 0);
+            volumeSlider.value = savedVolume;
+            audioMixer.SetFloat("masterVolume", savedVolume);
+
+            /* Default Fullscreen Settings */
+            fullscreenToggle.isOn = Screen.fullScreen;
+            
+            /* Default Quality Settings */
+            qualityDropdown.value = QualitySettings.GetQualityLevel();
+            qualityDropdown.RefreshShownValue();
+
         }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResIndex;
-        resolutionDropdown.RefreshShownValue();
 
-        float currentVolume;
-        audioMixer.GetFloat("masterVolume", out currentVolume);
-        volumeSlider.value = currentVolume;
+        public void BackButtonPressed()
+        {
+            previousCanvas.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
+        public void SetVolume(float volumeValue)
+        {
+            audioMixer.SetFloat("masterVolume", volumeValue);
+            PlayerPrefs.SetFloat("masterVolume", volumeValue);
+            PlayerPrefs.Save();
+        }
+
+        public void SetQuality(int qualityIndex)
+        {
+            QualitySettings.SetQualityLevel(qualityIndex);
+        }
+
+        public void SetFullscreen(bool isFullScreen)
+        {
+            Screen.fullScreen = isFullScreen;
+        }
+
+        public void SetResolution(int resIndex)
+        {
+            Screen.SetResolution(resolutions[resIndex].width, resolutions[resIndex].height, Screen.fullScreen);
+            PlayerPrefs.SetInt("savedHeight", resolutions[resIndex].height);
+            PlayerPrefs.SetInt("savedWidth", resolutions[resIndex].width);
+            PlayerPrefs.SetInt("savedRefreshRate", resolutions[resIndex].refreshRate);
+        }
     }
 
-    public void BackButtonPressed()
-    {
-        previousCanvas.SetActive(true);
-        gameObject.SetActive(false);
-    }
-
-    public void SetVolume(float volumeValue)
-    {
-        audioMixer.SetFloat("masterVolume", volumeValue);
-    }
-
-    public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-    }
-
-    public void SetFullscreen(bool isFullScreen)
-    {
-        Screen.fullScreen = isFullScreen;
-    }
-
-    public void SetResolution(int resIndex)
-    {
-        Screen.SetResolution(resolutions[resIndex].width, resolutions[resIndex].height, Screen.fullScreen);
-    }
 }

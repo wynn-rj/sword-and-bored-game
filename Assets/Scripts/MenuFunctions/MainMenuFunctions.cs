@@ -1,43 +1,50 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuFunctions : MonoBehaviour
+namespace SwordAndBored.UI.MenuFunctions
 {
-    public GameObject optionsCanvas, creditsCanvas;
-    public GameObject confirmQuitPanel;
-    public void StartButtonPressed()
-    {       
-        SceneManager.LoadScene("PauseCreationScene");
-    }
-
-    public void ExitButtonPressed()
+    public class MainMenuFunctions : MonoBehaviour
     {
-        confirmQuitPanel.SetActive(true);
+        public GameObject optionsCanvas, creditsCanvas, loadingCanvas;
+        public GameObject confirmQuitPanel;
+
+        public void StartButtonPressed()
+        {
+            loadingCanvas.SetActive(true);
+            gameObject.SetActive(false);
+            //SceneManager.LoadScene("PauseCreationScene");
+        }
+
+        public void ExitButtonPressed()
+        {
+            confirmQuitPanel.SetActive(true);
+        }
+
+        public void OptionsButtonPressed()
+        {
+            optionsCanvas.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
+        public void CreditsButtonPressed()
+        {
+            creditsCanvas.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
+        public void CancelQuitPressed()
+        {
+            confirmQuitPanel.SetActive(false);
+        }
+
+
+        public void ConfirmQuitPressed()
+        {
+            Debug.Log("Pressed Confirm Quit");
+            Application.Quit();
+        }
+
+
     }
-
-    public void OptionsButtonPressed()
-    {
-        optionsCanvas.SetActive(true);
-        gameObject.SetActive(false);
-    }
-
-    public void CreditsButtonPressed()
-    {
-        creditsCanvas.SetActive(true);
-        gameObject.SetActive(false);
-    }
-
-    public void CancelQuitPressed()
-    {
-        confirmQuitPanel.SetActive(false);
-    }
-
-
-    public void ConfirmQuitPressed()
-    {
-        Debug.Log("Pressed Confirm Quit");
-        Application.Quit();
-    }
-
 
 }

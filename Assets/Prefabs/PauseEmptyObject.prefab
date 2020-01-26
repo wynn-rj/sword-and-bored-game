@@ -2765,6 +2765,8 @@ MonoBehaviour:
   previousCanvas: {fileID: 3961204994810715520}
   audioMixer: {fileID: 24100000, guid: d1a7508d48cbef446b7bdfe8ef108d5d, type: 2}
   volumeSlider: {fileID: 183853978}
+  qualityDropdown: {fileID: 333181281}
+  fullscreenToggle: {fileID: 101617332}
   resolutionDropdown: {fileID: 13802075}
 --- !u!1 &1279480248
 GameObject:
