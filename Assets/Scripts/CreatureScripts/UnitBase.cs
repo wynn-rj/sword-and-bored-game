@@ -8,6 +8,8 @@ public class UnitBase : MonoBehaviour
     
 
     NavMeshAgent agent;
+    [HideInInspector]
+    public Tile currentTile;
 
     
     void Awake()
@@ -18,6 +20,11 @@ public class UnitBase : MonoBehaviour
 
     public void MoveTo(Vector3 pos)
     {
+        if (currentTile)
+        {
+            currentTile.unitOnTile = null;
+            currentTile = null;
+        }
         agent.destination = pos;
     }
 
@@ -29,5 +36,11 @@ public class UnitBase : MonoBehaviour
     static public int Roll()
     {
         return Roll(20);
+    }
+
+    public void SetTile(Tile tile)
+    {
+        currentTile = tile;
+        tile.unitOnTile = this.gameObject;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [HideInInspector]
+    
     public GameObject unitOnTile;
     public bool walkable = true;
 
