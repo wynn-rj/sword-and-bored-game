@@ -43,7 +43,7 @@ namespace SwordAndBored.BattleMechanism
         void Update()
         {
             activePlayer = turnManager.activePlayer;
-            activePlayer.Glow(true);
+            activePlayer.Glow(1);
             if (moving)
             {
                 movePlayer();
@@ -64,7 +64,7 @@ namespace SwordAndBored.BattleMechanism
 
         private void EndTurn()
         {
-            activePlayer.Glow(false);
+            activePlayer.Glow(2);
             turnManager.nextTurn();
         }
 
@@ -98,20 +98,26 @@ namespace SwordAndBored.BattleMechanism
 
         void useAbility(int abilityNum)
         {
-            if (Input.GetButtonDown("Fire1"))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, selectingCreaturesLayerMask))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100, selectingCreaturesLayerMask))
+                GameObject target = hit.collider.gameObject;
+                UniqueCreature enem = target.GetComponent<UniqueCreature>();
+                if (enem)
                 {
-
-                    GameObject target = hit.collider.gameObject;
-                    activePlayer.UseAbility(0, target);
-                
+                    enem.Glow(3);
                 }
-                moving = true;
-                indicatorRend.enabled = true;
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    activePlayer.UseAbility(0, target);
+                    moving = true;
+                    indicatorRend.enabled = true;
+
+                }
+                
             }
+            
         }
     }
 }

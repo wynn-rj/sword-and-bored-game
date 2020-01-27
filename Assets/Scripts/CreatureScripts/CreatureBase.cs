@@ -8,6 +8,7 @@ public class CreatureBase : UnitBase
     public string creatureName;
     public int maxHealth;
     public int health;
+    public Animator anim;
 
     [HideInInspector]
     public bool action = true;
@@ -44,6 +45,10 @@ public class CreatureBase : UnitBase
     public void Damage(int damage)
     {
         health -= damage;
+        if (health <= 0)
+        {
+            Destroy(transform.gameObject);
+        }
     }
 }
 
