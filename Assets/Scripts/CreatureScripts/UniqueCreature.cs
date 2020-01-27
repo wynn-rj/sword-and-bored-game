@@ -10,7 +10,9 @@ public class UniqueCreature : CreatureBase
     public int hitMod;
     public Material[] mat;
     Renderer currentMat;
-
+    float a = .05f;
+    float b;
+    int highlightColor;
 
     void Start()
     {
@@ -52,14 +54,27 @@ public class UniqueCreature : CreatureBase
         }
     }
 
-    public void Glow(bool glow)
+    public void Glow(int glow)
     {
-        if (glow)
+        highlightColor = glow;
+        if (glow == 1)
         {
             currentMat.material = mat[1];
-        } else
+        } else if (glow == 2)
         {
             currentMat.material = mat[0];
+        } else if (glow == 3) 
+        {
+            b = a + Time.time;
+            currentMat.material = mat[2];
+        }
+    }
+
+    private void Update()
+    {
+        if (highlightColor == 3 && Time.time > b)
+        {
+            Glow(2);
         }
     }
 }
