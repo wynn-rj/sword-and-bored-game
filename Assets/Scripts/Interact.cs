@@ -17,6 +17,10 @@ namespace SwordAndBored.BattleMechanism
         int abilityInUse = 0;
 
         bool moving = true;
+        Renderer indicatorRend;
+
+
+        public Vector2 startCoordinates;
 
         private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
@@ -30,10 +34,16 @@ namespace SwordAndBored.BattleMechanism
          KeyCode.Alpha9,
         };
 
+        void Start()
+        {
+            indicatorRend = tileIndictor.GetComponentInChildren<Renderer>();
+        }
+
+
         void Update()
         {
             activePlayer = turnManager.activePlayer;
-
+            activePlayer.Glow(true);
             if (moving)
             {
                 movePlayer();
@@ -45,17 +55,21 @@ namespace SwordAndBored.BattleMechanism
 
 
 
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("Next"))
             {
-                turnManager.nextTurn();
+                EndTurn();
             }
 
         }
 
+        private void EndTurn()
+        {
+            activePlayer.Glow(false);
+            turnManager.nextTurn();
+        }
 
         void movePlayer()
         {
-
             for (int i = 0; i < keyCodes.Length; i++)
             {
                 if (Input.GetKeyDown(keyCodes[i]))
@@ -63,10 +77,11 @@ namespace SwordAndBored.BattleMechanism
                     abilityInUse = i + 1;
                     Debug.Log(i + 1);
                     moving = false;
+                    indicatorRend.enabled = false;
                 }
             }
 
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, tileMapLayerMask))
             {
@@ -83,14 +98,19 @@ namespace SwordAndBored.BattleMechanism
 
         void useAbility(int abilityNum)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100, selectingCreaturesLayerMask))
+            if (Input.GetButtonDown("Fire1"))
             {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 100, selectingCreaturesLayerMask))
+                {
 
-                GameObject target = hit.collider.gameObject;
-
+                    GameObject target = hit.collider.gameObject;
+                    activePlayer.UseAbility(0, target);
                 
+                }
+                moving = true;
+                indicatorRend.enabled = true;
             }
         }
     }
