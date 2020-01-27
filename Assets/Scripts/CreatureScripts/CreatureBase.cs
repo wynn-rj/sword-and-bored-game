@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class CreatureBase : UnitBase
 {
+    [Header("Creature Info")]
     public string creatureName;
     public int maxHealth;
     public int health;
 
-    bool action = true;
-    bool bonus = true;
-    bool reaction = true;
+    [HideInInspector]
+    public bool action = true;
+    [HideInInspector]
+    public bool bonus = true;
+    [HideInInspector]
+    public bool reaction = true;
 
     public int maxMovement;
     int movement;
@@ -35,6 +39,11 @@ public class CreatureBase : UnitBase
         {
             Destroy(transform.gameObject);
         }    
+    }
+
+    public void Damage(int damage)
+    {
+        health -= damage;
     }
 }
 

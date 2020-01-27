@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.Events;
 
 public class TileManager : MonoBehaviour
 {
@@ -8,10 +10,19 @@ public class TileManager : MonoBehaviour
     public Transform tileContainer;
     public int width = 25;
     public int height = 25;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        //GenerateTileMap();
+    }
+
+
+    public void GenerateTileMap()
+    {
+        Vector3 pos = transform.position;
+        tileContainer.position = new Vector3(width / 2f, 0, height / 2f);
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -22,12 +33,25 @@ public class TileManager : MonoBehaviour
             }
         }
 
-        tileContainer.position = new Vector3(-width / 2f, 0, -height / 2f);
+        //tileContainer.position = new Vector3(-width / 2f, 0, -height / 2f);
+        tileContainer.position = pos;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EraseTileMap()
     {
-        
+        foreach (Transform child in tileContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
     }
+
+    [ContextMenu("Do Something")]
+    void DoSomething()
+    {
+        Debug.Log("Perform operation");
+    }
+
+
+
 }
