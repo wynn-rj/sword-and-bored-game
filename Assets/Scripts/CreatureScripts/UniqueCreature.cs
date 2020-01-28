@@ -28,6 +28,7 @@ public class UniqueCreature : CreatureBase
 
     public void UseAbility(int i, GameObject target)
     {
+        anim.SetTrigger("Attack");
         switch (abilities[i].TypeOfActionRequired)
         {
             case Ability.ActionTypes.Action:
