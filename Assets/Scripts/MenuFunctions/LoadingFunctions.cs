@@ -18,7 +18,7 @@ namespace SwordAndBored.UI.MenuFunctions
 
         void LoadGameScene()
         {
-            SceneManager.LoadScene("PauseCreationScene");
+            SceneManager.LoadScene("CameraAddingScene");
         }
 
         IEnumerator CycleImages()

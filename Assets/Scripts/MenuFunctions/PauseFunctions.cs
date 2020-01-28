@@ -21,6 +21,17 @@ namespace SwordAndBored.UI.MenuFunctions
                     pauseCanvas.SetActive(!pauseCanvas.activeSelf);
                 }
             }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                string name = SceneManager.GetActiveScene().name;
+                if (name.Equals("CameraAddingScene"))
+                {
+                    SceneManager.LoadScene("ProceduralGenerationTesting");
+                } else
+                {
+                    SceneManager.LoadScene("CameraAddingScene");
+                }
+            }
         }
 
         public void ResumePressed()
