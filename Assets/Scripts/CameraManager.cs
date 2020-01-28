@@ -30,7 +30,8 @@ public class CameraManager : MonoBehaviour
         if (turnManager.activePlayer.gameObject.transform.GetChild(3).GetComponent<CinemachineVirtualCamera>().Priority < priority)
         {
             turnManager.activePlayer.gameObject.transform.GetChild(3).GetComponent<CinemachineVirtualCamera>().Priority = priority + 1;
+            priority++;
         }
-        priority++;
+       
     }
 }
