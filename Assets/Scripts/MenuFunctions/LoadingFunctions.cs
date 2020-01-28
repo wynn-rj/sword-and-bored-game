@@ -13,13 +13,15 @@ namespace SwordAndBored.UI.MenuFunctions
 
         private void Start()
         {
+            StopAllCoroutines();
             StartCoroutine("CycleImages");
         }
 
         void LoadGameScene()
         {
-            SceneManager.LoadSceneAsync("CameraAddingScene");
-            //SceneManager.LoadScene("ProceduralGenerationTesting");
+            //SceneManager.LoadSceneAsync("CameraAddingScene");
+            SceneManager.LoadSceneAsync("ProceduralGenerationTesting");
+            gameObject.SetActive(false);
         }
 
         IEnumerator CycleImages()
@@ -30,13 +32,9 @@ namespace SwordAndBored.UI.MenuFunctions
                 loadingSlider.value = (i + 1) * (100.0f / images.Length);
                 yield return new WaitForSeconds(1f);
                 images[i].SetActive(false);
-
-                if(i == images.Length -2)
-                {
-                    LoadGameScene();
-                }
             }
-            
+            LoadGameScene();
+
         }
     }
 }

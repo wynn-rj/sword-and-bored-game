@@ -6094,7 +6094,7 @@ MonoBehaviour:
     Subash Chebolu: Battlefield View Developer,
     AI
 
-    Rory GIlliland: Data, UI, ARt/Juice Assets'
+    Rory GIlliland: Data, UI, Art/Juice Assets'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6232,8 +6232,8 @@ Camera:
   m_GameObject: {fileID: 1371053451}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.45616764, g: 0.5245762, b: 0.6320754, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
