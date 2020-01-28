@@ -6,6 +6,7 @@ namespace SwordAndBored.UI.MenuFunctions
     public class PauseFunctions : MonoBehaviour
     {
         public GameObject pauseCanvas, optionsCanvas;
+
         // Update is called once per frame
         void Update()
         {
@@ -20,6 +21,15 @@ namespace SwordAndBored.UI.MenuFunctions
                 {
                     pauseCanvas.SetActive(!pauseCanvas.activeSelf);
                 }
+                if (pauseCanvas.activeSelf || optionsCanvas.activeSelf)
+                {
+
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
             }
             if (Input.GetKeyDown(KeyCode.M))
             {
@@ -32,6 +42,7 @@ namespace SwordAndBored.UI.MenuFunctions
                     SceneManager.LoadScene("CameraAddingScene");
                 }
             }
+            
         }
 
         public void ResumePressed()
