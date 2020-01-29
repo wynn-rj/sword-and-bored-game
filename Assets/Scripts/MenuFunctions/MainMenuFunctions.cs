@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 namespace SwordAndBored.UI.MenuFunctions
 {
@@ -8,6 +9,16 @@ namespace SwordAndBored.UI.MenuFunctions
         public GameObject optionsCanvas, creditsCanvas, loadingCanvas;
         public GameObject confirmQuitPanel;
 
+        public AudioMixer audioMixer;
+
+        /*
+         * Needed to set default for volume
+         */
+        private void Start()
+        {
+            float savedVolume = PlayerPrefs.GetFloat("masterVolume", 0);
+            audioMixer.SetFloat("masterVolume", savedVolume);
+        }
         public void StartButtonPressed()
         {
             loadingCanvas.SetActive(true);
