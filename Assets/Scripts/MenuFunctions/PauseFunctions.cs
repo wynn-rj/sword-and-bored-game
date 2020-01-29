@@ -48,6 +48,7 @@ namespace SwordAndBored.UI.MenuFunctions
         public void ResumePressed()
         {
             pauseCanvas.SetActive(false);
+            Time.timeScale = 1.0f;
         }
 
         public void ReturnMainPressed()
