@@ -27,7 +27,7 @@ namespace SwordAndBored.UI.MenuFunctions
 
             resolutionDropdown.ClearOptions();
             List<string> options = new List<string>();
-            int currentResIndex = 5;
+            int currentResIndex = resolutions.Length-1;
             for (int i = 0; i < resolutions.Length; i++)
             {
                 options.Add(resolutions[i].width + "X" + resolutions[i].height + " (" + resolutions[i].refreshRate + "Hz)");

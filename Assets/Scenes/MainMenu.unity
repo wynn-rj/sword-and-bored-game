@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -586,6 +586,7 @@ MonoBehaviour:
   creditsCanvas: {fileID: 0}
   loadingCanvas: {fileID: 0}
   confirmQuitPanel: {fileID: 0}
+  audioMixer: {fileID: 0}
 --- !u!1 &210942514
 GameObject:
   m_ObjectHideFlags: 0
@@ -4826,6 +4827,7 @@ MonoBehaviour:
   creditsCanvas: {fileID: 1007852140}
   loadingCanvas: {fileID: 1504188430}
   confirmQuitPanel: {fileID: 1054165924}
+  audioMixer: {fileID: 24100000, guid: d1a7508d48cbef446b7bdfe8ef108d5d, type: 2}
 --- !u!1 &1196344650
 GameObject:
   m_ObjectHideFlags: 0
