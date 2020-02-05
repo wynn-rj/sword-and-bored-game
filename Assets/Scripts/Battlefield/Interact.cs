@@ -111,7 +111,7 @@ namespace SwordAndBored.BattleMechanism
                 }
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    activePlayer.UseAbility(0, target);
+                    activePlayer.abil.UseAbility(0, target);
                     moving = true;
                     indicatorRend.enabled = true;
 
