@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animations.meta
 guid: decd90524644c3642a91e4f77a3778bd
+=======
+guid: 132fabda2ee895244af734d988924c4e
+>>>>>>> established basic db connection, even through builds:Assets/Scripts/GameData/Database.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
