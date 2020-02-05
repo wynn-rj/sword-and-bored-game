@@ -4,56 +4,28 @@ using UnityEngine;
 
 public class UniqueCreature : CreatureBase
 {
-    [Header("Ability Info")]
-    public Ability[] abilities;
-    public int AC;
-    public int hitMod;
+    [Header("Material Info")]
     public Material[] mat;
-    Renderer currentMat;
+    [HideInInspector]
+    public Renderer currentMat;
     float a = .05f;
     float b;
     int highlightColor;
+    [HideInInspector]
+    public UnitAbilitiesContainer abil;
+    [HideInInspector]
+    public UnitStats stats;
 
     void Start()
     {
-        foreach (Ability ability in abilities)
-        {
-            ability.Initialize(transform.gameObject);
-        }
-
         health = maxHealth;
 
         currentMat = GetComponent<Renderer>();
+        abil = GetComponent<UnitAbilitiesContainer>();
+        stats = GetComponent<UnitStats>();
     }
 
-    public void UseAbility(int i, GameObject target)
-    {
-        anim.SetTrigger("Attack");
-        switch (abilities[i].TypeOfActionRequired)
-        {
-            case Ability.ActionTypes.Action:
-                if (action)
-                {
-                    abilities[i].TriggerAbility(target);
-                    action = false;
-                }
-                break;
-            case Ability.ActionTypes.BonusAction:
-                if (bonus)
-                {
-                    abilities[i].TriggerAbility(target);
-                    bonus = false;
-                }
-                break;
-            case Ability.ActionTypes.Reaction:
-                if (reaction)
-                {
-                    abilities[i].TriggerAbility(target);
-                    reaction = false;
-                }
-                break;
-        }
-    }
+    
 
     public void Glow(int glow)
     {
