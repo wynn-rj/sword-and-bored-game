@@ -7,6 +7,6 @@
     {
         IAbility[] Choices { get; }
 
-        IAbility SelectedSkill { get; set; }
+        IAbility[] Selected { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace SwordAndBored.GameData.Creatures
         ISkillTree SkillTree { get; }
         IEquipment ArmorSlot { get; set; }
         IEquipment WeaponSlot { get; set; }
-        IEquipment AdditionalEquipmentSlot { get; set; }
+        IEquipment[] AdditionalEquipmentSlots { get; set; }
     }
 }
