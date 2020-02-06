@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SwordAndBored.TurnMechanism
+namespace SwordAndBored.Battlefield.TurnMechanism
 {
     public class TurnOrderController
     {
