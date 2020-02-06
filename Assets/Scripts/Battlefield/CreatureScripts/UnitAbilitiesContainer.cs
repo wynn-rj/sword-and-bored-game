@@ -2,48 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitAbilitiesContainer : MonoBehaviour
+namespace SwordAndBored.Battlefield.CreaturScripts
 {
-    [Header("Ability Info")]
-    public AAbilitySO[] abilities;
-    //public Material[] mat;
-    UniqueCreature unit;
-
-    void Start()
+    public class UnitAbilitiesContainer : MonoBehaviour
     {
-        unit = GetComponent<UniqueCreature>();
-        foreach (AAbilitySO ability in abilities)
+        [Header("Ability Info")]
+        public AAbilitySO[] abilities;
+        //public Material[] mat;
+        UniqueCreature unit;
+
+        void Start()
         {
-            ability.Initialize(transform.gameObject);
+            unit = GetComponent<UniqueCreature>();
+            foreach (AAbilitySO ability in abilities)
+            {
+                ability.Initialize(transform.gameObject);
+            }
+        }
+
+        public void UseAbility(int i, GameObject target)
+        {
+            unit.anim.SetTrigger("Attack");
+            switch (abilities[i].TypeOfActionRequired)
+            {
+                case AAbilitySO.ActionTypes.Action:
+                    if (unit.action)
+                    {
+                        abilities[i].TriggerAbility(target);
+                        unit.action = false;
+                    }
+                    break;
+                case AAbilitySO.ActionTypes.BonusAction:
+                    if (unit.bonus)
+                    {
+                        abilities[i].TriggerAbility(target);
+                        unit.bonus = false;
+                    }
+                    break;
+                case AAbilitySO.ActionTypes.Reaction:
+                    if (unit.reaction)
+                    {
+                        abilities[i].TriggerAbility(target);
+                        unit.reaction = false;
+                    }
+                    break;
+            }
         }
     }
 
-    public void UseAbility(int i, GameObject target)
-    {
-        unit.anim.SetTrigger("Attack");
-        switch (abilities[i].TypeOfActionRequired)
-        {
-            case AAbilitySO.ActionTypes.Action:
-                if (unit.action)
-                {
-                    abilities[i].TriggerAbility(target);
-                    unit.action = false;
-                }
-                break;
-            case AAbilitySO.ActionTypes.BonusAction:
-                if (unit.bonus)
-                {
-                    abilities[i].TriggerAbility(target);
-                    unit.bonus = false;
-                }
-                break;
-            case AAbilitySO.ActionTypes.Reaction:
-                if (unit.reaction)
-                {
-                    abilities[i].TriggerAbility(target);
-                    unit.reaction = false;
-                }
-                break;
-        }
-    }
 }
