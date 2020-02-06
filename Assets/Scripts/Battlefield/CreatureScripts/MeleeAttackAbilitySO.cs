@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "Abilities/MeleeAttack", order = 1)]
-public class MeleeAttackAbilitySO : AAbilitySO
-{
-
-    public int damageDice;
-    public int range;
-    UniqueCreature user;
-
-    public override void Initialize(GameObject obj)
+namespace SwordAndBored.Battlefield.CreaturScripts {
+    [CreateAssetMenu(fileName = "Data", menuName = "Abilities/MeleeAttack", order = 1)]
+    public class MeleeAttackAbilitySO : AAbilitySO
     {
-        user = obj.GetComponent<UniqueCreature>();
-    }
 
-    public override void TriggerAbility(GameObject target)
-    {
-        UniqueCreature enemy = target.GetComponent<UniqueCreature>();
-        if (true)
+        public int damageDice;
+        public int range;
+        UniqueCreature user;
+
+        public override void Initialize(GameObject obj)
         {
-            enemy.Damage(Roll(damageDice));
-            //Debug.Log("Hit");
-        } else
-        {
-            //Debug.Log("Miss");
+            user = obj.GetComponent<UniqueCreature>();
         }
-    }
+
+        public override void TriggerAbility(GameObject target)
+        {
+            UniqueCreature enemy = target.GetComponent<UniqueCreature>();
+            if (true)
+            {
+                enemy.Damage(Roll(damageDice));
+                //Debug.Log("Hit");
+            } else
+            {
+                //Debug.Log("Miss");
+            }
+        }
     
+    }
 }

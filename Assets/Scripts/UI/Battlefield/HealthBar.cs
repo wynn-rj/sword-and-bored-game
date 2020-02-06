@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SwordAndBored.Battlefield.CreaturScripts;
 
-public class HealthBar : MonoBehaviour
+namespace SwordAndBored.UI.Battlefield
 {
-
-    CreatureBase unit;
-    public Slider healthBar;
-    float healthRatio;
-    
-    void Start()
+    public class HealthBar : MonoBehaviour
     {
-        unit = GetComponentInParent<CreatureBase>();
+
+        CreatureBase unit;
+        public Slider healthBar;
+        float healthRatio;
+    
+        void Start()
+        {
+            unit = GetComponentInParent<CreatureBase>();
+        }
+
+    
+        void Update()
+        {
+            healthRatio = (float) unit.health / (float) unit.maxHealth;
+            healthBar.value = healthRatio;
+        }
     }
 
-    
-    void Update()
-    {
-        healthRatio = (float) unit.health / (float) unit.maxHealth;
-        healthBar.value = healthRatio;
-    }
 }
