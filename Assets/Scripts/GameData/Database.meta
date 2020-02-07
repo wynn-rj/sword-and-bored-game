@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 568dc8c1cbb44bc49941510d2003cde9
+=======
+guid: 469cd530e1498a5419e82a1cf88df432
+>>>>>>> Set up initial base management scene
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
