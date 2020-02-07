@@ -7,7 +7,7 @@ using SwordAndBored.Battlefield.CameraUtilities;
 
 namespace SwordAndBored.Battlefield
 {
-    public class PlayerInputHandler : MonoBehaviour
+    public class PlayerInputHandler : AbstractTurnBrain
     {
         [Header("Tilemaps")]
         public GameObject tileIndictor;
@@ -16,8 +16,7 @@ namespace SwordAndBored.Battlefield
         public LayerMask selectingCreaturesLayerMask;
 
         public UniqueCreature activePlayer;
-
-        public TurnManager turnManager;
+        
         int abilityInUse = 0;
 
         bool movingState = true;
@@ -46,8 +45,9 @@ namespace SwordAndBored.Battlefield
         }
 
 
-        void Update()
+        public override void UpdateBrainHandler()
         {
+
             activePlayer = turnManager.activePlayer;
             activePlayer.Glow(1);
 
@@ -70,6 +70,7 @@ namespace SwordAndBored.Battlefield
         private void EndTurn()
         {
             activePlayer.Glow(2);
+            movingState = true;
             turnManager.nextTurn();
         }
 
