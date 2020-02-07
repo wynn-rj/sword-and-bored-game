@@ -14,10 +14,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
         [HideInInspector]
         public bool action = true;
-        [HideInInspector]
-        public bool bonus = true;
-        [HideInInspector]
-        public bool reaction = true;
 
         public int maxMovement;
         int movement;
@@ -31,8 +27,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public void StartTurn()
         {
             action = true;
-            bonus = true;
-            reaction = true;
             movement = maxMovement;
         }
 

@@ -32,16 +32,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             agent.destination = pos;
         }
 
-        static public int Roll(int dice)
-        {
-            return Random.Range(1, dice);
-        }
-
-        static public int Roll()
-        {
-            return Roll(20);
-        }
-
         public void SetTile(Tile tile)
         {
             currentTile = tile;
