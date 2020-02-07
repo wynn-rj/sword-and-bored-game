@@ -8,9 +8,9 @@ public class BaseManager : MonoBehaviour
 
     List<IBuilding> resourceBuildings;
 
-    private void Awake()
+    void Awake()
     {
-        LoadBuildings();
+        
     }
 
     void Start()
