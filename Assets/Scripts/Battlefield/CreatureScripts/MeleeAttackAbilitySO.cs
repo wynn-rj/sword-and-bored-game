@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
     [CreateAssetMenu(fileName = "Data", menuName = "Abilities/MeleeAttack", order = 1)]
-    public class MeleeAttackAbilitySO : AAbilitySO
+    public class MeleeAttackAbilitySO : AbstractAbilitySO
     {
 
         public int damageDice;
