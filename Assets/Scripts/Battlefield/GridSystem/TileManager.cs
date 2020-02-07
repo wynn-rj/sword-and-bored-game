@@ -36,7 +36,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                     newTile.name = "Tile " + i + " " + j;
 
                     //This line is supposed to add the tiles to an array, for some reason it doesnt currently work.
-                    //gridHold.tiles[i, j] = newTile;
+                    gridHold.tiles[i, j] = newTile;
                 }
             }
         

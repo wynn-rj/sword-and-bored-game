@@ -10,8 +10,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts
     public class UnitBase : MonoBehaviour
     {
     
-
-        NavMeshAgent agent;
+        [HideInInspector]
+        public NavMeshAgent agent;
         [HideInInspector]
         public Tile currentTile;
 
@@ -22,7 +22,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         }
     
 
-        public void MoveTo(Vector3 pos)
+        protected void MoveTo(Vector3 pos)
         {
             if (currentTile)
             {

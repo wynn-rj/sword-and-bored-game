@@ -14,18 +14,19 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         float b;
         int highlightColor;
         [HideInInspector]
-        public UnitAbilitiesContainer abil;
+        public UnitAbilitiesContainer abilityContainer;
         [HideInInspector]
         public UnitStats stats;
         [Header("Virtual Camera Info")]
         public CinemachineVirtualCamera currentCamera;
+        public Animator animator;
 
         void Start()
         {
             health = maxHealth;
 
             currentMat = GetComponent<Renderer>();
-            abil = GetComponent<UnitAbilitiesContainer>();
+            abilityContainer = GetComponent<UnitAbilitiesContainer>();
             stats = GetComponent<UnitStats>();
         }
 
@@ -57,6 +58,17 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             {
                 Glow(2);
             }
+
+            animator.SetFloat("Speed", (agent.velocity.magnitude / 3.5f));
+        }
+
+        /// <summary>
+        /// This method is used to move a unit to a tile        
+        /// </summary>
+        public void Move(Tile goTile)
+        {
+                SetTile(goTile);
+                MoveTo(goTile.GetPos());
         }
     }
 

@@ -8,7 +8,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
     {
         [Header("Ability Info")]
         public AAbilitySO[] abilities;
-        //public Material[] mat;
         UniqueCreature unit;
 
         void Start()
@@ -22,7 +21,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
         public void UseAbility(int i, GameObject target)
         {
-            unit.anim.SetTrigger("Attack");
+            unit.animator.SetTrigger("Attack");
             switch (abilities[i].TypeOfActionRequired)
             {
                 case AAbilitySO.ActionTypes.Action:
