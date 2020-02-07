@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class BaseManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    List<IBuilding> productionBuildings;
+
+    List<IBuilding> resourceBuildings;
+
+    private void Awake()
+    {
+        LoadBuildings();
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    private void LoadBuildings()
     {
         
     }
