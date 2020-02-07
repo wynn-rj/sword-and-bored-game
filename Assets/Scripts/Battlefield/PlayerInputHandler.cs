@@ -20,8 +20,9 @@ namespace SwordAndBored.Battlefield
         public TurnManager turnManager;
         int abilityInUse = 0;
 
-        bool moving = true;
+        bool movingState = true;
         Renderer indicatorRend;
+        Camera cam;
 
 
         public Vector2 startCoordinates;
@@ -41,6 +42,7 @@ namespace SwordAndBored.Battlefield
         void Start()
         {
             indicatorRend = tileIndictor.GetComponentInChildren<Renderer>();
+            cam = Camera.main;
         }
 
 
@@ -48,18 +50,16 @@ namespace SwordAndBored.Battlefield
         {
             activePlayer = turnManager.activePlayer;
             activePlayer.Glow(1);
-            if (moving)
+
+            if (movingState)
             {
-                movePlayer();
+                movementState();
             }
             else
             {
-                useAbility(abilityInUse);
+                useAbilityState(abilityInUse);
             }
-
-
-
-
+            
             if (Input.GetButtonDown("Next"))
             {
                 EndTurn();
@@ -73,37 +73,35 @@ namespace SwordAndBored.Battlefield
             turnManager.nextTurn();
         }
 
-        void movePlayer()
+        void movementState()
         {
             for (int i = 0; i < keyCodes.Length; i++)
             {
                 if (Input.GetKeyDown(keyCodes[i]))
                 {
                     abilityInUse = i + 1;
-                    Debug.Log(i + 1);
-                    moving = false;
+                    movingState = false;
                     indicatorRend.enabled = false;
                 }
             }
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, tileMapLayerMask))
             {
                 Tile currentTile = hit.collider.GetComponent<Tile>();
-                Vector3 spot = currentTile.GetPos();
-                tileIndictor.transform.position = spot;
-                if (Input.GetButtonDown("Fire1"))
+                tileIndictor.transform.position = currentTile.GetPos();
+                if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
                 {
-                    activePlayer.MoveTo(spot);
-                    activePlayer.SetTile(currentTile);
+                    activePlayer.Move(currentTile);
                 }
             }
         }
 
-        void useAbility(int abilityNum)
+
+        void useAbilityState(int abilityNum)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, selectingCreaturesLayerMask))
             {
@@ -115,8 +113,8 @@ namespace SwordAndBored.Battlefield
                 }
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    activePlayer.abil.UseAbility(0, target);
-                    moving = true;
+                    activePlayer.abilityContainer.UseAbility(0, target);
+                    movingState = true;
                     indicatorRend.enabled = true;
 
                 }
