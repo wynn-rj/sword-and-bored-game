@@ -23,13 +23,13 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         {
             manager = new TurnOrderController(units, new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<UniqueCreature>();
-            text.text = "Current Player: " + activePlayer.gameObject.name;
+            text.text = "Current Player: " + activePlayer.creatureName;
         }
 
         public void nextTurn()
         {
             activePlayer = manager.NextEntity().GetComponent<UniqueCreature>();
-            text.text = "Current Player: " + activePlayer.gameObject.name;
+            text.text = "Current Player: " + activePlayer.creatureName;
             activePlayer.StartTurn();
         }
 
