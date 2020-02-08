@@ -2,9 +2,9 @@
 {
     abstract class AbstractSkillTree : ISkillTree
     {
-        public ISkillTier[] Tiers { get; }
+        public virtual ISkillTier[] Tiers { get; }
 
-        public AbstractSkillTree(int tierDepth)
+        protected AbstractSkillTree(int tierDepth)
         {
             Tiers = new ISkillTier[tierDepth];
         }
