@@ -1,11 +1,11 @@
 ﻿namespace SwordAndBored.Utilities.Random
 {
-    class Dice
+    class Odds
     {
-        protected static Dice Instance { get; } = new Dice();
+        protected static Odds Instance { get; } = new Odds();
         private System.Random Random { get; }
 
-        private Dice()
+        private Odds()
         {
             Random = new System.Random();
         }
