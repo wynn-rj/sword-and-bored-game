@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 namespace SwordAndBored.GameData.Database.Tables
 {
-    public class DescriptorDatabase : MonoBehaviour
+    public class DescriptorTable
     {
         public int ID { get; }
         public string Name { get; set; }
