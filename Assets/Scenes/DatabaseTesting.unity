@@ -239,7 +239,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1652688080}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9267936
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1346848879}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.8309383
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -619,7 +619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 31.13334}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &863230477
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 204.1195, w: 0}
+  m_margin: {x: 0, y: 0, z: 204.1195, w: -629.78973}
   m_textInfo:
     textComponent: {fileID: 863230477}
     characterCount: 0
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Content: {fileID: 863230476}
+  m_Content: {fileID: 0}
   m_Horizontal: 1
   m_Vertical: 1
   m_MovementType: 1
