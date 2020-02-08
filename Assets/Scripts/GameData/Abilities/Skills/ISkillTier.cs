@@ -7,6 +7,8 @@
     {
         IAbility[] Choices { get; }
 
-        IAbility[] Selected { get; set; }
+        IAbility[] Selected { get; }
+
+        void SelectSkill(int choicesIndex);
     }
 }
