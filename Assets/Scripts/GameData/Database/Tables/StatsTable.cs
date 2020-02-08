@@ -18,21 +18,22 @@ namespace SwordAndBored.GameData.Database.Tables
         public StatsTable(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            SqliteDataReader reader = conn.QueryRowFromTableWithID("Stats", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Stats", inputID);
 
             ID = inputID;
-            if (reader.Read())
+            if (reader.NextRow())
             {
-                Physical_Attack = reader.GetInt32(reader.GetOrdinal("Physical_Attack"));
-                Physical_Defense = reader.GetInt32(reader.GetOrdinal("Physical_Defense"));
-                Magic_Attack = reader.GetInt32(reader.GetOrdinal("Magic_Attack"));
-                Magic_Defense = reader.GetInt32(reader.GetOrdinal("Magic_Defense"));
-                HP = reader.GetInt32(reader.GetOrdinal("HP"));
-                Initiative = reader.GetInt32(reader.GetOrdinal("Initiative"));
-                Movement = reader.GetInt32(reader.GetOrdinal("Movement"));
-                Evasion = reader.GetInt32(reader.GetOrdinal("Evasion"));
-                Accuracy = reader.GetInt32(reader.GetOrdinal("Accuracy"));
+                Physical_Attack = reader.GetIntFromCol("Physical_Attack");
+                Physical_Defense = reader.GetIntFromCol("Physical_Defense");
+                Magic_Attack = reader.GetIntFromCol("Magic_Attack");
+                Magic_Defense = reader.GetIntFromCol("Magic_Defense");
+                HP = reader.GetIntFromCol("HP");
+                Initiative = reader.GetIntFromCol("Initiative");
+                Movement = reader.GetIntFromCol("Movement");
+                Evasion = reader.GetIntFromCol("Evasion");
+                Accuracy = reader.GetIntFromCol("Accuracy");
             }
+            reader.CloseReader();
             conn.CloseConnection();
         }
 
