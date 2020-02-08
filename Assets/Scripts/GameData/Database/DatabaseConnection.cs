@@ -63,20 +63,20 @@ namespace SwordAndBored.GameData.Database
             return new DatabaseReader(command.ExecuteReader());
         }
 
-        public SqliteDataReader QueryRowFromTableWhereColNameEqualsInt(string tableName, string colName, int match)
+        public DatabaseReader QueryRowFromTableWhereColNameEqualsInt(string tableName, string colName, int match)
         {
             SqliteCommand command = conn.CreateCommand();
             Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + match.ToString());
             command.CommandText = SelectAllFromString + tableName + "WHERE " + colName + " = " + match.ToString();
-            return command.ExecuteReader();
+            return new DatabaseReader(command.ExecuteReader());
         }
 
-        public SqliteDataReader QueryRowFromTableWhereColNameEqualsInputStr(string tableName, string colName, string match)
+        public DatabaseReader QueryRowFromTableWhereColNameEqualsInputStr(string tableName, string colName, string match)
         {
             SqliteCommand command = conn.CreateCommand();
             Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + match);
             command.CommandText = SelectAllFromString + tableName + "WHERE " + colName + " = " + match;
-            return command.ExecuteReader();
+            return new DatabaseReader(command.ExecuteReader());
         }
     }
 }
