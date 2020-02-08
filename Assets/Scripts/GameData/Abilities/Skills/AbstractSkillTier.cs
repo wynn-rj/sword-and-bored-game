@@ -8,12 +8,12 @@ namespace SwordAndBored.GameData.Abilities.Skills
 
         public virtual IAbility[] Selected { get; }
 
-        public AbstractSkillTier(IAbility[] choices)
+        protected AbstractSkillTier(IAbility[] choices)
         {
             Choices = (IAbility[])choices.Clone();
         }
 
-        public AbstractSkillTier(int choiceCount)
+        protected AbstractSkillTier(int choiceCount)
         {
             Choices = new IAbility[choiceCount];
         }
