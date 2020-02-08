@@ -12,15 +12,16 @@ namespace SwordAndBored.GameData.Database.Tables
         public DescriptorTable(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            SqliteDataReader reader = conn.QueryRowFromTableWithID("Descriptors", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Descriptors", inputID);
 
             ID = inputID;
-            if (reader.Read())
+            if (reader.NextRow())
             {
-                Name = reader.GetString(reader.GetOrdinal("Name"));
-                Description = reader.GetString(reader.GetOrdinal("Description"));
-                FlavorText = reader.GetString(reader.GetOrdinal("Flavor_Text"));    //IsDBNull(Int32)
+                Name = reader.GetStringFromCol("Name");
+                Description = reader.GetStringFromCol("Description");
+                FlavorText = reader.GetStringFromCol("Flavor_Text");
             }
+            reader.CloseReader();
             conn.CloseConnection();
         }
 
