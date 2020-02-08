@@ -2,6 +2,7 @@
 using Mono.Data.Sqlite;
 using UnityEngine;
 using SwordAndBored.GameData.Database;
+using SwordAndBored.GameData.Database.Tables;
 using TMPro;
 
 public class UnitFromDatabase : MonoBehaviour
@@ -19,12 +20,17 @@ public class UnitFromDatabase : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
-            SqliteDataReader reader = conn.ExecuteQuery(conn.GetQueryStringForTable("Units"));
+            SqliteDataReader reader = conn.QueryAllFromTable("Units");
             while (reader.Read())
             {
                 for(int i=0; i<reader.FieldCount; i++)
                 {
                     textBox.text += reader.GetValue(i) + " ";
+                    if (i==1)
+                    {
+                        DescriptorTable descriptor = new DescriptorTable(int.Parse(reader.GetValue(i).ToString()));
+                        textBox.text += descriptor.ToString();
+                    }
                 }
                 textBox.text += "\n";
             }
