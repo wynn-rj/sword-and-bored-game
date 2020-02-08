@@ -1,81 +1,76 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
-public class UniqueCreature : CreatureBase
-{
-    [Header("Ability Info")]
-    public Ability[] abilities;
-    public int AC;
-    public int hitMod;
-    public Material[] mat;
-    Renderer currentMat;
-    float a = .05f;
-    float b;
-    int highlightColor;
-
-    void Start()
+namespace SwordAndBored.Battlefield.CreaturScripts {
+    public class UniqueCreature : CreatureBase
     {
-        foreach (Ability ability in abilities)
+        [Header("Material Info")]
+        public Material[] mat;
+        [HideInInspector]
+        public Renderer currentMat;
+        float a = .05f;
+        float b;
+        int highlightColor;
+        [HideInInspector]
+        public UnitAbilitiesContainer abilityContainer;
+        [HideInInspector]
+        public UnitStats stats;
+        [Header("Virtual Camera Info")]
+        public CinemachineVirtualCamera currentCamera;
+        public Animator animator;
+        
+
+        void Start()
         {
-            ability.Initialize(transform.gameObject);
+            health = maxHealth;
+
+            currentMat = GetComponent<Renderer>();
+            abilityContainer = GetComponent<UnitAbilitiesContainer>();
+            stats = GetComponent<UnitStats>();
         }
 
-        health = maxHealth;
 
-        currentMat = GetComponent<Renderer>();
-    }
-
-    public void UseAbility(int i, GameObject target)
-    {
-        anim.SetTrigger("Attack");
-        switch (abilities[i].TypeOfActionRequired)
+        /// <summary>
+        /// This method chnages the highlighting of a unit based on an integr.  3 = no highlight, 1 = blue, 2 = red.
+        /// When highlighting a unit dont forget to set their material back to normal using glow(3). 
+        /// This function might be removed in the future in favor of using a free store asset. 
+        /// </summary>
+        public void Glow(int glow)
         {
-            case Ability.ActionTypes.Action:
-                if (action)
-                {
-                    abilities[i].TriggerAbility(target);
-                    action = false;
-                }
-                break;
-            case Ability.ActionTypes.BonusAction:
-                if (bonus)
-                {
-                    abilities[i].TriggerAbility(target);
-                    bonus = false;
-                }
-                break;
-            case Ability.ActionTypes.Reaction:
-                if (reaction)
-                {
-                    abilities[i].TriggerAbility(target);
-                    reaction = false;
-                }
-                break;
+            highlightColor = glow;
+            if (glow == 1)
+            {
+                currentMat.material = mat[1];
+            } else if (glow == 2)
+            {
+                currentMat.material = mat[0];
+            } else if (glow == 3) 
+            {
+                b = a + Time.time;
+                currentMat.material = mat[2];
+            }
+        }
+
+        private void Update()
+        {
+            if (highlightColor == 3 && Time.time > b)
+            {
+                Glow(2);
+            }
+
+            animator.SetFloat("Speed", (agent.velocity.magnitude / 3.5f));
+        }
+
+        /// <summary>
+        /// This method is used to move a unit to a tile        
+        /// </summary>
+        public void Move(Tile goTile)
+        {
+                SetTile(goTile);
+                MoveTo(goTile.GetPos());
         }
     }
 
-    public void Glow(int glow)
-    {
-        highlightColor = glow;
-        if (glow == 1)
-        {
-            currentMat.material = mat[1];
-        } else if (glow == 2)
-        {
-            currentMat.material = mat[0];
-        } else if (glow == 3) 
-        {
-            b = a + Time.time;
-            currentMat.material = mat[2];
-        }
-    }
-
-    private void Update()
-    {
-        if (highlightColor == 3 && Time.time > b)
-        {
-            Glow(2);
-        }
-    }
 }

@@ -1,42 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SwordAndBored.TurnMechanism;
+using SwordAndBored.Battlefield.TurnMechanism;
 using UnityEngine.UI;
 using TMPro;
+using SwordAndBored.Battlefield.CreaturScripts;
 
-public class TurnManager : MonoBehaviour
+namespace SwordAndBored.Battlefield.TurnMechanism
 {
-    public GameObject[] units;
-    TurnOrderController manager;
-    public UniqueCreature activePlayer;
-    public TextMeshProUGUI text;
-
-    public Image[] actionsLeft;
-
-    void Start()
+    public class TurnManager : MonoBehaviour
     {
-        manager = new TurnOrderController(units, new RandomShuffler<GameObject>());
-        activePlayer = manager.NextEntity().GetComponent<UniqueCreature>();
-        text.text = "Current Player: " + activePlayer.gameObject.name;
-    }
+        [Header("Units")]
+        public GameObject[] units;
+        public AbstractTurnBrain activePlayer;
+        [Header("UI")]
+        TurnOrderController manager;
+        public TextMeshProUGUI text;
 
-    public void nextTurn()
-    {
-        activePlayer = manager.NextEntity().GetComponent<UniqueCreature>();
-        text.text = "Current Player: " + activePlayer.gameObject.name;
-        activePlayer.StartTurn();
-    }
+        public Image[] actionsLeft;
 
-    void Update()
-    {
-        if (activePlayer.action)
+        void Start()
         {
-            actionsLeft[0].color = new Color(0, 0, 1, .2f);
+            manager = new TurnOrderController(units, new RandomShuffler<GameObject>());
+            activePlayer = manager.NextEntity().GetComponent<AbstractTurnBrain>();
+            text.text = "Current Player: " + activePlayer.GetName();
+            activePlayer.DoTurn();
         }
-        else
+
+        public void nextTurn()
         {
-            actionsLeft[0].color = new Color(1, 0, 0, .2f);
+            activePlayer = manager.NextEntity().GetComponent<AbstractTurnBrain>();
+            text.text = "Current Player: " + activePlayer.GetName();
+            activePlayer.DoTurn();
+        }
+
+        void Update()
+        {
+            if (activePlayer && !activePlayer.GetTurnEnd())
+            {
+                nextTurn();
+            }
+
+            if (activePlayer.HasActionLeft())
+            {
+                actionsLeft[0].color = new Color(0, 0, 1, .2f);
+            }
+            else
+            {
+                actionsLeft[0].color = new Color(1, 0, 0, .2f);
+            }
         }
     }
 }

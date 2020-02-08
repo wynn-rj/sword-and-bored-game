@@ -2,54 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreatureBase : UnitBase
+namespace SwordAndBored.Battlefield.CreaturScripts
 {
-    [Header("Creature Info")]
-    public string creatureName;
-    public int maxHealth;
-    public int health;
-    public Animator anim;
+    public class CreatureBase : UnitBase
+    {
+        [Header("Creature Info")]
+        public string creatureName;
+        public int maxHealth;
+        public int health;
+        public Animator anim;
 
-    [HideInInspector]
-    public bool action = true;
-    [HideInInspector]
-    public bool bonus = true;
-    [HideInInspector]
-    public bool reaction = true;
+        [HideInInspector]
+        public bool action = true;
 
-    public int maxMovement;
-    int movement;
+        public int maxMovement;
+        int movement;
     
-    void Start()
-    {
-        health = maxHealth;
-        movement = maxMovement;
-    }
+        void Start()
+        {
+            health = maxHealth;
+            movement = maxMovement;
+        }
     
-    public void StartTurn()
-    {
-        action = true;
-        bonus = true;
-        reaction = true;
-        movement = maxMovement;
-    }
-
-    void Update()
-    {
-        if (health <= 0)
+        public void StartTurn()
         {
-            Destroy(transform.gameObject);
-        }    
-    }
+            action = true;
+            movement = maxMovement;
+        }
 
-    public void Damage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
+        void Update()
         {
-            Destroy(transform.gameObject);
+            if (health <= 0)
+            {
+                Destroy(transform.gameObject);
+            }    
+        }
+
+        public void Damage(int damage)
+        {
+            health -= damage;
+            if (health <= 0)
+            {
+                Destroy(transform.gameObject);
+            }
         }
     }
+
 }
 
 

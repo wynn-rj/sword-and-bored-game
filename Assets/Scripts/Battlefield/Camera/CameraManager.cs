@@ -1,37 +1,41 @@
 ﻿using Cinemachine;
-using SwordAndBored.BattleMechanism;
+using SwordAndBored.Battlefield.TurnMechanism;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+namespace SwordAndBored.Battlefield.CameraUtilities
 {
 
-    public TurnManager turnManager;
-    public GameObject[] cameras = new GameObject[5];
-    private int priority = 1;
-
-    void Start()
+    public class CameraManager : MonoBehaviour
     {
-        for (int i = 0; i < cameras.Length; i++)
+
+        public TurnManager turnManager;
+        public GameObject[] cameras = new GameObject[5];
+        private int priority = 1;
+
+        void Start()
         {
-            cameras[i].GetComponent<CinemachineVirtualCamera>().Priority = 0;
-        }
-    }
-
-
-    void Update()
-    {
-        SetPriority();
-    }
-
-    private void SetPriority()
-    {
-        if (turnManager.activePlayer.gameObject.transform.GetChild(3).GetComponent<CinemachineVirtualCamera>().Priority < priority)
-        {
-            turnManager.activePlayer.gameObject.transform.GetChild(3).GetComponent<CinemachineVirtualCamera>().Priority = priority + 1;
-            priority++;
+            for (int i = 0; i < cameras.Length; i++)
+            {
+                cameras[i].GetComponent<CinemachineVirtualCamera>().Priority = 0;
+            }
         }
 
+
+        void Update()
+        {
+            SetPriority();
+        }
+
+        private void SetPriority()
+        {
+            if (turnManager.activePlayer.GetCam().Priority < priority)
+            {
+                turnManager.activePlayer.GetCam().Priority = priority + 1;
+                priority++;
+            }
+
+        }
     }
 }

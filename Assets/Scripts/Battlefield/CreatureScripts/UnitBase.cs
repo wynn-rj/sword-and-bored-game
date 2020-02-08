@@ -3,44 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class UnitBase : MonoBehaviour
+
+namespace SwordAndBored.Battlefield.CreaturScripts
 {
-    
 
-    NavMeshAgent agent;
-    [HideInInspector]
-    public Tile currentTile;
-
-    
-    void Awake()
+    public class UnitBase : MonoBehaviour
     {
-        agent = GetComponent<NavMeshAgent>();
-    }
     
+        [HideInInspector]
+        public NavMeshAgent agent;
+        [HideInInspector]
+        public Tile currentTile;
 
-    public void MoveTo(Vector3 pos)
-    {
-        if (currentTile)
+    
+        void Awake()
         {
-            currentTile.unitOnTile = null;
-            currentTile = null;
+            agent = GetComponent<NavMeshAgent>();
         }
-        agent.destination = pos;
-    }
+    
 
-    static public int Roll(int dice)
-    {
-        return Random.Range(1, dice);
-    }
+        protected void MoveTo(Vector3 pos)
+        {
+            if (currentTile)
+            {
+                currentTile.unitOnTile = null;
+                currentTile = null;
+            }
+            agent.destination = pos;
+        }
 
-    static public int Roll()
-    {
-        return Roll(20);
-    }
-
-    public void SetTile(Tile tile)
-    {
-        currentTile = tile;
-        tile.unitOnTile = this.gameObject;
+        public void SetTile(Tile tile)
+        {
+            currentTile = tile;
+            tile.unitOnTile = this.gameObject;
+        }
     }
 }
