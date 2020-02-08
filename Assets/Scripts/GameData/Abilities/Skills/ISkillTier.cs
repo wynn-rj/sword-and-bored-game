@@ -9,6 +9,8 @@
 
         IAbility[] Selected { get; }
 
+        bool HasSelectableSkills { get; }
+
         void SelectSkill(int choicesIndex);
     }
 }

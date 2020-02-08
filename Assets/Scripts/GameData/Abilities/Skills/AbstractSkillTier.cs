@@ -8,6 +8,8 @@ namespace SwordAndBored.GameData.Abilities.Skills
 
         public virtual IAbility[] Selected { get; }
 
+        public virtual bool HasSelectableSkills => Choices.Length == Selected.Length;
+
         protected AbstractSkillTier(IAbility[] choices)
         {
             Choices = (IAbility[])choices.Clone();
