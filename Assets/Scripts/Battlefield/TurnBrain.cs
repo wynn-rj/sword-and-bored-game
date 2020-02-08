@@ -21,7 +21,6 @@ namespace SwordAndBored.Battlefield
         bool movingState = true;
         Renderer indicatorRend;
         Camera cam;
-        TurnManager turnManager;
 
         public Vector2 startCoordinates;
         UniqueCreature creature;
@@ -46,7 +45,6 @@ namespace SwordAndBored.Battlefield
             indicatorRend = tileIndictor.GetComponentInChildren<Renderer>();
             cam = Camera.main;
             creature = GetComponent<UniqueCreature>();
-            turnManager = GameObject.FindObjectOfType<TurnManager>();
             creature.agent.destination = startCoordinates;
         }
 
