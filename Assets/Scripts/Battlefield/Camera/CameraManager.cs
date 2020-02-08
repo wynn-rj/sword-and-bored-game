@@ -30,9 +30,9 @@ namespace SwordAndBored.Battlefield.CameraUtilities
 
         private void SetPriority()
         {
-            if (turnManager.activePlayer.currentCamera.Priority < priority)
+            if (turnManager.activePlayer.GetCam().Priority < priority)
             {
-                turnManager.activePlayer.currentCamera.Priority = priority + 1;
+                turnManager.activePlayer.GetCam().Priority = priority + 1;
                 priority++;
             }
 

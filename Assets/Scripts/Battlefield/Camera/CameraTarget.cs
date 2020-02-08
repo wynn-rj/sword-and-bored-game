@@ -9,9 +9,6 @@ namespace SwordAndBored.Battlefield.CameraUtilities
     {
 
         public Transform player;
-
-
-
     
         void Start()
         {
