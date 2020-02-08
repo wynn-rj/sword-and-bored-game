@@ -38,9 +38,21 @@ namespace SwordAndBored.GameData.Database.Tables
 
         override public string ToString()
         {
-            return "Stats: {ID: " + ID + ", Physical_Attack: " + Physical_Attack + ", Physical_Defense: " + Physical_Defense + ", Magic_Attack: " + Magic_Attack 
+            return "{Stats: " + ID + ", Physical_Attack: " + Physical_Attack + ", Physical_Defense: " + Physical_Defense + ", Magic_Attack: " + Magic_Attack 
                 + ", Magic_Defense: " + Magic_Defense + ", HP: " + HP + ", Initiative: " + Initiative 
                 + ", Movement: " + Movement + ", Evasion: " + Evasion + ", Accuracy: " + Accuracy + "}";
+        }
+
+        public string LongString()
+        {
+            return "Stats: {ID: " + ID + ", Physical_Attack: " + Physical_Attack + ", Physical_Defense: " + Physical_Defense + ", Magic_Attack: " + Magic_Attack
+                + ", Magic_Defense: " + Magic_Defense + ", HP: " + HP + ", Initiative: " + Initiative
+                + ", Movement: " + Movement + ", Evasion: " + Evasion + ", Accuracy: " + Accuracy + "}";
+        }
+
+        public string ShortString()
+        {
+            return "{Stats: " + ID + "}";
         }
     }
 }
