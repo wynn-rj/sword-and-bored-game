@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="x">The upper value of the dice roll</param>
         /// <returns></returns>
-        public static int Roll(int x = 100)
+        public static int DiceRoll(int x = 100)
         {
             return Instance.Random.Next(x) + 1;
         }
@@ -28,6 +28,11 @@
         public static double PercentDouble()
         {
             return Instance.Random.NextDouble();
+        }
+
+        public static bool CoinToss()
+        {
+            return DiceRoll(2) == 1;
         }
     }
 }
