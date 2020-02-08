@@ -21,11 +21,12 @@ namespace SwordAndBored.GameData.Database.Tables
                 Description = reader.GetString(reader.GetOrdinal("Description"));
                 FlavorText = reader.GetString(reader.GetOrdinal("Flavor_Text"));
             }
+            conn.CloseConnection();
         }
 
         override public string ToString()
         {
-            return "{ID: " + ID + ", Name: " + Name + ", Description: " + Description + ", FlavorText: " + FlavorText + "}";
+            return "Descriptor: {ID: " + ID + ", Name: " + Name + ", Description: " + Description + ", FlavorText: " + FlavorText + "}";
         }
     }
 }
