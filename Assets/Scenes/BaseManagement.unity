@@ -1665,6 +1665,7 @@ MonoBehaviour:
     type: 3}
   width: 25
   height: 25
+  gridHold: {fileID: 0}
 --- !u!1 &898336268
 GameObject:
   m_ObjectHideFlags: 0
