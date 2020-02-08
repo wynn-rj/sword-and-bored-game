@@ -25,18 +25,13 @@ public class UnitFromDatabase : MonoBehaviour
             {
                 for(int i=0; i<reader.FieldCount; i++)
                 {
-                    textBox.text += reader.GetValue(i) + " ";
-                    if (i==1)
+                    //textBox.text += reader.GetValue(i) + " ";
+                    if (i==0)
                     {
-                        DescriptorTable descriptor = new DescriptorTable(int.Parse(reader.GetValue(i).ToString()));
-                        textBox.text += descriptor.ToString();
-                    } else if( i==2)
-                    {
-                        RoleTable role = new RoleTable(int.Parse(reader.GetValue(i).ToString()));
-                        textBox.text += role.ToString();
+                        UnitTable unit = new UnitTable(reader.GetInt32(i));
+                        textBox.text += unit.ToString() + "\n\n";
                     }
                 }
-                textBox.text += "\n";
             }
         }
     }

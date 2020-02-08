@@ -26,7 +26,17 @@ namespace SwordAndBored.GameData.Database.Tables {
 
         override public string ToString()
         {
-            return "Role: {ID: " + ID + ", Descriptior: " + Descriptor.ToString() + ", Stats: " + Stats.ToString() + "}";
+            return "{Role: " + ID + ", Descriptior: " + Descriptor.ToString() + ", Stats: " + Stats.ToString() + "}";
+        }
+
+        public string LongString()
+        {
+            return "Role: {ID: " + ID + ", Descriptior: " + Descriptor.LongString() + ", Stats: " + Stats.LongString() + "}";
+        }
+
+        public string ShortString()
+        {
+            return "{Role: " + ID + ", Descriptior: " + Descriptor.Name + ", Stats: " + Stats.ID + "}";
         }
     }
 }
