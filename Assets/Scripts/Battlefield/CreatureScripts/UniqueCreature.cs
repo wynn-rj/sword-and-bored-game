@@ -20,6 +20,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         [Header("Virtual Camera Info")]
         public CinemachineVirtualCamera currentCamera;
         public Animator animator;
+        
 
         void Start()
         {
