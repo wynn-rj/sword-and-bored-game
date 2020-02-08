@@ -13,24 +13,24 @@ namespace SwordAndBored.GameData.Database.Tables {
         public UnitTable(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            SqliteDataReader reader = conn.QueryRowFromTableWithID("Units", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Units", inputID);
 
             ID = inputID;
-            if (reader.Read())
+            if (reader.NextRow())
             {
-                int descriptorID = reader.GetInt32(reader.GetOrdinal("Descriptor_FK"));
+                int descriptorID = reader.GetIntFromCol("Descriptor_FK");
                 Descriptor = new DescriptorTable(descriptorID);
 
-                int roleID = reader.GetInt32(reader.GetOrdinal("Role_FK"));
+                int roleID = reader.GetIntFromCol("Role_FK");
                 Role = new RoleTable(roleID);
 
-
-                int statsID = reader.GetInt32(reader.GetOrdinal("Stats_FK"));
+                int statsID = reader.GetIntFromCol("Stats_FK");
                 Stats = new StatsTable(statsID);
 
-                int weaponID = reader.GetInt32(reader.GetOrdinal("Weapon_FK"));
+                int weaponID = reader.GetIntFromCol("Weapon_FK");
                 Weapon = new WeaponTable(weaponID);
             }
+            reader.CloseReader();
             conn.CloseConnection();
         }
 
