@@ -10,12 +10,12 @@ namespace SwordAndBored.GameData.Database {
         // Start is called before the first frame update
         void Start()
         {
-            string conn = "URI=file:" + Application.dataPath + "/TestConn.db"; //Path to database.
+            string conn = "URI=file:" + Application.dataPath + "/StreamingAssets/GameData.db"; //Path to database.
             IDbConnection dbconn;
             dbconn = (IDbConnection) new SqliteConnection(conn);
             dbconn.Open(); //Open connection to the database.
             IDbCommand dbcmd = dbconn.CreateCommand();
-            string sqlQuery = "SELECT * FROM Test1";
+            string sqlQuery = "SELECT * FROM Units";
             dbcmd.CommandText = sqlQuery;
             IDataReader reader = dbcmd.ExecuteReader();
             while (reader.Read())
@@ -33,12 +33,12 @@ namespace SwordAndBored.GameData.Database {
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
-                string conn = "URI=file:" + Application.dataPath + "/TestConn.db"; //Path to database.
+                string conn = "URI=file:" + Application.dataPath + "/StreamingAssets/GameData.db"; //Path to database.
                 IDbConnection dbconn;
                 dbconn = (IDbConnection)new SqliteConnection(conn);
                 dbconn.Open(); //Open connection to the database.
                 IDbCommand dbcmd = dbconn.CreateCommand();
-                string sqlQuery = "SELECT * FROM Test1";
+                string sqlQuery = "SELECT * FROM Units";
                 dbcmd.CommandText = sqlQuery;
                 IDataReader reader = dbcmd.ExecuteReader();
                 while (reader.Read())
@@ -48,19 +48,6 @@ namespace SwordAndBored.GameData.Database {
                     text.SetText("value= " + value);
                 }
                 reader.Close();
-                dbcmd.Dispose();
-                dbconn.Close();
-            }
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                string conn = "URI=file:" + Application.dataPath + "/TestConn.db"; //Path to database.
-                IDbConnection dbconn;
-                dbconn = (IDbConnection)new SqliteConnection(conn);
-                dbconn.Open(); //Open connection to the database.
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                string sqlQuery = "INSERT INTO TEST1 VALUES (3)";
-                dbcmd.CommandText = sqlQuery;
-                dbcmd.ExecuteScalar();
                 dbcmd.Dispose();
                 dbconn.Close();
             }
