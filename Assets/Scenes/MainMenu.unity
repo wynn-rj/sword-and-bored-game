@@ -4224,7 +4224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsCanvas: {fileID: 542070315}
   creditsCanvas: {fileID: 1007852140}
-  loadingCanvas: {fileID: 0}
   confirmQuitPanel: {fileID: 1054165924}
   audioMixer: {fileID: 24100000, guid: d1a7508d48cbef446b7bdfe8ef108d5d, type: 2}
 --- !u!1 &1196344650
@@ -5206,11 +5205,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: High
+    - m_Text: Low
       m_Image: {fileID: 0}
     - m_Text: Medium
       m_Image: {fileID: 0}
-    - m_Text: Low
+    - m_Text: High
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
