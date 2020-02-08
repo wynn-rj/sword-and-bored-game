@@ -21,6 +21,11 @@ namespace SwordAndBored.GameData.Database
             conn.Open();
         }
 
+        public void CloseConnection()
+        {
+            conn.Close();
+        }
+
         public SqliteDataReader ExecuteQuery(string query)
         {
             SqliteCommand command = conn.CreateCommand();

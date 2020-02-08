@@ -30,6 +30,10 @@ public class UnitFromDatabase : MonoBehaviour
                     {
                         DescriptorTable descriptor = new DescriptorTable(int.Parse(reader.GetValue(i).ToString()));
                         textBox.text += descriptor.ToString();
+                    } else if( i==2)
+                    {
+                        RoleTable role = new RoleTable(int.Parse(reader.GetValue(i).ToString()));
+                        textBox.text += role.ToString();
                     }
                 }
                 textBox.text += "\n";
