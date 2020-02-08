@@ -1,4 +1,5 @@
-﻿
+﻿using Mono.Data.Sqlite;
+
 namespace SwordAndBored.GameData.Database.Tables {
     public class UnitTable
     {
