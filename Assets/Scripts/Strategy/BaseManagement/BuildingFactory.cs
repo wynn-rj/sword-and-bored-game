@@ -21,12 +21,12 @@ public class BuildingFactory
         }
     }
 
-    public IBuilding CreateBarracks(Vector3 position)
+    public AbstractBuilding CreateBarracks(Vector3 position)
     {
         return new Barracks(position);
     }
 
-    public IBuilding CreateGranary(Vector3 position)
+    public AbstractBuilding CreateGranary(Vector3 position)
     {
         return null;
     }
