@@ -8,6 +8,9 @@ namespace SwordAndBored.GameData.Database
     {
         public SqliteConnection conn;
 
+        private string SelectAllFromString = "SELECT * FROM ";
+        private string WhereIDEqualsString = " WHERE ID = ";
+
         public DatabaseConnection()
         {
             CreateDatabaseConnection();
@@ -25,9 +28,19 @@ namespace SwordAndBored.GameData.Database
             return command.ExecuteReader();
         }
 
-        public string GetQueryStringForTable(string tableName)
+        public SqliteDataReader QueryAllFromTable(string tableName)
         {
-            return "SELECT * FROM " + tableName;
+            SqliteCommand command = conn.CreateCommand();
+            command.CommandText = SelectAllFromString + tableName;
+            return command.ExecuteReader();
+        }
+
+        public SqliteDataReader QueryRowFromTableWithID(string tableName, int ID)
+        {
+            SqliteCommand command = conn.CreateCommand();
+            Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + ID.ToString());
+            command.CommandText = SelectAllFromString + tableName + WhereIDEqualsString + ID.ToString();
+            return command.ExecuteReader();
         }
     }
 }
