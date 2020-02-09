@@ -9,6 +9,8 @@ public abstract class AbstractBuilding : IBuilding
 
     public string ModelName { get; set; }
 
+    public string ShadowModel { get; set; }
+
     public string Name { get; set; }
 
     public string Description { get; set; }
