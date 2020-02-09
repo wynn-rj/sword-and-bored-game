@@ -10,17 +10,18 @@ namespace SwordAndBored.GameData.Database.Tables {
         public RoleTable(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            SqliteDataReader reader = conn.QueryRowFromTableWithID("Roles", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Roles", inputID);
 
             ID = inputID;
-            if (reader.Read())
+            if (reader.NextRow())
             {
-                int descriptorID = reader.GetInt32(reader.GetOrdinal("Descriptor_FK"));
+                int descriptorID = reader.GetIntFromCol("Descriptor_FK");
                 Descriptor = new DescriptorTable(descriptorID);
 
-                int statsID = reader.GetInt32(reader.GetOrdinal("BaseStats_FK"));
+                int statsID = reader.GetIntFromCol("BaseStats_FK");
                 Stats = new StatsTable(statsID);
             }
+            reader.CloseReader();
             conn.CloseConnection();
         }
 
