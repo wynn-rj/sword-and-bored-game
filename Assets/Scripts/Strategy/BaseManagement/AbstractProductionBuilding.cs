@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class AbstractProductionBuilding : AbstractBuilding
 {
-    public AbstractProductionBuilding(Vector3 position) : base(position) { }
+    public AbstractProductionBuilding() : base() { }
 }

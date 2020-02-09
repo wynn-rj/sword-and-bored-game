@@ -4,5 +4,9 @@ using UnityEngine;
 
 public interface IBaseManagementState : IUpdatable
 {
+    void ToggleBuildingsList();
 
+    void SelectBuilding();
+
+    void PlaceBuilding();
 }

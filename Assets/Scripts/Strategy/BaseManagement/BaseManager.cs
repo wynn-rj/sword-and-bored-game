@@ -72,15 +72,15 @@ public class BaseManager : MonoBehaviour
     public void SelectBuilding(int index)
     {
         buildingIndex = index;
-        baseManagementState = new PlaceBuildState(this);
+        baseManagementState.SelectBuilding();
     }
 
-    public IBuilding GetBuilding(Vector3 position)
+    public IBuilding GetBuilding()
     {
-        return buildingDict[buildingIndex](position);
+        return buildingDict[buildingIndex]();
     }
 
-    IDictionary<int, Func<Vector3, IBuilding>> buildingDict = new Dictionary<int, Func<Vector3, IBuilding>>()
+    IDictionary<int, Func<IBuilding>> buildingDict = new Dictionary<int, Func<IBuilding>>()
     {
         {0, BuildingFactory.Instance.CreateBarracks },
         {1, BuildingFactory.Instance.CreateGranary }
