@@ -13,10 +13,6 @@ namespace SwordAndBored.UI.Battlefield {
             mAttackText, mDefenseText, movementText, initiativeText, evasionText,
             accuracyText, roleText;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
 
         // Update is called once per frame
         void Update()
@@ -30,6 +26,7 @@ namespace SwordAndBored.UI.Battlefield {
             {
                 UniqueCreature activePlayer = turnManager.activePlayer.gameObject.GetComponent<UniqueCreature>();
                 nameText.SetText(activePlayer.creatureName);
+                //TODO: add rest of the stats on active player
             }
         }
     }
