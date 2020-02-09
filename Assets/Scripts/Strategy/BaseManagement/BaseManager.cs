@@ -8,17 +8,46 @@ public class BaseManager : MonoBehaviour
     [SerializeField] GameObject canvasObject;
     [SerializeField] GameObject panel;
 
-    Canvas canvas;
-
     List<IBuilding> productionBuildings;
 
     List<IBuilding> resourceBuildings;
 
     Vector3 placement;
 
+    private Canvas canvas;
+
+    public Canvas Canvas
+    {
+        get { return canvas; }
+        set { canvas = value; }
+    }
+
+    private IBaseManagementState baseManagementState;
+
+    public IBaseManagementState BaseManagementState
+    {
+        get { return baseManagementState; }
+        set { baseManagementState = value; }
+    }
+
+    private int buildingIndex;
+
+    public int BuildingIndex
+    {
+        get { return buildingIndex; }
+        set { buildingIndex = value; }
+    }
+
+    [SerializeField]private int numberOfBuildings;
+
     private void Awake()
     {
         canvas = canvasObject.GetComponent<Canvas>();
+
+        buildingIndex = 0;
+        numberOfBuildings = 2;
+
+        baseManagementState = new IdleBaseState(this);
 
 
         AddBuildUIButtons();
@@ -31,18 +60,8 @@ public class BaseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ToggleBuildingsList();
-        }
-
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 50))
-        {
-            Debug.Log("You selected the " + hit.point);
-            placement = hit.point;
-        }
+        baseManagementState.Update();
+        Debug.Log(baseManagementState);
     }
 
     private void AddBuildUIButtons()
@@ -50,26 +69,20 @@ public class BaseManager : MonoBehaviour
         //GameObject
     }
 
-    private void ToggleBuildingsList()
+    public void SelectBuilding(int index)
     {
-        canvasObject.SetActive(!canvasObject.activeSelf);
+        buildingIndex = index;
+        baseManagementState = new PlaceBuildState(this);
     }
 
-    public void SelectBuildingPlacement(int index)
+    public IBuilding GetBuilding(Vector3 position)
     {
-       AbstractBuilding placedBuilding = buildingDict[index](placement);
-       Instantiate(Resources.Load("Prefabs/" + placedBuilding.ModelName), placement, Quaternion.identity);
+        return buildingDict[buildingIndex](position);
     }
 
-
-    private void LoadBuildings()
+    IDictionary<int, Func<Vector3, IBuilding>> buildingDict = new Dictionary<int, Func<Vector3, IBuilding>>()
     {
-
-    }
-
-    IDictionary<int, Func<Vector3, AbstractBuilding>> buildingDict = new Dictionary<int, Func<Vector3, AbstractBuilding>>()
-    {
-        {0, BuildingFactory.Instance.CreateBarracks},
+        {0, BuildingFactory.Instance.CreateBarracks },
         {1, BuildingFactory.Instance.CreateGranary }
     };
 }
