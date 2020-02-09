@@ -9,12 +9,15 @@ public abstract class AbstractBuilding : IBuilding
 
     public string ModelName { get; set; }
 
-    public string ShadowModel { get; set; }
+    public string ShadowModelName { get; set; }
 
     public string Name { get; set; }
 
     public string Description { get; set; }
 
-    public AbstractBuilding(Vector3 position) { }
+    public AbstractBuilding()
+    {
+        ShadowModelName = "PlaceableBuilding";
+    }
 
 }

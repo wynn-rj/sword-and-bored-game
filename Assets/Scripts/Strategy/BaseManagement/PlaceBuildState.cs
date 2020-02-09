@@ -8,17 +8,28 @@ public class PlaceBuildState : AbstractBaseState
     private Vector3 position;
     private RaycastHit hit;
     private Ray ray;
-    
 
-    public PlaceBuildState(BaseManager bm) : base(bm)
+    IBuilding building;
+
+    public PlaceBuildState(BaseManager bm, IBuilding building) : base(bm)
     {
         ToggleBuildingsList();
+        this.building = building;
+    }
+
+    public override void PlaceBuilding()
+    {
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.position = position;
+        //BaseManager.Instantiate(PrimitiveType.Cube, position, Quaternion.identity);
+        BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
+
+        base.PlaceBuilding();
     }
 
     public override void Update()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, 50))
         {
@@ -28,11 +39,7 @@ public class PlaceBuildState : AbstractBaseState
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Click Registered");
-            IBuilding placedBuilding = BaseManager.GetBuilding(position);
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = position;
-            //BaseManager.Instantiate(PrimitiveType.Cube, position, Quaternion.identity);
-            BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
+            PlaceBuilding();   
         }
 
         base.Update();

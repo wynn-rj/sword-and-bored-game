@@ -9,6 +9,14 @@ public class SelectBuildState : AbstractBaseState
     
     }
 
+    public override void SelectBuilding()
+    {
+        IBuilding selectedBuilding = BaseManager.GetBuilding();
+        BaseManager.BaseManagementState = new PlaceBuildState(BaseManager, selectedBuilding);
+
+        base.SelectBuilding();
+    }
+
     public override void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
