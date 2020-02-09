@@ -21,12 +21,12 @@ public class BuildingFactory
         }
     }
 
-    internal IBuilding CreateBarracks(Vector3 position)
+    internal IBuilding CreateBarracks()
     {
-        return new Barracks(position);
+        return new Barracks();
     }
 
-    internal IBuilding CreateGranary(Vector3 position)
+    internal IBuilding CreateGranary()
     {
         return null;
     }

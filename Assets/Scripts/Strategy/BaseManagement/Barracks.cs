@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Barracks : AbstractProductionBuilding
 {
-    public Barracks(Vector3 position) : base(position)
+    public Barracks() : base()
     {
         ModelName = "Barracks";
     }

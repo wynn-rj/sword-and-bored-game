@@ -20,8 +20,15 @@ public class AbstractBaseState : IBaseManagementState
         }
     }
 
-    protected virtual void ToggleBuildingsList()
+    public virtual void ToggleBuildingsList()
     {
         BaseManager.Canvas.gameObject.SetActive(!BaseManager.Canvas.gameObject.activeSelf);
+    }
+
+    public virtual void SelectBuilding() { }
+
+    public virtual void PlaceBuilding()
+    { 
+    
     }
 }
