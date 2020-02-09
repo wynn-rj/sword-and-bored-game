@@ -5,6 +5,7 @@ using SwordAndBored.Battlefield.CreaturScripts;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.Battlefield.CameraUtilities;
 using Cinemachine;
+using UnityEngine.EventSystems;
 
 namespace SwordAndBored.Battlefield
 {
@@ -108,8 +109,10 @@ namespace SwordAndBored.Battlefield
             {
                 Tile currentTile = hit.collider.GetComponent<Tile>();
                 tileIndictor.transform.position = currentTile.GetPos();
+
                 if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
                 {
+                    if (EventSystem.current.IsPointerOverGameObject()) return;
                     creature.Move(currentTile);
                 }
             }
