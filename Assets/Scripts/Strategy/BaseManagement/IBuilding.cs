@@ -6,5 +6,7 @@ using UnityEngine;
 public interface IBuilding : IModelable, IDescriptable
 {
     float BuildTime { get; set; }
+
+    string ShadowModel { get; set; }
     
 }
