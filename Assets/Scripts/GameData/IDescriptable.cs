@@ -3,7 +3,7 @@
     /// <summary>
     /// An object that has a name and a description
     /// </summary>
-    interface IDescriptable
+    public interface IDescriptable
     {
         string Name { get; set; }
         string Description { get; set; }
