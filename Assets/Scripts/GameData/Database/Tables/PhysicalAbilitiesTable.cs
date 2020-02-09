@@ -1,5 +1,4 @@
-﻿using Mono.Data.Sqlite;
-
+﻿
 namespace SwordAndBored.GameData.Database.Tables
 {
     public class PhysicalAbilitiesTable
@@ -42,19 +41,19 @@ namespace SwordAndBored.GameData.Database.Tables
 
         override public string ToString()
         {
-            return "{Ability: " + ID + ", Descriptior: " + Descriptor.ToString() + ", Damage: " + Damage
-                + ", Accuracy: " + Accuracy + ", Range: " + Range + "}";
+            return "{Ability: " + ID + ", Descriptor: " + Descriptor.ToString() + ", Damage: " + Damage
+                + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + AttackModifiers + "}";
         }
 
         public string LongString()
         {
-            return "Ability: {ID: " + ID + ", Descriptior: " + Descriptor.LongString() + ", Damage: " + Damage
-                + ", Accuracy: " + Accuracy + ", Range: " + Range + "}";
+            return "Ability: {ID: " + ID + ", Descriptor: " + Descriptor.LongString() + ", Damage: " + Damage
+                + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + AttackModifiers + "}";
         }
 
         public string ShortString()
         {
-            return "{Ability: " + ID + ", Descriptior: " + Descriptor.Name + "}";
+            return "{Ability: " + ID + ", Descriptor: " + Descriptor.Name + "}";
         }
     }
 }

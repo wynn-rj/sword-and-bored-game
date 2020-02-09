@@ -1,5 +1,4 @@
-﻿using Mono.Data.Sqlite;
-
+﻿
 namespace SwordAndBored.GameData.Database.Tables {
     public class UnitTable
     {
@@ -9,6 +8,8 @@ namespace SwordAndBored.GameData.Database.Tables {
         public StatsTable Stats { get; set; }
 
         public WeaponTable Weapon { get; set; }
+
+        public ArmorTable Armor { get; set; }
 
         public UnitTable(int inputID)
         {
@@ -29,6 +30,9 @@ namespace SwordAndBored.GameData.Database.Tables {
 
                 int weaponID = reader.GetIntFromCol("Weapon_FK");
                 Weapon = new WeaponTable(weaponID);
+
+                int armorID = reader.GetIntFromCol("Armor_FK");
+                Armor = new ArmorTable(armorID);
             }
             reader.CloseReader();
             conn.CloseConnection();
@@ -36,17 +40,20 @@ namespace SwordAndBored.GameData.Database.Tables {
 
         override public string ToString()
         {
-            return "{Unit: " + ID + ", Descriptior: " + Descriptor.ToString() + ", Role: " + Role.ShortString() + ", Stats: " + Stats.ToString() + ", Weapon: " + Weapon.ToString() + "}";
+            return "{Unit: " + ID + ", Descriptor: " + Descriptor.ToString() + ", Role: " + Role.ShortString()
+                + ", Stats: " + Stats.ToString() + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
 
         public string LongString()
         {
-            return "Unit: {ID: " + ID + ", Descriptior: " + Descriptor.LongString() + ", Role: " + Role.LongString() + ", Stats: " + Stats.LongString() + ", Weapon: " + Weapon.ToString() + "}";
+            return "Unit: {ID: " + ID + ", Descriptor: " + Descriptor.LongString() + ", Role: " + Role.LongString()
+                + ", Stats: " + Stats.LongString() + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
 
         public string ShortString()
         {
-            return "{Unit: " + ID + ", Descriptior: " + Descriptor.Name + ", Role: " + Role.ID + ", Stats: " + Stats.ID + ", Weapon: " + Weapon.ToString() + "}";
+            return "{Unit: " + ID + ", Descriptor: " + Descriptor.Name + ", Role: " + Role.ID + ", Stats: " 
+                + Stats.ID + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
     }
 }
