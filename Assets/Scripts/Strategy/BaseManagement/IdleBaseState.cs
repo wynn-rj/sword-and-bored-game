@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleBaseState : MonoBehaviour
+public class IdleBaseState : AbstractBaseState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public IdleBaseState(BaseManager bm) : base (bm) { }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        base.Update();
     }
 }
