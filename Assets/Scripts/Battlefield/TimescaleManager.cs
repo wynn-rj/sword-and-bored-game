@@ -8,4 +8,8 @@ public class TimescaleManager : MonoBehaviour
     {
         Time.timeScale = 4;
     }
+    public void SlowDownTime()
+    {
+        Time.timeScale = .25f;
+    }
 }
