@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IUpdatable
+public interface IUpdatable
 {
     void Update();
 }
