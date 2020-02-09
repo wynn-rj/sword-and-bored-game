@@ -12,4 +12,8 @@ public class TimescaleManager : MonoBehaviour
     {
         Time.timeScale = .25f;
     }
+    public void SetNormalTime()
+    {
+        Time.timeScale = 1;
+    }
 }
