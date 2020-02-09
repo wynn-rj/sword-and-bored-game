@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractBuilding : IBuilding, IModelable, IDescriptable
+public abstract class AbstractBuilding : IBuilding
 {
     public float BuildTime { get; set; }
 
