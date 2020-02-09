@@ -20,18 +20,11 @@ public class UnitFromDatabase : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
-            SqliteDataReader reader = conn.QueryAllFromTable("Units");
-            while (reader.Read())
+            DatabaseReader reader = conn.QueryAllFromTable("Units");
+            while (reader.NextRow())
             {
-                for(int i=0; i<reader.FieldCount; i++)
-                {
-                    //textBox.text += reader.GetValue(i) + " ";
-                    if (i==0)
-                    {
-                        UnitTable unit = new UnitTable(reader.GetInt32(i));
-                        textBox.text += unit.ToString() + "\n\n";
-                    }
-                }
+                    UnitTable unit = new UnitTable(reader.GetIntFromCol("ID"));
+                    textBox.text += unit.ToString() + "\n\n";
             }
         }
     }
