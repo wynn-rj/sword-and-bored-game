@@ -1,6 +1,6 @@
 ﻿namespace SwordAndBored.GameData
 {
-    interface IModelable
+    public interface IModelable
     {
         string ModelName { get; set; }
     }
