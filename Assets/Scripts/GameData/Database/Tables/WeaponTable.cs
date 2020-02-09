@@ -1,5 +1,4 @@
-﻿using Mono.Data.Sqlite;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SwordAndBored.GameData.Database.Tables
 {
@@ -36,19 +35,19 @@ namespace SwordAndBored.GameData.Database.Tables
 
         override public string ToString()
         {
-            return "{Weapon: " + ID + ", Descriptior: " + Descriptor.ToString() + ", Abilities " + 
+            return "{Weapon: " + ID + ", Descriptor: " + Descriptor.ToString() + ", Abilities " + 
                 StringAbilities() + "}";
         }
 
         public string LongString()
         {
-            return "Weapon: {ID: " + ID + ", Descriptior: " + Descriptor.LongString() + ", Abilities " +
+            return "Weapon: {ID: " + ID + ", Descriptor: " + Descriptor.LongString() + ", Abilities " +
                 StringAbilities() + "}";
         }
 
         public string ShortString()
         {
-            return "{Weapon: " + ID + ", Descriptior: " + Descriptor.Name + "}";
+            return "{Weapon: " + ID + ", Descriptor: " + Descriptor.Name + "}";
         }
 
         private string StringAbilities()
