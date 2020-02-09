@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8462795825171156000}
   - component: {fileID: 4856409274230180067}
   - component: {fileID: 5833067528575382385}
-  m_Layer: 0
-  m_Name: Cube
+  m_Layer: 2
+  m_Name: PlaceableBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
