@@ -19,7 +19,11 @@ namespace SwordAndBored.Battlefield.CameraUtilities
     
         void Update()
         {
-            transform.position = player.position;
+            if(player != null)
+            {
+                transform.position = player.position;
+            }
+            
         }
     }
 
