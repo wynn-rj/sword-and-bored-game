@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractBaseState : IBaseManagementState
+namespace SwordAndBored.StrategyView.BaseManagement
 {
-    protected BaseManager BaseManager { get; set; }
-
-    public AbstractBaseState(BaseManager bm)
+    public class AbstractBaseState : IBaseManagementState
     {
-        this.BaseManager = bm;
-    }
+        protected BaseManager BaseManager { get; set; }
 
-    public virtual void Update() { }
+        public AbstractBaseState(BaseManager bm)
+        {
+            this.BaseManager = bm;
+        }
 
-    public virtual void SelectBuildingTier() { }
+        public virtual void Update() { }
 
-    public virtual void SelectBuilding() { }
+        public virtual void SelectBuildingTier() { }
 
-    public virtual void PlaceBuilding() { }
+        public virtual void SelectBuilding() { }
 
-    public virtual void Exit()
-    {
-        BaseManager.SetAllCanvasInactive();
-        BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
+        public virtual void PlaceBuilding() { }
+
+        public virtual void Exit()
+        {
+            BaseManager.SetAllCanvasInactive();
+            BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
+        }
     }
 }
+
