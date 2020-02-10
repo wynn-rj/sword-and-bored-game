@@ -14,7 +14,7 @@ public class PlaceBuildState : AbstractBaseState
 
     public PlaceBuildState(BaseManager bm, IBuilding building) : base(bm)
     {
-        ToggleBuildingsList();
+        BaseManager.ToggleActiveCanvas();
         this.building = building;
         //Instantiate behind camera out of view for now
         this.shadowModel = BaseManager.Instantiate(Resources.Load("Buildings/" + building.ShadowModelName) as GameObject, new Vector3(0, 11, -11), Quaternion.identity);
