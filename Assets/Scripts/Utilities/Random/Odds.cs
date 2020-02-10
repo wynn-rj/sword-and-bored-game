@@ -53,5 +53,10 @@
         {
             return DiceRoll(2) == 1;
         }
+
+        public static T SelectAtRandom<T>(T[] collection)
+        {
+            return collection[Instance.Random.Next(collection.Length)];
+        }
     }
 }
