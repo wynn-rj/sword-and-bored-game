@@ -71,7 +71,6 @@ public class BaseManager : MonoBehaviour
     void Update()
     {
         baseManagementState.Update();
-        Debug.Log(baseManagementState);
     }
 
     public void ToggleActiveCanvas()
