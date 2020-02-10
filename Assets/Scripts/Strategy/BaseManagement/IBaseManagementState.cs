@@ -9,4 +9,6 @@ public interface IBaseManagementState : IUpdatable
     void SelectBuilding();
 
     void PlaceBuilding();
+
+    void Exit();
 }

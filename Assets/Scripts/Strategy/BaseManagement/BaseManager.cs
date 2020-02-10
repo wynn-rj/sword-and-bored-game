@@ -11,10 +11,7 @@ public class BaseManager : MonoBehaviour
 
     //The first element is the tiers option canvas
     [SerializeField] List<GameObject> buildingTierCanvases;
-
-    [SerializeField] List<GameObject> tierButtonsList;
-
-    public Button guess;
+    [SerializeField] List<UnityEngine.UI.Button> tierButtonsList;
 
     [SerializeField] private int numberOfBuildings;
 
@@ -117,7 +114,7 @@ public class BaseManager : MonoBehaviour
     public void UnlockTier(int tier)
     {
         overallTier = tier;
-        tierButtonsList[tier - 1].SetActive(true);
+        tierButtonsList[tier - 1].interactable = true;
     }
 
     public void SetAllCanvasInactive()
@@ -128,15 +125,14 @@ public class BaseManager : MonoBehaviour
         }
     }
 
-    /*IDictionary<int, Func<IBuilding>> tierIDict = new Dictionary<int, Func<IBuilding>>()
+    public void ExitCanvas()
     {
-        {0, BuildingFactory.Instance.CreateBarracks },
-        {1, BuildingFactory.Instance.CreateGranary }
-    };*/
-                
+        baseManagementState.Exit();
+    }
+
     IDictionary<int, Dictionary<int, Func<IBuilding>>> buildingDict = new Dictionary<int, Dictionary<int, Func<IBuilding>>>()
     {
-        //Tier I buildingd
+        //Tier I buildings
         {1, new Dictionary<int, Func<IBuilding>>()
             {
                 {0, BuildingFactory.Instance.CreateBarracks },
@@ -144,17 +140,19 @@ public class BaseManager : MonoBehaviour
             }
         },
 
-        //Tier II buildingd
+        //Tier II buildings
         {2, new Dictionary<int, Func<IBuilding>>()
             {
+                //Placeholders
                 {0, BuildingFactory.Instance.CreateBarracks },
                 {1, BuildingFactory.Instance.CreateGranary }
             }
         },
 
-        //Tier III buildingd
+        //Tier III buildings
         {3, new Dictionary<int, Func<IBuilding>>()
             {
+                //Placeholders
                 {0, BuildingFactory.Instance.CreateBarracks },
                 {1, BuildingFactory.Instance.CreateGranary }
             }
