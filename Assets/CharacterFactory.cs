@@ -62,11 +62,11 @@ public class CharacterFactory : MonoBehaviour
 
             //brain
             brain.tileIndictor = indicator;
-            brain.startCoordinates = new Vector2(3, 5);
+            brain.startCoordinates = new Vector2(numUnits, 5);
 
             unit.transform.parent = unitHolder;
 
-            numUnits++;
+            numUnits += 2;
         }
 
 
