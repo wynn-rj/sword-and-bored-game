@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class SelectBuildState : AbstractBaseState
 {
-    public SelectBuildState(BaseManager bm) : base(bm)
-    { 
-    
-    }
+    public SelectBuildState(BaseManager bm) : base(bm) { }
 
     public override void SelectBuilding()
     {
-        IBuilding selectedBuilding = BaseManager.GetBuilding();
+        IBuilding selectedBuilding = BaseManager.GetBuilding(BaseManager.ActiveTier);
         BaseManager.BaseManagementState = new PlaceBuildState(BaseManager, selectedBuilding);
 
         base.SelectBuilding();
@@ -21,7 +18,7 @@ public class SelectBuildState : AbstractBaseState
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            ToggleBuildingsList();
+            BaseManager.ToggleActiveCanvas();
             BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
         }
     }
