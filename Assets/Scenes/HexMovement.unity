@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -295,4 +295,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1694410077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1694410079}
+  - component: {fileID: 1694410078}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1694410078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694410077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b323942aa501fa4fa2f0bca9f42ed8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snowMountainTile: {fileID: 919403797241978269, guid: 009aa807c5037a34ba03aaa627e563d5,
+    type: 3}
+  mountainTile: {fileID: 8596542989825101288, guid: b2a9641c98d62e44d933ac0d5e667f1e,
+    type: 3}
+  forestTile: {fileID: 2254964206901426321, guid: 7dd02c0ae2eb889418fddf707fd2a254,
+    type: 3}
+  plainTile: {fileID: 7773579186357716762, guid: 172ea8f4116228a498cb6e609609d8f1,
+    type: 3}
+  desertTile: {fileID: 7569573118826674648, guid: 041c16f8cef23b34eafc0a6b6005af48,
+    type: 3}
+  riverTile: {fileID: 7272779508043203150, guid: f305d35d6ca11d8448ac422df9c92c03,
+    type: 3}
+  enemyCreepTile: {fileID: 8470466673652612023, guid: 49ea0e137960e4c47bb0b39a70a674b8,
+    type: 3}
+  enemyTile: {fileID: 5726928801443668064, guid: fd1b4f0990a2ab24fbcef7f7e28a006c,
+    type: 3}
+  playerTile: {fileID: 4042848301412141742, guid: 1dc946f47b01c9a4084971c7fbdb95b1,
+    type: 3}
+--- !u!4 &1694410079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694410077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

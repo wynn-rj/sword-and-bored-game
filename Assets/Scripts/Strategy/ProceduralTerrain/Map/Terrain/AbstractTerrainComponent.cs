@@ -10,7 +10,9 @@ namespace SwordAndBored.StrategyView.Map.Terrain
         {
             get
             {
-                return Mathf.FloorToInt(Mathf.PerlinNoise(Parent.Position.GridPoint.X / 25f + 1000, Parent.Position.GridPoint.Y / 25f + 1000) * 30);
+                //This commented code should stay, currently taking out the perlin noise so that the map is flat for simple movement
+                //return Mathf.FloorToInt(Mathf.PerlinNoise(Parent.Position.GridPoint.X / 25f + 1000, Parent.Position.GridPoint.Y / 25f + 1000) * 30);
+                return 0;
             }
 
             set
