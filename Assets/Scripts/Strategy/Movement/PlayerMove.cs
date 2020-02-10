@@ -35,7 +35,7 @@ namespace SwordAndBored.StrategyView.Movement
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 10000))
+            if (Physics.Raycast(ray, out hit, 1000))
             {
                 //Finds the center of the hexagon that has been clicked
                 Vector3 center = new Vector3(hit.collider.gameObject.transform.position.x, this.transform.position.y, hit.collider.gameObject.transform.position.z);
