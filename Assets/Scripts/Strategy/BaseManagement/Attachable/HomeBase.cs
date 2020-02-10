@@ -8,7 +8,7 @@ public class HomeBase : MonoBehaviour
     public BaseManager bm;
 
     public Canvas canvasObject;
-    public int tier;
+    [Range (1, 3)]public int tier;
 
     public Text tierDisplayed;
 
@@ -29,7 +29,10 @@ public class HomeBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            UpgradeTier();
+        }
     }
 
     private void OnMouseOver()
@@ -43,12 +46,7 @@ public class HomeBase : MonoBehaviour
             canvasObject.gameObject.SetActive(true);
             Debug.Log("I was clicked.");
             bm.GetComponent<BaseManager>().SetAllCanvasInactive();
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            UpgradeTier();
-        }
+        } 
     }
 
     private void OnMouseExit()
@@ -59,7 +57,13 @@ public class HomeBase : MonoBehaviour
 
     private void UpgradeTier()
     {
-        Mathf.Clamp(++tier, 1, 3);
+        if (tier < 3)
+        {
+            tier++;
+        }
+
+        tierDisplayed.text = tier.ToString();
+        bm.UnlockTier(tier);
     }
 
     public void ExitCanvas()

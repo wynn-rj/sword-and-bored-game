@@ -17,8 +17,11 @@ public class AbstractBaseState : IBaseManagementState
 
     public virtual void SelectBuilding() { }
 
-    public virtual void PlaceBuilding()
-    { 
-    
+    public virtual void PlaceBuilding() { }
+
+    public virtual void Exit()
+    {
+        BaseManager.SetAllCanvasInactive();
+        BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
     }
 }
