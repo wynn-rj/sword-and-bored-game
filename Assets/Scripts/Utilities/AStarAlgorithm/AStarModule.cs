@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 
 namespace SwordAndBored.Utilities.AStarAlgorithm
