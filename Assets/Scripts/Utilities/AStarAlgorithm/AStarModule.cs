@@ -6,9 +6,9 @@ namespace SwordAndBored.Utilities.AStarAlgorithm
 {
     public class AStarModule<T>
     {
-        private T[][] grid;
+        private T[,] grid;
 
-        public AStarModule(T[][] grid)
+        public AStarModule(T[,] grid)
         {
             this.grid = grid;
         }
@@ -90,8 +90,8 @@ namespace SwordAndBored.Utilities.AStarAlgorithm
             int x = parent.Location.Item1;
             int y = parent.Location.Item2;
 
-            if (x + 1 < grid.Length) succesors.Add(new Node(grid, Tuple.Create(x + 1, y), parent, 1));
-            if (y + 1 < grid[0].Length) succesors.Add(new Node(grid, Tuple.Create(x, y + 1), parent, 1));
+            if (x + 1 < grid.GetLength(0)) succesors.Add(new Node(grid, Tuple.Create(x + 1, y), parent, 1));
+            if (y + 1 < grid.GetLength(1)) succesors.Add(new Node(grid, Tuple.Create(x, y + 1), parent, 1));
             if (x - 1 >= 0) succesors.Add(new Node(grid, Tuple.Create(x - 1, y), parent, 1));
             if (y - 1 >= 0) succesors.Add(new Node(grid, Tuple.Create(x, y - 1), parent, 1));
 
@@ -101,16 +101,16 @@ namespace SwordAndBored.Utilities.AStarAlgorithm
 
         private class Node
         {
-            public T[][] Grid { get; }
+            public T[,] Grid { get; }
             public Tuple<int, int> Location { get; }
-            public T Data { get { return Grid[Location.Item1][Location.Item2]; } }
+            public T Data { get { return Grid[Location.Item1, Location.Item2]; } }
             public Node Parent { get; }
             public float G { get; set; }
             public float H { get; set; }
             public float F { get { return G + H; } }
 
 
-            public Node(T[][] grid, Tuple<int, int> location, Node parent, int g = 0, int h = 0)
+            public Node(T[,] grid, Tuple<int, int> location, Node parent, int g = 0, int h = 0)
             {
                 Location = location;
                 Parent = parent;
