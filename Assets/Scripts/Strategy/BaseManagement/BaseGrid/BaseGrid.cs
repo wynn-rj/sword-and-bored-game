@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseGrid : MonoBehaviour
+public class BaseGrid
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+
+
+
+    private static BaseGrid instance;
+
+    private BaseGrid() { }
+
+    public static BaseGrid Instance
     {
-        
+        get
+        {
+            if (instance == null)
+            {
+                instance = new BaseGrid();
+            }
+
+            return instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 ReturnGridPoint(Vector3 position)
     {
-        
+        return Vector3.zero;
     }
 }
