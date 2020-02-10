@@ -1,25 +1,30 @@
-﻿using System.Collections;
+﻿using SwordAndBored.StrategyView.BaseManagement.Buildings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectBuildState : AbstractBaseState
+namespace SwordAndBored.StrategyView.BaseManagement
 {
-    public SelectBuildState(BaseManager bm) : base(bm) { }
-
-    public override void SelectBuilding()
+    public class SelectBuildState : AbstractBaseState
     {
-        IBuilding selectedBuilding = BaseManager.GetBuilding(BaseManager.ActiveTier);
-        BaseManager.BaseManagementState = new PlaceBuildState(BaseManager, selectedBuilding);
+        public SelectBuildState(BaseManager bm) : base(bm) { }
 
-        base.SelectBuilding();
-    }
-
-    public override void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
+        public override void SelectBuilding()
         {
-            BaseManager.ToggleActiveCanvas();
-            BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
+            IBuilding selectedBuilding = BaseManager.GetBuilding(BaseManager.ActiveTier);
+            BaseManager.BaseManagementState = new PlaceBuildState(BaseManager, selectedBuilding);
+
+            base.SelectBuilding();
+        }
+
+        public override void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                BaseManager.ToggleActiveCanvas();
+                BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
+            }
         }
     }
 }
+

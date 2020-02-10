@@ -1,69 +1,73 @@
-﻿using System.Collections;
+﻿using SwordAndBored.StrategyView.BaseManagement;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HomeBase : MonoBehaviour
+namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
-    public BaseManager bm;
-
-    public Canvas canvasObject;
-    [Range (1, 3)]public int tier;
-
-    public Text tierDisplayed;
-
-    Renderer renderer;
-
-    private void Awake()
+    public class HomeBase : MonoBehaviour
     {
-        renderer = gameObject.GetComponent<Renderer>();
-    }
+        public BaseManager bm;
 
-    void Start()
-    {
-        tier = 1;
-        renderer.material.color = Color.gray;
-        tierDisplayed.text = tier.ToString();
-    }
+        public Canvas canvasObject;
+        [Range(1, 3)] public int tier;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
+        public Text tierDisplayed;
+
+        Renderer renderer;
+
+        private void Awake()
         {
-            UpgradeTier();
-        }
-    }
-
-    private void OnMouseOver()
-    {
-        renderer.material.color = Color.yellow;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            canvasObject.gameObject.SetActive(true);
-            bm.GetComponent<BaseManager>().SetAllCanvasInactive();
-        } 
-    }
-
-    private void OnMouseExit()
-    {
-        renderer.material.color = Color.grey;
-    }
-
-    private void UpgradeTier()
-    {
-        if (tier < 3)
-        {
-            tier++;
+            renderer = gameObject.GetComponent<Renderer>();
         }
 
-        tierDisplayed.text = tier.ToString();
-        bm.UnlockTier(tier);
-    }
+        void Start()
+        {
+            tier = 1;
+            renderer.material.color = Color.gray;
+            tierDisplayed.text = tier.ToString();
+        }
 
-    public void ExitCanvas()
-    {
-        canvasObject.gameObject.SetActive(false);
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                UpgradeTier();
+            }
+        }
+
+        private void OnMouseOver()
+        {
+            renderer.material.color = Color.yellow;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                canvasObject.gameObject.SetActive(true);
+                bm.GetComponent<BaseManager>().SetAllCanvasInactive();
+            }
+        }
+
+        private void OnMouseExit()
+        {
+            renderer.material.color = Color.grey;
+        }
+
+        private void UpgradeTier()
+        {
+            if (tier < 3)
+            {
+                tier++;
+            }
+
+            tierDisplayed.text = tier.ToString();
+            bm.UnlockTier(tier);
+        }
+
+        public void ExitCanvas()
+        {
+            canvasObject.gameObject.SetActive(false);
+        }
     }
 }

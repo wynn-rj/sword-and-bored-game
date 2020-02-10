@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using SwordAndBored.GameData;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBaseManagementState : IUpdatable
+namespace SwordAndBored.StrategyView.BaseManagement
 {
-    void SelectBuildingTier();
+    public interface IBaseManagementState : IUpdatable
+    {
+        void SelectBuildingTier();
 
-    void SelectBuilding();
+        void SelectBuilding();
 
-    void PlaceBuilding();
+        void PlaceBuilding();
 
-    void Exit();
+        void Exit();
+    }
 }

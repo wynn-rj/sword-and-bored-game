@@ -1,139 +1,142 @@
-﻿using System;
+﻿using SwordAndBored.StrategyView.BaseManagement.Buildings;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BaseManager : MonoBehaviour
+namespace SwordAndBored.StrategyView.BaseManagement
 {
-    //List<IBuilding> productionBuildings;
-    //List<IBuilding> resourceBuildings;
-
-    //The first element is the tiers option canvas
-    [SerializeField] List<GameObject> buildingTierCanvases;
-    [SerializeField] List<UnityEngine.UI.Button> tierButtonsList;
-
-    [SerializeField] private int numberOfBuildings;
-
-    private int activeTier;
-    private int overallTier;
-    private int buildingIndex;
-    private Canvas activeCanvas;
-    private IBaseManagementState baseManagementState;
-
-    public BaseGrid BaseGrid;
-
-    public Canvas ActiveCanvas
+    public class BaseManager : MonoBehaviour
     {
-        get { return activeCanvas; }
-        set { activeCanvas = value; }
-    }
+        //List<IBuilding> productionBuildings;
+        //List<IBuilding> resourceBuildings;
 
-    public IBaseManagementState BaseManagementState
-    {
-        get { return baseManagementState; }
-        set { baseManagementState = value; }
-    }
+        //The first element is the tiers option canvas
+        [SerializeField] List<GameObject> buildingTierCanvases;
+        [SerializeField] List<UnityEngine.UI.Button> tierButtonsList;
 
-    public int BuildingIndex
-    {
-        get { return buildingIndex; }
-        set { buildingIndex = value; }
-    }
+        [SerializeField] private int numberOfBuildings;
 
-    public int ActiveTier
-    {
-        get { return activeTier; }
-        set { activeTier = value; }
-    }
+        private int activeTier;
+        private int overallTier;
+        private int buildingIndex;
+        private Canvas activeCanvas;
+        private IBaseManagementState baseManagementState;
 
-    public int OverallTier
-    {
-        get { return overallTier; }
-        set { overallTier = value; }
-    }
+        public BaseGrid BaseGrid;
 
-    private void Awake()
-    {
-        BaseGrid = FindObjectOfType<BaseGrid>();
-
-        activeCanvas = buildingTierCanvases[0].GetComponent<Canvas>();
-
-        activeTier = overallTier = 1;
-        buildingIndex = 0;
-        numberOfBuildings = 2;
-
-        baseManagementState = new IdleBaseState(this);
-    }
-
-    void Start() { }
-
-    void Update()
-    {
-        baseManagementState.Update();
-    }
-
-    public void ToggleActiveCanvas()
-    {
-        activeCanvas.gameObject.SetActive(!activeCanvas.gameObject.activeSelf);
-    }
-
-    public void SetActiveCanvas(int index)
-    {
-        activeCanvas = buildingTierCanvases[index].GetComponent<Canvas>();
-    }
-
-    /// <summary>
-    /// Activates proper tier list canvas of buildings and ensures all others are deactivated
-    /// </summary>
-    /// <param name="index"></param>
-    public void SetAndToggleActiveCanvas(int index)
-    {
-        if (index <= overallTier)
+        public Canvas ActiveCanvas
         {
-            ToggleActiveCanvas();
-            SetActiveCanvas(index);
-            ToggleActiveCanvas();
+            get { return activeCanvas; }
+            set { activeCanvas = value; }
         }
-    }
 
-    public void SelectBuildingTier(int index)
-    {
-        activeTier = index;
-        baseManagementState.SelectBuildingTier();
-    }
-
-    public void SelectBuilding(int index)
-    {
-        buildingIndex = index;
-        baseManagementState.SelectBuilding();
-    }
-
-    public IBuilding GetBuilding(int tier)
-    {
-        return buildingDict[tier][buildingIndex]();
-    }
-
-    public void UnlockTier(int tier)
-    {
-        overallTier = tier;
-        tierButtonsList[tier - 1].interactable = true;
-    }
-
-    public void SetAllCanvasInactive()
-    {
-        foreach (GameObject canvasObject in buildingTierCanvases)
+        public IBaseManagementState BaseManagementState
         {
-            canvasObject.SetActive(false);
+            get { return baseManagementState; }
+            set { baseManagementState = value; }
         }
-    }
 
-    public void ExitCanvas()
-    {
-        baseManagementState.Exit();
-    }
+        public int BuildingIndex
+        {
+            get { return buildingIndex; }
+            set { buildingIndex = value; }
+        }
 
-    IDictionary<int, Dictionary<int, Func<IBuilding>>> buildingDict = new Dictionary<int, Dictionary<int, Func<IBuilding>>>()
+        public int ActiveTier
+        {
+            get { return activeTier; }
+            set { activeTier = value; }
+        }
+
+        public int OverallTier
+        {
+            get { return overallTier; }
+            set { overallTier = value; }
+        }
+
+        private void Awake()
+        {
+            BaseGrid = FindObjectOfType<BaseGrid>();
+
+            activeCanvas = buildingTierCanvases[0].GetComponent<Canvas>();
+
+            activeTier = overallTier = 1;
+            buildingIndex = 0;
+            numberOfBuildings = 2;
+
+            baseManagementState = new IdleBaseState(this);
+        }
+
+        void Start() { }
+
+        void Update()
+        {
+            baseManagementState.Update();
+        }
+
+        public void ToggleActiveCanvas()
+        {
+            activeCanvas.gameObject.SetActive(!activeCanvas.gameObject.activeSelf);
+        }
+
+        public void SetActiveCanvas(int index)
+        {
+            activeCanvas = buildingTierCanvases[index].GetComponent<Canvas>();
+        }
+
+        /// <summary>
+        /// Activates proper tier list canvas of buildings and ensures all others are deactivated
+        /// </summary>
+        /// <param name="index"></param>
+        public void SetAndToggleActiveCanvas(int index)
+        {
+            if (index <= overallTier)
+            {
+                ToggleActiveCanvas();
+                SetActiveCanvas(index);
+                ToggleActiveCanvas();
+            }
+        }
+
+        public void SelectBuildingTier(int index)
+        {
+            activeTier = index;
+            baseManagementState.SelectBuildingTier();
+        }
+
+        public void SelectBuilding(int index)
+        {
+            buildingIndex = index;
+            baseManagementState.SelectBuilding();
+        }
+
+        public IBuilding GetBuilding(int tier)
+        {
+            return buildingDict[tier][buildingIndex]();
+        }
+
+        public void UnlockTier(int tier)
+        {
+            overallTier = tier;
+            tierButtonsList[tier - 1].interactable = true;
+        }
+
+        public void SetAllCanvasInactive()
+        {
+            foreach (GameObject canvasObject in buildingTierCanvases)
+            {
+                canvasObject.SetActive(false);
+            }
+        }
+
+        public void ExitCanvas()
+        {
+            baseManagementState.Exit();
+        }
+
+        IDictionary<int, Dictionary<int, Func<IBuilding>>> buildingDict = new Dictionary<int, Dictionary<int, Func<IBuilding>>>()
     {
         //Tier I buildings
         {1, new Dictionary<int, Func<IBuilding>>()
@@ -160,5 +163,7 @@ public class BaseManager : MonoBehaviour
                 {1, BuildingFactory.Instance.CreateGranary }
             }
         }
-    };  
+    };
+    }
+
 }

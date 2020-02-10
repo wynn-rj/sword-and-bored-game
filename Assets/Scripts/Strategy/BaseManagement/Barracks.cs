@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barracks : AbstractProductionBuilding
+namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
-    public Barracks() : base()
+    public class Barracks : AbstractProductionBuilding
     {
-        ModelName = "Barracks";
+        public Barracks() : base()
+        {
+            ModelName = "Barracks";
+        }
     }
 }
