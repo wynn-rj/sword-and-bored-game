@@ -21,6 +21,8 @@ public class BaseManager : MonoBehaviour
     private Canvas activeCanvas;
     private IBaseManagementState baseManagementState;
 
+    public BaseGrid BaseGrid;
+
     public Canvas ActiveCanvas
     {
         get { return activeCanvas; }
@@ -53,6 +55,8 @@ public class BaseManager : MonoBehaviour
 
     private void Awake()
     {
+        BaseGrid = FindObjectOfType<BaseGrid>();
+
         activeCanvas = buildingTierCanvases[0].GetComponent<Canvas>();
 
         activeTier = overallTier = 1;
