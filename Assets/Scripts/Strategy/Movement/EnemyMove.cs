@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+namespace SwordAndBored.StrategyView.Movement
 {
-    public GameObject player;
-
-    void Update()
+    public class EnemyMove : MonoBehaviour
     {
-        transform.LookAt(player.transform);
-        transform.Translate(Vector3.forward * 0.05f);
+        public GameObject player;
+
+        void Update()
+        {
+            transform.LookAt(player.transform);
+            transform.Translate(Vector3.forward * 0.05f);
+        }
     }
 }
