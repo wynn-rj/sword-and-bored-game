@@ -37,21 +37,17 @@ public class HomeBase : MonoBehaviour
 
     private void OnMouseOver()
     {
-        Debug.Log("Enter");
-
         renderer.material.color = Color.yellow;
 
         if (Input.GetMouseButtonDown(0))
         {
             canvasObject.gameObject.SetActive(true);
-            Debug.Log("I was clicked.");
             bm.GetComponent<BaseManager>().SetAllCanvasInactive();
         } 
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Exit");
         renderer.material.color = Color.grey;
     }
 
