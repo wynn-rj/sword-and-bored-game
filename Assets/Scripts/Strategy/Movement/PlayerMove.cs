@@ -15,13 +15,6 @@ namespace SwordAndBored.StrategyView.Movement
         float speed = 10;
         bool moving = false;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetMouseButton(0))
@@ -34,6 +27,9 @@ namespace SwordAndBored.StrategyView.Movement
             }
         }
 
+        /// <summary>
+        /// Tells the player where they are going to be moving based on mouse click
+        /// </summary>
         void SetTargetPosition()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -41,8 +37,10 @@ namespace SwordAndBored.StrategyView.Movement
 
             if (Physics.Raycast(ray, out hit, 10000))
             {
+                //Finds the center of the hexagon that has been clicked
                 Vector3 center = new Vector3(hit.collider.gameObject.transform.position.x, this.transform.position.y, hit.collider.gameObject.transform.position.z);
                 targetPosition = center;
+
                 this.transform.LookAt(targetPosition);
                 lookAtTarget = new Vector3(targetPosition.x - transform.position.x, transform.position.y, targetPosition.z - transform.position.z);
                 playerRot = Quaternion.LookRotation(lookAtTarget);
@@ -50,6 +48,9 @@ namespace SwordAndBored.StrategyView.Movement
             }
         }
 
+        /// <summary>
+        /// Moves player to position, stops once the player has reached the position
+        /// </summary>
         void Move()
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, playerRot, rotSpeed * Time.deltaTime);
