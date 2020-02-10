@@ -7,8 +7,8 @@ namespace SwordAndBored.GameData.Database
     {
         public SqliteConnection conn;
 
-        private string SelectAllFromString = "SELECT * FROM ";
-        private string WhereIDEqualsString = " WHERE ID = ";
+        private readonly string SelectAllFromString = "SELECT * FROM ";
+        private readonly string WhereIDEqualsString = " WHERE ID = ";
 
         public DatabaseConnection()
         {
