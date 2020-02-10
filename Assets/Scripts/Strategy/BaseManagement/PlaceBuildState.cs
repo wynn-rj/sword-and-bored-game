@@ -43,7 +43,6 @@ public class PlaceBuildState : AbstractBaseState
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Click Registered");
             PlaceBuilding();   
         }
 
