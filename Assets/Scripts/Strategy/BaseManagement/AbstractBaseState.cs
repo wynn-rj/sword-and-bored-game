@@ -11,19 +11,9 @@ public class AbstractBaseState : IBaseManagementState
         this.BaseManager = bm;
     }
 
-    public virtual void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ToggleBuildingsList();
-            BaseManager.BaseManagementState = new SelectBuildState(BaseManager);
-        }
-    }
+    public virtual void Update() { }
 
-    public virtual void ToggleBuildingsList()
-    {
-        BaseManager.Canvas.gameObject.SetActive(!BaseManager.Canvas.gameObject.activeSelf);
-    }
+    public virtual void SelectBuildingTier() { }
 
     public virtual void SelectBuilding() { }
 
