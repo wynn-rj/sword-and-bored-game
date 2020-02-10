@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractProductionBuilding : AbstractBuilding
+namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
-    public AbstractProductionBuilding() : base() { }
+    public abstract class AbstractProductionBuilding : AbstractBuilding
+    {
+        public AbstractProductionBuilding() : base() { }
+    }
 }

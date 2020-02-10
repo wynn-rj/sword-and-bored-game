@@ -1,33 +1,37 @@
-﻿using System.Collections;
+﻿using SwordAndBored.StrategyView.BaseManagement.Buildings;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingFactory
+namespace SwordAndBored.StrategyView.BaseManagement
 {
-    private static BuildingFactory instance;
-
-    private BuildingFactory() { }
-
-    public static BuildingFactory Instance
+    public class BuildingFactory
     {
-        get
+        private static BuildingFactory instance;
+
+        private BuildingFactory() { }
+
+        public static BuildingFactory Instance
         {
-            if (instance == null)
+            get
             {
-                instance = new BuildingFactory();
+                if (instance == null)
+                {
+                    instance = new BuildingFactory();
+                }
+
+                return instance;
             }
-
-            return instance;
         }
-    }
 
-    internal IBuilding CreateBarracks()
-    {
-        return new Barracks();
-    }
+        internal IBuilding CreateBarracks()
+        {
+            return new Barracks();
+        }
 
-    internal IBuilding CreateGranary()
-    {
-        return null;
+        internal IBuilding CreateGranary()
+        {
+            return null;
+        }
     }
 }
