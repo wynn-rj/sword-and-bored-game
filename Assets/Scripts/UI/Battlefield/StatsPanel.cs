@@ -25,8 +25,18 @@ namespace SwordAndBored.UI.Battlefield {
             if(statsPanel.activeSelf)
             {
                 UniqueCreature activePlayer = turnManager.activePlayer.gameObject.GetComponent<UniqueCreature>();
+                UnitStats unitStats = activePlayer.GetComponent<UnitStats>();
                 nameText.SetText(activePlayer.creatureName);
-                //TODO: add rest of the stats on active player
+                healthText.SetText(unitStats.health.ToString());
+                pAttackText.SetText(unitStats.attack.ToString());
+                pDefenseText.SetText(unitStats.defense.ToString());
+                mAttackText.SetText(unitStats.magicAttack.ToString());
+                mDefenseText.SetText(unitStats.magicDefense.ToString());
+                movementText.SetText(unitStats.movement.ToString());
+                initiativeText.SetText(unitStats.speedIntit.ToString());
+                evasionText.SetText(unitStats.evasion.ToString());
+                accuracyText.SetText(unitStats.accuracy.ToString());
+                roleText.SetText(unitStats.role);
             }
         }
     }
