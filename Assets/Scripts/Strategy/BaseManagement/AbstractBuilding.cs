@@ -5,6 +5,10 @@ using UnityEngine;
 
 public abstract class AbstractBuilding : IBuilding
 {
+    public Canvas HUD { get; set; }
+
+    public int Tier { get; set; }
+
     public float BuildTime { get; set; }
 
     public string ModelName { get; set; }
