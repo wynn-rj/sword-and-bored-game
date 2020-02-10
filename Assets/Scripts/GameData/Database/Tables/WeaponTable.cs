@@ -59,15 +59,5 @@ namespace SwordAndBored.GameData.Database.Tables
             }
             return result;
         }
-
-        private string StringAbilities()
-        {
-            string result = "";
-            foreach (PhysicalAbilitiesTable phy in PhysicalAbilities)
-            {
-                result += phy.ToString();
-            }
-            return result;
-        }
     }
 }
