@@ -24,7 +24,7 @@ public class PlaceBuildState : AbstractBaseState
     {
         BaseManager.Destroy(shadowModel);
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.position = position;
+        cube.transform.position = BaseManager.BaseGrid.ReturnGridPoint(position);
         //BaseManager.Instantiate(PrimitiveType.Cube, position, Quaternion.identity);  
         BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
 
@@ -38,7 +38,7 @@ public class PlaceBuildState : AbstractBaseState
         if (Physics.Raycast(ray, out hit, 50))
         {
             position = hit.point;
-            shadowModel.transform.position = position;
+            shadowModel.transform.position = BaseManager.BaseGrid.ReturnGridPoint(position);
         }
 
         if (Input.GetMouseButtonDown(0))
