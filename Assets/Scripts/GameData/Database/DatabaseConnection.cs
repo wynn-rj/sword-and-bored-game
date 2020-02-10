@@ -42,7 +42,7 @@ namespace SwordAndBored.GameData.Database
         public DatabaseReader QueryRowFromTableWithID(string tableName, int ID)
         {
             SqliteCommand command = conn.CreateCommand();
-            Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + ID.ToString());
+            //Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + ID.ToString());
             command.CommandText = SelectAllFromString + tableName + WhereIDEqualsString + ID.ToString();
             return new DatabaseReader(command.ExecuteReader());
         }
@@ -50,7 +50,7 @@ namespace SwordAndBored.GameData.Database
         public DatabaseReader QueryRowFromTableWhereColNameEqualsInt(string tableName, string colName, int match)
         {
             SqliteCommand command = conn.CreateCommand();
-            Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + match.ToString());
+            //Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + match.ToString());
             command.CommandText = SelectAllFromString + tableName + " WHERE " + colName + " = " + match.ToString();
             return new DatabaseReader(command.ExecuteReader());
         }
@@ -58,7 +58,7 @@ namespace SwordAndBored.GameData.Database
         public DatabaseReader QueryRowFromTableWhereColNameEqualsInputStr(string tableName, string colName, string match)
         {
             SqliteCommand command = conn.CreateCommand();
-            Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + match);
+            //Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + match);
             command.CommandText = SelectAllFromString + tableName + " WHERE " + colName + " = " + match;
             return new DatabaseReader(command.ExecuteReader());
         }
