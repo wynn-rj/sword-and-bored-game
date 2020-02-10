@@ -11,12 +11,12 @@ namespace SwordAndBored.Battlefield.CameraUtilities
     {
 
         public TurnManager turnManager;
-        public GameObject[] cameras = new GameObject[5];
+        public List<GameObject> cameras = new List<GameObject>();
         private int priority = 1;
 
         void Start()
         {
-            for (int i = 0; i < cameras.Length; i++)
+            for (int i = 0; i < cameras.Count; i++)
             {
                 cameras[i].GetComponent<CinemachineVirtualCamera>().Priority = 0;
             }
