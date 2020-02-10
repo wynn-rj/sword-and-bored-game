@@ -11,7 +11,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
     public class TurnManager : MonoBehaviour
     {
         [Header("Units")]
-        public GameObject[] units;
+        public List<GameObject> units = new List<GameObject>();
         public AbstractTurnBrain activePlayer;
         [Header("UI")]
         TurnOrderController manager;
@@ -21,7 +21,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         void Start()
         {
-            manager = new TurnOrderController(units, new RandomShuffler<GameObject>());
+            manager = new TurnOrderController(units.ToArray(), new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<AbstractTurnBrain>();
             text.text = "Current Player: " + activePlayer.GetName();
             activePlayer.DoTurn();
