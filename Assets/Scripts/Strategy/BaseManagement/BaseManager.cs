@@ -7,7 +7,12 @@ namespace SwordAndBored.StrategyView.BaseManagement
 {
     public class BaseManager : MonoBehaviour
     {
-        public IBaseManagementState BaseManagementState { get; set; }
+        private IBaseManagementState baseManagementState;
+        public IBaseManagementState BaseManagementState
+        {
+            get { return baseManagementState; }
+            set { baseManagementState = value; }
+        }
 
         public Canvas ActiveCanvas { get; set; }
 
@@ -61,14 +66,14 @@ namespace SwordAndBored.StrategyView.BaseManagement
             ActiveTier = OverallTier = 1;
             BuildingIndex = 0;
 
-            BaseManagementState = new IdleBaseState(this);
+            baseManagementState = new IdleBaseState(this);
         }
 
         void Start() { }
 
         void Update()
         {
-            BaseManagementState.Update();
+            baseManagementState.Update();
         }
 
         public void ToggleActiveCanvas()
@@ -101,7 +106,7 @@ namespace SwordAndBored.StrategyView.BaseManagement
             BaseManagementState.SelectBuildingTier();
         }
 
-        public void SelectBilding(int index)
+        public void SelectBuilding(int index)
         {
             BuildingIndex = index;
             BaseManagementState.SelectBuilding();
