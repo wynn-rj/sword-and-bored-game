@@ -15,7 +15,7 @@ namespace SwordAndBored.StrategyView.BaseManagement
         IBuilding building;
         GameObject shadowModel;
 
-        public PlaceBuildState(BaseManager bm, AbstractBuilding building) : base(bm)
+        public PlaceBuildState(BaseManager bm, IBuilding building) : base(bm)
         {
             BaseManager.ToggleActiveCanvas();
             this.building = building;
