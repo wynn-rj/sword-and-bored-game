@@ -1,89 +1,84 @@
 ﻿using SwordAndBored.StrategyView.BaseManagement.Buildings;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace SwordAndBored.StrategyView.BaseManagement
 {
     public class BaseManager : MonoBehaviour
     {
-        //List<IBuilding> productionBuildings;
-        //List<IBuilding> resourceBuildings;
+        public IBaseManagementState BaseManagementState { get; set; }
 
-        //The first element is the tiers option canvas
-        [SerializeField] List<GameObject> buildingTierCanvases;
-        [SerializeField] List<UnityEngine.UI.Button> tierButtonsList;
+        public Canvas ActiveCanvas { get; set; }
 
-        [SerializeField] private int numberOfBuildings;
+        public int BuildingIndex { get; set; }
 
-        private int activeTier;
-        private int overallTier;
-        private int buildingIndex;
-        private Canvas activeCanvas;
-        private IBaseManagementState baseManagementState;
+        public int ActiveTier { get; set; }
+
+        public int OverallTier { get; set; }
 
         public BaseGrid BaseGrid;
 
-        public Canvas ActiveCanvas
-        {
-            get { return activeCanvas; }
-            set { activeCanvas = value; }
-        }
+        //The first element is the tiers option canvas
+        [SerializeField] private List<GameObject> buildingTierCanvases;
+        [SerializeField] private List<UnityEngine.UI.Button> tierButtonsList;
 
-        public IBaseManagementState BaseManagementState
+        private IDictionary<int, Dictionary<int, Func<IBuilding>>> buildingDict = new Dictionary<int, Dictionary<int, Func<IBuilding>>>()
         {
-            get { return baseManagementState; }
-            set { baseManagementState = value; }
-        }
+            //Tier I buildings
+            {1, new Dictionary<int, Func<IBuilding>>()
+                {
+                    {0, BuildingFactory.CreateBarracks },
+                    {1, BuildingFactory.CreateGranary }
+                }
+            },
 
-        public int BuildingIndex
-        {
-            get { return buildingIndex; }
-            set { buildingIndex = value; }
-        }
+            //Tier II buildings
+            {2, new Dictionary<int, Func<IBuilding>>()
+                {
+                    //Placeholders
+                    {0, BuildingFactory.CreateBarracks },
+                    {1, BuildingFactory.CreateGranary }
+                }
+            },
 
-        public int ActiveTier
-        {
-            get { return activeTier; }
-            set { activeTier = value; }
-        }
+            //Tier III buildings
+            {3, new Dictionary<int, Func<IBuilding>>()
+                {
+                    //Placeholders
+                    {0, BuildingFactory.CreateBarracks },
+                    {1, BuildingFactory.CreateGranary }
+                }
+            }
+        };
 
-        public int OverallTier
-        {
-            get { return overallTier; }
-            set { overallTier = value; }
-        }
-
-        private void Awake()
+        void Awake()
         {
             BaseGrid = FindObjectOfType<BaseGrid>();
 
-            activeCanvas = buildingTierCanvases[0].GetComponent<Canvas>();
+            ActiveCanvas = buildingTierCanvases[0].GetComponent<Canvas>();
 
-            activeTier = overallTier = 1;
-            buildingIndex = 0;
-            numberOfBuildings = 2;
+            ActiveTier = OverallTier = 1;
+            BuildingIndex = 0;
 
-            baseManagementState = new IdleBaseState(this);
+            BaseManagementState = new IdleBaseState(this);
         }
 
         void Start() { }
 
         void Update()
         {
-            baseManagementState.Update();
+            BaseManagementState.Update();
         }
 
         public void ToggleActiveCanvas()
         {
-            activeCanvas.gameObject.SetActive(!activeCanvas.gameObject.activeSelf);
+            ActiveCanvas.gameObject.SetActive(!ActiveCanvas.gameObject.activeSelf);
         }
 
         public void SetActiveCanvas(int index)
         {
-            activeCanvas = buildingTierCanvases[index].GetComponent<Canvas>();
+            ActiveCanvas = buildingTierCanvases[index].GetComponent<Canvas>();
         }
 
         /// <summary>
@@ -92,7 +87,7 @@ namespace SwordAndBored.StrategyView.BaseManagement
         /// <param name="index"></param>
         public void SetAndToggleActiveCanvas(int index)
         {
-            if (index <= overallTier)
+            if (index <= OverallTier)
             {
                 ToggleActiveCanvas();
                 SetActiveCanvas(index);
@@ -102,24 +97,24 @@ namespace SwordAndBored.StrategyView.BaseManagement
 
         public void SelectBuildingTier(int index)
         {
-            activeTier = index;
-            baseManagementState.SelectBuildingTier();
+            ActiveTier = index;
+            BaseManagementState.SelectBuildingTier();
         }
 
-        public void SelectBuilding(int index)
+        public void SelectBilding(int index)
         {
-            buildingIndex = index;
-            baseManagementState.SelectBuilding();
+            BuildingIndex = index;
+            BaseManagementState.SelectBuilding();
         }
 
         public IBuilding GetBuilding(int tier)
         {
-            return buildingDict[tier][buildingIndex]();
+            return buildingDict[tier][BuildingIndex]();
         }
 
         public void UnlockTier(int tier)
         {
-            overallTier = tier;
+            OverallTier = tier;
             tierButtonsList[tier - 1].interactable = true;
         }
 
@@ -133,37 +128,7 @@ namespace SwordAndBored.StrategyView.BaseManagement
 
         public void ExitCanvas()
         {
-            baseManagementState.Exit();
+            BaseManagementState.Exit();
         }
-
-        IDictionary<int, Dictionary<int, Func<IBuilding>>> buildingDict = new Dictionary<int, Dictionary<int, Func<IBuilding>>>()
-    {
-        //Tier I buildings
-        {1, new Dictionary<int, Func<IBuilding>>()
-            {
-                {0, BuildingFactory.Instance.CreateBarracks },
-                {1, BuildingFactory.Instance.CreateGranary }
-            }
-        },
-
-        //Tier II buildings
-        {2, new Dictionary<int, Func<IBuilding>>()
-            {
-                //Placeholders
-                {0, BuildingFactory.Instance.CreateBarracks },
-                {1, BuildingFactory.Instance.CreateGranary }
-            }
-        },
-
-        //Tier III buildings
-        {3, new Dictionary<int, Func<IBuilding>>()
-            {
-                //Placeholders
-                {0, BuildingFactory.Instance.CreateBarracks },
-                {1, BuildingFactory.Instance.CreateGranary }
-            }
-        }
-    };
     }
-
 }

@@ -15,7 +15,7 @@ namespace SwordAndBored.StrategyView.BaseManagement
         IBuilding building;
         GameObject shadowModel;
 
-        public PlaceBuildState(BaseManager bm, IBuilding building) : base(bm)
+        public PlaceBuildState(BaseManager bm, AbstractBuilding building) : base(bm)
         {
             BaseManager.ToggleActiveCanvas();
             this.building = building;
@@ -28,7 +28,6 @@ namespace SwordAndBored.StrategyView.BaseManagement
             BaseManager.Destroy(shadowModel);
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.transform.position = BaseManager.BaseGrid.ReturnGridPoint(position);
-            //BaseManager.Instantiate(PrimitiveType.Cube, position, Quaternion.identity);  
             BaseManager.BaseManagementState = new IdleBaseState(BaseManager);
 
             base.PlaceBuilding();
