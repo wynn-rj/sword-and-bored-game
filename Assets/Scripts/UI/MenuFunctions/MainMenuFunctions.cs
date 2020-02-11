@@ -21,7 +21,7 @@ namespace SwordAndBored.UI.MenuFunctions
         }
         public void StartButtonPressed()
         {
-            SceneManager.LoadScene("ProceduralGenerationTesting");
+            SceneManager.LoadScene("BaseManagement");
         }
 
         public void ExitButtonPressed()
