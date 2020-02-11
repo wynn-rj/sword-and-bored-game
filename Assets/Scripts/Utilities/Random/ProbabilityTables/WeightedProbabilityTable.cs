@@ -23,7 +23,7 @@ namespace SwordAndBored.Utilities.Random.ProbabilityTables
             double pulledValue = Odds.PercentDouble() * weightSum;
             int index = -1;
             do {
-                pulledValue -= weightedTable[++index].Item2
+                pulledValue -= weightedTable[++index].Item2;
             } while (pulledValue > 0);
             return weightedTable[index].Item1;
         }

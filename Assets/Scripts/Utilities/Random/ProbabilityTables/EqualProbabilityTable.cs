@@ -6,7 +6,7 @@ namespace SwordAndBored.Utilities.Random.ProbabilityTables
     /// An IProbabilityTable where every item has an equal weight of being selected
     /// </summary>
     /// <typeparam name="T">The type of each item</typeparam>
-    class EqualProbabilityTable<T> : IProbabilityTable<T>
+    class EqualProbabilityTable<T> : AbstractProbabilityTable<T>
     {
         private readonly List<T> table;
 
@@ -19,6 +19,6 @@ namespace SwordAndBored.Utilities.Random.ProbabilityTables
 
         public void AddItems(IEnumerable<T> items) => table.AddRange(items);
 
-        public T GetItem() => Odds.SelectAtRandom(table.ToArray());
+        public override T GetItem() => Odds.SelectAtRandom(table.ToArray());
     }
 }
