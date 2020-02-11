@@ -34,13 +34,19 @@ namespace SwordAndBored.UI.MenuFunctions
             if (Input.GetKeyDown(KeyCode.M))
             {
                 string name = SceneManager.GetActiveScene().name;
-                if (name.Equals("CameraAddingScene"))
+                if (name.Equals("BaseManagement"))
                 {
-                    SceneManager.LoadScene("ProceduralGenerationTesting");
+                    SceneManager.LoadScene("HexMovement");
                 } else
                 {
-                    SceneManager.LoadScene("CameraAddingScene");
+                    SceneManager.LoadScene("BaseManagement");
                 }
+            } else if (Input.GetKeyDown(KeyCode.N))
+            {
+                SceneManager.LoadScene("AddStatsUI");
+            } else if (Input.GetKeyDown(KeyCode.L))
+            {
+                SceneManager.LoadScene("DatabaseTesting");
             }
             
         }
