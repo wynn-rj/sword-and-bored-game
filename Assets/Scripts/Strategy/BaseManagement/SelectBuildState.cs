@@ -11,7 +11,7 @@ namespace SwordAndBored.StrategyView.BaseManagement
 
         public override void SelectBuilding()
         {
-            AbstractBuilding selectedBuilding = BaseManager.GetBuilding(BaseManager.ActiveTier) as AbstractBuilding;
+            IBuilding selectedBuilding = BaseManager.GetBuilding(BaseManager.ActiveTier);
             BaseManager.BaseManagementState = new PlaceBuildState(BaseManager, selectedBuilding);
 
             base.SelectBuilding();

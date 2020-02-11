@@ -4922,7 +4922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07692f549a8abf940be9684065c5691a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bm: {fileID: 1899757211}
+  BaseManager: {fileID: 1899757211}
   canvasObject: {fileID: 518411699}
   tier: 0
   tierDisplayed: {fileID: 1402575815}
@@ -6251,6 +6251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c112fbf959e2464ca9488bdd0464a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BaseGrid: {fileID: 1344378849}
   buildingTierCanvases:
   - {fileID: 1457642793}
   - {fileID: 189991629}
@@ -6260,7 +6261,6 @@ MonoBehaviour:
   - {fileID: 220936972}
   - {fileID: 1020028116}
   - {fileID: 511643320}
-  numberOfBuildings: 0
 --- !u!4 &1899757213
 Transform:
   m_ObjectHideFlags: 0
