@@ -5,27 +5,31 @@ using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Database.Tables;
 using TMPro;
 
-public class UnitFromDatabase : MonoBehaviour
+namespace SwordAndBored.GameData.Database
 {
-    public TMP_Text textBox;
-    private DatabaseConnection conn;
-    // Start is called before the first frame update
-    void Start()
+    public class UnitFromDatabase : MonoBehaviour
     {
-        conn = new DatabaseConnection();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
+        public TMP_Text textBox;
+        private DatabaseConnection conn;
+        // Start is called before the first frame update
+        void Start()
         {
-            DatabaseReader reader = conn.QueryAllFromTable("Units");
-            while (reader.NextRow())
+            conn = new DatabaseConnection();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.U))
             {
-                    UnitTable unit = new UnitTable(reader.GetIntFromCol("ID"));
-                    textBox.text += unit.ToString() + "\n\n";
+                DatabaseReader reader = conn.QueryAllFromTable("Units");
+                while (reader.NextRow())
+                {
+                        UnitTable unit = new UnitTable(reader.GetIntFromCol("ID"));
+                        textBox.text += unit.ToString() + "\n\n";
+                }
             }
         }
     }
+
 }
