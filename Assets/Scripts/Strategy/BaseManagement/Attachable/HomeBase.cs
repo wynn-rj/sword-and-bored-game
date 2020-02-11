@@ -8,7 +8,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
     public class HomeBase : MonoBehaviour
     {
-        public BaseManager bm;
+        public BaseManager BaseManager;
 
         public Canvas canvasObject;
         [Range(1, 3)] public int tier;
@@ -45,7 +45,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
             if (Input.GetMouseButtonDown(0))
             {
                 canvasObject.gameObject.SetActive(true);
-                bm.GetComponent<BaseManager>().SetAllCanvasInactive();
+                BaseManager.GetComponent<BaseManager>().SetAllCanvasInactive();
             }
         }
 
@@ -62,7 +62,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
             }
 
             tierDisplayed.text = tier.ToString();
-            bm.UnlockTier(tier);
+            BaseManager.UnlockTier(tier);
         }
 
         public void ExitCanvas()

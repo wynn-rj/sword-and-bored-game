@@ -5,31 +5,14 @@ using UnityEngine;
 
 namespace SwordAndBored.StrategyView.BaseManagement
 {
-    public class BuildingFactory
+    public static class BuildingFactory
     {
-        private static BuildingFactory instance;
-
-        private BuildingFactory() { }
-
-        public static BuildingFactory Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new BuildingFactory();
-                }
-
-                return instance;
-            }
-        }
-
-        internal IBuilding CreateBarracks()
+        public static IBuilding CreateBarracks()
         {
             return new Barracks();
         }
 
-        internal IBuilding CreateGranary()
+        public static IBuilding CreateGranary()
         {
             return null;
         }
