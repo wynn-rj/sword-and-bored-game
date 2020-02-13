@@ -18,7 +18,6 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         // Start is called before the first frame update
         void Start()
         {
-            gridHold.maxGridSize = width;
             //GenerateTileMap();
         }
 
@@ -35,8 +34,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                     newTile.transform.parent = tileContainer;
                     newTile.name = "Tile " + i + " " + j;
 
-                    //This line is supposed to add the tiles to an array, for some reason it doesnt currently work.
-                    gridHold.tiles[i, j] = newTile;
+                    Debug.Log(i + " " + j);
+                    gridHold.tiles[i, j] = newTile.GetComponent<Tile>();
                 }
             }
         

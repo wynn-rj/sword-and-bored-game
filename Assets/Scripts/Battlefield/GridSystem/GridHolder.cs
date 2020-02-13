@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GridHolder : MonoBehaviour
 {
-    public GameObject[,] tiles = new GameObject[25, 25];
-    public int maxGridSize;
+    public Tile[,] tiles = new Tile[50, 50];
     
 }
