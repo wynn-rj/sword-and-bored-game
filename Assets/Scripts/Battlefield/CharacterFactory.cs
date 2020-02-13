@@ -14,7 +14,7 @@ namespace SwordAndBored.Battlefield
 {
     public class CharacterFactory : MonoBehaviour
     {
-
+        public GridHolder grid;
         public GameObject playerPrefab;
         public GameObject indicator;
         public CameraManager camManager;
