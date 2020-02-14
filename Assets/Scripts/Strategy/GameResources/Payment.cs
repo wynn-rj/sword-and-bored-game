@@ -6,7 +6,10 @@ namespace SwordAndBored.StrategyView.GameResources
 {
     public class Payment : IPayment
     {
+        // The resource needed for the purchase
         public IResource resourceType { get; set; }
+
+        // The amount of resource needed to complete the purchase
         public int cost { get; set; }
     }
 }
