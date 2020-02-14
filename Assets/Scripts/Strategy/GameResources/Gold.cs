@@ -19,6 +19,9 @@ namespace SwordAndBored.Strategy.GameResources
         }
         int mAmount;
 
+        /**
+         * Returns true if the player has enough gold to afford the purchase 
+         */
         public bool CanAffordPurchase(IPayment payment)
         {
             return payment.cost <= mAmount;
