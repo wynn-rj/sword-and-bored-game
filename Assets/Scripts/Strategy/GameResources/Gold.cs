@@ -33,5 +33,10 @@ namespace SwordAndBored.StrategyView.GameResources
         {
             this.amount -= payment.cost;
         }
+
+        public void addResource(int amountToAdd)
+        {
+            this.amount += amountToAdd;
+        }
     }
 }
