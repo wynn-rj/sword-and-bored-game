@@ -42,5 +42,10 @@ namespace SwordAndBored.Strategy.GameResources
                 rs.UpdateAmount();
             }
         }
+
+        public void addResource(int amountToAdd)
+        {
+            this.amount += amountToAdd;
+        }
     }
 }
