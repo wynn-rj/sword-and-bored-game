@@ -20,5 +20,10 @@ namespace SwordAndBored.StrategyView.GameResources
          * completes the purchase
          */ 
         void Purchase(IPayment payment);
+
+        /**
+         * adds specified amount of resource to current amount
+         */
+        void addResource(int amountToAdd);
     }
 }
