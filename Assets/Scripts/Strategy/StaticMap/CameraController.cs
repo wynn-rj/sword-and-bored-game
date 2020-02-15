@@ -10,9 +10,8 @@ public class CameraController : MonoBehaviour
     private int screenHeight;
     private int screenWidth;
 
-    float minFOV = 15f;
-    float maxFOV = 90f;
-    float sensitivity = 10f;
+    float ysensitivity = 15f;
+    float zsensitivity = 10f;
 
 
     // Start is called before the first frame update
@@ -26,12 +25,8 @@ public class CameraController : MonoBehaviour
     void Update()
     {
 
-
-        float fov = Camera.main.fieldOfView;
-        fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-        fov = Mathf.Clamp(fov, minFOV, maxFOV);
-        Camera.main.fieldOfView = fov;
-
+        Vector3 zoom = new Vector3(transform.position.x, transform.position.y - (Input.GetAxis("Mouse ScrollWheel") * ysensitivity), transform.position.z + (Input.GetAxis("Mouse ScrollWheel") * zsensitivity));
+        transform.position = zoom;
 
         Vector3 move = transform.position;
         if (Input.mousePosition.x > screenWidth - boundary)
