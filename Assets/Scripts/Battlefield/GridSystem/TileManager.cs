@@ -33,9 +33,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                     GameObject newTile = Instantiate(tilePrefab, new Vector3(i, 0, j), Quaternion.identity);
                     newTile.transform.parent = tileContainer;
                     newTile.name = "Tile " + i + " " + j;
-
+                    Tile tempTile = newTile.GetComponent<Tile>();
+                    tempTile.coordinates = new Vector2(i, j);
                     Debug.Log(i + " " + j);
-                    gridHold.tiles[i, j] = newTile.GetComponent<Tile>();
+                    gridHold.tiles[i, j] = tempTile;
                 }
             }
         

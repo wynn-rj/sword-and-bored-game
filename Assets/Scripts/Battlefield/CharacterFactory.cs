@@ -66,6 +66,7 @@ namespace SwordAndBored.Battlefield
                 //brain
                 brain.tileIndictor = indicator;
                 brain.startCoordinates = new Vector2(numUnits, 5);
+                brain.tiles = grid.tiles;
 
                 unit.transform.parent = unitHolder;
 
