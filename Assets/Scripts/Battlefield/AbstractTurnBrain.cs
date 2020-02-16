@@ -11,6 +11,8 @@ namespace SwordAndBored.Battlefield
 {
     public abstract class AbstractTurnBrain : MonoBehaviour
     {
+        public Tile[,] tiles;
+
         public abstract void DoTurn();
         public abstract string GetName();
         public abstract bool GetTurnEnd();
