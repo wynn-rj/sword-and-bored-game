@@ -3,7 +3,7 @@
     /// <summary>
     /// A collection of skill tiers
     /// </summary>
-    interface ISkillTree
+    public interface ISkillTree
     {
         ISkillTier[] Tiers { get; }
     }
