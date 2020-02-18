@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
-    public abstract class AbstractBuilding : IBuilding
+    public abstract class AbstractBuilding : MonoBehaviour, IBuilding
     {
         public Canvas HUD { get; set; }
 
