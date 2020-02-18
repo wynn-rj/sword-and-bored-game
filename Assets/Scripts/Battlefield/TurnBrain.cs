@@ -108,7 +108,10 @@ namespace SwordAndBored.Battlefield
             if (Physics.Raycast(ray, out hit, 100, tileMapLayerMask))
             {
                 Tile currentTile = hit.collider.GetComponent<Tile>();
-                tileIndictor.transform.position = currentTile.GetPos();
+                if (Time.timeScale >0)
+                {
+                    tileIndictor.transform.position = currentTile.GetPos();
+                }
 
                 if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
                 {
