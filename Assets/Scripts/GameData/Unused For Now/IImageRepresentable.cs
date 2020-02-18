@@ -1,7 +1,7 @@
 ﻿/*
  * namespace SwordAndBored.GameData
 {
-    interface IImageRepresentable
+    public interface IImageRepresentable
     {
         /// <summary>
         /// The name of the image used to represent this ability
