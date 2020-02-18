@@ -1703,6 +1703,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   currentCamera: {fileID: 3159141201642896361}
   animator: {fileID: 3159141201733096179}
+  target: {fileID: 3159141201168309834}
 --- !u!114 &3159141201095183990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,11 +1732,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   attack: 0
-  specialAttack: 0
+  magicAttack: 0
   defense: 0
-  specialDefense: 0
+  magicDefense: 0
   speedIntit: 0
   movement: 0
+  accuracy: 0
+  evasion: 0
+  role: 
 --- !u!114 &3159141201095183992
 MonoBehaviour:
   m_ObjectHideFlags: 0

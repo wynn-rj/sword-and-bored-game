@@ -20,6 +20,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         [Header("Virtual Camera Info")]
         public CinemachineVirtualCamera currentCamera;
         public Animator animator;
+        public Transform target;
         
 
         void Start()
@@ -55,6 +56,14 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         private void Update()
         {
+            if (health <= 0)
+            {
+                Destroy(target.gameObject);
+                Destroy(currentCamera.gameObject);
+                Destroy(transform.gameObject);
+            }
+
+
             if (highlightColor == 3 && Time.time > b)
             {
                 Glow(2);

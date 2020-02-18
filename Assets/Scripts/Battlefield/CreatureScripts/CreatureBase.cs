@@ -30,14 +30,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             movement = maxMovement;
         }
 
-        void Update()
-        {
-            if (health <= 0)
-            {
-                Destroy(transform.gameObject);
-            }    
-        }
-
         public void Damage(int damage)
         {
             health -= damage;

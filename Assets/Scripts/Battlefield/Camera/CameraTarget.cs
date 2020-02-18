@@ -24,6 +24,12 @@ namespace SwordAndBored.Battlefield.CameraUtilities
                 transform.position = player.position;
             }
             
+
+
+            if (!player)
+            {
+                Destroy(transform.gameObject);
+            }
         }
     }
 
