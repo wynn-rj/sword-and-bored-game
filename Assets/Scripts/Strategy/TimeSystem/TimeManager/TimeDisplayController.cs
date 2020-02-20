@@ -7,7 +7,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
     public class TimeDisplayController : MonoBehaviour, IPreTimeStepSubscriber
     {
-        public TimeTrackingTimeManager timeManager;
+        public ITimeManager timeManager;
 
         private Text text;
 
@@ -27,7 +27,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 
         public void OnDestroy()
         {
-            if (timeManager)
+            if (!(timeManager is null))
             {
                 timeManager.Unsubscribe(this);
             }
