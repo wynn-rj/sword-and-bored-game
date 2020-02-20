@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*
 
 namespace SwordAndBored.GameData.Abilities.Skills
 {
@@ -23,3 +23,4 @@ namespace SwordAndBored.GameData.Abilities.Skills
         public abstract void SelectSkill(int choicesIndex);
     }
 }
+*/

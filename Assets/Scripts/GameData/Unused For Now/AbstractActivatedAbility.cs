@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Modifiers;
+﻿/*using SwordAndBored.GameData.Modifiers;
 
 namespace SwordAndBored.GameData.Abilities.Skills
 {
@@ -9,3 +9,4 @@ namespace SwordAndBored.GameData.Abilities.Skills
         public bool IsActive { get; set; }
     }
 }
+*/

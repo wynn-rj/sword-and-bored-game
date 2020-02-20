@@ -1,4 +1,5 @@
-﻿namespace SwordAndBored.GameData.Abilities
+﻿/*
+ * namespace SwordAndBored.GameData.Abilities
 {
     class GenericAbility : IAbility
     {
@@ -9,3 +10,4 @@
         public virtual string ImageName { get; set; }
     }
 }
+*/

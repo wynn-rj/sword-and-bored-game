@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Modifiers;
+﻿/*using SwordAndBored.GameData.Modifiers;
 
 namespace SwordAndBored.GameData.Abilities
 {
@@ -7,3 +7,4 @@ namespace SwordAndBored.GameData.Abilities
         public IModifier[] PassiveModifiers { get; protected set; }
     }
 }
+*/

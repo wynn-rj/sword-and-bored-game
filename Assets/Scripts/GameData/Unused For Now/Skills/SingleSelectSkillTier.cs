@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.GameData.Abilities.Skills
+﻿/*namespace SwordAndBored.GameData.Abilities.Skills
 {
     /// <summary>
     /// A skill tier that can only ever have one skill selected at a time
@@ -39,3 +39,4 @@
         }
     }
 }
+*/

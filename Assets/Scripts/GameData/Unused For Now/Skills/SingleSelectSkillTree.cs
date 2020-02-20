@@ -1,4 +1,5 @@
-﻿namespace SwordAndBored.GameData.Abilities.Skills
+﻿/*
+ * namespace SwordAndBored.GameData.Abilities.Skills
 {
     class SingleSelectSkillTree : ISkillTree
     {
@@ -21,3 +22,4 @@
         }
     }
 }
+*/

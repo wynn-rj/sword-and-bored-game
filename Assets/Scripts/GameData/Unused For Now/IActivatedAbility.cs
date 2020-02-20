@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Modifiers;
+﻿/*using SwordAndBored.GameData.Modifiers;
 
 namespace SwordAndBored.GameData.Abilities
 {
@@ -18,3 +18,4 @@ namespace SwordAndBored.GameData.Abilities
         bool IsActive { get; set; }
     }
 }
+*/
