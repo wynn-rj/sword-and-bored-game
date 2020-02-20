@@ -11,7 +11,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 
         public int startingTimeStep = 0;
 
-        public void Awake()
+        public TimeTrackingTimeManager()
         {
             TimeStep = startingTimeStep;
             PreTimeStepSubscribers = new List<IPreTimeStepSubscriber>();
