@@ -6,28 +6,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitFactory : MonoBehaviour
+namespace SwordAndBored.StrategyView.BaseManagement
 {
-    public Text UnitRole;
-
-    public Text UnitName;
-
-    private IDictionary<string, IRole> roleDict = new Dictionary<string, IRole>()
+    public class UnitFactory : MonoBehaviour
     {
-        {"Warrior", new GenericRole(new SingleSelectSkillTree(5)) },
-        {"Mage", new GenericRole(new SingleSelectSkillTree(5)) },
-        {"Scout", new GenericRole(new SingleSelectSkillTree(5)) },
-    };
+        public UnitManager UnitManager;
 
-    public void TrainUnit()
-    {
-        // Create ICharacter to track in strategy view
-        // Add record to database
-        // Add to strategy view tracker
+        public Text UnitRole;
 
-        IRole role = roleDict[UnitRole.text];
-        role.Name = UnitName.text;
+        public InputField UnitName;
 
-        ICharacter character = new GenericCharacter(null, role, null);
+        private IDictionary<string, IRole> roleDict = new Dictionary<string, IRole>()
+        {
+            /*
+            * TO DO: specificy skill tree arguments
+            */
+            {"Warrior", new GenericRole(new SingleSelectSkillTree(5)) },
+            {"Mage", new GenericRole(new SingleSelectSkillTree(5)) },
+            {"Scout", new GenericRole(new SingleSelectSkillTree(5)) },
+        };
+
+        public void TrainUnit()
+        {
+            // Create ICharacter to track in strategy view
+            // Add record to database
+            // Add to strategy view tracker
+
+            IRole role = roleDict[UnitRole.text];
+            role.Name = UnitName.text;
+
+            ICharacter character = new GenericCharacter(null, role, null);
+            UnitManager.Instance.RegisterUnit(character);
+        }
     }
 }

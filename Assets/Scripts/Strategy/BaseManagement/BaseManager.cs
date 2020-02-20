@@ -74,6 +74,7 @@ namespace SwordAndBored.StrategyView.BaseManagement
         void Update()
         {
             baseManagementState.Update();
+            //Debug.Log("{}" + UnitManager.Instance.GetAllUnits()[0]);
         }
 
         public void ToggleActiveCanvas()
