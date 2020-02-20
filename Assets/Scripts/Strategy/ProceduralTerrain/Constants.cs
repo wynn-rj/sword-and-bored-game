@@ -5,10 +5,10 @@ using UnityEngine;
 public static class Constants
 {
     public static readonly int hexRadius = 1;
-    public static readonly int mapWidth = 200;  //Changed from 200->20 for display purposes
-    public static readonly int mapHeight = 200; //Changed from 200->20 for display purposes
+    public static readonly int mapWidth = 100;  //Changed from 200->20 for display purposes
+    public static readonly int mapHeight =  100; //Changed from 200->20 for display purposes
     public static readonly int mountainHeightThreshold = 7;
-    public static readonly int riverHeightThreshold = 15; //Changed from 15->0 so that river wouldn't spawn on map
+    public static readonly int riverHeightThreshold = 7; //Changed from 15->0 so that river wouldn't spawn on map
     public static readonly float riverWaterLevelThreshold = .8f;
     public static readonly float snowMountainWaterLvlThreshold = .9f;
     public static readonly float plainsWaterLevelThreshold = .8f;
