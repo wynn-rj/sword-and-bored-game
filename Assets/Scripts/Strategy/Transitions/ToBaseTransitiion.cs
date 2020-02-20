@@ -7,7 +7,7 @@ namespace SwordAndBored.Strategy.Transitions
 {
     class ToBaseTransitiion : MonoBehaviour
     {
-        public TimeTrackingTimeManager timeManager;
+        public ITimeManager timeManager;
 
 #if DEBUG
         void Awake()
