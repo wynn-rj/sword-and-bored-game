@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerBase : AbstractBiome
+﻿namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
-    public PlayerBase() : base("PlayerBase")
-    { 
-    
+    public class PlayerBase : AbstractBiome
+    {
+        public PlayerBase() : base("PlayerBase")
+        {
+
+        }
     }
 }
