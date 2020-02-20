@@ -1,9 +1,10 @@
 ﻿using SwordAndBored.Strategy.TimeSystem.Subscribers;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
-    abstract class AbstractTimeManager : ITimeManager
+    public abstract class AbstractTimeManager : MonoBehaviour, ITimeManager
     {
         protected readonly IList<IPreTimeStepSubscriber> preTimeStepSubscribers = new List<IPreTimeStepSubscriber>();
         protected readonly IList<IPostTimeStepSubscriber> postTimeStepSubscribers = new List<IPostTimeStepSubscriber>();
