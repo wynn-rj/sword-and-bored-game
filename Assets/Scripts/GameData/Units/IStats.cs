@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.GameData.Creatures
+﻿namespace SwordAndBored.GameData.Units
 {
     /// <summary>
     /// A collection of stats for a creature or similar object
