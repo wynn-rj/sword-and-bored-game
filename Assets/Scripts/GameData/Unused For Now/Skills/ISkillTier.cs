@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.GameData.Abilities.Skills
+﻿/*namespace SwordAndBored.GameData.Abilities.Skills
 {
     /// <summary>
     /// A collection of abilities to choose from, where only one or none can be selected at a time
@@ -14,3 +14,4 @@
         void SelectSkill(int choicesIndex);
     }
 }
+*/

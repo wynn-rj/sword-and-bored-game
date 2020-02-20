@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.GameData.Abilities
+﻿/*namespace SwordAndBored.GameData.Abilities
 {
     class AbilityFactory
     {
@@ -20,3 +20,4 @@
         }
     }
 }
+*/
