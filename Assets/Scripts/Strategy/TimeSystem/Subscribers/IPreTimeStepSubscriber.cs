@@ -1,6 +1,6 @@
 ﻿namespace SwordAndBored.Strategy.TimeSystem.Subscribers
 {
-    interface IPreTimeStepSubscriber
+    public interface IPreTimeStepSubscriber
     {
         void PreTimeStepUpdate();
     }
