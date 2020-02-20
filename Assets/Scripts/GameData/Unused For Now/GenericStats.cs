@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.GameData.Creatures
+﻿/*namespace SwordAndBored.GameData.Creatures
 {
     class GenericStats : IStats
     {
@@ -12,4 +12,4 @@
         public float BaseAccuracy { get; set; }
         public float BaseEvasion { get; set; }
     }
-}
+}*/

@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Abilities;
+﻿/*using SwordAndBored.GameData.Abilities;
 using SwordAndBored.GameData.Roles;
 using System;
 
@@ -15,3 +15,4 @@ namespace SwordAndBored.GameData.Creatures
         }       
     }
 }
+*/

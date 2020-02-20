@@ -1,7 +1,4 @@
-﻿using SwordAndBored.GameData.Abilities;
-using SwordAndBored.GameData.Modifiers;
-
-namespace SwordAndBored.GameData.Equipment
+﻿namespace SwordAndBored.GameData.Equipment
 {
     interface IEquipment : IDescriptable
     {
