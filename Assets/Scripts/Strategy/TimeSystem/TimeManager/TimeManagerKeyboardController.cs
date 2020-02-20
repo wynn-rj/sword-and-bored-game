@@ -5,7 +5,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
     public class TimeManagerKeyboardController : MonoBehaviour
     {
-        public TimeTrackingTimeManager timeManager;
+        public ITimeManager timeManager;
         public KeyCode nextTurnKey = KeyCode.Return;
 
 #if DEBUG
