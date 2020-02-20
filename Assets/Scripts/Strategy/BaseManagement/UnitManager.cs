@@ -1,17 +1,32 @@
 ﻿using SwordAndBored.GameData.Creatures;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SwordAndBored.StrategyView.BaseManagement
 {
-    public class UnitManager : MonoBehaviour
+    public class UnitManager
     {
-        public IList<ICharacter> unitList;
+        public IList<ICharacter> existingUnitList;
+        public IList<ICharacter> newUnitList;
 
-        private void Awake()
+        public static UnitManager Instance
         {
-            unitList = new List<ICharacter>();
+            get
+            {
+                return instance;
+            }
+        }
+
+#pragma warning disable IDE0032
+        private static readonly UnitManager instance = new UnitManager();
+#pragma warning restore IDE0032
+
+        private UnitManager()   
+        {
+            existingUnitList = new List<ICharacter>();
+            newUnitList = new List<ICharacter>();
         }
 
         /// <summary>
@@ -19,7 +34,9 @@ namespace SwordAndBored.StrategyView.BaseManagement
         /// </summary>
         public void GetAllData()
         {
-
+            /*
+             * TO DO: Populate <>existingUnitList</> with data from database
+             */
         }
 
         /// <summary>
@@ -27,17 +44,25 @@ namespace SwordAndBored.StrategyView.BaseManagement
         /// </summary>
         public void SetAllData()
         {
+            /*
+             * TO DO: Create database entries for new ICharacters
+             */
 
+            /*
+             * TO DO: Update records of existing units
+             */
         }
 
-        public void RegisterUnit()
+        public void RegisterUnit(ICharacter character)
         {
-
+            Debug.Log("Unit registered");
+            newUnitList.Add(character);
+            Debug.Log(character.Role.Name);
         }
 
-        public IList<ICharacter> GetUnitsList()
+        public IList<ICharacter> GetAllUnits()
         {
-            return unitList;
+            return existingUnitList.Concat(newUnitList).ToList();
         }
     }
 }
