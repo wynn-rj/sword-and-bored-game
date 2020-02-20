@@ -1,9 +1,9 @@
-﻿using SwordAndBored.GameData.Abilities.Skills;
+﻿using SwordAndBored.GameData.Creatures;
 
 namespace SwordAndBored.GameData.Roles
 {
-    interface IRole : IDescriptable
+    public interface IRole : IDescriptable
     {
-        ISkillTree RoleSkillTree { get; }
+        public IStats RoleStats { get; set; }
     }
 }
