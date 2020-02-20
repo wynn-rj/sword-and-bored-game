@@ -9,14 +9,12 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
         public KeyCode nextTurnKey = KeyCode.Return;
 
 #if DEBUG
-        void Start()
+        void Awake()
         {
             AssertHelper.IsSetInEditor(timeManager, this);
         }
 #endif
 
-
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKeyDown(nextTurnKey))
