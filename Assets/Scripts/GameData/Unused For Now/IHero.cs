@@ -2,7 +2,7 @@
 
 namespace SwordAndBored.GameData.Creatures
 {
-    interface IHero : ICharacter
+    interface IHero
     {
         IAbility HeroAbility { get; }
     }

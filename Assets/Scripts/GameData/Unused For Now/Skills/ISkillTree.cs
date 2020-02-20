@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.GameData.Abilities.Skills
+﻿/*namespace SwordAndBored.GameData.Abilities.Skills
 {
     /// <summary>
     /// A collection of skill tiers
@@ -8,3 +8,4 @@
         ISkillTier[] Tiers { get; }
     }
 }
+*/
