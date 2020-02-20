@@ -10,12 +10,12 @@ public class Tile : MonoBehaviour
     [HideInInspector]
     public Vector2 coordinates;
 
-    public Vector3 GetPos()
+    public Vector3 GetCenterOfTile()
     {
         return transform.position;
     }
 
-    public Vector2 GetCoordinates()
+    public Vector2 GetCoordinatesOfTileOnGrid()
     {
         return coordinates;
     }

@@ -69,7 +69,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public void Move(Tile goTile)
         {
                 SetTile(goTile);
-                MoveTo(goTile.GetPos());
+                MoveTo(goTile.GetCenterOfTile());
         }
     }
 
