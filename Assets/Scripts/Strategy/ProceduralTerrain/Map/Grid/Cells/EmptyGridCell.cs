@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SwordAndBored.StrategyView.Map.Grid.Cells
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
 {
     public class EmptyGridCell: IHexGridCell
     {

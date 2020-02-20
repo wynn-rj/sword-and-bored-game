@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RiverBiome : AbstractBiome
+﻿namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
-    public RiverBiome() : base("RiverBiome")
+    public class RiverBiome : AbstractBiome
     {
-        this.heightModifier = 0.5f;
+        public RiverBiome() : base("RiverBiome")
+        {
+            this.heightModifier = 0.5f;
+        }
     }
 }

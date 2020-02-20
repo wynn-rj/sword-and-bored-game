@@ -1,4 +1,4 @@
-namespace SwordAndBored.StrategyView.Map.Grid.Cells
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
 {
     /// <summary>
     /// A 2D Point with an X and Y coordinate, where the coordinates are of type T

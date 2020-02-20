@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlainsBiome : AbstractBiome
+﻿namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
-    public PlainsBiome() : base("PlainsBiome")
+    public class PlainsBiome : AbstractBiome
     {
-        this.heightModifier = 1f;
+        public PlainsBiome() : base("PlainsBiome")
+        {
+            this.heightModifier = 1f;
+        }
     }
 }
+

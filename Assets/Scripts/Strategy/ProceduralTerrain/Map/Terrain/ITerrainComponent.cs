@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.StrategyView.Map.Terrain
+﻿namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
     interface ITerrainComponent : Grid.ICellComponent
     {

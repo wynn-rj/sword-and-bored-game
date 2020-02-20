@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SwordAndBored.StrategyView.Map.Terrain
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
     class DesertTerrainComponent : AbstractTerrainComponent
     {
