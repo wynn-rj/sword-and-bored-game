@@ -6,17 +6,17 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
     public abstract class AbstractTimeManager : MonoBehaviour, ITimeManager
     {
-        protected readonly IList<IPreTimeStepSubscriber> preTimeStepSubscribers = new List<IPreTimeStepSubscriber>();
-        protected readonly IList<IPostTimeStepSubscriber> postTimeStepSubscribers = new List<IPostTimeStepSubscriber>();
+        protected abstract IList<IPreTimeStepSubscriber> PreTimeStepSubscribers { get; set; }
+        protected abstract IList<IPostTimeStepSubscriber> PostTimeStepSubscribers { get; set; }
 
         public virtual void AdvanceTimeStep()
         {
-            foreach (IPostTimeStepSubscriber postTimeStepSubscriber in postTimeStepSubscribers)
+            foreach (IPostTimeStepSubscriber postTimeStepSubscriber in PostTimeStepSubscribers)
             {
                 postTimeStepSubscriber.PostTimeStepUpdate();
             }
 
-            foreach (IPreTimeStepSubscriber preTimeStepSubscriber in preTimeStepSubscribers)
+            foreach (IPreTimeStepSubscriber preTimeStepSubscriber in PreTimeStepSubscribers)
             {
                 preTimeStepSubscriber.PreTimeStepUpdate();
             }
@@ -34,12 +34,12 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             return success && Unsubscribe(subscriber as IPostTimeStepSubscriber);
         }
 
-        public void Subscribe(IPreTimeStepSubscriber subscriber) => preTimeStepSubscribers.Add(subscriber);
+        public void Subscribe(IPreTimeStepSubscriber subscriber) => PreTimeStepSubscribers.Add(subscriber);
 
-        public bool Unsubscribe(IPreTimeStepSubscriber subscriber) => preTimeStepSubscribers.Remove(subscriber);
+        public bool Unsubscribe(IPreTimeStepSubscriber subscriber) => PreTimeStepSubscribers.Remove(subscriber);
 
-        public void Subscribe(IPostTimeStepSubscriber subscriber) => postTimeStepSubscribers.Add(subscriber);
+        public void Subscribe(IPostTimeStepSubscriber subscriber) => PostTimeStepSubscribers.Add(subscriber);
 
-        public bool Unsubscribe(IPostTimeStepSubscriber subscriber) => postTimeStepSubscribers.Remove(subscriber);
+        public bool Unsubscribe(IPostTimeStepSubscriber subscriber) => PostTimeStepSubscribers.Remove(subscriber);
     }
 }
