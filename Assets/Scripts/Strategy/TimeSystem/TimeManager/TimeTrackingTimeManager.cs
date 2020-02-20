@@ -5,11 +5,10 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
     public class TimeTrackingTimeManager : AbstractTimeManager
     {
-        public int TimeStep { get; protected set; }
         protected override IList<IPreTimeStepSubscriber> PreTimeStepSubscribers { get; set; }
         protected override IList<IPostTimeStepSubscriber> PostTimeStepSubscribers { get; set; }
 
-        public int startingTimeStep = 0;
+        public ulong startingTimeStep = 0;
 
         public TimeTrackingTimeManager()
         {

@@ -6,6 +6,8 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
     public abstract class AbstractTimeManager : MonoBehaviour, ITimeManager
     {
+        public ulong TimeStep { get; protected set; }
+
         protected abstract IList<IPreTimeStepSubscriber> PreTimeStepSubscribers { get; set; }
         protected abstract IList<IPostTimeStepSubscriber> PostTimeStepSubscribers { get; set; }
 

@@ -9,6 +9,11 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
     public interface ITimeManager : IObserver<ITimeStepSubscriber>, IObserver<IPreTimeStepSubscriber>, IObserver<IPostTimeStepSubscriber>
     {
         /// <summary>
+        /// The current time step
+        /// </summary>
+        ulong TimeStep { get; }
+
+        /// <summary>
         /// End the current time step and go to the next one
         /// </summary>
         void AdvanceTimeStep();
