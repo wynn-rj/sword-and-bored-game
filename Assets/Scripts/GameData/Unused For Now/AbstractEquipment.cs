@@ -1,4 +1,5 @@
-﻿using SwordAndBored.GameData.Abilities;
+﻿/*
+using SwordAndBored.GameData.Abilities;
 using SwordAndBored.GameData.Modifiers;
 
 namespace SwordAndBored.GameData.Equipment
@@ -11,3 +12,4 @@ namespace SwordAndBored.GameData.Equipment
         public abstract IModifier[] Modifiers { get; }
     }
 }
+*/

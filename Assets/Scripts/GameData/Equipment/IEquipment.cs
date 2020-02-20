@@ -6,13 +6,9 @@ namespace SwordAndBored.GameData.Equipment
     interface IEquipment : IDescriptable
     {
         /// <summary>
-        /// The abilities granted by this equipment
-        /// </summary>
-        IAbility[] Abilities { get; }
-
-        /// <summary>
         /// The modifiers granted by this equipment
         /// </summary>
-        IModifier[] Modifiers { get; }
+        // TODO Will be used for passive abilities in the future
+        //IModifier[] Modifiers { get; }
     }
 }
