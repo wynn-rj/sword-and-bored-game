@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Equipment;
+﻿/*using SwordAndBored.GameData.Equipment;
 
 namespace SwordAndBored.GameData.Creatures
 {
@@ -13,5 +13,7 @@ namespace SwordAndBored.GameData.Creatures
             Stats = stats ?? new GenericStats();
             Equipment = equipment ?? new IEquipment[0];
         }
+
     }
 }
+*/

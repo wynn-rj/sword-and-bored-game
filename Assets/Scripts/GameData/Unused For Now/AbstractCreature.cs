@@ -1,4 +1,5 @@
-﻿using SwordAndBored.GameData.Abilities;
+﻿/*
+using SwordAndBored.GameData.Abilities;
 using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Modifiers;
 using System.Collections.Generic;
@@ -78,3 +79,4 @@ namespace SwordAndBored.GameData.Creatures
         }
     }
 }
+*/

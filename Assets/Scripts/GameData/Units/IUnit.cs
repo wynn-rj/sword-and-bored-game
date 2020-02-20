@@ -1,29 +1,31 @@
 using SwordAndBored.GameData.Abilities;
 using SwordAndBored.GameData.Equipment;
-using SwordAndBored.GameData.Modifiers;
 
-namespace SwordAndBored.GameData.Creatures
+namespace SwordAndBored.GameData.Units
 {
-    interface ICreature : IDescriptable, IModelable
+    interface IUnit : IDescriptable
     {
         /// <summary>
         /// A container of all stats a creature has
         /// </summary>
-        IStats Stats { get; }
+        IStats Stats { get; set; }
 
         /// <summary>
         /// An aggregate collection of all abilities a creature has access to
         /// </summary>
-        IAbility[] Abilities { get; }
+        IAbility[] Abilities { get; set; }
 
         /// <summary>
         /// An aggregate collection of all equipment on a creature
         /// </summary>
-        IEquipment[] Equipment { get; }
+        IWeapon[] Weapon { get; set; }
 
         /// <summary>
         /// An aggregate collection of all modifiers applied to a creature
         /// </summary>
-        IModifier[] Modifiers { get; }
+        IArmor[] Armor { get; set; }
+
+        int XP { get; set; }
+        int Level { get; }
     }
 }
