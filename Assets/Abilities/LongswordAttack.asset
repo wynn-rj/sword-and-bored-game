@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackName: Longsword Attack
   TypeOfActionRequired: 0
-  damageDice: 8
+  damageDice: 35
   range: 1
