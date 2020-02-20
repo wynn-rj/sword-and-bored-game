@@ -11,18 +11,19 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 
         private Text text;
 
-        void Start()
+        void Awake()
         {
             text = GetComponent<Text>();
             AssertHelper.IsSetInEditor(timeManager, this);
-            timeManager.Subscribe(this);
-            text.text = string.Format("Turn: {0}", timeManager.TimeStep);            
+            AssertHelper.IsSetInEditor(text, this);
+               
         }
 
-        public void PreTimeStepUpdate()
+        void Start()
         {
-            text.text = string.Format("Turn: {0}", timeManager.TimeStep);
-        }
+            timeManager.Subscribe(this);
+            PreTimeStepUpdate();
+        }        
 
         public void OnDestroy()
         {
@@ -30,6 +31,11 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             {
                 timeManager.Unsubscribe(this);
             }
+        }
+
+        public void PreTimeStepUpdate()
+        {
+            text.text = string.Format("Turn: {0}", timeManager.TimeStep);
         }
     }
 }
