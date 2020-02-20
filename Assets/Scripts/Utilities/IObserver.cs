@@ -1,6 +1,6 @@
 ﻿namespace SwordAndBored.Utilities
 {
-    interface IObserver<T>
+    public interface IObserver<T>
     {
         /// <summary>
         /// Adds the subscriber to the observer's list of objects to be notified
@@ -16,7 +16,7 @@
         bool Unsubscribe(T subscriber);
     }
 
-    interface IObserver
+    public interface IObserver
     {
         /// <summary>
         /// Adds the subscriber to the observer's list of objects to be notified
