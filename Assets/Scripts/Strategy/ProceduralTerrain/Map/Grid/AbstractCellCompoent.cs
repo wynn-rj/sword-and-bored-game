@@ -1,6 +1,6 @@
-using SwordAndBored.StrategyView.Map.Grid.Cells;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 
-namespace SwordAndBored.StrategyView.Map.Grid
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
 {
     public abstract class AbstractCellComponent : ICellComponent
     {

@@ -1,12 +1,13 @@
-﻿using SwordAndBored.StrategyView.Map.Terrain;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-class RiverTerrainComponent : AbstractTerrainComponent
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
-    public RiverTerrainComponent(GameObject gameObject)
-    {
 
+    class RiverTerrainComponent : AbstractTerrainComponent
+    {
+        public RiverTerrainComponent(GameObject gameObject)
+        {
+
+        }
     }
 }

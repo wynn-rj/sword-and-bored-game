@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SwordAndBored.StrategyView.Map.Grid
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
 {
     class GameObjectComponent : AbstractCellComponent
     {

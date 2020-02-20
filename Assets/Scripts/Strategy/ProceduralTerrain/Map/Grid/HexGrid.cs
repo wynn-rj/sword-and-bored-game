@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using SwordAndBored.StrategyView.Map.Grid.Cells;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 
-namespace SwordAndBored.StrategyView.Map.Grid
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
 {
     /// <summary>
     /// A grid of hexagon cells

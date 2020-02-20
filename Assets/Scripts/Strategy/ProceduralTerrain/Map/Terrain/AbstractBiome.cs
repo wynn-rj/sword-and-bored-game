@@ -1,4 +1,4 @@
-﻿using SwordAndBored.StrategyView.Map.Grid.Cells;
+﻿using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

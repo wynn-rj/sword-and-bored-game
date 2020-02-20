@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SwordAndBored.StrategyView.Map.Grid.Cells
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
 {
     /// <summary>
     /// A grid cell on a hex grid. Contains a series of components that can be added to.
