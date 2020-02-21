@@ -4,7 +4,7 @@ using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.GameData.Equipment
 {
-    public class Weapon : IWeapon
+    public class SpellBook : ISpellBook
     {
         public int ID { get; }
         public List<IAbility> Abilities { get; set; }
@@ -12,10 +12,10 @@ namespace SwordAndBored.GameData.Equipment
         public string Description { get; set; }
         public string FlavorText { get; set; }
 
-        public Weapon(int inputID)
+        public SpellBook(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryRowFromTableWithID("Weapons", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("SpellBooks", inputID);
 
             ID = inputID;
             if (reader.NextRow())
@@ -26,7 +26,7 @@ namespace SwordAndBored.GameData.Equipment
             }
             reader.CloseReader();
 
-            reader = conn.QueryRowFromTableWhereColNameEqualsInt("Abilities", "Weapon_FK", inputID);
+            reader = conn.QueryRowFromTableWhereColNameEqualsInt("Abilities", "Spell_Book_FK", inputID);
             Abilities = new List<IAbility>();
             while (reader.NextRow())
             {
