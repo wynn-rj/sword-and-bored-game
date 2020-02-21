@@ -3,7 +3,7 @@ using SwordAndBored.GameData.Modifiers;
 
 namespace SwordAndBored.GameData.Abilities
 {
-    public class PhysicalAbilities
+    public class CombatAbilities
     {
         public int ID { get; }
         public Descriptor Descriptor { get; set; }
@@ -14,9 +14,10 @@ namespace SwordAndBored.GameData.Abilities
         public int Damage { get; set; }
         public int Accuracy { get; set; }
         public int Range { get; set; }
+        public bool IsPhysical { get; set; }
 
 
-        public PhysicalAbilities(int inputID)
+        public CombatAbilities(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Physical_Abilities", inputID);

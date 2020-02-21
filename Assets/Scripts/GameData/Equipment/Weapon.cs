@@ -9,7 +9,7 @@ namespace SwordAndBored.GameData.Equipment
         public int ID { get; }
         public Descriptor Descriptor { get; set; }
 
-        public List<PhysicalAbilities> PhysicalAbilities { get; set; }
+        public List<CombatAbilities> PhysicalAbilities { get; set; }
 
         public Weapon(int inputID)
         {
@@ -25,11 +25,11 @@ namespace SwordAndBored.GameData.Equipment
             reader.CloseReader();
 
             reader = conn.QueryRowFromTableWhereColNameEqualsInt("Physical_Abilities", "Weapon_FK", inputID);
-            PhysicalAbilities = new List<PhysicalAbilities>();
+            PhysicalAbilities = new List<CombatAbilities>();
             while (reader.NextRow())
             {
                 int abilityID = reader.GetIntFromCol("ID");
-                PhysicalAbilities.Add(new PhysicalAbilities(abilityID));
+                PhysicalAbilities.Add(new CombatAbilities(abilityID));
             }
             reader.CloseReader();
             conn.CloseConnection();
@@ -55,7 +55,7 @@ namespace SwordAndBored.GameData.Equipment
         private string StringAbilities()
         {
             string result = "";
-            foreach (PhysicalAbilities phy in PhysicalAbilities)
+            foreach (CombatAbilities phy in PhysicalAbilities)
             {
                 result += phy.ToString();
             }
