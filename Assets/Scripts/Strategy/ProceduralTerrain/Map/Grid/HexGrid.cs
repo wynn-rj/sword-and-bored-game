@@ -36,8 +36,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
         /// <param name="height">The total height of the grid</param>
         public HexGrid(float cellRadius, float width, float height)
         {
-            xDim = (int)Math.Ceiling(width / cellRadius / 2);
-            yDim = (int)Math.Ceiling(width / cellRadius / 2);
+            xDim = (int)Math.Ceiling(width / 2);
+            yDim = (int)Math.Ceiling(width / 2);
             gridCells = new IHexGridCell[2 * xDim + 1, 2 * yDim + 1];
             this.cellRadius = cellRadius;
             for (int x = -xDim; x <= xDim; x++) {
@@ -73,9 +73,9 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
                 GetCell(x, y + 1), 
                 GetCell(x, y - 1),
                 GetCell(x - 1, y),
-                GetCell(x - 1, y - 1),
+                GetCell(x - 1, y + 1),
                 GetCell(x + 1, y),
-                GetCell(x + 1, y - 1)
+                GetCell(x + 1, y + 1)
             };
         }
 
