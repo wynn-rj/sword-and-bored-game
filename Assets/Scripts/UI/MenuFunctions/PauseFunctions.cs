@@ -36,7 +36,7 @@ namespace SwordAndBored.UI.MenuFunctions
                 string name = SceneManager.GetActiveScene().name;
                 if (name.Equals("BaseManagement"))
                 {
-                    SceneManager.LoadScene("HexMovement");
+                    SceneManager.LoadScene("StrategyMap");
                 } else
                 {
                     SceneManager.LoadScene("BaseManagement");
