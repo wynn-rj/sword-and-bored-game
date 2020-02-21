@@ -1,5 +1,6 @@
-﻿
-namespace SwordAndBored.GameData.Database.Tables
+﻿using SwordAndBored.GameData.Database;
+
+namespace SwordAndBored.GameData.Units
 {
     public class Stats
     {

@@ -1,5 +1,7 @@
-﻿
-namespace SwordAndBored.GameData.Database.Tables
+﻿using SwordAndBored.GameData.Modifiers;
+using SwordAndBored.GameData.Database;
+
+namespace SwordAndBored.GameData.Equipment
 {
     public class Armor
     {
