@@ -2,7 +2,7 @@
 
 namespace SwordAndBored.GameData.Units
 {
-    public class Stats
+    public class Stats : IStats
     {
         public int ID { get; }
         public int Physical_Attack { get; set; }

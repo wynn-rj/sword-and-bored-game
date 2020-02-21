@@ -3,11 +3,14 @@ using SwordAndBored.GameData.Units;
 
 namespace SwordAndBored.GameData.Roles
 {
-    public class Role
+    public class Role : IRole
     {
         public int ID { get; }
-        public Descriptor Descriptor { get; set; }
         public Stats Stats { get; set; }
+        public IStats RoleStats { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string FlavorText { get; set; }
 
         public Role(int inputID)
         {
@@ -17,8 +20,8 @@ namespace SwordAndBored.GameData.Roles
             ID = inputID;
             if (reader.NextRow())
             {
-                int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new Descriptor(descriptorID);
+                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
+                //Descriptor = new Descriptor(descriptorID);
 
                 int statsID = reader.GetIntFromCol("BaseStats_FK");
                 Stats = new Stats(statsID);
@@ -29,17 +32,17 @@ namespace SwordAndBored.GameData.Roles
 
         override public string ToString()
         {
-            return "{Role: " + ID + ", Descriptior: " + Descriptor.ToString() + ", Stats: " + Stats.ToString() + "}";
+            return "{Role: " + ID + ", Descriptior: " + Name.ToString() + ", Stats: " + Stats.ToString() + "}";
         }
 
         public string LongString()
         {
-            return "Role: {ID: " + ID + ", Descriptior: " + Descriptor.LongString() + ", Stats: " + Stats.LongString() + "}";
+            return "Role: {ID: " + ID + ", Descriptior: " + Name + ", Stats: " + Stats.LongString() + "}";
         }
 
         public string ShortString()
         {
-            return "{Role: " + ID + ", Descriptior: " + Descriptor.Name + ", Stats: " + Stats.ID + "}";
+            return "{Role: " + ID + ", Descriptior: " + Name + ", Stats: " + Stats.ID + "}";
         }
     }
 }

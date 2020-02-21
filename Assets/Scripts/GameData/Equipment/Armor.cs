@@ -3,13 +3,15 @@ using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.GameData.Equipment
 {
-    public class Armor
+    public class Armor : IArmor
     {
         public int ID { get; }
-        public Descriptor Descriptor { get; set; }
-        public DefenseModifiers DefenseModifiers { get; set; }
         public int Physical_Defense { get; set; }
         public int Magic_Defense { get; set; }
+        public IModifierDefense ModifierDefense { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string FlavorText { get; set; }
 
         public Armor(int inputID)
         {
@@ -19,11 +21,11 @@ namespace SwordAndBored.GameData.Equipment
             ID = inputID;
             if (reader.NextRow())
             {
-                int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new Descriptor(descriptorID);
+                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
+                //Descriptor = new Descriptor(descriptorID);
 
                 int defenseModifierID = reader.GetIntFromCol("Defense_Modifier_FK");
-                DefenseModifiers = new DefenseModifiers(defenseModifierID);
+                ModifierDefense = new DefenseModifiers(defenseModifierID);
 
                 Physical_Defense = reader.GetIntFromCol("Physical_Defense");
                 Magic_Defense = reader.GetIntFromCol("Magic_Defense");
@@ -34,21 +36,21 @@ namespace SwordAndBored.GameData.Equipment
 
         override public string ToString()
         {
-            return "{Armor: " + ID + ", Descriptor: " + Descriptor.ToString() + ", DefenseModifier: " 
-                + DefenseModifiers.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: " 
+            return "{Armor: " + ID + ", Descriptor: " + Name.ToString() + ", DefenseModifier: " 
+                + ModifierDefense.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: " 
                 + Magic_Defense +  "}";
         }
 
         public string LongString()
         {
-            return "Armor: {ID: " + ID + ", Descriptor: " + Descriptor.ToString() + ", DefenseModifier: "
-                + DefenseModifiers.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: "
+            return "Armor: {ID: " + ID + ", Descriptor: " + Name.ToString() + ", DefenseModifier: "
+                + ModifierDefense.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: "
                 + Magic_Defense + "}";
         }
 
         public string ShortString()
         {
-            return "{Armor: " + ID + ", Descriptor: " + Descriptor.Name + "}";
+            return "{Armor: " + ID + ", Descriptor: " + Name + "}";
         }
     }
 }

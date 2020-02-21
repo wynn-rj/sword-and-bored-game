@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Database;
+﻿/*using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.GameData
 {
@@ -41,3 +41,4 @@ namespace SwordAndBored.GameData
         }
     }
 }
+*/

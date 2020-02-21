@@ -2,7 +2,7 @@
 
 namespace SwordAndBored.GameData.Modifiers
 {
-    public class AttackModifiers
+    public class AttackModifiers : IModifierAttack
     {
         public int ID { get; }
         public int Fire_Damage { get; set; }

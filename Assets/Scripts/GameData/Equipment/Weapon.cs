@@ -4,12 +4,13 @@ using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.GameData.Equipment
 {
-    public class Weapon
+    public class Weapon : IWeapon
     {
         public int ID { get; }
-        public Descriptor Descriptor { get; set; }
-
-        public List<CombatAbilities> PhysicalAbilities { get; set; }
+        public List<IAbility> Abilities { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string FlavorText { get; set; }
 
         public Weapon(int inputID)
         {
@@ -19,17 +20,17 @@ namespace SwordAndBored.GameData.Equipment
             ID = inputID;
             if (reader.NextRow())
             {
-                int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new Descriptor(descriptorID);
+                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
+                //Descriptor = new Descriptor(descriptorID);
             }
             reader.CloseReader();
 
             reader = conn.QueryRowFromTableWhereColNameEqualsInt("Physical_Abilities", "Weapon_FK", inputID);
-            PhysicalAbilities = new List<CombatAbilities>();
+            Abilities = new List<IAbility>();
             while (reader.NextRow())
             {
                 int abilityID = reader.GetIntFromCol("ID");
-                PhysicalAbilities.Add(new CombatAbilities(abilityID));
+                Abilities.Add(new CombatAbilities(abilityID));
             }
             reader.CloseReader();
             conn.CloseConnection();
@@ -37,25 +38,25 @@ namespace SwordAndBored.GameData.Equipment
 
         override public string ToString()
         {
-            return "{Weapon: " + ID + ", Descriptor: " + Descriptor.ToString() + ", Abilities " + 
+            return "{Weapon: " + ID + ", Descriptor: " + Name.ToString() + ", Abilities " + 
                 StringAbilities() + "}";
         }
 
         public string LongString()
         {
-            return "Weapon: {ID: " + ID + ", Descriptor: " + Descriptor.LongString() + ", Abilities " +
+            return "Weapon: {ID: " + ID + ", Descriptor: " + Name + ", Abilities " +
                 StringAbilities() + "}";
         }
 
         public string ShortString()
         {
-            return "{Weapon: " + ID + ", Descriptor: " + Descriptor.Name + "}";
+            return "{Weapon: " + ID + ", Descriptor: " + Name + "}";
         }
 
         private string StringAbilities()
         {
             string result = "";
-            foreach (CombatAbilities phy in PhysicalAbilities)
+            foreach (CombatAbilities phy in CombatAbilities)
             {
                 result += phy.ToString();
             }
