@@ -56,9 +56,9 @@ namespace SwordAndBored.GameData.Equipment
         private string StringAbilities()
         {
             string result = "";
-            foreach (CombatAbilities phy in CombatAbilities)
+            foreach (IAbility ability in Abilities)
             {
-                result += phy.ToString();
+                result += ability.ToString();
             }
             return result;
         }

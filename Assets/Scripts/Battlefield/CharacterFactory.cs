@@ -41,7 +41,7 @@ namespace SwordAndBored.Battlefield
                 turnManager.activePlayer = brain;
 
                 //UniqueCreature
-                uniqueCreature.creatureName = unitTable.Descriptor.Name;
+                uniqueCreature.creatureName = unitTable.Name;
                 uniqueCreature.maxHealth = unitTable.Stats.HP;
                 uniqueCreature.maxMovement = unitTable.Stats.Movement;
 
@@ -61,7 +61,7 @@ namespace SwordAndBored.Battlefield
                 stats.speedIntit = unitTable.Stats.Initiative;
                 stats.accuracy = unitTable.Stats.Accuracy;
                 stats.evasion = unitTable.Stats.Evasion;
-                stats.role = unitTable.Role.Descriptor.Name;
+                stats.role = unitTable.Role.Name;
 
                 //brain
                 brain.tileIndictor = indicator;
