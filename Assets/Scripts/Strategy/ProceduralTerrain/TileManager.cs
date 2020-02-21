@@ -1,7 +1,7 @@
 ﻿using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
-using System.Collections;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +13,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map
         private int xDim;
         private int yDim;
         private bool[,] layedTiles;
-
-        private AbstractBiome[] biomes;
-        PlainsBiome plains;
-        RiverBiome river;
-
+        
         GameObject hexMap;
 
         public GameObject snowMountainTile;
@@ -35,214 +31,130 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map
             hexMap = new GameObject();
             hexMap.name = "HexTiling";
 
-            plains = new PlainsBiome();
-            plains.BiomeObject.transform.parent = hexMap.transform;
-
-            river = new RiverBiome();
-            river.BiomeObject.transform.parent = hexMap.transform;
-
             xDim = Constants.mapWidth / 2;
             yDim = Constants.mapHeight / 2;
 
             hexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
-
             layedTiles = new bool[Constants.mapWidth + 1, Constants.mapHeight + 1];
-            for (int x = 0; x < layedTiles.GetLength(0); x++)
-            {
-                for (int y = 0; y < layedTiles.GetLength(1); y++)
-                {
-                    layedTiles[x, y] = false;
-                }
-            }
-
-            for (int i = -xDim; i <= xDim; i++)
-            {
-                for (int j = -yDim; j <= yDim; j++)
-                {
-                    AbstractTerrainComponent comp = new AbstractTerrainComponent();
-                    hexTiling[i, j].AddComponent(comp);
-                }
-            }
-
-            LayAllTiles();
+            PrepareTiles();
+            BuildTiles();
         }
 
-        private void LayAllTiles()
+        private void PrepareTiles()
         {
-            /*
-             * Lay player base
-             */
+            int enemyBaseX = xDim - Constants.xMargin;
+            int enemyBaseY = yDim - Constants.yMargin;
+            float creepSpreadModifier = Mathf.Pow((Constants.mapWidth / 5f), 2f);
 
-            IHexGridCell centerBaseTile = hexTiling[-xDim + Constants.xMargin, -yDim + Constants.yMargin];
-            GameObject one = Instantiate(playerTile, new Vector3(centerBaseTile.Position.Center.X, centerBaseTile.GetComponent<AbstractTerrainComponent>().Height, centerBaseTile.Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-            LaySingleTile(-xDim + Constants.xMargin, -yDim + Constants.yMargin);
-            one.transform.parent = hexMap.transform;
-
-            foreach (IHexGridCell neighbor in hexTiling.CellNeighbors(-xDim + Constants.xMargin, -yDim + Constants.yMargin))
+            foreach (IHexGridCell tile in hexTiling.AllCells)
             {
-                GameObject playerPrefab = Instantiate(playerTile, new Vector3(neighbor.Position.Center.X, neighbor.GetComponent<AbstractTerrainComponent>().Height, neighbor.Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-                LaySingleTile(neighbor.Position.GridPoint.X, neighbor.Position.GridPoint.Y);
-                playerPrefab.transform.parent = hexMap.transform;
-            }
-
-
-
-            /*
-             * Lay river tiles first
-             */
-            List<IHexGridCell> riverTiles = new List<IHexGridCell>();
-
-            IHexGridCell riverMouth = hexTiling[0, 0];
-            bool foundTile = false;
-
-            for (int i = -xDim; i < xDim && !foundTile; i++)
-            {
-                IHexGridCell checkTile = hexTiling[i, yDim - 3];
-
-                if (checkTile.GetComponent<AbstractTerrainComponent>().Height < Constants.riverHeightThreshold && checkTile.GetComponent<AbstractTerrainComponent>().WaterLevel > Constants.riverWaterLevelThreshold)
+                Point<int> gridPoint = tile.Position.GridPoint;
+                if ((Mathf.Pow(gridPoint.X - enemyBaseX, 2f) / creepSpreadModifier) + (Mathf.Pow(gridPoint.Y - enemyBaseY, 2f) / creepSpreadModifier) - Random.Range(0, 0.2f) < 1)
                 {
-                    riverMouth = checkTile;
-                    foundTile = true;
-                }
-            }
-
-            riverTiles.Add(riverMouth);
-            int count = 200;
-            while (riverTiles.Count > 0)
-            {
-                IHexGridCell newTile = riverTiles[0];
-                riverTiles.RemoveAt(0);
-
-                //Add its neighbors if it meet height and water level reqs
-                foreach (IHexGridCell neighbor in hexTiling.CellNeighbors(newTile.Position.GridPoint.X, newTile.Position.GridPoint.Y))
-                {
-                    if (neighbor != null && neighbor.GetComponent<AbstractTerrainComponent>().Height < Constants.riverHeightThreshold && neighbor.GetComponent<AbstractTerrainComponent>().WaterLevel > Constants.riverWaterLevelThreshold && !HasBeenLaid(neighbor.Position.GridPoint.X, neighbor.Position.GridPoint.Y))
+                    ITerrainComponent creep = new CreepTerrainComponent()
                     {
-                        riverTiles.Add(neighbor);
-                        GameObject waterPrefab = Instantiate(riverTile, new Vector3(neighbor.Position.Center.X, Constants.riverHeightThreshold, neighbor.Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-                        LaySingleTile(neighbor.Position.GridPoint.X, neighbor.Position.GridPoint.Y);
-                        waterPrefab.transform.parent = hexMap.transform;
-                    }
+                        Height = GetTileHeight(tile),
+                        WaterLevel = GetTileWaterLevel(tile)
+                    };
+                    tile.AddComponent(creep);
+                    continue;
                 }
-                count--;
+                tile.AddComponent(GetTileTerrain(tile));
             }
 
-            /*
-             * Lay enemy base
-             */
-            IHexGridCell centerEnemyBaseTile = hexTiling[xDim - Constants.xMargin, yDim - Constants.yMargin];
-            GameObject two = Instantiate(enemyTile, new Vector3(centerEnemyBaseTile.Position.Center.X, centerEnemyBaseTile.GetComponent<AbstractTerrainComponent>().Height, centerEnemyBaseTile.Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-            LaySingleTile(xDim - Constants.xMargin, yDim - Constants.yMargin);
-            two.transform.parent = hexMap.transform;
+            IDictionary<IHexGridCell, bool> baseTerrains = new Dictionary<IHexGridCell, bool>();
+            CreateBase(-xDim + Constants.xMargin, -yDim + Constants.yMargin, true, baseTerrains);
+            CreateBase(enemyBaseX, enemyBaseY, false, baseTerrains);
 
-            foreach (IHexGridCell neighbor in hexTiling.CellNeighbors(xDim - Constants.xMargin, yDim - Constants.yMargin))
+            foreach (KeyValuePair<IHexGridCell, bool> tileTerrains in baseTerrains)
             {
-                GameObject enemyPrefab = Instantiate(enemyTile, new Vector3(neighbor.Position.Center.X, neighbor.GetComponent<AbstractTerrainComponent>().Height, neighbor.Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-                LaySingleTile(neighbor.Position.GridPoint.X, neighbor.Position.GridPoint.Y);
-                enemyPrefab.transform.parent = hexMap.transform;
-            }
+                tileTerrains.Key.RemoveComponent<ITerrainComponent>();
+                ITerrainComponent newTerrain = (tileTerrains.Value) ? (new PlayerTerritoryTerrainComponent() as ITerrainComponent)
+                    : new EnemyTerritoryTerrainComponent();
+                newTerrain.Height = GetTileHeight(tileTerrains.Key);
+                newTerrain.WaterLevel = GetTileWaterLevel(tileTerrains.Key);
+                tileTerrains.Key.AddComponent(newTerrain);
+            }            
+        }
 
-            /*
-             * Lay starting enemy creep
-             */
-            for (int i = -xDim; i <= xDim; i++)
+        private void BuildTiles()
+        {
+            Quaternion tileRotation = Quaternion.Euler(-90, 0, 90);
+            IDictionary<System.Type, GameObject> terrainToGameObject = new Dictionary<System.Type, GameObject>()
             {
-                for (int j = -yDim; j <= yDim; j++)
-                {
-                    if (!HasBeenLaid(i, j))
-                    {
-                        if ((Mathf.Pow(i - centerEnemyBaseTile.Position.GridPoint.X, 2f) / Mathf.Pow((Constants.mapWidth / 5f), 2f)) + (Mathf.Pow(j - centerEnemyBaseTile.Position.GridPoint.Y, 2f) / Mathf.Pow((Constants.mapWidth / 5f), 2)) - Random.Range(0, 0.2f) < 1)
-                        {
-                            IHexGridCell creepTile = hexTiling[i, j];
-                            GameObject creepPrefab = Instantiate(enemyCreepTile, new Vector3(creepTile.Position.Center.X, creepTile.GetComponent<AbstractTerrainComponent>().Height, creepTile.Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-                            LaySingleTile(i, j);
-                            creepPrefab.transform.parent = hexMap.transform;
-                        }
-                    }
-                }
-            }
-
-            /*
-            for (int i = -xDim + 1, j = yDim - 1; i < xDim && j > -yDim; i++, j--)
+                { typeof(CreepTerrainComponent), enemyCreepTile },
+                { typeof(PlayerTerritoryTerrainComponent), playerTile },
+                { typeof(EnemyTerritoryTerrainComponent), enemyTile },
+                { typeof(GrasslandTerrainComponent), plainTile },
+                { typeof(ForestTerrainComponent), forestTile },
+                { typeof(DesertTerrainComponent), desertTile },
+                { typeof(MountainTerrainComponent), mountainTile },
+                { typeof(SnowTerrainComponent), snowMountainTile },
+                { typeof(RiverTerrainComponent), riverTile },
+            };
+            foreach (IHexGridCell tile in hexTiling.AllCells)
             {
-                LaySingleTile(i, j);
-                IHexGridCell tile = hexTiling[i, j];
-                GameObject tilePrefab = Instantiate(riverTile, new Vector3(hexTiling[i, j].Position.Center.X, tile.GetComponent<AbstractTerrainComponent>().Height, hexTiling[i, j].Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-                river.AddTile(tile, tilePrefab);
-
-                IEnumerable<IHexGridCell> neighbors = hexTiling.CellNeighbors(i, j);
-
-                //Lay tile for each neighbor too
-                foreach (IHexGridCell neighbor in neighbors)
-                {
-                    LaySingleTile(neighbor.Position.GridPoint.X, neighbor.Position.GridPoint.Y);
-                    GameObject neighborPrefab = Instantiate(riverTile, new Vector3(neighbor.Position.Center.X, tile.GetComponent<AbstractTerrainComponent>().Height, neighbor.Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-                    river.AddTile(neighbor, neighborPrefab);
-                }
-            }*/
-
-            /*
-            foreach (AbstractBiome biome in biomes)
-            { 
-                Lay and multiply height modifier
-            }*/
-
-            /*
-             * Lay terrain
-             */
-            for (int i = -xDim; i < xDim; i++)
-            {
-                for (int j = -yDim; j < yDim; j++)
-                {
-                    if (!HasBeenLaid(i, j))
-                    {
-                        IHexGridCell tile = hexTiling[i, j];
-                        float tileHeight = tile.GetComponent<AbstractTerrainComponent>().Height;
-                        tileHeight -= tileHeight * .5f;
-                        float tileWaterLevel = tile.GetComponent<AbstractTerrainComponent>().WaterLevel;
-                        GameObject tilePrefab = Instantiate(GetTile(tileHeight, tileWaterLevel), new Vector3(hexTiling[i, j].Position.Center.X, hexTiling[i, j].GetComponent<AbstractTerrainComponent>().Height, hexTiling[i, j].Position.Center.Y), Quaternion.Euler(-90, 0, 90));
-                        tilePrefab.transform.parent = hexMap.transform;
-                    }
-                }
+                ITerrainComponent terrain = tile.GetComponent<ITerrainComponent>();
+                Vector3 tileLocation = new Vector3(tile.Position.Center.X, terrain.Height, tile.Position.Center.Y);
+                GameObject tilePrefab = Instantiate(terrainToGameObject[terrain.GetType()], tileLocation, tileRotation);
+                tilePrefab.transform.parent = hexMap.transform;
             }
         }
 
-        private GameObject GetTile(float height, float waterLevel)
+        private void CreateBase(int x, int y, bool isPlayer, IDictionary<IHexGridCell, bool> baseTerrains)
         {
+            IHexGridCell centerBaseTile = hexTiling[x, y];
+            centerBaseTile.AddComponent((isPlayer) ? (new PlayerBaseComponent() as ICellComponent) : new EnemyBaseComponent());
+            baseTerrains.Add(centerBaseTile, isPlayer);
+            foreach (IHexGridCell neighbor in hexTiling.CellNeighbors(centerBaseTile))
+            {
+                baseTerrains.Add(neighbor, isPlayer);
+            }
+        }
+
+        private ITerrainComponent GetTileTerrain(IHexGridCell tile)
+        {
+            int height = GetTileHeight(tile);
+            float waterLevel = GetTileWaterLevel(tile);
+            ITerrainComponent terrain;
+
             if (height > Constants.mountainHeightThreshold)
             {
-                if (waterLevel > Constants.snowMountainWaterLvlThreshold && height > Constants.snowMountainHeightThreshold)
-                {
-                    return snowMountainTile;
-                }
-
-                return mountainTile;
+                bool isSnowy = waterLevel > Constants.snowMountainWaterLvlThreshold && height > Constants.snowMountainHeightThreshold;
+                terrain = (isSnowy) ? (new SnowTerrainComponent() as ITerrainComponent) : new MountainTerrainComponent();
             }
             else
             {
                 if (waterLevel > Constants.forestWaterLevelThreshold)
                 {
-                    return forestTile;
+                    terrain = new ForestTerrainComponent();
                 }
                 else if (waterLevel > Constants.plainsWaterLevelThreshold)
                 {
-                    return plainTile;
+                    terrain = new GrasslandTerrainComponent();
                 }
                 else
                 {
-                    return desertTile;
+                    terrain = new DesertTerrainComponent();
                 }
             }
+
+            terrain.Height = height;
+            terrain.WaterLevel = waterLevel;
+            return terrain;
         }
 
-        private bool HasBeenLaid(int i, int j)
+        private int GetTileHeight(IHexGridCell tile)
         {
-            return layedTiles[i + xDim, j + yDim];
+            Point<int> gridPoint = tile.Position.GridPoint;
+            return Mathf.FloorToInt(Mathf.PerlinNoise(gridPoint.X / 25f + 1000, gridPoint.Y / 25f + 1000) * 30);
         }
 
-        private void LaySingleTile(int i, int j)
+        private float GetTileWaterLevel(IHexGridCell tile)
         {
-            layedTiles[i + xDim, j + yDim] = true;
+            Point<int> gridPoint = tile.Position.GridPoint;
+            return (Mathf.Pow(((gridPoint.X + (Constants.mapWidth / 2f)) / Constants.mapWidth) - 0.5f, 3) + 0.5f)
+                 * (Mathf.Pow(((gridPoint.Y + (Constants.mapHeight / 2f)) / Constants.mapHeight) + 0.5f, 1 / 3f) + 0.75f) + Random.Range(0, 0.035f);
         }
     }
 }
