@@ -24,6 +24,20 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         void AddComponent(ICellComponent component);
 
         /// <summary>
+        /// Remove a component from the grid cell
+        /// </summary>
+        /// <param name="component">The component to remove</param>
+        /// <returns>Whether or not the component was removed</returns>
+        bool RemoveComponent(ICellComponent component);
+
+        /// <summary>
+        /// Remove a component from the grid cell
+        /// </summary>
+        /// <typeparam name="T">The type of component to remove</typeparam>
+        /// <returns>Whether or not the component was removed</returns>
+        bool RemoveComponent<T>() where T : ICellComponent;
+
+        /// <summary>
         /// Gets a component of the type T that is attached to the grid cell
         /// </summary>
         /// <typeparam name="T">The type of the component to retrieve</typeparam>
