@@ -5,6 +5,7 @@
     /// </summary>
     public interface IStats
     {
+        int ID { get; }
         int Physical_Attack { get; set; }
         int Physical_Defense { get; set; }
         int Magic_Attack { get; set; }
