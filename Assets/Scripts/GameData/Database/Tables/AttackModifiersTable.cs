@@ -1,7 +1,7 @@
 ﻿
 namespace SwordAndBored.GameData.Database.Tables
 {
-    public class AttackModifiersTable
+    public class AttackModifiers
     {
         public int ID { get; }
         public int Fire_Damage { get; set; }
@@ -12,7 +12,7 @@ namespace SwordAndBored.GameData.Database.Tables
         public int Bleed_Chance { get; set; }
         public int Stun_Chance { get; set; }
 
-        public AttackModifiersTable(int inputID)
+        public AttackModifiers(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Attack_Modifiers", inputID);

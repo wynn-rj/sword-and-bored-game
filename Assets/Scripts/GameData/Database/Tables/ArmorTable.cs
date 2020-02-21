@@ -1,15 +1,15 @@
 ﻿
 namespace SwordAndBored.GameData.Database.Tables
 {
-    public class ArmorTable
+    public class Armor
     {
         public int ID { get; }
-        public DescriptorTable Descriptor { get; set; }
-        public DefenseModifiersTable DefenseModifiers { get; set; }
+        public Descriptor Descriptor { get; set; }
+        public DefenseModifiers DefenseModifiers { get; set; }
         public int Physical_Defense { get; set; }
         public int Magic_Defense { get; set; }
 
-        public ArmorTable(int inputID)
+        public Armor(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Armor", inputID);
@@ -18,10 +18,10 @@ namespace SwordAndBored.GameData.Database.Tables
             if (reader.NextRow())
             {
                 int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new DescriptorTable(descriptorID);
+                Descriptor = new Descriptor(descriptorID);
 
                 int defenseModifierID = reader.GetIntFromCol("Defense_Modifier_FK");
-                DefenseModifiers = new DefenseModifiersTable(defenseModifierID);
+                DefenseModifiers = new DefenseModifiers(defenseModifierID);
 
                 Physical_Defense = reader.GetIntFromCol("Physical_Defense");
                 Magic_Defense = reader.GetIntFromCol("Magic_Defense");

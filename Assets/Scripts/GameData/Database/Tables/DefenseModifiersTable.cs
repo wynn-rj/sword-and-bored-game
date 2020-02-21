@@ -1,7 +1,7 @@
 ﻿
 namespace SwordAndBored.GameData.Database
 {
-    public class DefenseModifiersTable
+    public class DefenseModifiers
     {
         public int ID { get; set; }
         public int Fire_Resist { get; set; }
@@ -9,7 +9,7 @@ namespace SwordAndBored.GameData.Database
         public int Bleed_Resist { get; set; }
         public int Stun_Resist { get; set; }
 
-        public DefenseModifiersTable(int inputID)
+        public DefenseModifiers(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Defense_Modifiers", inputID);
