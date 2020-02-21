@@ -1,4 +1,5 @@
-﻿using SwordAndBored.GameData.Abilities;
+﻿/*
+ * using SwordAndBored.GameData.Abilities;
 
 namespace SwordAndBored.GameData.Creatures
 {
@@ -7,3 +8,4 @@ namespace SwordAndBored.GameData.Creatures
         IAbility HeroAbility { get; }
     }
 }
+*/
