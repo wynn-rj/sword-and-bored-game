@@ -1,5 +1,9 @@
-﻿
-namespace SwordAndBored.GameData.Database.Tables {
+﻿using SwordAndBored.GameData.Roles;
+using SwordAndBored.GameData.Equipment;
+using SwordAndBored.GameData.Database;
+
+namespace SwordAndBored.GameData.Units 
+{
     public class Unit
     {
         public int ID { get; }

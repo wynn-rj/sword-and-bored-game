@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using SwordAndBored.GameData.Abilities;
+using SwordAndBored.GameData.Database;
 
-namespace SwordAndBored.GameData.Database.Tables
+namespace SwordAndBored.GameData.Equipment
 {
     public class Weapon
     {
