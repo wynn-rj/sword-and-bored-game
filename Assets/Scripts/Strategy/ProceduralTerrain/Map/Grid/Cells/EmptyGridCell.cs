@@ -23,6 +23,16 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
             component.Parent = this;
         }
 
+        public bool RemoveComponent(ICellComponent component)
+        {
+            return ComponentList.Remove(component);
+        }
+
+        public bool RemoveComponent<T>() where T : ICellComponent
+        {
+            return ComponentList.Remove(GetComponent<T>());
+        }        
+
         public T GetComponent<T>() where T : ICellComponent
         {
             foreach (ICellComponent component in ComponentList)
