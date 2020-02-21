@@ -12,7 +12,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map
         private HexGrid hexTiling;
         private int xDim;
         private int yDim;
-        private bool[,] layedTiles;
         
         GameObject hexMap;
 
@@ -35,7 +34,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map
             yDim = Constants.mapHeight / 2;
 
             hexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
-            layedTiles = new bool[Constants.mapWidth + 1, Constants.mapHeight + 1];
             PrepareTiles();
             BuildTiles();
         }
@@ -92,6 +90,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map
                 { typeof(SnowTerrainComponent), snowMountainTile },
                 { typeof(RiverTerrainComponent), riverTile },
             };
+            foreach (GameObject gameObject in terrainToGameObject.Values)
+            {
+                gameObject.transform.localScale = new Vector3(Constants.hexRadius, Constants.hexRadius, Constants.hexRadius * 6);
+            }
             foreach (IHexGridCell tile in hexTiling.AllCells)
             {
                 ITerrainComponent terrain = tile.GetComponent<ITerrainComponent>();
