@@ -2,7 +2,7 @@
 
 namespace SwordAndBored.GameData.Abilities
 {
-    interface IAbility : IDescriptable
+    public interface IAbility : IDescriptable
     {
         public IModifierAttack AttackModifiers { get; set; }
         public int Damage { get; set; }

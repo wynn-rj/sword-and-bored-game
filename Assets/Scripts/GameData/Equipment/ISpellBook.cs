@@ -1,9 +1,10 @@
-﻿using SwordAndBored.GameData.Abilities;
+﻿using System.Collections.Generic;
+using SwordAndBored.GameData.Abilities;
 
 namespace SwordAndBored.GameData.Equipment
 {
-    interface ISpellBook : IEquipment
+    public interface ISpellBook : IEquipment
     {
-        public IAbility[] Abilities { get; set; }
+        public List<IAbility> Abilities { get; set; }
     }
 }

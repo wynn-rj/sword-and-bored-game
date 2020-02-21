@@ -2,7 +2,7 @@
 using Mono.Data.Sqlite;
 using UnityEngine;
 using SwordAndBored.GameData.Database;
-using SwordAndBored.GameData.Database.Tables;
+using SwordAndBored.GameData.Units;
 using TMPro;
 
 namespace SwordAndBored.GameData.Database
