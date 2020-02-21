@@ -30,8 +30,9 @@ namespace SwordAndBored.GameData.Units
             ID = inputID;
             if (reader.NextRow())
             {
-                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                //Descriptor = new Descriptor(descriptorID);
+                Name = reader.GetStringFromCol("Name");
+                Description = reader.GetStringFromCol("Description");
+                FlavorText = reader.GetStringFromCol("Flavor_Text");
 
                 int roleID = reader.GetIntFromCol("Role_FK");
                 Role = new Role(roleID);

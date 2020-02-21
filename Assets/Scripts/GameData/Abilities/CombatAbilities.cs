@@ -25,8 +25,9 @@ namespace SwordAndBored.GameData.Abilities
             ID = inputID;
             if (reader.NextRow())
             {
-                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                //Descriptor = new Descriptor(descriptorID);
+                Name = reader.GetStringFromCol("Name");
+                Description = reader.GetStringFromCol("Description");
+                FlavorText = reader.GetStringFromCol("Flavor_Text");
 
                 weaponID = reader.GetIntFromCol("Weapon_FK");
                 //Weapon = new WeaponTable(weaponID);
