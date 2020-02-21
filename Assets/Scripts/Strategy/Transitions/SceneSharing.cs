@@ -3,5 +3,6 @@
     static class SceneSharing
     {
         public static ulong timeStep;
+        public static bool useStoredTimeStep = false;
     }
 }
