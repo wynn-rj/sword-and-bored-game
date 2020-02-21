@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Creatures;
+﻿using SwordAndBored.GameData.Units;
 
 namespace SwordAndBored.GameData.Roles
 {
