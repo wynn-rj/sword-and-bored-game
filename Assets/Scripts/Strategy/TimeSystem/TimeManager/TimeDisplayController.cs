@@ -16,7 +16,6 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             text = GetComponent<Text>();
             AssertHelper.IsSetInEditor(timeManager, this);
             AssertHelper.IsSetInEditor(text, this);
-               
         }
 
         void Start()
