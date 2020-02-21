@@ -21,8 +21,9 @@ namespace SwordAndBored.GameData.Equipment
             ID = inputID;
             if (reader.NextRow())
             {
-                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                //Descriptor = new Descriptor(descriptorID);
+                Name = reader.GetStringFromCol("Name");
+                Description = reader.GetStringFromCol("Description");
+                FlavorText = reader.GetStringFromCol("Flavor_Text");
 
                 int defenseModifierID = reader.GetIntFromCol("Defense_Modifier_FK");
                 ModifierDefense = new DefenseModifiers(defenseModifierID);
