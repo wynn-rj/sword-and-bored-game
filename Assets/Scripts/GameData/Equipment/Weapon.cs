@@ -7,7 +7,27 @@ namespace SwordAndBored.GameData.Equipment
     public class Weapon : IWeapon
     {
         public int ID { get; }
-        public List<IAbility> Abilities { get; set; }
+        public List<IAbility> Abilities
+        {
+            get
+            {
+                DatabaseConnection conn = new DatabaseConnection();
+                DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Weapon_To_Ability", "Weapon_FK", ID);
+                List<IAbility> NewAbilities = new List<IAbility>();
+                while (reader.NextRow())
+                {
+                    int abilityID = reader.GetIntFromCol("Abilities_FK");
+                    NewAbilities.Add(new CombatAbilities(abilityID));
+                }
+                reader.CloseReader();
+                conn.CloseConnection();
+                return NewAbilities;
+            }
+            set
+            {
+                Abilities = value;
+            }
+        }
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
