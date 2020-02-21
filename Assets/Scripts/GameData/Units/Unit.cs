@@ -45,6 +45,9 @@ namespace SwordAndBored.GameData.Units
 
                 int armorID = reader.GetIntFromCol("Armor_FK");
                 Armor = new Armor(armorID);
+
+                int spellBookID = reader.GetIntFromCol("Spell_Book_FK");
+                SpellBook = new SpellBook(spellBookID);
             }
             reader.CloseReader();
             conn.CloseConnection();
