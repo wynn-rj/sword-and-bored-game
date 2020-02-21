@@ -20,7 +20,7 @@ namespace SwordAndBored.GameData.Abilities
         public CombatAbilities(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryRowFromTableWithID("Physical_Abilities", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Abilities", inputID);
 
             ID = inputID;
             if (reader.NextRow())
@@ -29,7 +29,7 @@ namespace SwordAndBored.GameData.Abilities
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
-                weaponID = reader.GetIntFromCol("Weapon_FK");
+                //weaponID = reader.GetIntFromCol("Weapon_FK");
                 //Weapon = new WeaponTable(weaponID);
 
                 int attackModifiersID = reader.GetIntFromCol("Attack_Modifiers_FK");
