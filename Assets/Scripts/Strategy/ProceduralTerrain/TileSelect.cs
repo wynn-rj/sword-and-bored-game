@@ -1,23 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using SwordAndBored.Utilities.Debug;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 
-public class TileSelect : MonoBehaviour
+namespace SwordAndBored.Strategy.ProceduralTerrain
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TileSelect : MonoBehaviour
     {
-        
-    }
+        public TileManager tileManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+#if DEBUG
+        void Awake()
+        {
+            AssertHelper.IsSetInEditor(tileManager, this);
+        }
+#endif
 
-    void OnClick()
-    { 
-    
+        void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnClick();
+            }
+        }
+
+        void OnClick()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+
+                Transform selectedTransform = hit.collider.gameObject.transform;
+                Point<int> gridPoint = HexPoint.GetPointFromCenter(selectedTransform.position.x, selectedTransform.position.z, selectedTransform.localScale.x);
+                IHexGridCell tile = tileManager.hexTiling[gridPoint.X, gridPoint.Y];
+
+                ISelectionComponent selectionComponent = tile.GetComponent<ISelectionComponent>();
+                if (!(selectionComponent is null))
+                {
+                    selectionComponent.Select();
+                }
+            }
+        }
     }
 }
