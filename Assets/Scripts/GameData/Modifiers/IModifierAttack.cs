@@ -2,6 +2,7 @@
 {
     public interface IModifierAttack
     {
+        int ID { get; }
         int Fire_Damage { get; set; }
         int Fire_Chance { get; set; }
         int Posion_Damage { get; set; }
