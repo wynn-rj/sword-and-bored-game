@@ -1,17 +1,17 @@
 ﻿
 namespace SwordAndBored.GameData.Database.Tables {
-    public class UnitTable
+    public class Unit
     {
         public int ID { get; }
-        public DescriptorTable Descriptor { get; set; }
-        public RoleTable Role { get; set; }
-        public StatsTable Stats { get; set; }
+        public Descriptor Descriptor { get; set; }
+        public Role Role { get; set; }
+        public Stats Stats { get; set; }
 
-        public WeaponTable Weapon { get; set; }
+        public Weapon Weapon { get; set; }
 
-        public ArmorTable Armor { get; set; }
+        public Armor Armor { get; set; }
 
-        public UnitTable(int inputID)
+        public Unit(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Units", inputID);
@@ -20,19 +20,19 @@ namespace SwordAndBored.GameData.Database.Tables {
             if (reader.NextRow())
             {
                 int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new DescriptorTable(descriptorID);
+                Descriptor = new Descriptor(descriptorID);
 
                 int roleID = reader.GetIntFromCol("Role_FK");
-                Role = new RoleTable(roleID);
+                Role = new Role(roleID);
 
                 int statsID = reader.GetIntFromCol("Stats_FK");
-                Stats = new StatsTable(statsID);
+                Stats = new Stats(statsID);
 
                 int weaponID = reader.GetIntFromCol("Weapon_FK");
-                Weapon = new WeaponTable(weaponID);
+                Weapon = new Weapon(weaponID);
 
                 int armorID = reader.GetIntFromCol("Armor_FK");
-                Armor = new ArmorTable(armorID);
+                Armor = new Armor(armorID);
             }
             reader.CloseReader();
             conn.CloseConnection();

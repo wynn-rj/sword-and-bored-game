@@ -1,14 +1,14 @@
 ﻿
 namespace SwordAndBored.GameData.Database.Tables
 {
-    public class DescriptorTable
+    public class Descriptor
     {
         public int ID { get; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
 
-        public DescriptorTable(int inputID)
+        public Descriptor(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Descriptors", inputID);

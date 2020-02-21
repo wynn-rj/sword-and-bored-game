@@ -1,20 +1,20 @@
 ﻿
 namespace SwordAndBored.GameData.Database.Tables
 {
-    public class PhysicalAbilitiesTable
+    public class PhysicalAbilities
     {
         public int ID { get; }
-        public DescriptorTable Descriptor { get; set; }
+        public Descriptor Descriptor { get; set; }
         //public WeaponTable Weapon { get; set; }
         public int weaponID { get; set; }
-        public AttackModifiersTable AttackModifiers { get; set; }
+        public AttackModifiers AttackModifiers { get; set; }
 
         public int Damage { get; set; }
         public int Accuracy { get; set; }
         public int Range { get; set; }
 
 
-        public PhysicalAbilitiesTable(int inputID)
+        public PhysicalAbilities(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Physical_Abilities", inputID);
@@ -23,13 +23,13 @@ namespace SwordAndBored.GameData.Database.Tables
             if (reader.NextRow())
             {
                 int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new DescriptorTable(descriptorID);
+                Descriptor = new Descriptor(descriptorID);
 
                 weaponID = reader.GetIntFromCol("Weapon_FK");
                 //Weapon = new WeaponTable(weaponID);
 
                 int attackModifiersID = reader.GetIntFromCol("Attack_Modifiers_FK");
-                AttackModifiers = new AttackModifiersTable(attackModifiersID);
+                AttackModifiers = new AttackModifiers(attackModifiersID);
 
                 Damage = reader.GetIntFromCol("Damage");
                 Accuracy = reader.GetIntFromCol("Accuracy");

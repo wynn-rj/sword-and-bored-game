@@ -8,5 +8,6 @@ namespace SwordAndBored.GameData.Abilities
         public int Damage { get; set; }
         public int Accuracy { get; set; }
         public int Range { get; set; }
+        public bool IsPhysical { get; set; }
     }
 }
