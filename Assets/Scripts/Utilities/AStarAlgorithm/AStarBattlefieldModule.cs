@@ -3,16 +3,16 @@ using System;
 
 namespace SwordAndBored.Utilities.AStarAlgorithm
 {
-    public class AStarModule<T>
+    public class AStarBattlefieldModule
     {
-        private T[,] grid;
+        private Tile[,] grid;
 
-        public AStarModule(T[,] grid)
+        public AStarBattlefieldModule(Tile[,] grid)
         {
             this.grid = grid;
         }
 
-        public Stack<T> findPath(Tuple<int, int> startPoint, Tuple<int, int> destination)
+        public Stack<Tile> findPath(Tuple<int, int> startPoint, Tuple<int, int> destination)
         {
             Queue<Node> openList = new Queue<Node>();
             Queue<Node> closedList = new Queue<Node>();
@@ -32,7 +32,7 @@ namespace SwordAndBored.Utilities.AStarAlgorithm
 
                     if (successor.isLocationSame(destinationNode))
                     {
-                        Stack<T> returnPathStack = generatePathStack(successor);
+                        Stack<Tile> returnPathStack = generatePathStack(successor);
                         return returnPathStack;
                     }
 
@@ -64,12 +64,12 @@ namespace SwordAndBored.Utilities.AStarAlgorithm
             }
 
 
-            return new Stack<T>();
+            return new Stack<Tile>();
         }
 
-        private Stack<T> generatePathStack(Node finalNode)
+        private Stack<Tile> generatePathStack(Node finalNode)
         {
-            Stack<T> pathStack = new Stack<T>();
+            Stack<Tile> pathStack = new Stack<Tile>();
             Node current = finalNode;
             pathStack.Push(current.Data);
             while (current.Parent != null)
@@ -89,10 +89,10 @@ namespace SwordAndBored.Utilities.AStarAlgorithm
             int x = parent.Location.Item1;
             int y = parent.Location.Item2;
 
-            if (x + 1 < grid.GetLength(0)) succesors.Add(new Node(grid, Tuple.Create(x + 1, y), parent, 1));
-            if (y + 1 < grid.GetLength(1)) succesors.Add(new Node(grid, Tuple.Create(x, y + 1), parent, 1));
-            if (x - 1 >= 0) succesors.Add(new Node(grid, Tuple.Create(x - 1, y), parent, 1));
-            if (y - 1 >= 0) succesors.Add(new Node(grid, Tuple.Create(x, y - 1), parent, 1));
+            if (x + 1 < grid.GetLength(0) && grid[x + 1, y].Walkable) succesors.Add(new Node(grid, Tuple.Create(x + 1, y), parent, 1));
+            if (y + 1 < grid.GetLength(1) && grid[x, y + 1].Walkable) succesors.Add(new Node(grid, Tuple.Create(x, y + 1), parent, 1));
+            if (x - 1 >= 0 && grid[x - 1, y].Walkable) succesors.Add(new Node(grid, Tuple.Create(x - 1, y), parent, 1));
+            if (y - 1 >= 0 && grid[x, y - 1].Walkable) succesors.Add(new Node(grid, Tuple.Create(x, y - 1), parent, 1));
 
             return succesors;
 
@@ -100,16 +100,16 @@ namespace SwordAndBored.Utilities.AStarAlgorithm
 
         private class Node
         {
-            public T[,] Grid { get; }
+            public Tile[,] Grid { get; }
             public Tuple<int, int> Location { get; }
-            public T Data { get { return Grid[Location.Item1, Location.Item2]; } }
+            public Tile Data { get { return Grid[Location.Item1, Location.Item2]; } }
             public Node Parent { get; }
             public float G { get; set; }
             public float H { get; set; }
             public float F { get { return G + H; } }
 
 
-            public Node(T[,] grid, Tuple<int, int> location, Node parent, int g = 0, int h = 0)
+            public Node(Tile[,] grid, Tuple<int, int> location, Node parent, int g = 0, int h = 0)
             {
                 Location = location;
                 Parent = parent;

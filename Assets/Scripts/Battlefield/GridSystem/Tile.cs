@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    
-    public GameObject unitOnTile;
-    public bool walkable = true;
+
+    public GameObject UnitOnTile { get; set; }
+    public bool Walkable { get; set; }
     [HideInInspector]
-    public Vector2 coordinates;
-
-    public Vector3 GetCenterOfTile()
-    {
-        return transform.position;
-    }
-
-    public Vector2 GetCoordinatesOfTileOnGrid()
-    {
-        return coordinates;
-    }
+    public Vector2 CoordinatesOnGrid { get; set; }
+    public Vector3 CenterPosition { get { return transform.position; } }
 }

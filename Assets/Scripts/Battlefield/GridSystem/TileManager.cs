@@ -34,12 +34,12 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                     newTile.transform.parent = tileContainer;
                     newTile.name = "Tile " + i + " " + j;
                     Tile tempTile = newTile.GetComponent<Tile>();
-                    tempTile.coordinates = new Vector2(i, j);
+                    tempTile.CoordinatesOnGrid = new Vector2(i, j);
                     Debug.Log(i + " " + j);
                     gridHold.tiles[i, j] = tempTile;
                 }
             }
-        
+
             tileContainer.position = pos;
         }
 

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-namespace SwordAndBored.Battlefield.CreaturScripts {
+namespace SwordAndBored.Battlefield.CreaturScripts
+{
     public class UniqueCreature : CreatureBase
     {
         [Header("Material Info")]
@@ -20,7 +21,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         [Header("Virtual Camera Info")]
         public CinemachineVirtualCamera currentCamera;
         public Animator animator;
-        
+
 
         void Start()
         {
@@ -34,8 +35,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         /// <summary>
         /// This method chnages the highlighting of a unit based on an integr.  3 = no highlight, 1 = blue, 2 = red.
-        /// When highlighting a unit dont forget to set their material back to normal using glow(3). 
-        /// This function might be removed in the future in favor of using a free store asset. 
+        /// When highlighting a unit dont forget to set their material back to normal using glow(3).
+        /// This function might be removed in the future in favor of using a free store asset.
         /// </summary>
         public void Glow(int glow)
         {
@@ -43,10 +44,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             if (glow == 1)
             {
                 currentMat.material = mat[1];
-            } else if (glow == 2)
+            }
+            else if (glow == 2)
             {
                 currentMat.material = mat[0];
-            } else if (glow == 3) 
+            }
+            else if (glow == 3)
             {
                 b = a + Time.time;
                 currentMat.material = mat[2];
@@ -64,12 +67,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         }
 
         /// <summary>
-        /// This method is used to move a unit to a tile        
+        /// This method is used to move a unit to a tile
         /// </summary>
         public void Move(Tile goTile)
         {
-                SetTile(goTile);
-                MoveTo(goTile.GetCenterOfTile());
+            SetTile(goTile);
+            MoveTo(goTile.CenterPosition);
         }
     }
 

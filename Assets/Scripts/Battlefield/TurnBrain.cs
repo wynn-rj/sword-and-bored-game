@@ -108,9 +108,9 @@ namespace SwordAndBored.Battlefield
             if (Physics.Raycast(ray, out hit, 100, tileMapLayerMask))
             {
                 Tile currentTile = hit.collider.GetComponent<Tile>();
-                tileIndictor.transform.position = currentTile.GetCenterOfTile();
+                tileIndictor.transform.position = currentTile.CenterPosition;
 
-                if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
+                if (currentTile.UnitOnTile == null && Input.GetButtonDown("Fire1"))
                 {
                     if (EventSystem.current.IsPointerOverGameObject()) return;
                     creature.Move(currentTile);

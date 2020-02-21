@@ -11,7 +11,7 @@ namespace SwordAndBored.Battlefield
 {
     public abstract class AbstractTurnBrain : MonoBehaviour
     {
-        public GridHolder grid;
+        public GridHolder Grid { get; set; }
 
         public abstract void DoTurn();
         public abstract string GetName();

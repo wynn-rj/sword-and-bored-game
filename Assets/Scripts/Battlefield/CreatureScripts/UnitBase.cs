@@ -9,24 +9,24 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
     public class UnitBase : MonoBehaviour
     {
-    
+
         [HideInInspector]
         public NavMeshAgent agent;
         [HideInInspector]
         public Tile currentTile;
 
-    
+
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
         }
-    
+
 
         protected void MoveTo(Vector3 pos)
         {
             if (currentTile)
             {
-                currentTile.unitOnTile = null;
+                currentTile.UnitOnTile = null;
                 currentTile = null;
             }
             agent.destination = pos;
@@ -35,7 +35,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public void SetTile(Tile tile)
         {
             currentTile = tile;
-            tile.unitOnTile = this.gameObject;
+            tile.UnitOnTile = this.gameObject;
         }
     }
 }

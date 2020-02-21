@@ -20,7 +20,7 @@ namespace SwordAndBored.Battlefield
         public CameraManager camManager;
         public TurnManager turnManager;
         public Transform unitHolder;
-    
+
         void Awake()
         {
             DatabaseConnection conn = new DatabaseConnection();
@@ -66,7 +66,7 @@ namespace SwordAndBored.Battlefield
                 //brain
                 brain.tileIndictor = indicator;
                 brain.startCoordinates = new Vector2(numUnits, 5);
-                brain.grid = grid;
+                brain.Grid = grid;
 
                 unit.transform.parent = unitHolder;
 
@@ -75,7 +75,7 @@ namespace SwordAndBored.Battlefield
 
 
         }
-    
+
     }
 
 }
