@@ -5,6 +5,6 @@ namespace SwordAndBored.GameData.Equipment
 {
     public interface ISpellBook : IEquipment
     {
-        public List<IAbility> Abilities { get; set; }
+        List<IAbility> Abilities { get; set; }
     }
 }
