@@ -50,6 +50,13 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
         /// <summary>
         /// Returns the 6 cells surrounding a cell
         /// </summary>
+        /// <param name="cell">The position of the cell</param>
+        /// <returns>The 6 cells surrounding a cell</returns>
+        public IEnumerable<IHexGridCell> CellNeighbors(IHexGridCell cell) => CellNeighbors(cell.Position.GridPoint);
+
+        /// <summary>
+        /// Returns the 6 cells surrounding a cell
+        /// </summary>
         /// <param name="pos">The position of the cell</param>
         /// <returns>The 6 cells surrounding a cell</returns>
         public IEnumerable<IHexGridCell> CellNeighbors(Point<int> pos) => CellNeighbors(pos.X, pos.Y);
