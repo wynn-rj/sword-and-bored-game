@@ -5,11 +5,10 @@ using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SwordAndBored.Strategy.ProceduralTerrain.Map
+namespace SwordAndBored.Strategy.ProceduralTerrain
 {
     public class TileManager : MonoBehaviour
-    {
-        private HexGrid hexTiling;
+    {        
         private int xDim;
         private int yDim;
         
@@ -24,6 +23,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map
         public GameObject enemyCreepTile;
         public GameObject enemyTile;
         public GameObject playerTile;
+        public HexGrid hexTiling;
 
         private void Start()
         {
