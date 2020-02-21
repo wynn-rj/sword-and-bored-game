@@ -3,19 +3,19 @@ using SwordAndBored.GameData.Modifiers;
 
 namespace SwordAndBored.GameData.Abilities
 {
-    public class CombatAbilities
+    public class CombatAbilities : IAbility
     {
         public int ID { get; }
-        public Descriptor Descriptor { get; set; }
         //public WeaponTable Weapon { get; set; }
         public int weaponID { get; set; }
-        public AttackModifiers AttackModifiers { get; set; }
-
         public int Damage { get; set; }
         public int Accuracy { get; set; }
         public int Range { get; set; }
         public bool IsPhysical { get; set; }
-
+        public IModifierAttack AttackModifiers { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string FlavorText { get; set; }
 
         public CombatAbilities(int inputID)
         {
@@ -25,8 +25,8 @@ namespace SwordAndBored.GameData.Abilities
             ID = inputID;
             if (reader.NextRow())
             {
-                int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new Descriptor(descriptorID);
+                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
+                //Descriptor = new Descriptor(descriptorID);
 
                 weaponID = reader.GetIntFromCol("Weapon_FK");
                 //Weapon = new WeaponTable(weaponID);
@@ -44,19 +44,19 @@ namespace SwordAndBored.GameData.Abilities
 
         override public string ToString()
         {
-            return "{Ability: " + ID + ", Descriptor: " + Descriptor.ToString() + ", Damage: " + Damage
+            return "{Ability: " + ID + ", Descriptor: " + Name + ", Damage: " + Damage
                 + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + AttackModifiers + "}";
         }
 
         public string LongString()
         {
-            return "Ability: {ID: " + ID + ", Descriptor: " + Descriptor.LongString() + ", Damage: " + Damage
+            return "Ability: {ID: " + ID + ", Descriptor: " + Name + ", Damage: " + Damage
                 + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + AttackModifiers + "}";
         }
 
         public string ShortString()
         {
-            return "{Ability: " + ID + ", Descriptor: " + Descriptor.Name + "}";
+            return "{Ability: " + ID + ", Descriptor: " + Name + "}";
         }
     }
 }

@@ -1,21 +1,26 @@
 ﻿using SwordAndBored.GameData.Roles;
 using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Database;
+using System.Collections.Generic;
+using SwordAndBored.GameData.Abilities;
 
 namespace SwordAndBored.GameData.Units 
 {
-    public class Unit
+    public class Unit : IUnit
     {
         public int ID { get; }
-        public Descriptor Descriptor { get; set; }
-        public Role Role { get; set; }
-        public Stats Stats { get; set; }
-
-        public Weapon Weapon { get; set; }
-
-        public Armor Armor { get; set; }
-
         public ISpellBook SpellBook { get; set; }
+        public IStats Stats { get; set; }
+        public List<IAbility> Abilities { get; set; }
+        public IWeapon Weapon { get; set; }
+        public IArmor Armor { get; set; }
+        public IRole Role { get; set; }
+        
+        public int XP { get; set; }
+        public int Level { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string FlavorText { get; set; }
 
         public Unit(int inputID)
         {
@@ -25,8 +30,8 @@ namespace SwordAndBored.GameData.Units
             ID = inputID;
             if (reader.NextRow())
             {
-                int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new Descriptor(descriptorID);
+                //int descriptorID = reader.GetIntFromCol("Descriptor_FK");
+                //Descriptor = new Descriptor(descriptorID);
 
                 int roleID = reader.GetIntFromCol("Role_FK");
                 Role = new Role(roleID);
@@ -46,20 +51,20 @@ namespace SwordAndBored.GameData.Units
 
         override public string ToString()
         {
-            return "{Unit: " + ID + ", Descriptor: " + Descriptor.ToString() + ", Role: " + Role.ShortString()
+            return "{Unit: " + ID + ", Descriptor: " + Name.ToString() + ", Role: " + Role
                 + ", Stats: " + Stats.ToString() + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
 
         public string LongString()
         {
-            return "Unit: {ID: " + ID + ", Descriptor: " + Descriptor.LongString() + ", Role: " + Role.LongString()
-                + ", Stats: " + Stats.LongString() + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
+            return "Unit: {ID: " + ID + ", Descriptor: " + Name + ", Role: " + Role
+                + ", Stats: " + Stats + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
 
         public string ShortString()
         {
-            return "{Unit: " + ID + ", Descriptor: " + Descriptor.Name + ", Role: " + Role.ID + ", Stats: " 
-                + Stats.ID + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
+            return "{Unit: " + ID + ", Descriptor: " + Name + ", Role: " + Role.ID + ", Stats: " 
+                + Stats + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
     }
 }
