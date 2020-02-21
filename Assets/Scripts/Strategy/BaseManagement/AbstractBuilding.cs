@@ -21,6 +21,8 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 
         public string Description { get; set; }
 
+        public string FlavorText { get; set; }
+
         public AbstractBuilding()
         {
             ShadowModelName = "PlaceableBuilding";

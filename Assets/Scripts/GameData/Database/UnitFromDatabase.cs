@@ -1,7 +1,4 @@
-﻿using System.Data;
-using Mono.Data.Sqlite;
-using UnityEngine;
-using SwordAndBored.GameData.Database;
+﻿using UnityEngine;
 using SwordAndBored.GameData.Units;
 using TMPro;
 
@@ -25,7 +22,7 @@ namespace SwordAndBored.GameData.Database
                 DatabaseReader reader = conn.QueryAllFromTable("Units");
                 while (reader.NextRow())
                 {
-                        UnitTable unit = new UnitTable(reader.GetIntFromCol("ID"));
+                        Unit unit = new Unit(reader.GetIntFromCol("ID"));
                         textBox.text += unit.ToString() + "\n\n";
                 }
             }
