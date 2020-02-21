@@ -6,7 +6,6 @@ namespace SwordAndBored.GameData.Roles
     public class Role : IRole
     {
         public int ID { get; }
-        public Stats Stats { get; set; }
         public IStats RoleStats { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -24,7 +23,7 @@ namespace SwordAndBored.GameData.Roles
                 //Descriptor = new Descriptor(descriptorID);
 
                 int statsID = reader.GetIntFromCol("BaseStats_FK");
-                Stats = new Stats(statsID);
+                RoleStats = new Stats(statsID);
             }
             reader.CloseReader();
             conn.CloseConnection();
@@ -32,17 +31,17 @@ namespace SwordAndBored.GameData.Roles
 
         override public string ToString()
         {
-            return "{Role: " + ID + ", Descriptior: " + Name.ToString() + ", Stats: " + Stats.ToString() + "}";
+            return "{Role: " + ID + ", Descriptior: " + Name.ToString() + ", Stats: " + RoleStats.ToString() + "}";
         }
 
         public string LongString()
         {
-            return "Role: {ID: " + ID + ", Descriptior: " + Name + ", Stats: " + Stats.LongString() + "}";
+            return "Role: {ID: " + ID + ", Descriptior: " + Name + ", Stats: " + RoleStats + "}";
         }
 
         public string ShortString()
         {
-            return "{Role: " + ID + ", Descriptior: " + Name + ", Stats: " + Stats.ID + "}";
+            return "{Role: " + ID + ", Descriptior: " + Name + ", Stats: " + RoleStats.ID + "}";
         }
     }
 }
