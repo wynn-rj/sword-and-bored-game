@@ -48,6 +48,10 @@ namespace SwordAndBored.GameData.Units
 
                 int spellBookID = reader.GetIntFromCol("Spell_Book_FK");
                 SpellBook = new SpellBook(spellBookID);
+
+                Abilities = new List<IAbility>();
+                Abilities.AddRange(Weapon.Abilities);
+                Abilities.AddRange(SpellBook.Abilities);
             }
             reader.CloseReader();
             conn.CloseConnection();
