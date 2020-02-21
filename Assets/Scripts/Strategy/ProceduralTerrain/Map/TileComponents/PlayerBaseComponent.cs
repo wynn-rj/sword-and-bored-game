@@ -1,6 +1,12 @@
-﻿namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
+﻿using UnityEngine.SceneManagement;
+
+namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
 {
-    public class PlayerBaseComponent : Grid.AbstractCellComponent
+    class PlayerBaseComponent : AbstractSelectionComponent
     {
+        public override void Select()
+        {
+            SceneManager.LoadSceneAsync("BaseManagement", LoadSceneMode.Single);
+        }
     }
 }
