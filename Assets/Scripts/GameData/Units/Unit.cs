@@ -11,7 +11,20 @@ namespace SwordAndBored.GameData.Units
         public int ID { get; }
         public ISpellBook SpellBook { get; set; }
         public IStats Stats { get; set; }
-        public List<IAbility> Abilities { get; set; }
+        public List<IAbility> Abilities {
+            get
+            {
+                List<IAbility> NewAbilities = new List<IAbility>();
+                NewAbilities.AddRange(Weapon.Abilities);
+                NewAbilities.AddRange(SpellBook.Abilities);
+                return NewAbilities;
+            }
+            set
+            {
+                Abilities = value;
+
+            }
+        }
         public IWeapon Weapon { get; set; }
         public IArmor Armor { get; set; }
         public IRole Role { get; set; }
@@ -49,9 +62,6 @@ namespace SwordAndBored.GameData.Units
                 int spellBookID = reader.GetIntFromCol("Spell_Book_FK");
                 SpellBook = new SpellBook(spellBookID);
 
-                Abilities = new List<IAbility>();
-                Abilities.AddRange(Weapon.Abilities);
-                Abilities.AddRange(SpellBook.Abilities);
             }
             reader.CloseReader();
             conn.CloseConnection();
