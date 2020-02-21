@@ -6,8 +6,6 @@ namespace SwordAndBored.GameData.Abilities
     public class CombatAbilities : IAbility
     {
         public int ID { get; }
-        //public WeaponTable Weapon { get; set; }
-        public int weaponID { get; set; }
         public int Damage { get; set; }
         public int Accuracy { get; set; }
         public int Range { get; set; }
