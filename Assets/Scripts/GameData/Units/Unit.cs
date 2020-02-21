@@ -15,6 +15,8 @@ namespace SwordAndBored.GameData.Units
 
         public Armor Armor { get; set; }
 
+        public ISpellBook SpellBook { get; set; }
+
         public Unit(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();

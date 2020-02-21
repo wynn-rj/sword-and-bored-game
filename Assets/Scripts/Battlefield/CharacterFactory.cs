@@ -7,7 +7,7 @@ using Cinemachine;
 using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
-using SwordAndBored.GameData.Database.Tables;
+using SwordAndBored.GameData.Units;
 
 
 namespace SwordAndBored.Battlefield
@@ -28,7 +28,7 @@ namespace SwordAndBored.Battlefield
             int numUnits = 0;
             while (reader.NextRow())
             {
-                UnitTable unitTable = new UnitTable(reader.GetIntFromCol("ID"));
+                Unit unitTable = new Unit(reader.GetIntFromCol("ID"));
         
                 GameObject unit = Instantiate(playerPrefab, new Vector3(numUnits, 1.5f, 0), Quaternion.identity);
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
