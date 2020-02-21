@@ -29,15 +29,13 @@ namespace SwordAndBored.GameData.Abilities
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
-                //weaponID = reader.GetIntFromCol("Weapon_FK");
-                //Weapon = new WeaponTable(weaponID);
-
                 int attackModifiersID = reader.GetIntFromCol("Attack_Modifiers_FK");
                 AttackModifiers = new AttackModifiers(attackModifiersID);
 
                 Damage = reader.GetIntFromCol("Damage");
                 Accuracy = reader.GetIntFromCol("Accuracy");
                 Range = reader.GetIntFromCol("Range");
+                IsPhysical = reader.GetIntFromCol("Is_Phsycial") > 0;
             }
             reader.CloseReader();
             conn.CloseConnection();
