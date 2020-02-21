@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using SwordAndBored.Strategy.Transitions;
 
 namespace SwordAndBored.Strategy
 {
@@ -17,6 +18,10 @@ namespace SwordAndBored.Strategy
         {
             screenHeight = Screen.height;
             screenWidth = Screen.width;
+            if (SceneSharing.cameraPosition != default)
+            {
+                this.transform.position = SceneSharing.cameraPosition;
+            }
         }
 
         void Update()
@@ -42,6 +47,11 @@ namespace SwordAndBored.Strategy
                 move.z -= speed * Time.deltaTime;
             }
             transform.position = move;
+        }
+
+        private void OnDestroy()
+        {
+            SceneSharing.cameraPosition = this.transform.position;
         }
     }
 }
