@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
 {
@@ -34,7 +35,16 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
             Center = new Point<float>(centerX, centerY);
         }
 
-        private float RadiusToInradius(float r)
+        public static Point<int> GetPointFromCenter(float x, float y, float radius)
+        {
+            float r = RadiusToInradius(radius);
+            int gridX = Mathf.RoundToInt(x / (1.5f * radius));
+            float yShift = (gridX % 2 != 0) ? -r : 0;
+            int gridY = Mathf.RoundToInt((y + yShift) / (2 * r));
+            return new Point<int>(gridX, gridY);
+        }
+
+        private static float RadiusToInradius(float r)
         {
             return InradiusConstant * r;
         }
