@@ -1,7 +1,7 @@
 ﻿
 namespace SwordAndBored.GameData.Database.Tables
 {
-    public class StatsTable
+    public class Stats
     {
         public int ID { get; }
         public int Physical_Attack { get; set; }
@@ -14,7 +14,7 @@ namespace SwordAndBored.GameData.Database.Tables
         public int Evasion { get; set; }
         public int Accuracy { get; set; }
 
-        public StatsTable(int inputID)
+        public Stats(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Stats", inputID);

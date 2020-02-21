@@ -1,13 +1,13 @@
 ﻿using Mono.Data.Sqlite;
 
 namespace SwordAndBored.GameData.Database.Tables {
-    public class RoleTable
+    public class Role
     {
         public int ID { get; }
-        public DescriptorTable Descriptor { get; set; }
-        public StatsTable Stats { get; set; }
+        public Descriptor Descriptor { get; set; }
+        public Stats Stats { get; set; }
 
-        public RoleTable(int inputID)
+        public Role(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Roles", inputID);
@@ -16,10 +16,10 @@ namespace SwordAndBored.GameData.Database.Tables {
             if (reader.NextRow())
             {
                 int descriptorID = reader.GetIntFromCol("Descriptor_FK");
-                Descriptor = new DescriptorTable(descriptorID);
+                Descriptor = new Descriptor(descriptorID);
 
                 int statsID = reader.GetIntFromCol("BaseStats_FK");
-                Stats = new StatsTable(statsID);
+                Stats = new Stats(statsID);
             }
             reader.CloseReader();
             conn.CloseConnection();
