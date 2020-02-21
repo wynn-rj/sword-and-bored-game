@@ -15,5 +15,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
             X = x;
             Y = y;
         }
+
+        public override string ToString()
+        {
+            return "(" + X + ", " + Y + ")";
+        }
     } 
 }
