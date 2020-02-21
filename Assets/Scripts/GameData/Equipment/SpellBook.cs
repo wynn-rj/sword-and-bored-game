@@ -15,7 +15,7 @@ namespace SwordAndBored.GameData.Equipment
         public SpellBook(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryRowFromTableWithID("SpellBooks", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Spell_Books", inputID);
 
             ID = inputID;
             if (reader.NextRow())
