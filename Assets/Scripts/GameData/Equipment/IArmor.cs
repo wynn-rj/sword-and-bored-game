@@ -1,5 +1,4 @@
-﻿using SwordAndBored.GameData.Abilities;
-using SwordAndBored.GameData.Modifiers;
+﻿using SwordAndBored.GameData.Modifiers;
 
 namespace SwordAndBored.GameData.Equipment
 {
