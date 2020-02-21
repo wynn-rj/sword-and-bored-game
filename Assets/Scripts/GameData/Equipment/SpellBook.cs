@@ -26,11 +26,11 @@ namespace SwordAndBored.GameData.Equipment
             }
             reader.CloseReader();
 
-            reader = conn.QueryRowFromTableWhereColNameEqualsInt("Abilities", "Spell_Book_FK", inputID);
+            reader = conn.QueryRowFromTableWhereColNameEqualsInt("Spell_Book_To_Ability", "Spell_Book_FK", inputID);
             Abilities = new List<IAbility>();
             while (reader.NextRow())
             {
-                int abilityID = reader.GetIntFromCol("ID");
+                int abilityID = reader.GetIntFromCol("Abilities_FK");
                 Abilities.Add(new CombatAbilities(abilityID));
             }
             reader.CloseReader();
