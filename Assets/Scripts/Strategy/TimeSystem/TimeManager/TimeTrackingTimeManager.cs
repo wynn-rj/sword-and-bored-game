@@ -1,4 +1,5 @@
 ﻿using SwordAndBored.Strategy.TimeSystem.Subscribers;
+using SwordAndBored.Strategy.Transitions;
 using System.Collections.Generic;
 
 namespace SwordAndBored.Strategy.TimeSystem.TimeManager
@@ -12,7 +13,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 
         public TimeTrackingTimeManager()
         {
-            TimeStep = startingTimeStep;
+            TimeStep = (SceneSharing.useStoredTimeStep) ? SceneSharing.timeStep : startingTimeStep;
             PreTimeStepSubscribers = new List<IPreTimeStepSubscriber>();
             PostTimeStepSubscribers = new List<IPostTimeStepSubscriber>();
         }

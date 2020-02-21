@@ -19,6 +19,7 @@ namespace SwordAndBored.Strategy.Transitions
         private void GoToBase()
         {
             SceneSharing.timeStep = timeManager.TimeStep;
+            SceneSharing.useStoredTimeStep = true;
             SceneManager.LoadSceneAsync("BaseManagement", LoadSceneMode.Single);
         }
     }
