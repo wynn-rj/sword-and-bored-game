@@ -1,6 +1,8 @@
-﻿using Mono.Data.Sqlite;
+﻿using SwordAndBored.GameData.Database;
+using SwordAndBored.GameData.Units;
 
-namespace SwordAndBored.GameData.Database.Tables {
+namespace SwordAndBored.GameData.Roles
+{
     public class Role
     {
         public int ID { get; }

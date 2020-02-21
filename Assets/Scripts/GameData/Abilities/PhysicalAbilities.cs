@@ -1,5 +1,7 @@
-﻿
-namespace SwordAndBored.GameData.Database.Tables
+﻿using SwordAndBored.GameData.Database;
+using SwordAndBored.GameData.Modifiers;
+
+namespace SwordAndBored.GameData.Abilities
 {
     public class PhysicalAbilities
     {

@@ -1,5 +1,6 @@
-﻿
-namespace SwordAndBored.GameData.Database
+﻿using SwordAndBored.GameData.Database;
+
+namespace SwordAndBored.GameData.Modifiers
 {
     public class DefenseModifiers
     {
