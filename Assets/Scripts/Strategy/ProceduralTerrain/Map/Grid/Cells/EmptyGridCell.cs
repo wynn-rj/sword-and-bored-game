@@ -17,7 +17,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
             Position = new HexPoint(x, y, gridRadius);
             ComponentList = new List<ICellComponent>();
             selectionComponents = new NestingSelectionActionComponent();
-            ComponentList.Add(selectionComponents);
             selectionComponents.Parent = this;
         }
 
@@ -25,6 +24,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         {
             if (component is ISelectionComponent selectionComponent)
             {
+                if (selectionComponents.InternalComponents.Count == 0)
+                {
+                    ComponentList.Add(selectionComponents);
+                }
                 selectionComponents.InternalComponents.Add(selectionComponent);
             }
             else
@@ -38,7 +41,12 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         {
             if (component is ISelectionComponent selectionComponent)
             {
-                return selectionComponents.InternalComponents.Remove(selectionComponent);
+                bool success = selectionComponents.InternalComponents.Remove(selectionComponent);
+                if (success && selectionComponents.InternalComponents.Count == 0)
+                {
+                    ComponentList.Remove(selectionComponents);
+                }
+                return success;
             }
             return ComponentList.Remove(component);
         }
@@ -47,9 +55,13 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         {
             if (typeof(T) is ISelectionComponent)
             {
-                int length = selectionComponents.InternalComponents.Count;
-                selectionComponents.InternalComponents.Clear();
-                return length != 0;
+                if (selectionComponents.InternalComponents.Count > 0)
+                {
+                    selectionComponents.InternalComponents.Clear();
+                    ComponentList.Remove(selectionComponents);
+                    return true;
+                }
+                return false;
             }
             return ComponentList.Remove(GetComponent<T>());
         }        
