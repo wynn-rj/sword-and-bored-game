@@ -1,12 +1,6 @@
-﻿using UnityEngine;
-
-namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
+﻿namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
-    class DesertTerrainComponent : AbstractTerrainComponent
+    class DesertTerrainComponent : GenericTerrainComponent
     {
-        public DesertTerrainComponent(GameObject gameObject)
-        {
-
-        }
     }
 }

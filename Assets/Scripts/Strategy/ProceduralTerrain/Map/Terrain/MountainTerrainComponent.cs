@@ -1,12 +1,6 @@
-﻿using UnityEngine;
-
-namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
+﻿namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 {
-    class MountainTerrainComponent : AbstractTerrainComponent
+    class MountainTerrainComponent : GenericTerrainComponent
     {
-        public MountainTerrainComponent(GameObject gameObject)
-        { 
-        
-        }
     }
 }
