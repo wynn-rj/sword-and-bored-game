@@ -2,9 +2,8 @@
 
 namespace SwordAndBored.GameData.Roles
 {
-    public interface IRole : IDescriptable
+    public interface IRole : IDescriptable, IDatabaseObject
     {
-        int ID { get; }
         IStats RoleStats { get; set; }
     }
 }

@@ -3,9 +3,8 @@
     /// <summary>
     /// A collection of stats for a creature or similar object
     /// </summary>
-    public interface IStats
+    public interface IStats : IDatabaseObject
     {
-        int ID { get; }
         int Physical_Attack { get; set; }
         int Physical_Defense { get; set; }
         int Magic_Attack { get; set; }
