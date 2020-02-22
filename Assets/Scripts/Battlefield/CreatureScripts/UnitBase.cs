@@ -51,7 +51,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             if (currentTile)
             {
                 currentTile.unitOnTile = null;
-                currentTile = null;
             }
             agent.destination = pos;
         }
