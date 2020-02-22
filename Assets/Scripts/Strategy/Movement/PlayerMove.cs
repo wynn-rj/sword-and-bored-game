@@ -2,29 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using SwordAndBored.Strategy.ProceduralTerrain;
 
 
 namespace SwordAndBored.StrategyView.Movement
 {
     public class PlayerMove : MonoBehaviour
     {
+        public TileManager tileManager;
+        public Material selectedMaterial;
+
         Vector3 targetPosition;
         Vector3 lookAtTarget;
         Quaternion playerRot;
         float rotSpeed = 5;
         float speed = 10;
         bool moving = false;
+        bool selected;
+        
+        public Material defaultMaterial;
 
         void Update()
         {
             if (Input.GetMouseButton(0))
             {
-                SetTargetPosition();
+                Clicked();
             }
+            /*if(selected)
+            {
+                if(Input.GetMouseButton(0))
+                {
+                    SetTargetPosition();
+                }
+            }*/
             if (moving)
             {
                 Move();
             }
+        }
+
+        void Clicked()
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if(Physics.Raycast(ray, out hit))
+            {
+                if(hit.collider.gameObject == this.gameObject)
+                {
+                    selected = true;
+                    this.GetComponent<MeshRenderer>().material = selectedMaterial;
+                }
+                else
+                {
+                    if(selected)
+                    {
+                        SetTargetPosition();
+                    }
+                    this.GetComponent<MeshRenderer>().material = defaultMaterial;
+                    selected = false;
+                }
+            }
+            /*if(tileManager.GetComponent<TileSelect>().lastClicked == this.gameObject)
+            {
+                selected = true;
+                this.GetComponent<MeshRenderer>().material = selectedMaterial;
+            }*/
         }
 
         /// <summary>
@@ -32,19 +75,16 @@ namespace SwordAndBored.StrategyView.Movement
         /// </summary>
         void SetTargetPosition()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 1000))
+            //Finds the center of the hexagon that has been clicked
+            if(tileManager.GetComponent<TileSelect>().center != new Vector3(0f,0f,0f))
             {
-                //Finds the center of the hexagon that has been clicked
-                Vector3 center = new Vector3(hit.collider.gameObject.transform.position.x, this.transform.position.y, hit.collider.gameObject.transform.position.z);
-                targetPosition = center;
+                targetPosition = tileManager.GetComponent<TileSelect>().center;
 
                 this.transform.LookAt(targetPosition);
                 lookAtTarget = new Vector3(targetPosition.x - transform.position.x, transform.position.y, targetPosition.z - transform.position.z);
                 playerRot = Quaternion.LookRotation(lookAtTarget);
                 moving = true;
+                this.GetComponent<Rigidbody>().useGravity = false;
             }
         }
 
@@ -58,6 +98,7 @@ namespace SwordAndBored.StrategyView.Movement
             if (transform.position == targetPosition)
             {
                 moving = false;
+                this.GetComponent<Rigidbody>().useGravity = true;
             }
         }
 
