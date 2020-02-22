@@ -58,27 +58,28 @@ namespace SwordAndBored.Battlefield.CameraUtilities
             translationX *= Time.deltaTime;
 
             
-            freeCam.transform.Translate(0, 0, translationZ);
-            freeCam.transform.Translate(translationX, 0, 0);
+            freeCam.transform.position += new Vector3(0,0,translationZ);
+            freeCam.transform.position += new Vector3(translationX, 0, translationZ);
 
-           
-            //transform.Rotate(0, rotation, 0);
         }
 
         private void rotateCamera()
         {
-            float rotation = Input.GetAxis("Debug Horizontal") * freeCamRotationSpeed;
+            if (Input.GetKeyDown("e"))
+            {
+                
+            } else if (Input.GetKeyDown("q"))
+            {
 
-            rotation *= Time.deltaTime;
-
-            freeCam.transform.Rotate(0, rotation, 0);
+            }
         }
 
         private void SetPriority()
         {
-            if (turnManager.activePlayer.GetCam().Priority < priority)
+            if (getActivePlayerCam().Priority < priority)
             {
                 panToActivePlayer();
+                freeCam.transform.position = getActivePlayerCam().transform.position;
                 cameraDetached = false;
                 priority++;
             }
@@ -87,7 +88,12 @@ namespace SwordAndBored.Battlefield.CameraUtilities
 
         private void panToActivePlayer()
         {
-            turnManager.activePlayer.GetCam().Priority = priority + 1;
+           getActivePlayerCam().Priority = priority + 1;
+        }
+
+        private CinemachineVirtualCamera getActivePlayerCam()
+        {
+            return turnManager.activePlayer.GetCam();
         }
     }
 }
