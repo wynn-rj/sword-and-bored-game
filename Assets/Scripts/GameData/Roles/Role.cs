@@ -23,7 +23,7 @@ namespace SwordAndBored.GameData.Roles
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
-                int statsID = reader.GetIntFromCol("BaseStats_FK");
+                int statsID = reader.GetIntFromCol("Base_Stats_FK");
                 RoleStats = new Stats(statsID);
             }
             reader.CloseReader();

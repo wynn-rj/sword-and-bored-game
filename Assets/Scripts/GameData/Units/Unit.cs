@@ -21,7 +21,6 @@ namespace SwordAndBored.GameData.Units
             }
             set
             {
-                Abilities = value;
 
             }
         }
@@ -62,6 +61,10 @@ namespace SwordAndBored.GameData.Units
                 int spellBookID = reader.GetIntFromCol("Spell_Book_FK");
                 SpellBook = new SpellBook(spellBookID);
 
+                Abilities = new List<IAbility>();
+                Abilities.AddRange(Weapon.Abilities);
+                Abilities.AddRange(SpellBook.Abilities);
+
             }
             reader.CloseReader();
             conn.CloseConnection();
@@ -70,7 +73,7 @@ namespace SwordAndBored.GameData.Units
         override public string ToString()
         {
             return "{Unit: " + ID + ", Descriptor: " + Name.ToString() + ", Role: " + Role
-                + ", Stats: " + Stats.ToString() + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
+                + ", Stats: " + Stats.ToString();// + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
 
         public string LongString()
