@@ -35,6 +35,8 @@ namespace SwordAndBored.Battlefield.CameraUtilities
             } else if (cameraDetached == true && Input.GetKeyDown("space"))
             {
                 cameraDetached = false;
+                freeCam.Priority = 0;
+                panToActivePlayer();
                 
             }
             
