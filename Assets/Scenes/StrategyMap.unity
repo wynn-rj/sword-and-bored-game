@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 404240875}
   usedMoveThisTurn: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &46922630
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -410,6 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 404240875}
   usedMoveThisTurn: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &331762802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -629,6 +631,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: 0ced3246a91b81040818786e38f7002e, type: 2}
   selectedMaterial: {fileID: 2100000, guid: f98b41d9a1c5ce040b8f1600dbe3d8a9, type: 2}
   turnManager: {fileID: 4568864100514284661}
+  tileManager: {fileID: 404240875}
 --- !u!1 &640825684
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 404240875}
   usedMoveThisTurn: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &640825690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1011,6 +1015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 404240875}
   usedMoveThisTurn: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &1036126703
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1136,6 +1141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 404240875}
   usedMoveThisTurn: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &1122354955
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1404,6 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 404240875}
   usedMoveThisTurn: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &1978811812
 Rigidbody:
   m_ObjectHideFlags: 0
