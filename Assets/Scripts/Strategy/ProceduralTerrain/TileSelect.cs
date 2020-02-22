@@ -31,9 +31,11 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         void OnClick()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(!(lastClicked is null))
+            if (!(lastClicked is null))
             {
                 lastClicked.GetComponent<MeshRenderer>().material = lastClickedMaterial;
+                lastClicked = null;
+                lastClickedMaterial = null;
             }
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
@@ -54,11 +56,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                         selectionComponent.Select();
                     }
                 }
-            }
-            else
-            {
-                lastClicked = null;
-                lastClickedMaterial = null;
+                else
+                {
+                    center = new Vector3(-50f, -50f, -50f);
+                }
             }
         }
     }
