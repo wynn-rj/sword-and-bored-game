@@ -13,6 +13,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
         public TurnManager turnManager;
         public List<GameObject> cameras = new List<GameObject>();
         public CinemachineVirtualCamera freeCam;
+        public GameObject cameraFocus;
         public bool cameraDetached = false;
        
         private int priority = 1;
@@ -34,6 +35,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
             if (cameraDetached == false && Input.GetKeyDown("space"))
             {
                 cameraDetached = true;
+                cameraFocus.transform.position = turnManager.activePlayer.transform.position;
                 freeCam.Priority = priority + 1;
             } else if (cameraDetached == true && Input.GetKeyDown("space"))
             {
@@ -48,6 +50,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
         {
             if (getActivePlayerCam().Priority < priority)
             {
+                
                 panToActivePlayer();
                 cameraDetached = false;
                 priority++;

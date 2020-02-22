@@ -14,12 +14,13 @@ public class OrthographicZoomStrategy : IZoomStrategy
     public void ZoomIn(CinemachineVirtualCamera cam, float delta, float nearZoomLimit)
     {
         if (cam.m_Lens.OrthographicSize == nearZoomLimit) return;
-        cam.m_Lens.OrthographicSize = Mathf.Max(cam.m_Lens.OrthographicSize - delta, nearZoomLimit);
+        cam.m_Lens.FieldOfView = Mathf.Max(cam.m_Lens.FieldOfView + delta, nearZoomLimit);
     }
 
     public void ZoomOut(CinemachineVirtualCamera cam, float delta, float farZoomLimit)
     {
         if (cam.m_Lens.OrthographicSize == farZoomLimit) return;
-        cam.m_Lens.OrthographicSize = Mathf.Min(cam.m_Lens.OrthographicSize + delta, farZoomLimit);
+        cam.m_Lens.FieldOfView = Mathf.Min(cam.m_Lens.FieldOfView - delta, farZoomLimit);
+        
     }
 }
