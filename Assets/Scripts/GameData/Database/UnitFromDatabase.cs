@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.GameData.Roles;
 using TMPro;
 
 namespace SwordAndBored.GameData.Database
@@ -35,10 +36,17 @@ namespace SwordAndBored.GameData.Database
                 stats.HP -= 1;
                 textBox.text = stats.Save().ToString();
             }
-            if (Input.GetKeyDown(KeyCode.N)) {
-                IUnit unit = new Unit("Knight");
-                unit.Name = "Insert";
+            if (Input.GetKeyDown(KeyCode.K)) {
+                IUnit unit = new Unit("Knight")
+                {
+                    Name = "Insert"
+                };
                 unit.Save();
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                IRole role = new Role(1);
+                textBox.text = role.RoleStats.ToString();
             }
         }
     }

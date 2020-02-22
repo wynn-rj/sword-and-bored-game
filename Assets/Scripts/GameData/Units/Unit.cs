@@ -8,7 +8,7 @@ namespace SwordAndBored.GameData.Units
 {
     public class Unit : IUnit
     {
-        public int ID { get; }
+        public int ID {get; set;}
         public ISpellBook SpellBook { get; set; }
         public IStats Stats { get; set; }
         public List<IAbility> Abilities {
@@ -88,10 +88,13 @@ namespace SwordAndBored.GameData.Units
             } else
             {
                 // Default role none matched
-                Role = new Role(0);
+                Role = new Role(1);
 
                 Stats = Role.RoleStats;
+                Name = "No name/Random Default/Wrong Role";
             }
+            reader.CloseReader();
+            conn.CloseConnection();
         }
 
         public int Save()
@@ -100,7 +103,9 @@ namespace SwordAndBored.GameData.Units
             if (ID == -1)
             {
                 string queryString = $"INSERT INTO Units (Name, Description, Flavor_Text, XP, Level, Stats_FK, Role_FK, Weapon_FK, Armor_FK, Spell_Book_FK) VALUES" +
-                    $"('{Name}', '{Description}' , '{FlavorText}', {XP}, {Level}, {Stats.ID}, {Role.ID}, {Weapon.ID}, {Armor.ID}, {SpellBook.ID})";
+                    $"({DatabaseHelper.GetNullOrIDStringFromString(Name)}, {DatabaseHelper.GetNullOrIDStringFromString(Description)} , {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}" +
+                    $", {XP}, {Level}, {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}," +
+                    $" {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)})";
                 DatabaseConnection conn = new DatabaseConnection();
                 return conn.ExecuteNonQuery(queryString);
 

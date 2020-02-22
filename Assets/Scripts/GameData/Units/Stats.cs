@@ -4,7 +4,7 @@ namespace SwordAndBored.GameData.Units
 {
     public class Stats : IStats
     {
-        public int ID { get; }
+        public int ID { get; set; }
         public int Physical_Attack { get; set; }
         public int Physical_Defense { get; set; }
         public int Magic_Attack { get; set; }
