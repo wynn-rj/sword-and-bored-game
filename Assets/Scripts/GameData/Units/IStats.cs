@@ -15,5 +15,7 @@
         int Movement { get; set; }
         int Evasion { get; set; }
         int Accuracy { get; set; }
+
+        int Save();
     }
 }
