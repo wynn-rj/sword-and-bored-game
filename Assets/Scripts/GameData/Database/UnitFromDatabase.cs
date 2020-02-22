@@ -25,6 +25,8 @@ namespace SwordAndBored.GameData.Database
                         Unit unit = new Unit(reader.GetIntFromCol("ID"));
                         textBox.text += unit.ToString() + "\n\n";
                 }
+                reader.CloseReader();
+                conn.CloseConnection();
             }
         }
     }
