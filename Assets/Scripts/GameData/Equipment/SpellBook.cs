@@ -7,25 +7,7 @@ namespace SwordAndBored.GameData.Equipment
     public class SpellBook : ISpellBook
     {
         public int ID { get; }
-        public List<IAbility> Abilities { 
-            get {
-                DatabaseConnection conn = new DatabaseConnection();
-                DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Spell_Book_To_Ability", "Spell_Book_FK", ID);
-                List<IAbility> NewAbilities = new List<IAbility>();
-                while (reader.NextRow())
-                {
-                    int abilityID = reader.GetIntFromCol("Abilities_FK");
-                    NewAbilities.Add(new CombatAbilities(abilityID));
-                }
-                reader.CloseReader();
-                conn.CloseConnection();
-                return NewAbilities;
-            }
-            set
-            {
-                Abilities = value;
-            }
-        }
+        public List<IAbility> Abilities { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
