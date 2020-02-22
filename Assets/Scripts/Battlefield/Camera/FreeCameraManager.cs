@@ -19,7 +19,7 @@ public class FreeCameraManager : MonoBehaviour
     public Vector2 minBounds, maxBounds;
 
     [Header("Zoom Controls")]
-    public float zoomSpeed = 4f;
+    public float zoomSpeed = 10f;
     public float nearZoomLimit = 2f;
     public float farZoomLimit = 16f;
     public float startingZoom = 5f;
@@ -91,7 +91,7 @@ public class FreeCameraManager : MonoBehaviour
 
         if(frameZoom > 0f)
         {
-            zoomStrategy.ZoomOut(cam, Time.deltaTime *frameZoom * zoomSpeed, farZoomLimit);
+            zoomStrategy.ZoomOut(cam, Time.deltaTime * frameZoom * zoomSpeed, farZoomLimit);
             frameZoom = 0f;
         }
 
