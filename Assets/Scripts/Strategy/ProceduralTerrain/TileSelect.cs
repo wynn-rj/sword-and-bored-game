@@ -9,6 +9,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
     {
         public TileManager tileManager;
         public Material material;
+        public Vector3 center;
         private GameObject lastClicked;
         private Material lastClickedMaterial;
 
@@ -36,18 +37,28 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             }
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                lastClicked = hit.collider.gameObject;
-                lastClickedMaterial = lastClicked.GetComponent<MeshRenderer>().material;
-                lastClicked.GetComponent<MeshRenderer>().material = material;
-                Transform selectedTransform = hit.collider.gameObject.transform;
-                Point<int> gridPoint = HexPoint.GetPointFromCenter(selectedTransform.position.x, selectedTransform.position.z, selectedTransform.localScale.x);
-                IHexGridCell tile = tileManager.hexTiling[gridPoint.X, gridPoint.Y];
-
-                ISelectionComponent selectionComponent = tile.GetComponent<ISelectionComponent>();
-                if (!(selectionComponent is null))
+                //if(hit.collider.gameObject.name != "Player")
+                if(hit.collider.gameObject.name.Contains("Clone"))
                 {
-                    selectionComponent.Select();
+                    lastClicked = hit.collider.gameObject;
+                    lastClickedMaterial = lastClicked.GetComponent<MeshRenderer>().material;
+                    lastClicked.GetComponent<MeshRenderer>().material = material;
+                    Transform selectedTransform = hit.collider.gameObject.transform;
+                    Point<int> gridPoint = HexPoint.GetPointFromCenter(selectedTransform.position.x, selectedTransform.position.z, selectedTransform.localScale.x);
+                    center = new Vector3(selectedTransform.position.x, selectedTransform.position.y + 6.5f, selectedTransform.position.z);
+                    IHexGridCell tile = tileManager.hexTiling[gridPoint.X, gridPoint.Y];
+
+                    ISelectionComponent selectionComponent = tile.GetComponent<ISelectionComponent>();
+                    if (!(selectionComponent is null))
+                    {
+                        selectionComponent.Select();
+                    }
                 }
+            }
+            else
+            {
+                lastClicked = null;
+                lastClickedMaterial = null;
             }
         }
     }
