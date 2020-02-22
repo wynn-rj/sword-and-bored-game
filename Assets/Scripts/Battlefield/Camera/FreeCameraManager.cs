@@ -80,16 +80,19 @@ public class FreeCameraManager : MonoBehaviour
         if(frameRotate != 0f)
         {
             transform.Rotate(Vector3.up, frameRotate * Time.deltaTime * rotateSpeed);
+            frameRotate = 0f;
         }
 
         if(frameZoom < 0f)
         {
             zoomStrategy.ZoomIn(cam, Time.deltaTime * Mathf.Abs(frameZoom) * zoomSpeed, nearZoomLimit);
+            frameZoom = 0f;
         }
 
         if(frameZoom > 0f)
         {
-
+            zoomStrategy.ZoomOut(cam, Time.deltaTime *frameZoom * zoomSpeed, farZoomLimit);
+            frameZoom = 0f;
         }
 
     }
