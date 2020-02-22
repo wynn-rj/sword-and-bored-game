@@ -5,7 +5,7 @@ namespace SwordAndBored.GameData.Roles
 {
     public class Role : IRole
     {
-        public int ID { get; }
+        public int ID { get; set; }
         public IStats RoleStats { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
