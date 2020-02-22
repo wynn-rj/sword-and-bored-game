@@ -18,6 +18,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public TextMeshProUGUI text;
 
         public Image[] actionsLeft;
+        [HideInInspector]
+        public List<GameObject> enemies = new List<GameObject>();
+
+        public Canvas winCanvas;
 
         void Start()
         {
@@ -49,6 +53,26 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             {
                 actionsLeft[0].color = new Color(1, 0, 0, .2f);
             }
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if (enemies[i] == null)
+                {
+                    enemies.RemoveAt(i);
+                }
+            }
+
+            if (enemies.Count == 0)
+            {
+                WinCondition();
+            }
+
+        }
+
+        public void WinCondition()
+        {
+            winCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
+            Debug.Log("You Win!");
         }
     }
 }
