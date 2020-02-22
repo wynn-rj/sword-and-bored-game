@@ -17,8 +17,6 @@ namespace SwordAndBored.Battlefield
         public int stageDifficulty;
         public int numberOfEnemies;
 
-        List<GameObject> enemies = new List<GameObject>();
-
         public GameObject playerPrefab;
         public CameraManager camManager;
         public TurnManager turnManager;
@@ -43,6 +41,7 @@ namespace SwordAndBored.Battlefield
                 //camManager.cameras.Add(cam.gameObject);
                 //turnManager.units.Add(unit);
                 //turnManager.activePlayer = brain;
+                AbstractTurnBrain brain = GetComponent<AbstractTurnBrain>();
 
                 //UniqueCreature
                 uniqueCreature.creatureName = unitTable.Descriptor.Name;
@@ -73,7 +72,7 @@ namespace SwordAndBored.Battlefield
 
                 unit.transform.parent = unitHolder;
 
-                enemies.Add(unit);
+                turnManager.enemies.Add(unit);
                 numUnits += 2;
             }
         }
