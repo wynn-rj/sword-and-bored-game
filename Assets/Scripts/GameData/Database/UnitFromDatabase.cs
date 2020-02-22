@@ -28,6 +28,18 @@ namespace SwordAndBored.GameData.Database
                 reader.CloseReader();
                 conn.CloseConnection();
             }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Unit unit = new Unit(1);
+                IStats stats = unit.Stats;
+                stats.HP -= 1;
+                textBox.text = stats.Save().ToString();
+            }
+            if (Input.GetKeyDown(KeyCode.N)) {
+                IUnit unit = new Unit("Knight");
+                unit.Name = "Insert";
+                unit.Save();
+            }
         }
     }
 

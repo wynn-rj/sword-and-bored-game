@@ -32,6 +32,13 @@ namespace SwordAndBored.GameData.Database
             return new DatabaseReader(command.ExecuteReader());
         }
 
+        public int ExecuteNonQuery(string query)
+        {
+            SqliteCommand command = conn.CreateCommand();
+            command.CommandText = query;
+            return command.ExecuteNonQuery();
+        }
+
         public DatabaseReader QueryAllFromTable(string tableName)
         {
             SqliteCommand command = conn.CreateCommand();
@@ -59,7 +66,7 @@ namespace SwordAndBored.GameData.Database
         {
             SqliteCommand command = conn.CreateCommand();
             //Debug.Log(SelectAllFromString + tableName + WhereIDEqualsString + match);
-            command.CommandText = SelectAllFromString + tableName + " WHERE " + colName + " = " + match;
+            command.CommandText = SelectAllFromString + tableName + " WHERE " + colName + " = '" + match + "';";
             return new DatabaseReader(command.ExecuteReader());
         }
     }

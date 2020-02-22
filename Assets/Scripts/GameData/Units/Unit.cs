@@ -70,6 +70,47 @@ namespace SwordAndBored.GameData.Units
             conn.CloseConnection();
         }
 
+        public Unit(string RoleName)
+        {
+            ID = -1;
+            XP = 0;
+            Level = 1;
+
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInputStr("Roles", "Name", RoleName);
+            if (reader.NextRow())
+            {
+                int roleID = reader.GetIntFromCol("ID");
+                Role = new Role(roleID);
+
+                Stats = Role.RoleStats;
+                Name = "No name/Random Default";
+            } else
+            {
+                // Default role none matched
+                Role = new Role(0);
+
+                Stats = Role.RoleStats;
+            }
+        }
+
+        public int Save()
+        {
+            // New Entry
+            if (ID == -1)
+            {
+                string queryString = $"INSERT INTO Units (Name, Description, Flavor_Text, XP, Level, Stats_FK, Role_FK, Weapon_FK, Armor_FK, Spell_Book_FK) VALUES" +
+                    $"('{Name}', '{Description}' , '{FlavorText}', {XP}, {Level}, {Stats.ID}, {Role.ID}, {Weapon.ID}, {Armor.ID}, {SpellBook.ID})";
+                DatabaseConnection conn = new DatabaseConnection();
+                return conn.ExecuteNonQuery(queryString);
+
+            } else //Update
+            {
+
+            }
+            return -1;
+        }
+
         override public string ToString()
         {
             return "{Unit: " + ID + ", Descriptor: " + Name.ToString() + ", Role: " + Role

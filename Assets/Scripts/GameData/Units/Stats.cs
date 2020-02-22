@@ -37,6 +37,28 @@ namespace SwordAndBored.GameData.Units
             conn.CloseConnection();
         }
 
+        public int Save()
+        {
+            // New Entry
+            if (ID == -1)
+            {
+                string queryString = "INSERT INTO Stats (Physical_Attack, Physical_Defense, Magic_Attack, Magic_Defense, HP, Initiative, Movement, Evasion" +
+                    ", Accuracy) VALUES ";
+                queryString += "( " + Physical_Attack + ", " + Physical_Defense + ", " + Magic_Attack + ", " + Magic_Defense + ", " + HP + ", " +
+                    Initiative + ", " + Movement + ", " + Evasion + ", " + Accuracy + ");";
+                DatabaseConnection conn = new DatabaseConnection();
+                return conn.ExecuteNonQuery(queryString);
+            }
+            else //Update
+            {
+                string queryString = $"UPDATE Stats SET Physical_Attack = {Physical_Attack}, Physical_Defense = {Physical_Defense}, Magic_Attack = {Magic_Attack}" +
+                    $", Magic_Defense = {Magic_Defense}, HP = {HP}, Initiative = {Initiative}, Movement = {Movement}, Evasion = {Evasion}, Accuracy = {Accuracy}" +
+                    $" WHERE ID = {ID};";
+                DatabaseConnection conn = new DatabaseConnection();
+                return conn.ExecuteNonQuery(queryString);
+            }
+        }
+
         override public string ToString()
         {
             return "{Stats: " + ID + ", Physical_Attack: " + Physical_Attack + ", Physical_Defense: " + Physical_Defense + ", Magic_Attack: " + Magic_Attack 
