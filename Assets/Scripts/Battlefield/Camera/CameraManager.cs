@@ -32,7 +32,6 @@ namespace SwordAndBored.Battlefield.CameraUtilities
             SetPriority();
 
             if(cameraDetached == true) moveCamera();
-            if (cameraDetached == true) rotateCamera();
 
             if (cameraDetached == false && Input.GetKeyDown("space"))
             {
@@ -51,25 +50,20 @@ namespace SwordAndBored.Battlefield.CameraUtilities
 
         private void moveCamera()
         {
-            float translationZ = Input.GetAxis("Vertical") * freeCamSpeed;
-            float translationX = Input.GetAxis("Horizontal") * freeCamRotationSpeed;
+            float translation = Input.GetAxis("Vertical") * freeCamSpeed;
+            float rotation = Input.GetAxis("Horizontal") * freeCamRotationSpeed;
             
 
            
-            translationZ *= Time.deltaTime;
-            translationX *= Time.deltaTime;
+            translation *= Time.deltaTime;
+            rotation *= Time.deltaTime;
 
             
-            freeCam.transform.Translate(0, 0, translationZ);
-            freeCam.transform.Translate(translationX, 0, 0);
+            freeCam.transform.Translate(0, 0, translation);
+            freeCam.transform.Rotate(0, rotation, 0);
 
            
             //transform.Rotate(0, rotation, 0);
-        }
-
-        private void rotateCamera()
-        {
-
         }
 
         private void SetPriority()
