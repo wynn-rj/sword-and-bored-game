@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public abstract class InputManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public delegate void MoveInputHandler(Vector3 moveVector));
+    public delegate void RotateInputHandler(float rotateAmount);
+    public delegate void ZoomInputHandler(float zoomAmount);
 }
