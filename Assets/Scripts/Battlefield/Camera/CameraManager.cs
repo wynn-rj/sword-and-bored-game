@@ -27,13 +27,18 @@ namespace SwordAndBored.Battlefield.CameraUtilities
 
         void Update()
         {
-            if (Input.GetKeyDown("space"))
+            SetPriority();
+            if (Input.GetKeyDown("space") && cameraDetached == false)
             {
                 cameraDetached = true;
                 freeCam.Priority = priority + 1;
                 priority++;
+            } else if (Input.GetKeyDown("space") && cameraDetached == true)
+            {
+                cameraDetached = false;
             }
-            SetPriority();
+            
+           
         }
 
         private void SetPriority()
@@ -41,6 +46,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
             if (turnManager.activePlayer.GetCam().Priority < priority)
             {
                 turnManager.activePlayer.GetCam().Priority = priority + 1;
+                cameraDetached = false;
                 priority++;
             }
 
