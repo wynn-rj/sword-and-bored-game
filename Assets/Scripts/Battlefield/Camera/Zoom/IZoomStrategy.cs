@@ -1,18 +1,10 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IZoomStrategy : MonoBehaviour
+public interface IZoomStrategy
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void ZoomIn(CinemachineVirtualCamera cam, float delta, float nearZoomLimit);
+    void ZoomOut(CinemachineVirtualCamera cam, float delta, float farZoomLimit);
 }
