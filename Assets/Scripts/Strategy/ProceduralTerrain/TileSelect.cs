@@ -8,6 +8,9 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
     public class TileSelect : MonoBehaviour
     {
         public TileManager tileManager;
+        public Material material;
+        private GameObject lastClicked;
+        private Material lastClickedMaterial;
 
 #if DEBUG
         void Awake()
@@ -27,9 +30,15 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         void OnClick()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(!(lastClicked is null))
+            {
+                lastClicked.GetComponent<MeshRenderer>().material = lastClickedMaterial;
+            }
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-
+                lastClicked = hit.collider.gameObject;
+                lastClickedMaterial = lastClicked.GetComponent<MeshRenderer>().material;
+                lastClicked.GetComponent<MeshRenderer>().material = material;
                 Transform selectedTransform = hit.collider.gameObject.transform;
                 Point<int> gridPoint = HexPoint.GetPointFromCenter(selectedTransform.position.x, selectedTransform.position.z, selectedTransform.localScale.x);
                 IHexGridCell tile = tileManager.hexTiling[gridPoint.X, gridPoint.Y];
