@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class FreeCameraManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Camera Positioning")]
+    public Vector2 cameraOffset = new Vector2(10f, 14f);
+    public float lookAtOffset = 2f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Move Controls")]
+    public float inOutSpeed = 5f;
+    public float lateralSpeed = 5f;
+    public float rotateSpeed = 45f;
+
+    [Header("Movement Bounds")]
+    public Vector2 minBounds, maxBounds;
+
+    [Header("Zoom Controls")]
+    public float zoomSpeed = 4f;
+    public float nearZoomLimit = 2f;
+    public float farZoomLimit = 16f;
 }

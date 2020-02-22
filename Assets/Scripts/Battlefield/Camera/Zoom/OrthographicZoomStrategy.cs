@@ -5,13 +5,21 @@ using UnityEngine;
 
 public class OrthographicZoomStrategy : IZoomStrategy
 {
+
+    public OrthographicZoomStrategy(CinemachineVirtualCamera cam, float startingZoom)
+    {
+        cam.m_Lens.OrthographicSize = startingZoom;
+    }
+
     public void ZoomIn(CinemachineVirtualCamera cam, float delta, float nearZoomLimit)
     {
-        throw new System.NotImplementedException();
+        if (cam.m_Lens.OrthographicSize == nearZoomLimit) return;
+        cam.m_Lens.OrthographicSize = Mathf.Max(cam.m_Lens.OrthographicSize - delta, nearZoomLimit);
     }
 
     public void ZoomOut(CinemachineVirtualCamera cam, float delta, float farZoomLimit)
     {
-        throw new System.NotImplementedException();
+        if (cam.m_Lens.OrthographicSize == farZoomLimit) return;
+        cam.m_Lens.OrthographicSize = Mathf.Min(cam.m_Lens.OrthographicSize + delta, farZoomLimit);
     }
 }
