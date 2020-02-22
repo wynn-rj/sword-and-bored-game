@@ -37,7 +37,7 @@ namespace SwordAndBored.GameData.Database
                 textBox.text = stats.Save().ToString();
             }
             if (Input.GetKeyDown(KeyCode.K)) {
-                createNewUnit(); 
+                textBox.text = createNewUnit().ToString(); 
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
@@ -46,13 +46,14 @@ namespace SwordAndBored.GameData.Database
             }
         }
 
-        private static void createNewUnit()
+        private static int createNewUnit()
         {
             IUnit unit = new Unit("Knight")
             {
                 Name = "Insert"
             };
             unit.Save();
+            return unit.ID;
         }
     }
 
