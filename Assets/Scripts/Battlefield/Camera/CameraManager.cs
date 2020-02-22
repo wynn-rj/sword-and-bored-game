@@ -73,7 +73,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
 
             rotation *= Time.deltaTime;
 
-            freeCam.transform.Translate(0, rotation, 0);
+            freeCam.transform.Rotate(0, rotation, 0);
         }
 
         private void SetPriority()
