@@ -34,7 +34,7 @@ namespace SwordAndBored.Battlefield
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
                 UnitAbilitiesContainer abilities = unit.GetComponent<UnitAbilitiesContainer>();
                 UnitStats stats = unit.GetComponent<UnitStats>();
-                TurnBrain brain = unit.GetComponent<TurnBrain>();
+                BrainManager brain = unit.GetComponent<BrainManager>();
                 CinemachineVirtualCamera cam = uniqueCreature.currentCamera;
                 camManager.cameras.Add(cam.gameObject);
                 turnManager.units.Add(unit);

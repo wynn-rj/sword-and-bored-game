@@ -12,7 +12,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
     {
         [Header("Units")]
         public List<GameObject> units = new List<GameObject>();
-        public AbstractTurnBrain activePlayer;
+        public BrainManager activePlayer;
         [Header("UI")]
         TurnOrderController manager;
         public TextMeshProUGUI text;
@@ -26,16 +26,16 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         void Start()
         {
             manager = new TurnOrderController(units.ToArray(), new RandomShuffler<GameObject>());
-            activePlayer = manager.NextEntity().GetComponent<AbstractTurnBrain>();
+            activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
-            activePlayer.DoTurn();
+            activePlayer.isMyTurn = true;
         }
 
         public void nextTurn()
         {
-            activePlayer = manager.NextEntity().GetComponent<AbstractTurnBrain>();
+            activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
-            activePlayer.DoTurn();
+            activePlayer.isMyTurn = true;
         }
 
         void Update()
@@ -64,7 +64,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
             if (enemies.Count == 0)
             {
-                WinCondition();
+                //WinCondition();
             }
 
         }
