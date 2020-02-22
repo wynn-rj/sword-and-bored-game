@@ -1,8 +1,7 @@
 ﻿namespace SwordAndBored.GameData.Modifiers
 {
-    public interface IModifierDefense
+    public interface IModifierDefense : IDatabaseObject
     {
-        int ID { get; }
         int Fire_Resist { get; set; }
         int Posion_Resist { get; set; }
         int Bleed_Resist { get; set; }
