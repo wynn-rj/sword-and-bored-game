@@ -37,17 +37,22 @@ namespace SwordAndBored.GameData.Database
                 textBox.text = stats.Save().ToString();
             }
             if (Input.GetKeyDown(KeyCode.K)) {
-                IUnit unit = new Unit("Knight")
-                {
-                    Name = "Insert"
-                };
-                unit.Save();
+                createNewUnit(); 
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
                 IRole role = new Role(1);
                 textBox.text = role.RoleStats.ToString();
             }
+        }
+
+        private static void createNewUnit()
+        {
+            IUnit unit = new Unit("Knight")
+            {
+                Name = "Insert"
+            };
+            unit.Save();
         }
     }
 
