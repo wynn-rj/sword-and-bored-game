@@ -13,7 +13,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
         public TurnManager turnManager;
         public List<GameObject> cameras = new List<GameObject>();
         public CinemachineVirtualCamera freeCam;
-        private bool cameraDetached = false;
+        private bool cameraDetached;
         private int priority = 1;
 
         void Start()
