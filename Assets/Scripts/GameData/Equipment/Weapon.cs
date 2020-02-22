@@ -6,7 +6,7 @@ namespace SwordAndBored.GameData.Equipment
 {
     public class Weapon : IWeapon
     {
-        public int ID { get; }
+        public int ID { get; set; }
         public List<IAbility> Abilities { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

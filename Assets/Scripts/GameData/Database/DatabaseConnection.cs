@@ -70,16 +70,5 @@ namespace SwordAndBored.GameData.Database
             return new DatabaseReader(command.ExecuteReader());
         }
 
-        public string GetNullOrIDStringFromObject(Object obj)
-        {
-            if (obj == null)
-            {
-                return "null";
-            } else
-            {
-
-            }
-        }
-
     }
 }
