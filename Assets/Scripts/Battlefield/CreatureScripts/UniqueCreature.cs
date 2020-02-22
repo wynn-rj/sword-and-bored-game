@@ -20,6 +20,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         [Header("Virtual Camera Info")]
         public CinemachineVirtualCamera currentCamera;
         public Animator animator;
+        Outline outline;
         
 
         void Start()
@@ -29,6 +30,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             currentMat = GetComponent<Renderer>();
             abilityContainer = GetComponent<UnitAbilitiesContainer>();
             stats = GetComponent<UnitStats>();
+            outline = GetComponent<Outline>();
         }
 
 
@@ -42,14 +44,19 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             highlightColor = glow;
             if (glow == 1)
             {
-                currentMat.material = mat[1];
+                outline.OutlineColor = Color.blue;
+                outline.enabled = true;
+                //currentMat.material = mat[1];
             } else if (glow == 2)
             {
-                currentMat.material = mat[0];
+                outline.enabled = false;
+                //currentMat.material = mat[0];
             } else if (glow == 3) 
             {
                 b = a + Time.time;
-                currentMat.material = mat[2];
+                //currentMat.material = mat[2];
+                outline.OutlineColor = Color.red;
+                outline.enabled = true;
             }
         }
 
