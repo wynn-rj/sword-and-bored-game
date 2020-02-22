@@ -31,21 +31,21 @@ public class KeyboardInputManager : InputManager
         //Camera Rotation
         if (Input.GetKey(KeyCode.Q))
         {
-            OnRotateInput?.Invoke(1f);
+            OnRotateInput?.Invoke(-1f);
         }
         if (Input.GetKey(KeyCode.E))
         {
-            OnRotateInput?.Invoke(-1f);
+            OnRotateInput?.Invoke(1f);
         }
 
         //Camera Zoom
         if (Input.GetKey(KeyCode.Z))
         {
-            OnRotateInput?.Invoke(-1f);
+            OnZoomInput?.Invoke(-1f);
         }
         if (Input.GetKey(KeyCode.X))
         {
-            OnRotateInput?.Invoke(1f);
+            OnZoomInput?.Invoke(1f);
         }
     }
 }
