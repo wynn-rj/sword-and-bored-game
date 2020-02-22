@@ -33,6 +33,11 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             }
         }
 
+        public void AddPostTimeStepSubscriber(IPostTimeStepSubscriber postTimeStepSubscriber)
+        {
+            PostTimeStepSubscribers.Add(postTimeStepSubscriber);
+        }
+
         public void OnDestroy()
         {
             SceneSharing.timeStep = TimeStep;
