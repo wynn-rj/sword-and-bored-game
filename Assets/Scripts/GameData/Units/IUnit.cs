@@ -5,9 +5,8 @@ using SwordAndBored.GameData.Roles;
 
 namespace SwordAndBored.GameData.Units
 {
-    public interface IUnit : IDescriptable
+    public interface IUnit : IDescriptable, IDatabaseObject
     {
-        int ID { get; }
         /// <summary>
         /// A container of all stats a creature has
         /// </summary>

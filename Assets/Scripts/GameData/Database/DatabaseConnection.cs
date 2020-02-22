@@ -69,5 +69,17 @@ namespace SwordAndBored.GameData.Database
             command.CommandText = SelectAllFromString + tableName + " WHERE " + colName + " = '" + match + "';";
             return new DatabaseReader(command.ExecuteReader());
         }
+
+        public string GetNullOrIDStringFromObject(Object obj)
+        {
+            if (obj == null)
+            {
+                return "null";
+            } else
+            {
+
+            }
+        }
+
     }
 }
