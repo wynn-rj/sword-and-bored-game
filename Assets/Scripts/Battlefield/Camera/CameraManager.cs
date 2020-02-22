@@ -24,6 +24,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
             for (int i = 0; i < cameras.Count; i++)
             {
                 cameras[i].GetComponent<CinemachineVirtualCamera>().Priority = 0;
+                freeCam.Priority = 0;
             }
         }
 
