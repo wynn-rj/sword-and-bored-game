@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using SwordAndBored.Strategy.ProceduralTerrain;
+using SwordAndBored.Strategy.TimeSystem.TimeManager;
+using SwordAndBored.Strategy.TimeSystem.Subscribers;
 
 
 namespace SwordAndBored.StrategyView.Movement
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMove : MonoBehaviour, IPostTimeStepSubscriber
     {
         public TileManager tileManager;
         public Material selectedMaterial;
+        public TimeTrackingTimeManager turnManager;
 
         Vector3 targetPosition;
         Vector3 lookAtTarget;
@@ -18,8 +21,15 @@ namespace SwordAndBored.StrategyView.Movement
         float rotSpeed = 5;
         float speed = 10;
         bool moving = false;
+
+        bool usedMoveThisTurn = false;
         
         public Material defaultMaterial;
+
+        void Start()
+        {
+            turnManager.AddPostTimeStepSubscriber(this);
+        }
 
         void Update()
         {
@@ -39,10 +49,7 @@ namespace SwordAndBored.StrategyView.Movement
 
             if(Physics.Raycast(ray, out RaycastHit hit) && hit.collider.gameObject == this.gameObject)
             {
-                //if(hit.collider.gameObject == this.gameObject)
-                //{
-                    this.GetComponent<MeshRenderer>().material = selectedMaterial;
-                //}
+                this.GetComponent<MeshRenderer>().material = selectedMaterial;
             }
         }
 
@@ -51,11 +58,15 @@ namespace SwordAndBored.StrategyView.Movement
         /// </summary>
         public void SetTargetPosition()
         {
+            this.GetComponent<MeshRenderer>().material = defaultMaterial;
+
             //New logic needed here, something to keep the target from being a null reference
-            if(tileManager.GetComponent<TileSelect>().center != new Vector3(-50f,-50f,-50f))
+            if (tileManager.GetComponent<TileSelect>().center != new Vector3(-50f,-50f,-50f) && !usedMoveThisTurn)
             {
                 targetPosition = tileManager.GetComponent<TileSelect>().center;
                 this.GetComponent<Rigidbody>().isKinematic = false;
+
+                usedMoveThisTurn = true;
 
                 this.transform.LookAt(targetPosition);
                 lookAtTarget = new Vector3(targetPosition.x - transform.position.x, transform.position.y, targetPosition.z - transform.position.z);
@@ -84,8 +95,12 @@ namespace SwordAndBored.StrategyView.Movement
             {
                 moving = false;
                 this.GetComponent<Rigidbody>().isKinematic = true;
-                this.GetComponent<MeshRenderer>().material = defaultMaterial;
             }
+        }
+
+        public void PostTimeStepUpdate()
+        {
+            usedMoveThisTurn = false;
         }
 
     }
