@@ -15,6 +15,8 @@ namespace SwordAndBored.Battlefield.CameraUtilities
         public CinemachineVirtualCamera freeCam;
         public bool cameraDetached = false;
         private int priority = 1;
+        public float freeCamSpeed = 10f;
+        public float freeCamRotationSpeed = 10f;
 
         void Start()
         {
@@ -28,6 +30,10 @@ namespace SwordAndBored.Battlefield.CameraUtilities
         void Update()
         {
             SetPriority();
+
+            if(cameraDetached == true) moveCamera();
+            if (cameraDetached == true) rotateCamera();
+
             if (cameraDetached == false && Input.GetKeyDown("space"))
             {
                 cameraDetached = true;
@@ -39,8 +45,31 @@ namespace SwordAndBored.Battlefield.CameraUtilities
                 panToActivePlayer();
                 
             }
-            
+
            
+        }
+
+        private void moveCamera()
+        {
+            float translationZ = Input.GetAxis("Vertical") * freeCamSpeed;
+            float translationX = Input.GetAxis("Horizontal") * freeCamRotationSpeed;
+            
+
+           
+            translationZ *= Time.deltaTime;
+            translationX *= Time.deltaTime;
+
+            
+            freeCam.transform.Translate(0, 0, translationZ);
+            freeCam.transform.Translate(translationX, 0, 0);
+
+           
+            //transform.Rotate(0, rotation, 0);
+        }
+
+        private void rotateCamera()
+        {
+
         }
 
         private void SetPriority()
