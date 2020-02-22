@@ -53,8 +53,6 @@ namespace SwordAndBored.Battlefield.CameraUtilities
         {
             float translationZ = Input.GetAxis("Vertical") * freeCamSpeed;
             float translationX = Input.GetAxis("Horizontal") * freeCamSpeed;
-            
-
            
             translationZ *= Time.deltaTime;
             translationX *= Time.deltaTime;
