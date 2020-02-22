@@ -45,7 +45,7 @@ namespace SwordAndBored.Battlefield.CameraUtilities
         {
             if (turnManager.activePlayer.GetCam().Priority < priority)
             {
-                panToActivePlayer;
+                panToActivePlayer();
                 cameraDetached = false;
                 priority++;
             }
