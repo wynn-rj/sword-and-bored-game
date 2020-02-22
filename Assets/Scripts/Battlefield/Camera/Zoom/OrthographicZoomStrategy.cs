@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
-public class OrthographicZoomStrategy : MonoBehaviour
+public class OrthographicZoomStrategy : IZoomStrategy
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ZoomIn(CinemachineVirtualCamera cam, float delta, float nearZoomLimit)
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ZoomOut(CinemachineVirtualCamera cam, float delta, float farZoomLimit)
     {
-        
+        throw new System.NotImplementedException();
     }
 }
