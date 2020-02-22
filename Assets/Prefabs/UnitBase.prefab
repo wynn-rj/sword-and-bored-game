@@ -1548,8 +1548,9 @@ GameObject:
   - component: {fileID: 3159141201095183990}
   - component: {fileID: 3159141201095183993}
   - component: {fileID: 3159141201095183992}
-  - component: {fileID: 3159141201095183985}
   - component: {fileID: 3937382823411707643}
+  - component: {fileID: 8952629536436544386}
+  - component: {fileID: 6172309547988230493}
   m_Layer: 10
   m_Name: UnitBase
   m_TagString: Untagged
@@ -1753,27 +1754,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3159141201686037837}
---- !u!114 &3159141201095183985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3159141201095183994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeaa5aebf52949845bb2d288f2ae5e12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileIndictor: {fileID: 0}
-  tileMapLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  selectingCreaturesLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  startCoordinates: {x: 0, y: 0}
-  isMyTurn: 0
 --- !u!114 &3937382823411707643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,6 +1772,50 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!95 &8952629536436544386
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3159141201095183994}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 869363281f44a3043aff2727f9b68644, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6172309547988230493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3159141201095183994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a183cd50fa54344488323417f6fd811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileIndictor: {fileID: 0}
+  tileMapLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  selectingCreaturesLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  indicatorRend: {fileID: 0}
+  cam: {fileID: 0}
+  startCoordinates: {x: 0, y: 0}
+  creature: {fileID: 0}
+  isMyTurn: 0
+  outline: {fileID: 0}
 --- !u!1 &3159141201137843270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,7 +2485,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159141201642896363}
-  m_LocalRotation: {x: 0.3050796, y: -0.36978054, z: 0.1299796, w: 0.8679252}
+  m_LocalRotation: {x: 0.30507964, y: -0.36978045, z: 0.12997949, w: 0.8679252}
   m_LocalPosition: {x: 8.11, y: 10.05, z: -7.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

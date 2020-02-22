@@ -21,12 +21,14 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public CinemachineVirtualCamera currentCamera;
         public Animator animator;
         Outline outline;
+        [HideInInspector]
+        BrainManager brain;
         
 
         void Start()
         {
             health = maxHealth;
-
+            brain = GetComponent<BrainManager>();
             currentMat = GetComponent<Renderer>();
             abilityContainer = GetComponent<UnitAbilitiesContainer>();
             stats = GetComponent<UnitStats>();
@@ -60,11 +62,23 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             }
         }
 
+        public void hightlight()
+        {
+            b = a + Time.time;
+            outline.OutlineColor = Color.red;
+            outline.enabled = true;
+        }
+
         private void Update()
         {
             if (highlightColor == 3 && Time.time > b)
             {
-                Glow(2);
+                //Glow(2);
+            }
+
+            if (!brain.isMyTurn && Time.time > b)
+            {
+                outline.enabled = false;
             }
 
             animator.SetFloat("Speed", (agent.velocity.magnitude / 3.5f));

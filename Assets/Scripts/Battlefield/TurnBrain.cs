@@ -12,6 +12,7 @@ namespace SwordAndBored.Battlefield
     public class TurnBrain : AbstractTurnBrain
     {
         [Header("Tilemaps")]
+        [HideInInspector]
         public GameObject tileIndictor;
         public LayerMask tileMapLayerMask;
         [Header("Player Selection")]
@@ -23,6 +24,7 @@ namespace SwordAndBored.Battlefield
         Renderer indicatorRend;
         Camera cam;
 
+        [HideInInspector]
         public Vector2 startCoordinates;
         UniqueCreature creature;
 
