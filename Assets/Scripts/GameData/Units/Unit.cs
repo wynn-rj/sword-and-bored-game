@@ -97,7 +97,7 @@ namespace SwordAndBored.GameData.Units
             conn.CloseConnection();
         }
 
-        public int Save()
+        public bool Save()
         {
             // New Entry
             if (ID == -1)
@@ -107,13 +107,24 @@ namespace SwordAndBored.GameData.Units
                     $", {XP}, {Level}, {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}," +
                     $" {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)})";
                 DatabaseConnection conn = new DatabaseConnection();
-                return conn.ExecuteNonQuery(queryString);
+                conn.ExecuteNonQuery(queryString);
+                DatabaseReader reader = conn.ExecuteQuery("SELECT * FROM Units ORDER BY ID Desc LIMIT 1;");
+                reader.NextRow();
+                ID = reader.GetIntFromCol("ID");
+                reader.CloseReader();
+                conn.CloseConnection();
+                return true;
 
             } else //Update
             {
-
+                string queryString = $"SET Units Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}," +
+                    $" XP = {XP}, Level = {Level}, Stats_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, Role_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, Weapon_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}" +
+                    $", Armor_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, Spell_Book_FK = {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)} WHERE ID = {ID};";
+                DatabaseConnection conn = new DatabaseConnection();
+                conn.ExecuteNonQuery(queryString);
+                conn.CloseConnection();
+                return true;
             }
-            return -1;
         }
 
         override public string ToString()

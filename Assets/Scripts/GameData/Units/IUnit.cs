@@ -32,6 +32,6 @@ namespace SwordAndBored.GameData.Units
         int XP { get; set; }
         int Level { get; }
 
-        int Save();
+        bool Save();
     }
 }
