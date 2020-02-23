@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Strategy.GameResources;
+using SwordAndBored.Strategy.ProceduralTerrain;
 
 namespace SwordAndBored.Strategy.InteractiveObjects
 {
-    public class GoldCity : MonoBehaviour, IInteractiveObject
+    public class GoldCity : MonoBehaviour
     {
-        public Gold gold;
+        //public TileManager tileManager;
 
         public void addGold()
         {
-            gold.Amount += 100;
+            //tileManager.gold.Amount += 100;
         }
-
-        //collision detection in here or on player to call addGold() method
-        //This class can be reworked to add other resource/item additions if needed
     }
 }
