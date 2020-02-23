@@ -3,6 +3,7 @@ using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Database;
 using System.Collections.Generic;
 using SwordAndBored.GameData.Abilities;
+using UnityEngine;
 
 namespace SwordAndBored.GameData.Units
 {
@@ -67,6 +68,20 @@ namespace SwordAndBored.GameData.Units
             }
             reader.CloseReader();
             conn.CloseConnection();
+        }
+
+        public static IEnemy GetEnemyFromTier(int tierInput)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Enemies", "Tier", tierInput);
+            List<IEnemy> enemiesFromTier = new List<IEnemy>();
+            while (reader.NextRow())
+            {
+                int enemyID = reader.GetIntFromCol("ID");
+                enemiesFromTier.Add(new Enemy(enemyID));
+            }
+            int randomIndex = Random.Range(0, enemiesFromTier.Count);
+            return enemiesFromTier[randomIndex];
         }
 
         override public string ToString()
