@@ -51,6 +51,7 @@ namespace SwordAndBored.Battlefield
                 uniqueCreature.creatureName = unitTable.Descriptor.Name;
                 uniqueCreature.maxHealth = unitTable.Stats.HP;
                 uniqueCreature.maxMovement = unitTable.Stats.Movement;
+                uniqueCreature.isEnemy = true;
 
                 //abilities
                 for (int j = 0; j < 5; j++)

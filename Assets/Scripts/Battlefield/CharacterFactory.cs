@@ -45,7 +45,7 @@ namespace SwordAndBored.Battlefield
                 turnManager.units.Add(unit);
                 turnManager.playerUnits.Add(unit);
                 turnManager.activePlayer = brain;
-
+                uniqueCreature.isEnemy = false;
 
                 //UniqueCreature
                 uniqueCreature.creatureName = unitTable.Name;
