@@ -15,12 +15,36 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         [HideInInspector]
         public Tile currentTile;
 
-    
+        [Header("Creature Info")]
+        public string creatureName;
+        public int maxHealth;
+        public int health;
+        public Animator anim;
+
+        [HideInInspector]
+        public bool action = true;
+
+        public int maxMovement;
+        int movement;
+
+
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
         }
-    
+
+        void Start()
+        {
+            health = maxHealth;
+            movement = maxMovement;
+        }
+
+        public void StartTurn()
+        {
+            action = true;
+            movement = maxMovement;
+        }
+
 
         protected void MoveTo(Vector3 pos)
         {
@@ -36,6 +60,23 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         {
             currentTile = tile;
             tile.unitOnTile = this.gameObject;
+        }
+
+        void Update()
+        {
+            if (health <= 0)
+            {
+                Destroy(transform.gameObject);
+            }
+        }
+
+        public void Damage(int damage)
+        {
+            health -= damage;
+            if (health <= 0)
+            {
+                Destroy(transform.gameObject);
+            }
         }
     }
 }
