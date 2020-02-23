@@ -26,19 +26,18 @@ namespace SwordAndBored.Strategy.GameResources
 
         public void AddSubscriber(IResourceSubscriber resourceSubscriber)
         {
-            if (resourceSubscriber is null || Subscribers.Contains(resourceSubscriber))
+            if(resourceSubscriber != null)
             {
-                return;
+                Subscribers.Add(resourceSubscriber);
             }
-            Subscribers.Add(resourceSubscriber);
         }
 
         void UpdateSubscribers()
         {
-            /*foreach (IResourceSubscriber rs in Subscribers)
+            foreach (IResourceSubscriber rs in Subscribers)
             {
                 rs.UpdateAmount();
-            }*/
+            }
         }
     }
 }

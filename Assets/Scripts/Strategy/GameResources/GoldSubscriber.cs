@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SwordAndBored.Strategy.GameResources
 {
-    public class ResourceSubscriber : MonoBehaviour, IResourceSubscriber
+    public class GoldSubscriber : MonoBehaviour, IResourceSubscriber
     {
         public Gold resource;
         public int Amount { get; set; }
@@ -12,12 +12,8 @@ namespace SwordAndBored.Strategy.GameResources
 
         void Start()
         {
-            if(this is null)
-            {
-                return;
-            }
+            resource.Subscribers = new List<IResourceSubscriber>();
             resource.AddSubscriber(this);
-            Debug.Log("Added this to RS List");
         }
 
         public void UpdateAmount()
