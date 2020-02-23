@@ -578,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 404240875}
   material: {fileID: 2100000, guid: f98b41d9a1c5ce040b8f1600dbe3d8a9, type: 2}
-  center: {x: 0, y: 0, z: 0}
+  tilePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &587908560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
