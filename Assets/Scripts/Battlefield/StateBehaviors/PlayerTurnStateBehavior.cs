@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Battlefield;
+using UnityEngine.EventSystems;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
@@ -33,6 +34,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         brain.outline.OutlineColor = Color.blue;
         Ray ray = brain.cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
         if (Physics.Raycast(ray, out hit, 100, brain.tileMapLayerMask))
         {
             Tile currentTile = hit.collider.GetComponent<Tile>();
@@ -40,7 +42,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
 
             if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
             {
-                //if (EventSystem.current.IsPointerOverGameObject()) return;
+                if (EventSystem.current.IsPointerOverGameObject()) return;
                 brain.creature.Move(currentTile);
             }
         }
