@@ -24,7 +24,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public Canvas winCanvas;
 
-        
+        public Canvas hotbar;
 
         void Start()
         {
@@ -55,6 +55,14 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             else
             {
                 actionsLeft[0].color = new Color(1, 0, 0, .2f);
+            }
+
+            if (activePlayer.creature.isEnemy)
+            {
+                hotbar.enabled = false;
+            } else
+            {
+                hotbar.enabled = true;
             }
 
             for (int i = 0; i < enemies.Count; i++)

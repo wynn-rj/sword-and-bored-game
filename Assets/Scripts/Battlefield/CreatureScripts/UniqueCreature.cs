@@ -23,6 +23,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         Outline outline;
         [HideInInspector]
         BrainManager brain;
+        public bool isEnemy;
         
 
         void Start()
