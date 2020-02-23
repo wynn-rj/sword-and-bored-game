@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SwordAndBored.Strategy.GameResources
 {
     public class ResourceDisplay : MonoBehaviour
     {
-        public ResourceSubscriber resourceSubscriber;
-        public Text text;
+        public Text textToDisplay;
 
-        void UpdateDisplay()
+        public void UpdateDisplay(int amount)
         {
-            text.text = "Gold: " + ResourceSubscriber.Amount();
+            textToDisplay.text = "Gold: " + amount;
         }
     }
 }
