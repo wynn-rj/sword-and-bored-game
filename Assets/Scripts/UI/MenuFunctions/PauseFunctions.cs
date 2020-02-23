@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using SwordAndBored.SceneManagement;
 
 namespace SwordAndBored.UI.MenuFunctions
 {
@@ -34,16 +35,16 @@ namespace SwordAndBored.UI.MenuFunctions
             if (Input.GetKeyDown(KeyCode.M))
             {
                 string name = SceneManager.GetActiveScene().name;
-                if (name.Equals("BaseManagement"))
+                if (name.Equals(GameScenes.BASEVIEW))
                 {
-                    SceneManager.LoadScene("StrategyMap");
+                    SceneManager.LoadScene(GameScenes.STRATEGYMAP);
                 } else
                 {
-                    SceneManager.LoadScene("BaseManagement");
+                    SceneManager.LoadScene(GameScenes.BASEVIEW);
                 }
             } else if (Input.GetKeyDown(KeyCode.N))
             {
-                SceneManager.LoadScene("AddStatsUI");
+                SceneManager.LoadScene(GameScenes.BATTLEFIELD);
             } else if (Input.GetKeyDown(KeyCode.L))
             {
                 SceneManager.LoadScene("DatabaseTesting");
@@ -59,7 +60,7 @@ namespace SwordAndBored.UI.MenuFunctions
 
         public void ReturnMainPressed()
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(GameScenes.MAINMENU);
         }
 
         public void SaveGamePressed()
