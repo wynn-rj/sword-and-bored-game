@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace SwordAndBored.Strategy.GameResources
 {
-    public class Payment : IPayment
+    public interface IResourceSubscriber
     {
-        public IResource resourceType { get; set; }
-        public int cost { get; set; }
+        Resource Resource { get; set; }
+        int Amount { get; set; }
     }
 }

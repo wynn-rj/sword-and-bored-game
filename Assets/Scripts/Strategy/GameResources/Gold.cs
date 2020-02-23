@@ -2,41 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SwordAndBored.StrategyView.GameResources
+namespace SwordAndBored.Strategy.GameResources
 {
-    public class Gold : IResource
+    public class Gold : MonoBehaviour, IResource
     {
+        List<IResourceSubscribers> Subscribers { get; set; }
         //The amount of gold currently available to the player
-        public int amount { get; set; }
-        
-        public Gold(int amount)
-        {
-            this.amount = amount;
+        public int Amount 
+        { 
+            get { return mAmount; }
+            set
+            {
+                mAmount = value;
+                UpdateSubscribers();
+            }
         }
+        int mAmount;
 
-        /**
-         * Returns true if the player has enough gold to afford the purchase 
-         */
         public bool CanAffordPurchase(IPayment payment)
         {
-            if (payment.cost <= amount)
+            return payment.cost <= amount;
+        }
+
+        public void AddSubscriber()
+        {
+
+        }
+
+        void UpdateSubscribers()
+        {
+            foreach (IResourceSubscriber rs in Subscribers)
             {
-                return true;
+                rs.UpdateAmount();
             }
-            return false;
-        }
-
-        /**
-         * Completes the purchase by subtracting the amount of gold neccessary
-         */
-        public void Purchase(IPayment payment)
-        {
-            this.amount -= payment.cost;
-        }
-
-        public void addResource(int amountToAdd)
-        {
-            this.amount += amountToAdd;
         }
     }
 }
