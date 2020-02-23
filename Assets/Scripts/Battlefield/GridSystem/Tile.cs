@@ -10,4 +10,9 @@ public class Tile : MonoBehaviour
     [HideInInspector]
     public Vector2 CoordinatesOnGrid { get; set; }
     public Vector3 CenterPosition { get { return transform.position; } }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other + "collided into tile " + CoordinatesOnGrid);
+    }
 }
