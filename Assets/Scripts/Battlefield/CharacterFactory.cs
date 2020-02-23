@@ -43,6 +43,7 @@ namespace SwordAndBored.Battlefield
                 anim.runtimeAnimatorController = currentAi;
                 camManager.cameras.Add(cam.gameObject);
                 turnManager.units.Add(unit);
+                turnManager.playerUnits.Add(unit);
                 turnManager.activePlayer = brain;
 
 

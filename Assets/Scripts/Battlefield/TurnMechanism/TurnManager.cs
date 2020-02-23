@@ -12,6 +12,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
     {
         [Header("Units")]
         public List<GameObject> units = new List<GameObject>();
+        public List<GameObject> playerUnits = new List<GameObject>();
         public BrainManager activePlayer;
         [Header("UI")]
         TurnOrderController manager;
@@ -22,6 +23,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public List<GameObject> enemies = new List<GameObject>();
 
         public Canvas winCanvas;
+
+        
 
         void Start()
         {
