@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
-    public class UniqueCreature : CreatureBase
+    public class UniqueCreature : UnitBase
     {
         [Header("Material Info")]
         public Material[] mat;

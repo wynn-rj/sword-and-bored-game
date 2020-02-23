@@ -9,13 +9,13 @@ namespace SwordAndBored.UI.Battlefield
     public class HealthBar : MonoBehaviour
     {
 
-        CreatureBase unit;
+        UnitBase unit;
         public Slider healthBar;
         float healthRatio;
     
         void Start()
         {
-            unit = GetComponentInParent<CreatureBase>();
+            unit = GetComponentInParent<UnitBase>();
         }
 
     

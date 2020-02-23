@@ -21,8 +21,9 @@ namespace SwordAndBored.Battlefield
         public CameraManager camManager;
         public TurnManager turnManager;
         public Transform unitHolder;
-        
-        void Start()
+        public GameObject indicator;
+
+        void Awake()
         {
             //Database connection goes here
             DatabaseConnection conn = new DatabaseConnection();
@@ -36,12 +37,14 @@ namespace SwordAndBored.Battlefield
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
                 UnitAbilitiesContainer abilities = unit.GetComponent<UnitAbilitiesContainer>();
                 UnitStats stats = unit.GetComponent<UnitStats>();
-                //TurnBrain brain = unit.GetComponent<TurnBrain>();
                 CinemachineVirtualCamera cam = uniqueCreature.currentCamera;
-                //camManager.cameras.Add(cam.gameObject);
-                //turnManager.units.Add(unit);
-                //turnManager.activePlayer = brain;
-                AbstractTurnBrain brain = GetComponent<AbstractTurnBrain>();
+                BrainManager brain = unit.GetComponent<BrainManager>();
+                camManager.cameras.Add(cam.gameObject);
+                turnManager.units.Add(unit);
+                turnManager.activePlayer = brain;
+                Animator anim = unit.GetComponent<Animator>();
+                RuntimeAnimatorController currentAi = Resources.Load<RuntimeAnimatorController>("Ai/StrikerBrain");
+                anim.runtimeAnimatorController = currentAi;
 
                 //UniqueCreature
                 uniqueCreature.creatureName = unitTable.Descriptor.Name;
@@ -67,8 +70,8 @@ namespace SwordAndBored.Battlefield
                 stats.role = unitTable.Role.Descriptor.Name;
 
                 //brain
-                //brain.tileIndictor = indicator;
-                //sbrain.startCoordinates = new Vector2(numUnits, 5);
+                brain.tileIndictor = indicator;
+                brain.startCoordinates = new Vector2(numUnits, 10);
 
                 unit.transform.parent = unitHolder;
 
