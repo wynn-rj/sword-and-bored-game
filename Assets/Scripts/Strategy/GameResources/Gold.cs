@@ -42,10 +42,10 @@ namespace SwordAndBored.Strategy.GameResources
 
         void UpdateSubscribers()
         {
-            foreach (IResourceSubscriber rs in Subscribers)
+            /*foreach (IResourceSubscriber rs in Subscribers)
             {
                 rs.UpdateAmount();
-            }
+            }*/
         }
     }
 }
