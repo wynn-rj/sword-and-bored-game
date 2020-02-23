@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SwordAndBored.Strategy.InteractiveObjects;
 
 namespace SwordAndBored.Strategy.GameResources
 {
     public class TestGoldDisplay : MonoBehaviour
     {
         public Gold gold;
+        public City city;
         int count = 0;
 
         void Update()
@@ -14,9 +16,10 @@ namespace SwordAndBored.Strategy.GameResources
             count++;
             if (count > 16)
             {
-                gold.Amount = gold.Amount + 1;
+                gold.Amount += 1;
                 Debug.Log("Gold: " + gold.Amount);
                 count = 0;
+                city.addGold();
             }
         }
     }
