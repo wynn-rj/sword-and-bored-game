@@ -18,6 +18,8 @@ namespace SwordAndBored.Battlefield
         [Header("Player Selection")]
         public LayerMask selectingCreaturesLayerMask;
 
+        public TurnManager manager;
+
         bool movingState = true;
         [HideInInspector]
         public Renderer indicatorRend;
