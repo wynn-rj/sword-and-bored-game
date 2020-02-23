@@ -2,28 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SwordAndBored.StrategyView.GameResources
+namespace SwordAndBored.Strategy.GameResources
 {
-
-
     public interface IResource
     {
+        List<IResourceSubscriber> Subscribers { get; set; }
         //The amount of resource you have
-        int amount { get; set; }
+        int Amount { get; set; }
 
         /**
          * returns true if the Purchase can be afforded
          */
         bool CanAffordPurchase(IPayment payment);
-
-        /**
-         * completes the purchase
-         */ 
-        void Purchase(IPayment payment);
-
-        /**
-         * adds specified amount of resource to current amount
-         */
-        void addResource(int amountToAdd);
     }
 }

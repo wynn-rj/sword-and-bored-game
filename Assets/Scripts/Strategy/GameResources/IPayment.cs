@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-namespace SwordAndBored.StrategyView.GameResources
+namespace SwordAndBored.Strategy.GameResources
 {
     public interface IPayment
     {
