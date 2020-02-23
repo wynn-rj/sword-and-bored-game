@@ -5,7 +5,7 @@ using SwordAndBored.Strategy.GameResources;
 
 namespace SwordAndBored.Strategy.InteractiveObjects
 {
-    public class City : MonoBehaviour, IInteractiveObject
+    public class GoldCity : MonoBehaviour, IInteractiveObject
     {
         public Gold gold;
 
