@@ -13,6 +13,6 @@ public class Tile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other + "collided into tile " + CoordinatesOnGrid);
+        Debug.Log(other + "collided into tile " + transform.position + "  :  " + CoordinatesOnGrid);
     }
 }
