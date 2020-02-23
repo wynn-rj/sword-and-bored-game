@@ -25,13 +25,9 @@ namespace SwordAndBored.Battlefield
 
         void Awake()
         {
-            //Database connection goes here
-            DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryAllFromTable("Units");
-            int numUnits = 0;
-            while (reader.NextRow())
+            for(int numUnits=0; numUnits < 3; numUnits++)
             {
-                Unit unitTable = new Unit(reader.GetIntFromCol("ID"));
+                IEnemy enemyData = Enemy.GetEnemyFromTier(1);
 
                 GameObject unit = Instantiate(playerPrefab, new Vector3(numUnits, 1.5f, 5), Quaternion.identity);
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
@@ -48,28 +44,22 @@ namespace SwordAndBored.Battlefield
                 brain.manager = turnManager;
 
                 //UniqueCreature
-                uniqueCreature.creatureName = unitTable.Name;
-                uniqueCreature.maxHealth = unitTable.Stats.HP;
-                uniqueCreature.maxMovement = unitTable.Stats.Movement;
+                uniqueCreature.creatureName = enemyData.Name;
+                uniqueCreature.maxHealth = enemyData.Stats.HP;
+                uniqueCreature.maxMovement = enemyData.Stats.Movement;
                 uniqueCreature.isEnemy = true;
 
-                //abilities
-                for (int j = 0; j < 5; j++)
-                {
-                    //abilities.abilities.add();
-                }
 
                 //stats
-                stats.health = unitTable.Stats.HP;
-                stats.attack = unitTable.Stats.Physical_Attack;
-                stats.magicAttack = unitTable.Stats.Magic_Attack;
-                stats.defense = unitTable.Stats.Physical_Defense;
-                stats.magicDefense = unitTable.Stats.Magic_Defense;
-                stats.movement = unitTable.Stats.Movement;
-                stats.speedIntit = unitTable.Stats.Initiative;
-                stats.accuracy = unitTable.Stats.Accuracy;
-                stats.evasion = unitTable.Stats.Evasion;
-                stats.role = unitTable.Role.Name;
+                stats.health = enemyData.Stats.HP;
+                stats.attack = enemyData.Stats.Physical_Attack;
+                stats.magicAttack = enemyData.Stats.Magic_Attack;
+                stats.defense = enemyData.Stats.Physical_Defense;
+                stats.magicDefense = enemyData.Stats.Magic_Defense;
+                stats.movement = enemyData.Stats.Movement;
+                stats.speedIntit = enemyData.Stats.Initiative;
+                stats.accuracy = enemyData.Stats.Accuracy;
+                stats.evasion = enemyData.Stats.Evasion;
 
                 //brain
                 brain.tileIndictor = indicator;
@@ -78,7 +68,6 @@ namespace SwordAndBored.Battlefield
                 unit.transform.parent = unitHolder;
 
                 turnManager.enemies.Add(unit);
-                numUnits += 2;
             }
         }
         
