@@ -6,7 +6,7 @@ namespace SwordAndBored.Strategy.GameResources
 {
     public class Gold : MonoBehaviour, IResource
     {
-        List<IResourceSubscribers> Subscribers { get; set; }
+        public List<IResourceSubscriber> Subscribers { get; set; }
         //The amount of gold currently available to the player
         public int Amount 
         { 
@@ -21,20 +21,24 @@ namespace SwordAndBored.Strategy.GameResources
 
         public bool CanAffordPurchase(IPayment payment)
         {
-            return payment.cost <= amount;
+            return payment.cost <= mAmount;
         }
 
-        public void AddSubscriber()
+        public void AddSubscriber(IResourceSubscriber resourceSubscriber)
         {
-
+            if (resourceSubscriber is null || Subscribers.Contains(resourceSubscriber))
+            {
+                return;
+            }
+            Subscribers.Add(resourceSubscriber);
         }
 
         void UpdateSubscribers()
         {
-            foreach (IResourceSubscriber rs in Subscribers)
+            /*foreach (IResourceSubscriber rs in Subscribers)
             {
                 rs.UpdateAmount();
-            }
+            }*/
         }
     }
 }
