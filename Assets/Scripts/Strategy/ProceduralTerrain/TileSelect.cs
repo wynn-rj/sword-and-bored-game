@@ -10,7 +10,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
     {
         public TileManager tileManager;
         public Material material;
-        public Vector3 center;
+        public IHexGridCell lastSelectedTile;
+        public Vector3 tilePosition;
         private GameObject lastClicked;
         private Material lastClickedMaterial;
 
@@ -33,7 +34,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (!(lastClicked is null))
+            if (lastClicked)
             {
                 lastClicked.GetComponent<MeshRenderer>().material = lastClickedMaterial;
                 lastClicked = null;
@@ -41,26 +42,26 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             }
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                //if(hit.collider.gameObject.name != "Player")
-                if(hit.collider.gameObject.name.Contains("Clone"))
+                Transform selectedTransform = hit.collider.gameObject.transform;
+                Point<int> gridPoint = HexPoint.GetPointFromCenter(selectedTransform.position.x, selectedTransform.position.z, selectedTransform.localScale.x);
+                lastSelectedTile = tileManager.hexTiling[gridPoint.X, gridPoint.Y];
+                if (lastSelectedTile is null) return;
+
+                ISelectionComponent selectionComponent = lastSelectedTile.GetComponent<ISelectionComponent>();
+                if (!(selectionComponent is null))
                 {
+                    selectionComponent.Select();
+                }
+
+                // Highlight selected tile
+                if (hit.collider.gameObject.name.Contains("Clone"))
+                {
+                    float tileHeight = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y;
+                    tilePosition = selectedTransform.position + new Vector3(0, tileHeight, 0);
                     lastClicked = hit.collider.gameObject;
                     lastClickedMaterial = lastClicked.GetComponent<MeshRenderer>().material;
                     lastClicked.GetComponent<MeshRenderer>().material = material;
-                    Transform selectedTransform = hit.collider.gameObject.transform;
-                    Point<int> gridPoint = HexPoint.GetPointFromCenter(selectedTransform.position.x, selectedTransform.position.z, selectedTransform.localScale.x);
-                    center = new Vector3(selectedTransform.position.x, selectedTransform.position.y + 6.5f, selectedTransform.position.z);
-                    IHexGridCell tile = tileManager.hexTiling[gridPoint.X, gridPoint.Y];
-
-                    ISelectionComponent selectionComponent = tile.GetComponent<ISelectionComponent>();
-                    if (!(selectionComponent is null))
-                    {
-                        selectionComponent.Select();
-                    }
-                }
-                else
-                {
-                    center = new Vector3(-50f, -50f, -50f);
+                    
                 }
             }
         }

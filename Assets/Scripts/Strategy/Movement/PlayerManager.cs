@@ -6,7 +6,7 @@ using SwordAndBored.Strategy.TimeSystem.Subscribers;
 using SwordAndBored.Strategy.Movement;
 using SwordAndBored.Strategy.ProceduralTerrain;
 
-public class PlayerManager : MonoBehaviour, IPostTimeStepSubscriber
+public class PlayerManager : MonoBehaviour, IPreTimeStepSubscriber
 {
     public List<GameObject> children;
     public Material defaultMaterial;
@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour, IPostTimeStepSubscriber
     public TileManager tileManager;
 
     private GameObject selectedPlayer;
+    private TileSelect tileSelect;
 
     void Start()
     {
@@ -23,7 +24,8 @@ public class PlayerManager : MonoBehaviour, IPostTimeStepSubscriber
         {
             children.Add(t.gameObject);
         }
-        turnManager.AddPostTimeStepSubscriber(this);
+        turnManager.Subscribe(this);
+        tileSelect = tileManager.GetComponent<TileSelect>();
     }
 
     // Update is called once per frame
@@ -55,9 +57,9 @@ public class PlayerManager : MonoBehaviour, IPostTimeStepSubscriber
 
     public void SetPlayerAndTarget()
     {
-        if (tileManager.GetComponent<TileSelect>().center != new Vector3(-50f, -50f, -50f) && !selectedPlayer.GetComponent<PlayerMove>().usedMoveThisTurn)
+        if (!(tileSelect.lastSelectedTile is null || selectedPlayer.GetComponent<PlayerMove>().usedMoveThisTurn))
         {
-            selectedPlayer.GetComponent<PlayerMove>().targetPosition = tileManager.GetComponent<TileSelect>().center;
+            selectedPlayer.GetComponent<PlayerMove>().targetPosition = tileManager.GetComponent<TileSelect>().tilePosition;
             selectedPlayer.GetComponent<Rigidbody>().isKinematic = false;
             selectedPlayer.GetComponent<PlayerMove>().usedMoveThisTurn = true;
             selectedPlayer.GetComponent<PlayerMove>().SetTargetPosition();
@@ -65,7 +67,7 @@ public class PlayerManager : MonoBehaviour, IPostTimeStepSubscriber
         selectedPlayer.GetComponent<MeshRenderer>().material = defaultMaterial;
     }
 
-    public void PostTimeStepUpdate()
+    public void PreTimeStepUpdate()
     {
         foreach(GameObject g in children)
         {

@@ -12,14 +12,22 @@ namespace SwordAndBored.Strategy.Movement
     public class PlayerMove : MonoBehaviour//, IPostTimeStepSubscriber
     {
         public TileManager tileManager;
-        public bool usedMoveThisTurn = false;
+        public bool usedMoveThisTurn;
 
         public Vector3 targetPosition;
         Vector3 lookAtTarget;
         Quaternion playerRot;
         float rotSpeed = 5;
         float speed = 10;
-        bool moving = false;
+        bool moving;
+        float height;
+
+        void Start()
+        {
+            height = GetComponent<Renderer>().bounds.size.y;
+            usedMoveThisTurn = false;
+            moving = false;
+        }
 
         void Update()
         {
@@ -34,10 +42,11 @@ namespace SwordAndBored.Strategy.Movement
         /// </summary>
         public void SetTargetPosition()
         {
-                this.transform.LookAt(targetPosition);
-                lookAtTarget = new Vector3(targetPosition.x - transform.position.x, transform.position.y, targetPosition.z - transform.position.z);
-                playerRot = Quaternion.LookRotation(lookAtTarget);
-                moving = true;
+            targetPosition += new Vector3(0, height, 0);
+            this.transform.LookAt(targetPosition);
+            lookAtTarget = new Vector3(targetPosition.x - transform.position.x, transform.position.y, targetPosition.z - transform.position.z);
+            playerRot = Quaternion.LookRotation(lookAtTarget);
+            moving = true;
         }
 
         /// <summary>
@@ -53,8 +62,6 @@ namespace SwordAndBored.Strategy.Movement
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
             }
-
-
 
             if (transform.position == targetPosition)
             {
