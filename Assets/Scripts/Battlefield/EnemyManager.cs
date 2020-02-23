@@ -41,10 +41,11 @@ namespace SwordAndBored.Battlefield
                 BrainManager brain = unit.GetComponent<BrainManager>();
                 camManager.cameras.Add(cam.gameObject);
                 turnManager.units.Add(unit);
-                turnManager.activePlayer = brain;
+                //turnManager.activePlayer = brain;
                 Animator anim = unit.GetComponent<Animator>();
                 RuntimeAnimatorController currentAi = Resources.Load<RuntimeAnimatorController>("Ai/StrikerBrain");
                 anim.runtimeAnimatorController = currentAi;
+                brain.manager = turnManager;
 
                 //UniqueCreature
                 uniqueCreature.creatureName = unitTable.Descriptor.Name;
