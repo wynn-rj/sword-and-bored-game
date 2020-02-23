@@ -75,7 +75,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
             if (enemies.Count == 0)
             {
-                //WinCondition();
+                WinCondition();
             }
 
         }
