@@ -8,7 +8,7 @@ namespace SwordAndBored.Strategy.GameResources
     public class TestGoldDisplay : MonoBehaviour
     {
         public Gold gold;
-        public City city;
+        public GoldCity city;
         int count = 0;
 
         void Update()
