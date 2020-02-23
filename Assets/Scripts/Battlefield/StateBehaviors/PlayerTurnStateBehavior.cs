@@ -38,7 +38,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         if (Physics.Raycast(ray, out hit, 100, brain.tileMapLayerMask))
         {
             Tile currentTile = hit.collider.GetComponent<Tile>();
-            brain.tileIndictor.transform.position = currentTile.GetPos();
+            brain.tileIndictor.transform.position = currentTile.GetCenterOfTile();
 
             if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
             {
