@@ -7,7 +7,7 @@ using Cinemachine;
 using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
-using SwordAndBored.GameData.Database.Tables;
+using SwordAndBored.GameData.Units;
 
 
 namespace SwordAndBored.Battlefield
@@ -31,7 +31,7 @@ namespace SwordAndBored.Battlefield
             int numUnits = 0;
             while (reader.NextRow())
             {
-                UnitTable unitTable = new UnitTable(reader.GetIntFromCol("ID"));
+                Unit unitTable = new Unit(reader.GetIntFromCol("ID"));
 
                 GameObject unit = Instantiate(playerPrefab, new Vector3(numUnits, 1.5f, 5), Quaternion.identity);
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
@@ -48,7 +48,7 @@ namespace SwordAndBored.Battlefield
                 brain.manager = turnManager;
 
                 //UniqueCreature
-                uniqueCreature.creatureName = unitTable.Descriptor.Name;
+                uniqueCreature.creatureName = unitTable.Name;
                 uniqueCreature.maxHealth = unitTable.Stats.HP;
                 uniqueCreature.maxMovement = unitTable.Stats.Movement;
                 uniqueCreature.isEnemy = true;
@@ -69,7 +69,7 @@ namespace SwordAndBored.Battlefield
                 stats.speedIntit = unitTable.Stats.Initiative;
                 stats.accuracy = unitTable.Stats.Accuracy;
                 stats.evasion = unitTable.Stats.Evasion;
-                stats.role = unitTable.Role.Descriptor.Name;
+                stats.role = unitTable.Role.Name;
 
                 //brain
                 brain.tileIndictor = indicator;

@@ -38,7 +38,7 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
             brain.creature.Move(target);
         }
 
-        if (target && Vector3.Distance(animator.transform.position, target.GetPos()) < 2f)
+        if (target && Vector3.Distance(animator.transform.position, target.GetCenterOfTile()) < 2f)
         {
             brain.isMyTurn = false;
         }

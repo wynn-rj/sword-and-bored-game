@@ -8,7 +8,6 @@ using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
-using SwordAndBored.GameData.Database.Tables;
 using UnityEditor.Animations;
 
 
@@ -73,7 +72,7 @@ namespace SwordAndBored.Battlefield
                 //brain
                 brain.tileIndictor = indicator;
                 brain.startCoordinates = new Vector2(numUnits, 5);
-                brain.grid = grid;
+                //brain.grid = grid;
 
                 unit.transform.parent = unitHolder;
 
