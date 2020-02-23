@@ -44,6 +44,11 @@ namespace SwordAndBored.GameData.Database
                 IRole role = new Role(1);
                 textBox.text = role.RoleStats.ToString();
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                IEnemy enemy = new Enemy(1);
+                textBox.text = enemy.ToString();
+            }
         }
 
         private static int createNewUnit()

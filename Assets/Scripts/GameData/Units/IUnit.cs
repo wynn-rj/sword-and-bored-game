@@ -22,6 +22,8 @@ namespace SwordAndBored.GameData.Units
         /// </summary>
         IWeapon Weapon { get; set; }
 
+        ISpellBook SpellBook { get; set; }
+
         /// <summary>
         /// An aggregate collection of all modifiers applied to a creature
         /// </summary>
