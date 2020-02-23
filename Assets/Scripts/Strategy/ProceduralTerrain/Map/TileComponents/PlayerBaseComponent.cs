@@ -1,4 +1,5 @@
 ﻿using UnityEngine.SceneManagement;
+using SwordAndBored.SceneManagement;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
 {
@@ -6,7 +7,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
     {
         public override void Select()
         {
-            SceneManager.LoadSceneAsync("BaseManagement", LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync(GameScenes.BASEVIEW);
         }
     }
 }

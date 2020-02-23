@@ -21,7 +21,7 @@ namespace SwordAndBored.UI.MenuFunctions
         }
         public void StartButtonPressed()
         {
-            SceneManager.LoadScene("BaseManagement");
+            SceneManager.LoadScene(SceneManagement.GameScenes.BASEVIEW);
         }
 
         public void ExitButtonPressed()
