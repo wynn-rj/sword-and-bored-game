@@ -8,6 +8,7 @@ using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Database.Tables;
+using UnityEditor.Animations;
 
 
 namespace SwordAndBored.Battlefield
@@ -36,9 +37,13 @@ namespace SwordAndBored.Battlefield
                 UnitStats stats = unit.GetComponent<UnitStats>();
                 BrainManager brain = unit.GetComponent<BrainManager>();
                 CinemachineVirtualCamera cam = uniqueCreature.currentCamera;
+                Animator anim = unit.GetComponent<Animator>();
+                RuntimeAnimatorController currentAi = Resources.Load<RuntimeAnimatorController>("Ai/PlayerBrain");
+                anim.runtimeAnimatorController = currentAi;
                 camManager.cameras.Add(cam.gameObject);
                 turnManager.units.Add(unit);
                 turnManager.activePlayer = brain;
+
 
                 //UniqueCreature
                 uniqueCreature.creatureName = unitTable.Descriptor.Name;
