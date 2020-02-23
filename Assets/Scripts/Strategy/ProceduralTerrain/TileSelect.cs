@@ -2,6 +2,7 @@
 using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
+using UnityEngine.EventSystems;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
@@ -30,6 +31,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
         void OnClick()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (!(lastClicked is null))
             {
