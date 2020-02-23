@@ -47,7 +47,15 @@ namespace SwordAndBored.GameData.Units
                 queryString += "( " + Physical_Attack + ", " + Physical_Defense + ", " + Magic_Attack + ", " + Magic_Defense + ", " + HP + ", " +
                     Initiative + ", " + Movement + ", " + Evasion + ", " + Accuracy + ");";
                 DatabaseConnection conn = new DatabaseConnection();
-                return conn.ExecuteNonQuery(queryString);
+                conn.ExecuteNonQuery(queryString);
+                
+                //Sets new ID equal to new entry
+                DatabaseReader reader = conn.ExecuteQuery("SELECT * FROM Stats ORDER BY ID Desc LIMIT 1;");
+                reader.NextRow();
+                ID = reader.GetIntFromCol("ID");
+                reader.CloseReader();
+                conn.CloseConnection();
+                return ID;
             }
             else //Update
             {

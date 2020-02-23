@@ -91,6 +91,7 @@ namespace SwordAndBored.GameData.Units
                 Role = new Role(1);
 
                 Stats = Role.RoleStats;
+                Stats.ID = -1;
                 Name = "No name/Random Default/Wrong Role";
             }
             reader.CloseReader();
@@ -102,6 +103,8 @@ namespace SwordAndBored.GameData.Units
             // New Entry
             if (ID == -1)
             {
+                Stats.Save();
+
                 string queryString = $"INSERT INTO Units (Name, Description, Flavor_Text, XP, Level, Stats_FK, Role_FK, Weapon_FK, Armor_FK, Spell_Book_FK) VALUES" +
                     $"({DatabaseHelper.GetNullOrIDStringFromString(Name)}, {DatabaseHelper.GetNullOrIDStringFromString(Description)} , {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}" +
                     $", {XP}, {Level}, {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}," +
@@ -113,6 +116,7 @@ namespace SwordAndBored.GameData.Units
                 ID = reader.GetIntFromCol("ID");
                 reader.CloseReader();
                 conn.CloseConnection();
+                
                 return true;
 
             } else //Update
