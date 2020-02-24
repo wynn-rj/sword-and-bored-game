@@ -29,9 +29,7 @@ namespace SwordAndBored.Strategy.BaseManagement
 
         public void ConfirmUnitTraining()
         {
-            Debug.Log("Triggered");
             character.Name = UnitName;
-            Debug.Log(UnitName);
             UnitManager.Instance.RegisterUnit(character);
             NameUnitCanvas.gameObject.SetActive(false);
             character.Save();
