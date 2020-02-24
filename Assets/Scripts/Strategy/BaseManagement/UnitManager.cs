@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace SwordAndBored.StrategyView.BaseManagement
+namespace SwordAndBored.Strategy.BaseManagement
 {
     public class UnitManager
     {
@@ -55,9 +55,8 @@ namespace SwordAndBored.StrategyView.BaseManagement
 
         public void RegisterUnit(ICharacter character)
         {
-            Debug.Log("Unit registered");
             newUnitList.Add(character);
-            Debug.Log(character.Role.Name);
+            //Debug.Log(character.Name);
         }
 
         public IList<ICharacter> GetAllUnits()
