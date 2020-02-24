@@ -6,15 +6,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SwordAndBored.StrategyView.BaseManagement
+namespace SwordAndBored.Strategy.BaseManagement
 {
     public class UnitFactory : MonoBehaviour
     {
-        public UnitManager UnitManager;
+        public string UnitRole { get; set; }
+        public string UnitName { get; set; }
 
-        public Text UnitRole;
+        public GameObject NameUnitCanvas;
 
-        public InputField UnitName;
+        private ICharacter character;
 
         private IDictionary<string, IRole> roleDict = new Dictionary<string, IRole>()
         {
@@ -26,17 +27,28 @@ namespace SwordAndBored.StrategyView.BaseManagement
             {"Scout", new GenericRole(new SingleSelectSkillTree(5)) },
         };
 
-        public void TrainUnit()
+        public void StageUnitForTraining()
         {
             // Create ICharacter to track in strategy view
             // Add record to database
             // Add to strategy view tracker
 
-            IRole role = roleDict[UnitRole.text];
-            role.Name = UnitName.text;
+            IRole role = roleDict[UnitRole];
+            role.Name = UnitRole;
+            character = new GenericCharacter(null, role, null);
+            NameUnitCanvas.SetActive(true);
+        }
 
-            ICharacter character = new GenericCharacter(null, role, null);
+        public void ConfirmUnitTraining()
+        {
+            character.Name = UnitName;
             UnitManager.Instance.RegisterUnit(character);
+            NameUnitCanvas.gameObject.SetActive(false);
+        }
+
+        public void CancelUnitTraining()
+        {
+            NameUnitCanvas.gameObject.SetActive(false);
         }
     }
 }
