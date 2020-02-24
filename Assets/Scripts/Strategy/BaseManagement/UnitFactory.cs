@@ -1,6 +1,6 @@
-﻿using SwordAndBored.GameData.Abilities.Skills;
-using SwordAndBored.GameData.Creatures;
+﻿using SwordAndBored.GameData.Creatures;
 using SwordAndBored.GameData.Roles;
+using SwordAndBored.GameData.Units;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,17 +15,7 @@ namespace SwordAndBored.Strategy.BaseManagement
 
         public GameObject NameUnitCanvas;
 
-        private ICharacter character;
-
-        private IDictionary<string, IRole> roleDict = new Dictionary<string, IRole>()
-        {
-            /*
-            * TO DO: specificy skill tree arguments
-            */
-            {"Warrior", new GenericRole(new SingleSelectSkillTree(5)) },
-            {"Mage", new GenericRole(new SingleSelectSkillTree(5)) },
-            {"Scout", new GenericRole(new SingleSelectSkillTree(5)) },
-        };
+        private IUnit character;
 
         public void StageUnitForTraining()
         {
@@ -33,17 +23,18 @@ namespace SwordAndBored.Strategy.BaseManagement
             // Add record to database
             // Add to strategy view tracker
 
-            IRole role = roleDict[UnitRole];
-            role.Name = UnitRole;
-            character = new GenericCharacter(null, role, null);
+            character = new Unit(UnitRole);
             NameUnitCanvas.SetActive(true);
         }
 
         public void ConfirmUnitTraining()
         {
+            Debug.Log("Triggered");
             character.Name = UnitName;
+            Debug.Log(UnitName);
             UnitManager.Instance.RegisterUnit(character);
             NameUnitCanvas.gameObject.SetActive(false);
+            character.Save();
         }
 
         public void CancelUnitTraining()

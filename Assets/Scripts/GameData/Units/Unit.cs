@@ -121,7 +121,7 @@ namespace SwordAndBored.GameData.Units
 
             } else //Update
             {
-                string queryString = $"SET Units Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}," +
+                string queryString = $"UPDATE Units SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}," +
                     $" XP = {XP}, Level = {Level}, Stats_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, Role_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, Weapon_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}" +
                     $", Armor_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, Spell_Book_FK = {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)} WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
