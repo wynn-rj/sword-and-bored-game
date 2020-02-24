@@ -2,6 +2,8 @@
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
+using SwordAndBored.Strategy.InteractiveObjects;
+using SwordAndBored.Strategy.GameResources;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +26,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         public GameObject enemyTile;
         public GameObject playerTile;
         public HexGrid hexTiling;
+        public Gold gold;
+        public GameObject goldCity;
 
         private void Start()
         {
@@ -36,6 +40,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             hexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
             PrepareTiles();
             BuildTiles();
+
+            goldCity.GetComponent<GoldCity>().gold = gold;
         }
 
         private void PrepareTiles()
@@ -72,7 +78,9 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 newTerrain.Height = GetTileHeight(tileTerrains.Key);
                 newTerrain.WaterLevel = GetTileWaterLevel(tileTerrains.Key);
                 tileTerrains.Key.AddComponent(newTerrain);
-            }            
+            }
+
+            hexTiling[1, 2].AddComponent(new GoldCityComponent(gold));
         }
 
         private void BuildTiles()
@@ -100,6 +108,13 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 Vector3 tileLocation = new Vector3(tile.Position.Center.X, terrain.Height, tile.Position.Center.Y);
                 GameObject tilePrefab = Instantiate(terrainToGameObject[terrain.GetType()], tileLocation, tileRotation);
                 tilePrefab.transform.parent = hexMap.transform;
+                GoldCityComponent gc = tile.GetComponent<GoldCityComponent>();
+                if(!(gc is null))
+                {
+                    float tileHeight = tilePrefab.GetComponent<Renderer>().bounds.size.y;
+                    GameObject goldCityPrefab = Instantiate(goldCity, tileLocation + new Vector3(0, tileHeight, 0), Quaternion.identity);
+                    goldCityPrefab.GetComponent<GoldCity>().gold = gc.Gold;
+                }
             }
         }
 
