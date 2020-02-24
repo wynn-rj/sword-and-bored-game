@@ -1,20 +1,24 @@
-﻿using UnityEngine;
+﻿using SwordAndBored.Strategy.BaseManagement.SO;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitEntryDisplay : MonoBehaviour
+namespace SwordAndBored.Strategy.BaseManagement
 {
-    public UnitEntry unitEntry;
-
-    public Text EntryRole;
-
-    public Text EntryDescription;
-
-    public Image EntryImage;
-
-    void Start()
+    public class UnitEntryDisplay : MonoBehaviour
     {
-        EntryRole.text = unitEntry.RoleName;
-        EntryDescription.text = unitEntry.RoleDescription;
-        EntryImage.sprite = unitEntry.RoleArtwork;
+        public UnitEntry unitEntry;
+
+        public Text EntryRole;
+
+        public Text EntryDescription;
+
+        public Image EntryImage;
+
+        void Start()
+        {
+            EntryRole.text = unitEntry.RoleName;
+            EntryDescription.text = unitEntry.RoleDescription;
+            EntryImage.sprite = unitEntry.RoleArtwork;
+        }
     }
 }

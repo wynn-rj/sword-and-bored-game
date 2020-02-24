@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Unit Base Entry", menuName = "Unit Entry")]
-public class UnitEntry : ScriptableObject
+namespace SwordAndBored.Strategy.BaseManagement.SO
 {
-    public string RoleName;
-    public string RoleDescription;
-    public Sprite RoleArtwork;
+    [CreateAssetMenu(fileName = "New Unit Base Entry", menuName = "Unit Entry")]
+    public class UnitEntry : ScriptableObject
+    {
+        public string RoleName;
+        public string RoleDescription;
+        public Sprite RoleArtwork;
+    }
 }
