@@ -40,8 +40,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             hexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
             PrepareTiles();
             BuildTiles();
-
-            goldCity.GetComponent<GoldCity>().gold = gold;
         }
 
         private void PrepareTiles()
@@ -80,7 +78,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 tileTerrains.Key.AddComponent(newTerrain);
             }
 
-            hexTiling[1, 2].AddComponent(new GoldCityComponent(gold));
+            hexTiling[-xDim + Constants.xMargin + 5, -yDim + Constants.yMargin + 5].AddComponent(new GoldCityComponent(gold));
         }
 
         private void BuildTiles()
@@ -113,7 +111,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 {
                     float tileHeight = tilePrefab.GetComponent<Renderer>().bounds.size.y;
                     GameObject goldCityPrefab = Instantiate(goldCity, tileLocation + new Vector3(0, tileHeight, 0), Quaternion.identity);
-                    goldCityPrefab.GetComponent<GoldCity>().gold = gc.Gold;
                 }
             }
         }
@@ -127,6 +124,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             {
                 baseTerrains.Add(neighbor, isPlayer);
             }
+            hexTiling[x, y].AddComponent(new GoldCityComponent(gold));
         }
 
         private ITerrainComponent GetTileTerrain(IHexGridCell tile)
