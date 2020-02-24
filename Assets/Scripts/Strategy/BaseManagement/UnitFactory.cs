@@ -19,10 +19,6 @@ namespace SwordAndBored.Strategy.BaseManagement
 
         public void StageUnitForTraining()
         {
-            // Create ICharacter to track in strategy view
-            // Add record to database
-            // Add to strategy view tracker
-
             character = new Unit(UnitRole);
             NameUnitCanvas.SetActive(true);
         }
