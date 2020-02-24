@@ -10,12 +10,10 @@ namespace SwordAndBored.UI.Utility
         [SerializeField] private Vector3 Scale;
 
         private Vector3 originalScale;
-        private RectTransform rt;
 
         private void Awake()
         {
             Scale = transform.localScale + new Vector3(0.01f, 0.01f, 0.01f);
-            rt = gameObject.GetComponent<RectTransform>();
             originalScale = transform.localScale;
         }
 
