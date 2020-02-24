@@ -1,22 +1,20 @@
 ﻿using SwordAndBored.GameData.Creatures;
+using SwordAndBored.Strategy.BaseManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
-    public class Barracks : AbstractProductionBuilding
+    public class Barracks : GenericStrongholdCell
     {
         private IList<ICharacter> buildableUnits;
 
-        public Barracks() : base()
+        private void Awake()
         {
-            ModelName = "Barracks";
-        }
-
-        public void BuildUnit()
-        { 
-        
+            GameObject newCanvas = Instantiate(Canvas, Vector3.zero, Quaternion.identity);
+            SetCanvas(newCanvas);
+            Canvas.gameObject.SetActive(false);     
         }
     }
 }
