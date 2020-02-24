@@ -1,4 +1,5 @@
 ﻿using SwordAndBored.GameData.Creatures;
+using SwordAndBored.GameData.Units;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace SwordAndBored.Strategy.BaseManagement
 {
     public class UnitManager
     {
-        public IList<ICharacter> existingUnitList;
-        public IList<ICharacter> newUnitList;
+        public IList<IUnit> existingUnitList;
+        public IList<IUnit> newUnitList;
 
         public static UnitManager Instance
         {
@@ -25,8 +26,8 @@ namespace SwordAndBored.Strategy.BaseManagement
 
         private UnitManager()   
         {
-            existingUnitList = new List<ICharacter>();
-            newUnitList = new List<ICharacter>();
+            existingUnitList = new List<IUnit>();
+            newUnitList = new List<IUnit>();
         }
 
         /// <summary>
@@ -53,13 +54,13 @@ namespace SwordAndBored.Strategy.BaseManagement
              */
         }
 
-        public void RegisterUnit(ICharacter character)
+        public void RegisterUnit(IUnit character)
         {
             newUnitList.Add(character);
             //Debug.Log(character.Name);
         }
 
-        public IList<ICharacter> GetAllUnits()
+        public IList<IUnit> GetAllUnits()
         {
             return existingUnitList.Concat(newUnitList).ToList();
         }
