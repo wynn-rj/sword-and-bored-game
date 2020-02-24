@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 64fc3cf4f1381e546ae73c19a4869746
+    path: Assets/Scenes/BaseManagement.unity
+    guid: 165e725eb141b5744b7dbd7ea7d70fee
   - enabled: 1
     path: Assets/Scenes/DatabaseTesting.unity
     guid: 89c598e3ae1e09749a2cb25bc7e6afb9
@@ -15,11 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/AddStatsUI.unity
     guid: e227638c374805c4a82a04ae796aa7b9
   - enabled: 1
-    path: Assets/Scenes/BaseManagement.unity
-    guid: 165e725eb141b5744b7dbd7ea7d70fee
-  - enabled: 1
     path: Assets/Scenes/StrategyMap.unity
     guid: 04012332e3c1d00448ec390263c606a9
+  - enabled: 1
+    path: Assets/Scenes/Town Map.unity
+    guid: 0d1190b286d7cc14f8ed4279c1d4f94c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0c1fde465bc1b5147a36bacd440a44fd,
       type: 2}
