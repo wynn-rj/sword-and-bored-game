@@ -36,7 +36,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                     Tile tempTile = newTile.GetComponent<Tile>();
                     tempTile.coordinates = new Vector2(i, j);
                     Debug.Log(i + " " + j);
-                    gridHold.tiles[i, j] = tempTile;
+                    //gridHold.tiles[i, j] = tempTile;
                 }
             }
         
