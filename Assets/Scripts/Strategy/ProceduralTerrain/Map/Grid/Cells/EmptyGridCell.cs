@@ -75,6 +75,13 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
                     return (T)component;
                 }
             }
+            foreach (ICellComponent component in selectionComponents.InternalComponents)
+            {
+                if (component is T)
+                {
+                    return (T)component;
+                }
+            }
             return default(T);
         }
     }
