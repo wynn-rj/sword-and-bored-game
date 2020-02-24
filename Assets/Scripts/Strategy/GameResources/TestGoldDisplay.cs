@@ -16,8 +16,8 @@ namespace SwordAndBored.Strategy.GameResources
             count++;
             if (count > 16)
             {
-                gold.Amount += 1;
-                Debug.Log("Gold: " + gold.Amount);
+                //gold.Amount += 1;
+                //Debug.Log("Gold: " + gold.Amount);
                 count = 0;
                 city.addGold();
             }

@@ -39,21 +39,5 @@ namespace SwordAndBored.Strategy.GameResources
                 rs.UpdateAmount();
             }
         }
-
-        void UpdateSubscribers()
-        {
-            foreach (IResourceSubscriber rs in Subscribers)
-            {
-                rs.UpdateAmount();
-            }
-        }
-
-        void UpdateSubscribers()
-        {
-            foreach (IResourceSubscriber rs in Subscribers)
-            {
-                rs.UpdateAmount();
-            }
-        }
     }
 }
