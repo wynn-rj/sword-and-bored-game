@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoleName: Mage
   RoleDescription: A magical unit...
-  RoleArtwork: {fileID: 0}
+  RoleArtwork: {fileID: 21300000, guid: e6f3800b8505c4644b6e3f5acd582198, type: 3}
