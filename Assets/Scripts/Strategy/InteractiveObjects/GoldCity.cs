@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SwordAndBored.Strategy.GameResources;
 using SwordAndBored.Strategy.ProceduralTerrain;
+using SwordAndBored.Strategy.GameResources;
 
 namespace SwordAndBored.Strategy.InteractiveObjects
 {
     public class GoldCity : MonoBehaviour
     {
-        //public TileManager tileManager;
+        public Gold gold;
 
         public void addGold()
         {
-            //tileManager.gold.Amount += 100;
+            gold.Amount += 100;
         }
     }
 }
