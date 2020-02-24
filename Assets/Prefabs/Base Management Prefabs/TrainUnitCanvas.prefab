@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 2933463581117436012}
   - component: {fileID: 2933463581117436011}
   - component: {fileID: 2933463581117436010}
+  - component: {fileID: 7369019501794419033}
   m_Layer: 5
   m_Name: Done
   m_TagString: Untagged
@@ -1017,18 +1018,21 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2933463581117436011}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2515203228394822045}
-        m_MethodName: ConfirmUnitTraining
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &7369019501794419033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2933463581117436008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d3379f424362e48be332c3937a8a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitFactory: {fileID: 2515203228394822045}
+  UnitName: {fileID: 2933463581983693890}
 --- !u!1 &2933463581221094704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,8 +2004,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitFactory: {fileID: 2515203228394822045}
   UnitRole: {fileID: 1592471031784872955}
-  UnitName: {fileID: 2933463581983693890}
-  confirmButton: {fileID: 2933463581117436010}
 --- !u!1 &3066446460145081778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,8 +2514,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitFactory: {fileID: 2515203228394822045}
   UnitRole: {fileID: 1592471032429099453}
-  UnitName: {fileID: 2933463581983693890}
-  confirmButton: {fileID: 2933463581117436010}
 --- !u!1 &3066446460736075204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,8 +3390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitFactory: {fileID: 2515203228394822045}
   UnitRole: {fileID: 1592471031320338034}
-  UnitName: {fileID: 2933463581983693890}
-  confirmButton: {fileID: 2933463581117436010}
 --- !u!1 &5713155206821071786
 GameObject:
   m_ObjectHideFlags: 0

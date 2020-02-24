@@ -9,9 +9,7 @@ namespace SwordAndBored.Strategy.BaseManagement
     public class TrainUnitListener : MonoBehaviour
     {
         public UnitFactory UnitFactory;
-        public Button confirmButton;
         public Text UnitRole;
-        public InputField UnitName;
 
         private Button trainButton;
 
@@ -19,21 +17,12 @@ namespace SwordAndBored.Strategy.BaseManagement
         {
             trainButton = GetComponent<Button>();
             trainButton.onClick.AddListener(() => StageUnitForTraining());
-
-            confirmButton.onClick.AddListener(() => ConfirmUnitTraining());
         }
 
         void StageUnitForTraining()
         {    
             UnitFactory.UnitRole = UnitRole.text;
             UnitFactory.StageUnitForTraining();
-        }
-
-        void ConfirmUnitTraining()
-        {
-            UnitFactory.UnitName = UnitName.text;
-            UnitFactory.ConfirmUnitTraining();
-            UnitName.text = "";
         }
     }
 }
