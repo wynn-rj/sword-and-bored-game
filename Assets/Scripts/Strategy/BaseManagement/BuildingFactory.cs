@@ -3,18 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SwordAndBored.StrategyView.BaseManagement
+namespace SwordAndBored.Strategy.BaseManagement
 {
-    public static class BuildingFactory
+    public class BuildingFactory : MonoBehaviour
     {
-        public static IBuilding CreateBarracks()
-        {
-            return new Barracks();
-        }
-
-        public static IBuilding CreateGranary()
-        {
-            return null;
-        }
+        
     }
 }
