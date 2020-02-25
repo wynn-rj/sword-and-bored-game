@@ -84,6 +84,7 @@ namespace SwordAndBored.GameData.Units
                 Role = new Role(roleID);
 
                 Stats = Role.RoleStats;
+                Stats = new Stats(Role.RoleStats);
                 Name = "No name/Random Default";
             } else
             {
@@ -91,7 +92,7 @@ namespace SwordAndBored.GameData.Units
                 Role = new Role(1);
 
                 Stats = Role.RoleStats;
-                Stats.ID = -1;
+                Stats = new Stats(Role.RoleStats);
                 Name = "No name/Random Default/Wrong Role";
             }
             reader.CloseReader();

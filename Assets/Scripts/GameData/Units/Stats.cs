@@ -37,6 +37,20 @@ namespace SwordAndBored.GameData.Units
             conn.CloseConnection();
         }
 
+        public Stats(IStats copyForNewRow)
+        {
+            ID = -1;
+            Physical_Attack = copyForNewRow.Physical_Attack;
+            Physical_Defense = copyForNewRow.Physical_Defense;
+            Magic_Attack = copyForNewRow.Magic_Attack;
+            Magic_Defense = copyForNewRow.Magic_Defense;
+            HP = copyForNewRow.HP;
+            Initiative = copyForNewRow.Initiative;
+            Movement = copyForNewRow.Movement;
+            Evasion = copyForNewRow.Evasion;
+            Accuracy = copyForNewRow.Accuracy;
+        }
+
         public int Save()
         {
             // New Entry
