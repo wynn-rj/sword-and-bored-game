@@ -25,7 +25,7 @@ namespace SwordAndBored.Strategy.GameResources
 
         public bool CanAffordPurchase(IPayment payment)
         {
-            return payment.cost <= mAmount;
+            return payment.Cost <= mAmount;
         }
 
         public void Subscribe(IResourceSubscriber subscriber)
