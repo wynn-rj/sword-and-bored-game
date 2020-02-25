@@ -1138,21 +1138,6 @@ PrefabInstance:
       propertyPath: previousCanvas
       value: 
       objectReference: {fileID: 913378350}
-    - target: {fileID: 810899594049500579, guid: 19d22e558a083cc42afe84d686225f47,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 810899594049500579, guid: 19d22e558a083cc42afe84d686225f47,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 810899594049500579, guid: 19d22e558a083cc42afe84d686225f47,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19d22e558a083cc42afe84d686225f47, type: 3}
 --- !u!1001 &37717517
