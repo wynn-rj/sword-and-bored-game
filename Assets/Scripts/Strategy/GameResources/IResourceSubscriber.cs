@@ -6,7 +6,6 @@ namespace SwordAndBored.Strategy.GameResources
 {
     public interface IResourceSubscriber
     {
-        //IResource Resource { get; set; }
         int Amount { get; set; }
         void UpdateAmount();
     }
