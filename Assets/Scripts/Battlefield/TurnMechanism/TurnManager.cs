@@ -28,6 +28,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         void Start()
         {
+            winCanvas.enabled = false;
             manager = new TurnOrderController(units.ToArray(), new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
@@ -82,6 +83,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void WinCondition()
         {
+            winCanvas.enabled = true;
             winCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
             Debug.Log("You Win!");
