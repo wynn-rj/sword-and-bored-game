@@ -6,12 +6,17 @@ namespace SwordAndBored.Strategy.Transitions
 {
     public class EnemyEncounterDetector : MonoBehaviour
     {
+        private bool alreadyLoading = false;
         void OnTriggerEnter(Collider other)
         {
             Debug.Log(other.name);
             if (other.name.Contains("Player"))
             {
-                SceneManager.LoadSceneAsync(GameScenes.BATTLEFIELD);
+                if (!alreadyLoading)
+                {
+                    SceneManager.LoadSceneAsync(GameScenes.BATTLEFIELD);
+                    alreadyLoading = true;
+                }
             }
         }
     }
