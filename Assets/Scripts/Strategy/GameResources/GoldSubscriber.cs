@@ -12,8 +12,7 @@ namespace SwordAndBored.Strategy.GameResources
 
         void Start()
         {
-            resource.Subscribers = new List<IResourceSubscriber>();
-            resource.AddSubscriber(this);
+            resource.Subscribe(this);
         }
 
         public void UpdateAmount()

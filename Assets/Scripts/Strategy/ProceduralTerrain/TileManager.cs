@@ -2,7 +2,6 @@
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
-using SwordAndBored.Strategy.InteractiveObjects;
 using SwordAndBored.Strategy.GameResources;
 using System.Collections.Generic;
 using UnityEngine;

@@ -15,7 +15,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
         public override void Select()
         {
             Gold.Amount += 100;
-            Debug.Log("Gold = " + Gold.Amount);
         }
     }
 }
