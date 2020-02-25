@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using SwordAndBored.SceneManagement;
+using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.UI.MenuFunctions
 {
@@ -48,6 +49,11 @@ namespace SwordAndBored.UI.MenuFunctions
             } else if (Input.GetKeyDown(KeyCode.L))
             {
                 SceneManager.LoadScene("DatabaseTesting");
+            }
+
+            if(Input.GetKeyDown(KeyCode.I))
+            {
+                DatabaseHelper.ClearAllUnitsExceptOneFromUnitTable();
             }
             
         }
