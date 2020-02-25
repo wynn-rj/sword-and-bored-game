@@ -83,6 +83,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public void WinCondition()
         {
             winCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
+            hotbar.enabled = false;
             Debug.Log("You Win!");
         }
     }
