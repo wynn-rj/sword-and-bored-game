@@ -34,7 +34,7 @@ namespace SwordAndBored.GameData.Database
             conn.ExecuteNonQuery("DELETE FROM Units;");
             conn.CloseConnection();
             IUnit unit = new Unit("Mage");
-            unit.Name = "Default Unit";
+            unit.Name = "Grand Mage Crawfis";
             unit.Save();
         }
     }
