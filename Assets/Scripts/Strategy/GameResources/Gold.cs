@@ -7,7 +7,6 @@ namespace SwordAndBored.Strategy.GameResources
     public class Gold : MonoBehaviour, IResource
     {
         private List<IResourceSubscriber> Subscribers { get; set; }
-        //The amount of gold currently available to the player
         public int Amount 
         { 
             get { return mAmount; }
