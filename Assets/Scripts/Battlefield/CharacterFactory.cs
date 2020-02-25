@@ -1,15 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using SwordAndBored.Battlefield.CreaturScripts;
-using SwordAndBored.Battlefield;
 using Cinemachine;
 using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
-using UnityEditor.Animations;
-
 
 namespace SwordAndBored.Battlefield
 {
