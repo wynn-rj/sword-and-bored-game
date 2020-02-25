@@ -6,7 +6,7 @@ namespace SwordAndBored.Strategy.GameResources
 {
     public class Payment : IPayment
     {
-        public IResource ResourceType { get; set; }
+        public IResource Resource { get; set; }
         public int Cost { get; set; }
     }
 }
