@@ -1,4 +1,6 @@
-﻿namespace SwordAndBored.GameData.Database
+﻿using SwordAndBored.GameData.Units;
+
+namespace SwordAndBored.GameData.Database
 {
     public static class DatabaseHelper
     {
@@ -24,6 +26,16 @@
             {
                 return "'" + str + "'";
             }
+        }
+
+        public static void ClearAllUnitsExceptOneFromUnitTable()
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            conn.ExecuteNonQuery("DELETE FROM Units;");
+            conn.CloseConnection();
+            IUnit unit = new Unit("Mage");
+            unit.Name = "Default Unit";
+            unit.Save();
         }
     }
 }
