@@ -66,6 +66,7 @@ namespace SwordAndBored.UI.MenuFunctions
 
         public void ReturnMainPressed()
         {
+            Time.timeScale = 1.0f;
             SceneManager.LoadScene(GameScenes.MAINMENU);
         }
 
