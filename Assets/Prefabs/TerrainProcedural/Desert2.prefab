@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2453575326544671229}
   - component: {fileID: 8156107615245454596}
   - component: {fileID: 7216722482359736461}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Desert2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
