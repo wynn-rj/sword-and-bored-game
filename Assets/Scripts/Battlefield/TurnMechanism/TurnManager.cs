@@ -11,14 +11,18 @@ namespace SwordAndBored.Battlefield.TurnMechanism
     public class TurnManager : MonoBehaviour
     {
         [Header("Units")]
+        [HideInInspector]
         public List<GameObject> units = new List<GameObject>();
+        [HideInInspector]
         public List<GameObject> playerUnits = new List<GameObject>();
+        [HideInInspector]
         public BrainManager activePlayer;
         [Header("UI")]
         TurnOrderController manager;
         public TextMeshProUGUI text;
 
-        public Image[] actionsLeft;
+
+        public Image actionsLeft;
         [HideInInspector]
         public List<GameObject> enemies = new List<GameObject>();
 
@@ -51,16 +55,17 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
             if (activePlayer.HasActionLeft())
             {
-                actionsLeft[0].color = new Color(0, 0, 1, .2f);
+                actionsLeft.color = new Color(0, 0, 1, .2f);
             }
             else
             {
-                actionsLeft[0].color = new Color(1, 0, 0, .2f);
+                actionsLeft.color = new Color(1, 0, 0, .2f);
             }
 
             if (activePlayer.creature.isEnemy)
             {
                 hotbar.enabled = false;
+                
             } else
             {
                 hotbar.enabled = true;

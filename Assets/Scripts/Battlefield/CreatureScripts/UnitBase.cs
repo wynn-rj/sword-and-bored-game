@@ -48,15 +48,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
         protected void MoveTo(Vector3 pos)
         {
-            if (currentTile)
-            {
-                currentTile.unitOnTile = null;
-            }
             agent.destination = pos;
         }
 
         public void SetTile(Tile tile)
         {
+            currentTile.unitOnTile = null;
             currentTile = tile;
             tile.unitOnTile = this.gameObject;
         }

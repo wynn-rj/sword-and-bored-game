@@ -22,10 +22,11 @@ namespace SwordAndBored.Battlefield
         public TurnManager turnManager;
         public Transform unitHolder;
         public GameObject indicator;
+        public GridHolder grid;
 
         void Awake()
         {
-            for(int numUnits=0; numUnits < 3; numUnits++)
+            for(int numUnits=0; numUnits < 1; numUnits++)
             {
                 IEnemy enemyData = Enemy.GetEnemyFromTier(1);
 
@@ -48,6 +49,7 @@ namespace SwordAndBored.Battlefield
                 uniqueCreature.maxHealth = enemyData.Stats.HP;
                 uniqueCreature.maxMovement = enemyData.Stats.Movement;
                 uniqueCreature.isEnemy = true;
+                uniqueCreature.gridHolder = grid;
 
 
                 //stats
@@ -63,7 +65,7 @@ namespace SwordAndBored.Battlefield
 
                 //brain
                 brain.tileIndictor = indicator;
-                brain.startCoordinates = new Vector2(numUnits, 10);
+                brain.startCoordinates = new Vector2(25 - numUnits * 2, 27);
 
                 unit.transform.parent = unitHolder;
 

@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
+    AStar star = new AStar();
+    DisplayPath show = new DisplayPath();
 
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
@@ -19,6 +21,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
          KeyCode.Alpha9,
     };
     BrainManager brain;
+    LineRenderer lr;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,6 +29,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         brain = animator.GetComponent<BrainManager>();
         brain.indicatorRend.enabled = true;
         brain.outline.enabled = true;
+        lr = brain.GetComponent<LineRenderer>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -39,11 +43,12 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         {
             Tile currentTile = hit.collider.GetComponent<Tile>();
             brain.tileIndictor.transform.position = currentTile.GetCenterOfTile();
-
             if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
             {
+                List<Tile> path = star.FindPath(currentTile, brain.creature.gridHolder, brain.creature);
                 if (EventSystem.current.IsPointerOverGameObject()) return;
-                brain.creature.Move(currentTile);
+                show.Display(lr, path);
+                brain.creature.FollowPath(path);
             }
         }
 
