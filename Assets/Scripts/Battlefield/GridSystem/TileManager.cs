@@ -14,11 +14,14 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public int width = 25;
         public int height = 25;
         public GridHolder gridHold;
+        public Tile[,] grid;
+        public int size = 50;
 
         // Start is called before the first frame update
         void Start()
         {
-            //GenerateTileMap();
+            grid = new Tile[size,size];
+            GenerateTileMap();
         }
 
 
@@ -35,12 +38,15 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                     newTile.name = "Tile " + i + " " + j;
                     Tile tempTile = newTile.GetComponent<Tile>();
                     tempTile.coordinates = new Vector2(i, j);
-                    Debug.Log(i + " " + j);
-                    //gridHold.tiles[i, j] = tempTile;
+                    tempTile.setCoords(i, j);
+                    tempTile.grid = gridHold;
+                    grid[i,j] = tempTile;
                 }
             }
         
             tileContainer.position = pos;
+
+            gridHold.tiles = grid;
         }
 
         public void EraseTileMap()
@@ -51,12 +57,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             }
 
         }
-
-        [ContextMenu("Do Something")]
-        void DoSomething()
-        {
-            Debug.Log("Perform operation");
-        }
+        
 
 
 

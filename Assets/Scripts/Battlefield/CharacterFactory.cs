@@ -45,12 +45,7 @@ namespace SwordAndBored.Battlefield
                 uniqueCreature.creatureName = unitTable.Name;
                 uniqueCreature.maxHealth = unitTable.Stats.HP;
                 uniqueCreature.maxMovement = unitTable.Stats.Movement;
-
-                //abilities
-                for (int j = 0; j < 5; j++)
-                {
-                    //abilities.abilities.add();
-                }
+                uniqueCreature.gridHolder = grid;
 
                 //stats
                 stats.health = unitTable.Stats.HP;
@@ -66,8 +61,8 @@ namespace SwordAndBored.Battlefield
 
                 //brain
                 brain.tileIndictor = indicator;
-                brain.startCoordinates = new Vector2(numUnits, 5);
-                //brain.grid = grid;
+                indicator.GetComponentInChildren<Renderer>().enabled = false;
+                brain.startCoordinates = new Vector2(numUnits * 2 + 25, 25);
 
                 unit.transform.parent = unitHolder;
 
