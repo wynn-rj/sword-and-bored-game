@@ -24,7 +24,15 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         [HideInInspector]
         BrainManager brain;
         public bool isEnemy;
-        
+        [HideInInspector]
+        public GridHolder gridHolder;
+        bool start = true;
+        bool onMoveTile = false;
+
+        //Used for astar
+        private List<Tile> path;
+        private int tileOnPath = 0;
+
 
         void Start()
         {
@@ -35,7 +43,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             stats = GetComponent<UnitStats>();
             outline = GetComponent<Outline>();
         }
-
 
         /// <summary>
         /// This method chnages the highlighting of a unit based on an integr.  3 = no highlight, 1 = blue, 2 = red.
@@ -49,15 +56,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             {
                 outline.OutlineColor = Color.blue;
                 outline.enabled = true;
-                //currentMat.material = mat[1];
             } else if (glow == 2)
             {
                 outline.enabled = false;
-                //currentMat.material = mat[0];
             } else if (glow == 3) 
             {
                 b = a + Time.time;
-                //currentMat.material = mat[2];
                 outline.OutlineColor = Color.red;
                 outline.enabled = true;
             }
@@ -70,28 +74,64 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             outline.enabled = true;
         }
 
+        private void LateUpdate()
+        {
+            if (start)
+            {
+                currentTile = gridHolder.tiles[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y)];
+                Move(currentTile);
+                start = false;
+            }
+            
+        }
+
         private void Update()
         {
-            if (highlightColor == 3 && Time.time > b)
-            {
-                //Glow(2);
-            }
-
             if (!brain.isMyTurn && Time.time > b)
             {
                 outline.enabled = false;
             }
 
+            if (path != null) MoveAlongPath();
+
             animator.SetFloat("Speed", (agent.velocity.magnitude / 3.5f));
         }
 
+        private void MoveAlongPath()
+        {
+
+            Move(path[tileOnPath]);
+            onMoveTile = onTile(.1f);
+            if (path != null && onMoveTile && tileOnPath > 0)
+            {
+                tileOnPath--;
+            }
+            else if (path != null && onMoveTile && tileOnPath == 0)
+            {
+                path = null;
+            }
+        }
+
+        bool onTile(float marginOfError)
+        {
+            bool onTile = Mathf.Abs(transform.position.x - currentTile.GetCenterOfTile().x) < marginOfError && Mathf.Abs(transform.position.z - currentTile.GetCenterOfTile().z) < marginOfError;
+            return onTile;
+        }
+
         /// <summary>
-        /// This method is used to move a unit to a tile        
+        /// This method is used to move a unit to a tile.  This does not use Astar        
         /// </summary>
         public void Move(Tile goTile)
         {
-                SetTile(goTile);
                 MoveTo(goTile.GetCenterOfTile());
+                SetTile(goTile);
+        }
+
+
+        public void FollowPath(List<Tile> path)
+        {
+            tileOnPath = path.Count - 1;
+            this.path = path;
         }
     }
 
