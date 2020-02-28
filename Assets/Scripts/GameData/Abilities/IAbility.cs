@@ -9,5 +9,8 @@ namespace SwordAndBored.GameData.Abilities
         int Accuracy { get; set; }
         int Range { get; set; }
         bool IsPhysical { get; set; }
+        int Length { get; set; }
+        int Width { get; set; }
+        string Shape { get; set; }
     }
 }
