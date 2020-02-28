@@ -4,6 +4,7 @@ using UnityEngine;
 using SwordAndBored.Battlefield;
 using UnityEngine.EventSystems;
 using SwordAndBored.Battlefield.AStar;
+using SwordAndBored.Battlefield.CreaturScripts;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
     };
     BrainManager brain;
     LineRenderer lr;
+    MovementSystem ms;
+
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -31,6 +34,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         brain.indicatorRend.enabled = true;
         brain.outline.enabled = true;
         lr = brain.GetComponent<LineRenderer>();
+        ms = animator.GetComponent<MovementSystem>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -46,11 +50,11 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
             brain.tileIndictor.transform.position = currentTile.GetCenterOfTile();
             if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
             {
-                List<Tile> path = star.FindPath(currentTile, brain.creature.gridHolder, brain.creature);
+                List<Tile> path = star.FindPath(currentTile, ms.grid, ms);
                 if (EventSystem.current.IsPointerOverGameObject()) return;
                 lr.enabled = true;
                 show.Display(lr, path);
-                brain.creature.FollowPath(path);
+                ms.FollowPath(path);
             }
         }
 

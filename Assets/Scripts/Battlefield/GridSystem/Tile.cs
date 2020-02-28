@@ -17,22 +17,6 @@ namespace SwordAndBored.Battlefield
         [HideInInspector]
         public int y;
 
-        [HideInInspector]
-        public int f = 0;
-        [HideInInspector]
-        public int g = 0;
-        [HideInInspector]
-        public int h = 0;
-        [HideInInspector]
-        Vector2 previous;
-
-
-        public Tile Up;
-        public Tile Left;
-        public Tile Right;
-        public Tile Down;
-    
-
         public GridHolder grid;
 
         public Vector3 GetCenterOfTile()
