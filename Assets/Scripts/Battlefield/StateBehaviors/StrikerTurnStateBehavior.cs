@@ -4,7 +4,7 @@ using UnityEngine;
 using SwordAndBored.Battlefield;
 using SwordAndBored.Battlefield.CreaturScripts;
 using UnityEngine.EventSystems;
-using SwordAndBored.Battlefield.AStar;
+using SwordAndBored.Battlefield.AstarStuff;
 
 public class StrikerTurnStateBehavior : StateMachineBehaviour
 {
@@ -18,6 +18,7 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         brain = animator.GetComponent<BrainManager>();
+        ms = animator.GetComponent<MovementSystem>();
         brain.outline.enabled = true;
         float min = Vector3.Distance(animator.transform.position, brain.manager.playerUnits[0].transform.position);
         int playerToAttack = 0;
@@ -40,8 +41,7 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         brain.outline.OutlineColor = Color.yellow;
         if (target && target.unitOnTile == null)
         {
-            List<Tile> path = star.FindPath(target, ms.grid, ms);
-            ms.FollowPath(path);
+            ms.Move(target);
         }
 
         if (target && Vector3.Distance(animator.transform.position, target.GetCenterOfTile()) < 1f)
