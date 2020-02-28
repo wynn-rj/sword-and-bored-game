@@ -24,15 +24,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         [HideInInspector]
         BrainManager brain;
         public bool isEnemy;
-        [HideInInspector]
-        public GridHolder gridHolder;
-        bool start = true;
-        bool onMoveTile = false;
-        LineRenderer lr;
-
-        //Used for astar
-        private List<Tile> path;
-        private int tileOnPath = 0;
+        MovementSystem ms;
 
 
         void Start()
@@ -43,7 +35,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             abilityContainer = GetComponent<UnitAbilitiesContainer>();
             stats = GetComponent<UnitStats>();
             outline = GetComponent<Outline>();
-            lr = GetComponent<LineRenderer>();
+            ms = GetComponent<MovementSystem>();
         }
 
         /// <summary>
@@ -75,17 +67,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             outline.OutlineColor = Color.red;
             outline.enabled = true;
         }
-
-        private void LateUpdate()
-        {
-            if (start)
-            {
-                currentTile = gridHolder.tiles[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y)];
-                Move(currentTile);
-                start = false;
-            }
-            
-        }
+        
 
         private void Update()
         {
@@ -93,56 +75,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             {
                 outline.enabled = false;
             }
-
-            if (path != null)
-            {
-                MoveAlongPath(); 
-            } else
-            {
-                lr.enabled = false;
-            }
-
-
-
-            animator.SetFloat("Speed", (agent.velocity.magnitude / 3.5f));
+        
+            animator.SetFloat("Speed", (ms.agent.velocity.magnitude / 3.5f));
         }
-
-        private void MoveAlongPath()
-        {
-
-            Move(path[tileOnPath]);
-            onMoveTile = onTile(.1f);
-            if (path != null && onMoveTile && tileOnPath > 0)
-            {
-                tileOnPath--;
-            }
-            else if (path != null && onMoveTile && tileOnPath == 0)
-            {
-                path = null;
-            }
-        }
-
-        bool onTile(float marginOfError)
-        {
-            bool onTile = Mathf.Abs(transform.position.x - currentTile.GetCenterOfTile().x) < marginOfError && Mathf.Abs(transform.position.z - currentTile.GetCenterOfTile().z) < marginOfError;
-            return onTile;
-        }
-
-        /// <summary>
-        /// This method is used to move a unit to a tile.  This does not use Astar        
-        /// </summary>
-        public void Move(Tile goTile)
-        {
-                MoveTo(goTile.GetCenterOfTile());
-                SetTile(goTile);
-        }
-
-
-        public void FollowPath(List<Tile> path)
-        {
-            tileOnPath = path.Count - 1;
-            this.path = path;
-        }
+        
     }
 
 }
