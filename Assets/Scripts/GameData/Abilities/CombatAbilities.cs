@@ -27,8 +27,8 @@ namespace SwordAndBored.GameData.Abilities
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
-                int attackModifiersID = reader.GetIntFromCol("Attack_Modifiers_FK");
-                StatusConditionsAttack = new StatusConditionsAttack(attackModifiersID);
+                int statusConditionsAttackID = reader.GetIntFromCol("Status_Conditions_Attack_FK");
+                StatusConditionsAttack = new StatusConditionsAttack(statusConditionsAttackID);
 
                 Damage = reader.GetIntFromCol("Damage");
                 Accuracy = reader.GetIntFromCol("Accuracy");
