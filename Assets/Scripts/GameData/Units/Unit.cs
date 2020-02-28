@@ -3,6 +3,7 @@ using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Database;
 using System.Collections.Generic;
 using SwordAndBored.GameData.Abilities;
+using SwordAndBored.GameData.StatusConditions;
 
 namespace SwordAndBored.GameData.Units 
 {
@@ -27,7 +28,7 @@ namespace SwordAndBored.GameData.Units
         public IWeapon Weapon { get; set; }
         public IArmor Armor { get; set; }
         public IRole Role { get; set; }
-        
+        public IStatusConditionsActive StatusConditionsActive { get; set; }
         public int XP { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
@@ -60,6 +61,9 @@ namespace SwordAndBored.GameData.Units
 
                 int spellBookID = reader.GetIntFromCol("Spell_Book_FK");
                 SpellBook = new SpellBook(spellBookID);
+
+                int statusConditionActiveID = reader.GetIntFromCol("Status_Conditions_Acitve_FK");
+                StatusConditionsActive = new StatusConditionsActive(statusConditionActiveID);
 
                 Abilities = new List<IAbility>();
                 Abilities.AddRange(Weapon.Abilities);
