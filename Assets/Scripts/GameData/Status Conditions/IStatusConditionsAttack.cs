@@ -1,6 +1,6 @@
 ﻿namespace SwordAndBored.GameData.Modifiers
 {
-    public interface IModifierAttack : IDatabaseObject
+    public interface IStatusConditionsAttack : IDatabaseObject
     {
         int Fire_Damage { get; set; }
         int Fire_Chance { get; set; }

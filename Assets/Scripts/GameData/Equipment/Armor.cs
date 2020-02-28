@@ -8,7 +8,7 @@ namespace SwordAndBored.GameData.Equipment
         public int ID { get; set; }
         public int Physical_Defense { get; set; }
         public int Magic_Defense { get; set; }
-        public IModifierDefense ModifierDefense { get; set; }
+        public IStatusConditionsResistances StatusConditionsResistances { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
@@ -26,7 +26,7 @@ namespace SwordAndBored.GameData.Equipment
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
                 int defenseModifierID = reader.GetIntFromCol("Defense_Modifier_FK");
-                ModifierDefense = new DefenseModifiers(defenseModifierID);
+                StatusConditionsResistances = new StatusConditionsResistances(defenseModifierID);
 
                 Physical_Defense = reader.GetIntFromCol("Physical_Defense");
                 Magic_Defense = reader.GetIntFromCol("Magic_Defense");
@@ -38,14 +38,14 @@ namespace SwordAndBored.GameData.Equipment
         override public string ToString()
         {
             return "{Armor: " + ID + ", Descriptor: " + Name.ToString() + ", DefenseModifier: " 
-                + ModifierDefense.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: " 
+                + StatusConditionsResistances.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: " 
                 + Magic_Defense +  "}";
         }
 
         public string LongString()
         {
             return "Armor: {ID: " + ID + ", Descriptor: " + Name.ToString() + ", DefenseModifier: "
-                + ModifierDefense.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: "
+                + StatusConditionsResistances.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: "
                 + Magic_Defense + "}";
         }
 
