@@ -9,11 +9,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
     public class UnitBase : MonoBehaviour
     {
-    
-        [HideInInspector]
-        public NavMeshAgent agent;
-        [HideInInspector]
-        public Tile currentTile;
 
         [Header("Creature Info")]
         public string creatureName;
@@ -27,12 +22,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public int maxMovement;
         int movement;
 
-
-        void Awake()
-        {
-            agent = GetComponent<NavMeshAgent>();
-        }
-
         void Start()
         {
             health = maxHealth;
@@ -44,19 +33,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             action = true;
             movement = maxMovement;
         }
-
-
-        protected void MoveTo(Vector3 pos)
-        {
-            agent.destination = pos;
-        }
-
-        public void SetTile(Tile tile)
-        {
-            currentTile.unitOnTile = null;
-            currentTile = tile;
-            tile.unitOnTile = this.gameObject;
-        }
+        
 
         void Update()
         {

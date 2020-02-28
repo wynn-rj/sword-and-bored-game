@@ -36,6 +36,7 @@ namespace SwordAndBored.Battlefield
                 UnitStats stats = unit.GetComponent<UnitStats>();
                 CinemachineVirtualCamera cam = uniqueCreature.currentCamera;
                 BrainManager brain = unit.GetComponent<BrainManager>();
+                MovementSystem ms = unit.GetComponent<MovementSystem>();
                 camManager.cameras.Add(cam.gameObject);
                 turnManager.units.Add(unit);
                 //turnManager.activePlayer = brain;
@@ -49,7 +50,9 @@ namespace SwordAndBored.Battlefield
                 uniqueCreature.maxHealth = enemyData.Stats.HP;
                 uniqueCreature.maxMovement = enemyData.Stats.Movement;
                 uniqueCreature.isEnemy = true;
-                uniqueCreature.gridHolder = grid;
+
+                //Movement
+                ms.grid = grid;
 
 
                 //stats

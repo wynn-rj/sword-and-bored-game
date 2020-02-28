@@ -31,6 +31,7 @@ namespace SwordAndBored.Battlefield
                 UnitAbilitiesContainer abilities = unit.GetComponent<UnitAbilitiesContainer>();
                 UnitStats stats = unit.GetComponent<UnitStats>();
                 BrainManager brain = unit.GetComponent<BrainManager>();
+                MovementSystem ms = unit.GetComponent<MovementSystem>();
                 CinemachineVirtualCamera cam = uniqueCreature.currentCamera;
                 Animator anim = unit.GetComponent<Animator>();
                 RuntimeAnimatorController currentAi = Resources.Load<RuntimeAnimatorController>("Ai/PlayerBrain");
@@ -45,7 +46,9 @@ namespace SwordAndBored.Battlefield
                 uniqueCreature.creatureName = unitTable.Name;
                 uniqueCreature.maxHealth = unitTable.Stats.HP;
                 uniqueCreature.maxMovement = unitTable.Stats.Movement;
-                uniqueCreature.gridHolder = grid;
+
+                //Movement
+                ms.grid = grid;
 
                 //stats
                 stats.health = unitTable.Stats.HP;

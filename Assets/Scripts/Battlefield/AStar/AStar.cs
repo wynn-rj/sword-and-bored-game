@@ -30,12 +30,12 @@ namespace SwordAndBored.Battlefield.AStar
     public class AStar
     {
 
-        public List<Tile> FindPath(Tile goal, GridHolder grid, UniqueCreature creature)
+        public List<Tile> FindPath(Tile goal, GridHolder grid, MovementSystem ms)
         {
             List<Node> openList = new List<Node>();
             List<Node> closedList = new List<Node>();
 
-            Node start = new Node(null, creature.currentTile.x, creature.currentTile.y);
+            Node start = new Node(null, ms.currentTile.x, ms.currentTile.y);
             start.g = start.h = start.f = 0;
             Node end = new Node(null, goal.x, goal.y);
             end.g = end.h = end.f = 0;

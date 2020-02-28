@@ -37,6 +37,8 @@ namespace SwordAndBored.Battlefield
         [HideInInspector]
         public Outline outline;
 
+        MovementSystem ms;
+
         private KeyCode[] keyCodes = {
              KeyCode.Alpha1,
              KeyCode.Alpha2,
@@ -51,10 +53,11 @@ namespace SwordAndBored.Battlefield
 
         void Start()
         {
+            ms = GetComponent<MovementSystem>();
             indicatorRend = tileIndictor.GetComponentInChildren<Renderer>();
             cam = Camera.main;
             creature = GetComponent<UniqueCreature>();
-            creature.agent.destination = startCoordinates;
+            ms.agent.destination = startCoordinates;
             anim = GetComponent<Animator>();
             outline = GetComponent<Outline>();
         }
@@ -71,7 +74,14 @@ namespace SwordAndBored.Battlefield
 
         public string GetName()
         {
-            return creature.creatureName;
+            if (creature.creatureName != null)
+            {
+                return creature.creatureName;
+
+            } else
+            {
+                return "<Name Still Loading>";
+            }
         }
 
         public bool HasActionLeft()
