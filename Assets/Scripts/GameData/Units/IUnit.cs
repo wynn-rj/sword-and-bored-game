@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using SwordAndBored.GameData.Abilities;
 using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Roles;
+using SwordAndBored.GameData.StatusConditions;
 
 namespace SwordAndBored.GameData.Units
 {
@@ -30,6 +31,7 @@ namespace SwordAndBored.GameData.Units
         IArmor Armor { get; set; }
 
         IRole Role { get; set; }
+        IStatusConditionsActive StatusConditionsActive { get; set; }
 
         int XP { get; set; }
         int Level { get; }
