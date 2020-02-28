@@ -1,4 +1,4 @@
-﻿using SwordAndBored.GameData.Modifiers;
+﻿using SwordAndBored.GameData.StatusConditions;
 using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.GameData.Equipment

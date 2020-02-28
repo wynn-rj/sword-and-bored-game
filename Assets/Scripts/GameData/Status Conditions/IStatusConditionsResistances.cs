@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.GameData.Modifiers
+﻿namespace SwordAndBored.GameData.StatusConditions
 {
     public interface IStatusConditionsResistances : IDatabaseObject
     {
