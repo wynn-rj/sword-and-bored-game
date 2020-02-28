@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using SwordAndBored.Battlefield.AstarStuff;
+using UnityEngine.EventSystems;
 
 namespace SwordAndBored.Battlefield.CreaturScripts
 {
@@ -20,6 +21,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public NavMeshAgent agent;
         [HideInInspector]
         public Tile currentTile;
+
+        AStar star = new AStar();
+        DisplayPath show = new DisplayPath();
 
         void Start()
         {
@@ -50,7 +54,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             if (start)
             {
                 currentTile = grid.tiles[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y)];
-                Move(currentTile);
+                MoveOneTile(currentTile);
                 start = false;
             }
 
@@ -58,8 +62,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
         private void MoveAlongPath()
         {
-
-            Move(path[tileOnPath]);
+            MoveOneTile(path[tileOnPath]);
             onMoveTile = onTile(.1f);
             if (path != null && onMoveTile && tileOnPath > 0)
             {
@@ -70,18 +73,15 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                 path = null;
             }
         }
-
-        /// <summary>
-        /// This method is used to move a unit to a tile.  This does not use Astar        
-        /// </summary>
-        public void Move(Tile goTile)
+        
+        private void MoveOneTile(Tile goTile)
         {
             MoveTo(goTile.GetCenterOfTile());
             SetTile(goTile);
         }
 
 
-        public void FollowPath(List<Tile> path)
+        private void FollowPath(List<Tile> path)
         {
             tileOnPath = path.Count - 1;
             this.path = path;
@@ -98,11 +98,20 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             agent.destination = pos;
         }
 
-        public void SetTile(Tile tile)
+        private void SetTile(Tile tile)
         {
             currentTile.unitOnTile = null;
             currentTile = tile;
             tile.unitOnTile = this.gameObject;
+        }
+
+
+        public void Move(Tile tile)
+        {
+            List<Tile> path = star.FindPath(tile, grid, this);
+            lr.enabled = true;
+            show.Display(lr, path);
+            FollowPath(path);
         }
     }
 }
