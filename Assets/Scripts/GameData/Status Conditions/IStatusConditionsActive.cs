@@ -1,14 +1,14 @@
 ﻿
 namespace SwordAndBored.GameData.StatusConditions
 {
-    interface IStatusConditionsActive : IDatabaseObject
+    public interface IStatusConditionsActive : IDatabaseObject
     {
-        public bool IsStunned { get; set; }
-        public bool IsOnFire { get; set; }
-        public int FireDamage { get; set; }
-        public bool IsPoisoned { get; set; }
-        public int PoisonDamage { get; set; }
-        public bool IsBleeding { get; set; }
-        public int BleedDamage { get; set; }
+        bool IsStunned { get; set; }
+        bool IsOnFire { get; set; }
+        int FireDamage { get; set; }
+        bool IsPoisoned { get; set; }
+        int PoisonDamage { get; set; }
+        bool IsBleeding { get; set; }
+        int BleedDamage { get; set; }
     }
 }
