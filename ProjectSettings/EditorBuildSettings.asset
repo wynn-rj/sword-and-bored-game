@@ -15,13 +15,13 @@ EditorBuildSettings:
     path: Assets/Scenes/DatabaseTesting.unity
     guid: 89c598e3ae1e09749a2cb25bc7e6afb9
   - enabled: 1
-    path: Assets/Scenes/AddStatsUI.unity
+    path: Assets/Scenes/Old Unused Scene/AddStatsUI.unity
     guid: e227638c374805c4a82a04ae796aa7b9
   - enabled: 1
     path: Assets/Scenes/StrategyMap.unity
     guid: 04012332e3c1d00448ec390263c606a9
   - enabled: 1
-    path: Assets/Scenes/Town Map.unity
+    path: Assets/Scenes/Old Unused Scene/Town Map.unity
     guid: 0d1190b286d7cc14f8ed4279c1d4f94c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0c1fde465bc1b5147a36bacd440a44fd,

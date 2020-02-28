@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Battlefield;
 using UnityEngine.EventSystems;
-using SwordAndBored.Battlefield.AStar;
+using SwordAndBored.Battlefield.AstarStuff;
 using SwordAndBored.Battlefield.CreaturScripts;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
-    AStar star = new AStar();
-    DisplayPath show = new DisplayPath();
-
     private KeyCode[] keyCodes = {
          KeyCode.Alpha1,
          KeyCode.Alpha2,
@@ -23,7 +20,6 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
          KeyCode.Alpha9,
     };
     BrainManager brain;
-    LineRenderer lr;
     MovementSystem ms;
 
 
@@ -33,7 +29,6 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         brain = animator.GetComponent<BrainManager>();
         brain.indicatorRend.enabled = true;
         brain.outline.enabled = true;
-        lr = brain.GetComponent<LineRenderer>();
         ms = animator.GetComponent<MovementSystem>();
     }
 
@@ -46,15 +41,13 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
 
         if (Physics.Raycast(ray, out hit, 100, brain.tileMapLayerMask))
         {
-            Tile currentTile = hit.collider.GetComponent<Tile>();
-            brain.tileIndictor.transform.position = currentTile.GetCenterOfTile();
-            if (currentTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
+            Tile endTile = hit.collider.GetComponent<Tile>();
+            brain.tileIndictor.transform.position = endTile.GetCenterOfTile();
+            if (endTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
             {
-                List<Tile> path = star.FindPath(currentTile, ms.grid, ms);
+
                 if (EventSystem.current.IsPointerOverGameObject()) return;
-                lr.enabled = true;
-                show.Display(lr, path);
-                ms.FollowPath(path);
+                ms.Move(endTile);
             }
         }
 
