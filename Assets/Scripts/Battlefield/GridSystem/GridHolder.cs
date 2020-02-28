@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Battlefield;
 
-public class GridHolder : MonoBehaviour
+public class GridHolder
 {
     public Tile[,] tiles;
-    
 }

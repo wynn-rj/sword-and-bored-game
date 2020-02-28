@@ -5,6 +5,7 @@ using SwordAndBored.Battlefield;
 using UnityEngine.EventSystems;
 using SwordAndBored.Battlefield.AstarStuff;
 using SwordAndBored.Battlefield.CreaturScripts;
+using SwordAndBored.Battlefield.MovementSystemScripts;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
@@ -47,7 +48,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
             {
 
                 if (EventSystem.current.IsPointerOverGameObject()) return;
-                ms.Move(endTile);
+                ms.Move(endTile, true);
             }
         }
 

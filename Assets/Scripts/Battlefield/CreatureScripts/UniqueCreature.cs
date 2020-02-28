@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using SwordAndBored.Battlefield.MovementSystemScripts;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
     public class UniqueCreature : UnitBase

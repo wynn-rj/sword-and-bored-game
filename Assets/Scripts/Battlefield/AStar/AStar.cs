@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Battlefield.CreaturScripts;
-
+using SwordAndBored.Battlefield.MovementSystemScripts;
 
 namespace SwordAndBored.Battlefield.AstarStuff
 {
@@ -30,7 +30,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
     public class AStar
     {
 
-        public List<Tile> FindPath(Tile goal, GridHolder grid, MovementSystem ms)
+        public List<Tile> FindPath(Tile goal, Tile[,] grid, MovementSystem ms)
         {
             List<Node> openList = new List<Node>();
             List<Node> closedList = new List<Node>();
@@ -64,7 +64,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
                     Node current = currentNode;
                     while (current != null)
                     {
-                        path.Add(grid.tiles[current.x, current.y]);
+                        path.Add(grid[current.x, current.y]);
                         current = current.parent;
                     }
                     return path;
@@ -76,7 +76,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
                 Node nodePos = new Node(currentNode, currentNode.x + 1, currentNode.y);
                 if (nodePos.x < 49 && nodePos.y < 49)
                 {
-                    if (grid.tiles[nodePos.x, nodePos.y] && grid.tiles[nodePos.x, nodePos.y].walkable && !grid.tiles[nodePos.x, nodePos.y].unitOnTile)
+                    if (grid[nodePos.x, nodePos.y] && grid[nodePos.x, nodePos.y].walkable && !grid[nodePos.x, nodePos.y].unitOnTile)
                     {
                         children.Add(nodePos);
                     }
@@ -84,7 +84,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
                 nodePos = new Node(currentNode, currentNode.x, currentNode.y + 1);
                 if (nodePos.x < 49 && nodePos.y < 49)
                 {
-                    if (grid.tiles[nodePos.x, nodePos.y] && grid.tiles[nodePos.x, nodePos.y].walkable && !grid.tiles[nodePos.x, nodePos.y].unitOnTile)
+                    if (grid[nodePos.x, nodePos.y] && grid[nodePos.x, nodePos.y].walkable && !grid[nodePos.x, nodePos.y].unitOnTile)
                     {
                         children.Add(nodePos);
                     }
@@ -92,7 +92,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
                 nodePos = new Node(currentNode, currentNode.x - 1, currentNode.y);
                 if (nodePos.x < 49 && nodePos.y < 49)
                 {
-                    if (grid.tiles[nodePos.x, nodePos.y] && grid.tiles[nodePos.x, nodePos.y].walkable && !grid.tiles[nodePos.x, nodePos.y].unitOnTile)
+                    if (grid[nodePos.x, nodePos.y] && grid[nodePos.x, nodePos.y].walkable && !grid[nodePos.x, nodePos.y].unitOnTile)
                     {
                         children.Add(nodePos);
                     }
@@ -100,7 +100,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
                 nodePos = new Node(currentNode, currentNode.x, currentNode.y - 1);
                 if (nodePos.x < 49 && nodePos.y < 49)
                 {
-                    if (grid.tiles[nodePos.x, nodePos.y] && grid.tiles[nodePos.x, nodePos.y].walkable && !grid.tiles[nodePos.x, nodePos.y].unitOnTile)
+                    if (grid[nodePos.x, nodePos.y] && grid[nodePos.x, nodePos.y].walkable && !grid[nodePos.x, nodePos.y].unitOnTile)
                     {
                         children.Add(nodePos);
                     }
@@ -119,7 +119,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
                     if (!stop)
                     {
                         child.g = currentNode.g + 1;
-                        child.h = Mathf.RoundToInt(Vector3.Distance(goal.transform.position, grid.tiles[child.x, child.y].transform.position));
+                        child.h = Mathf.RoundToInt(Vector3.Distance(goal.transform.position, grid[child.x, child.y].transform.position));
                         child.f = child.g + child.h;
 
                         foreach (Node openNode in openList)
