@@ -17,7 +17,7 @@ namespace SwordAndBored.Battlefield
         [HideInInspector]
         public int y;
 
-        public GridHolder grid;
+        public Tile[,] grid;
 
         public Vector3 GetCenterOfTile()
         {

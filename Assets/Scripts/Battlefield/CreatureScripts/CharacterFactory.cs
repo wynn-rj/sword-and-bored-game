@@ -5,12 +5,15 @@ using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.Battlefield.MovementSystemScripts;
 
 namespace SwordAndBored.Battlefield
 {
     public class CharacterFactory : MonoBehaviour
     {
-        public GridHolder grid;
+        [HideInInspector]
+        public Tile[,] grid;
+        public TileManager tileManager;
         public GameObject playerPrefab;
         public GameObject indicator;
         public CameraManager camManager;
@@ -19,6 +22,7 @@ namespace SwordAndBored.Battlefield
     
         void Awake()
         {
+            grid = tileManager.grid;
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryAllFromTable("Units");
             int numUnits = 0;

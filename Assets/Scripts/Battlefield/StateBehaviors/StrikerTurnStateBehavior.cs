@@ -5,13 +5,13 @@ using SwordAndBored.Battlefield;
 using SwordAndBored.Battlefield.CreaturScripts;
 using UnityEngine.EventSystems;
 using SwordAndBored.Battlefield.AstarStuff;
+using SwordAndBored.Battlefield.MovementSystemScripts;
 
 public class StrikerTurnStateBehavior : StateMachineBehaviour
 {
 
     BrainManager brain;
     Tile target;
-    AStar star = new AStar();
     MovementSystem ms;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -32,7 +32,7 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
             }
         }
         Tile targetedPlayer = brain.manager.playerUnits[playerToAttack].GetComponent<MovementSystem>().currentTile;
-        target = ms.grid.tiles[targetedPlayer.x + 1, targetedPlayer.y];
+        target = ms.grid[targetedPlayer.x + 1, targetedPlayer.y];
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

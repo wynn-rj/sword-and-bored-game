@@ -5,35 +5,38 @@ using UnityEngine.AI;
 using SwordAndBored.Battlefield.AstarStuff;
 using UnityEngine.EventSystems;
 
-namespace SwordAndBored.Battlefield.CreaturScripts
+namespace SwordAndBored.Battlefield.MovementSystemScripts
 {
     public class MovementSystem : MonoBehaviour
     {
+
         [HideInInspector]
-        public GridHolder grid;
+        public Tile[,] grid;
         bool start = true;
         bool onMoveTile = false;
         LineRenderer lr;
         private List<Tile> path;
         private int tileOnPath = 0;
-        BrainManager brain;
+
+        AStar star = new AStar();
+        DisplayPath show = new DisplayPath();
+        protected BrainManager brain;
         [HideInInspector]
         public NavMeshAgent agent;
         [HideInInspector]
         public Tile currentTile;
 
-        AStar star = new AStar();
-        DisplayPath show = new DisplayPath();
-
-        void Start()
-        {
-            lr = GetComponent<LineRenderer>();
-            brain = GetComponent<BrainManager>();
-        }
 
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
+        }
+
+
+        void Start()
+        {
+            brain = GetComponent<BrainManager>();
+            lr = GetComponent<LineRenderer>();
         }
 
 
@@ -53,7 +56,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         {
             if (start)
             {
-                currentTile = grid.tiles[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y)];
+                currentTile = grid[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y)];
                 MoveOneTile(currentTile);
                 start = false;
             }
@@ -87,13 +90,13 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             this.path = path;
         }
 
-        bool onTile(float marginOfError)
+        private bool onTile(float marginOfError)
         {
             bool onTile = Mathf.Abs(transform.position.x - currentTile.GetCenterOfTile().x) < marginOfError && Mathf.Abs(transform.position.z - currentTile.GetCenterOfTile().z) < marginOfError;
             return onTile;
         }
 
-        protected void MoveTo(Vector3 pos)
+        private void MoveTo(Vector3 pos)
         {
             agent.destination = pos;
         }
@@ -106,12 +109,20 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         }
 
 
-        public void Move(Tile tile)
+        public void Move(Tile tile, bool displayPath)
         {
             List<Tile> path = star.FindPath(tile, grid, this);
-            lr.enabled = true;
-            show.Display(lr, path);
+            if (displayPath)
+            {
+                lr.enabled = true;
+                show.Display(lr, path);
+            }
             FollowPath(path);
+        }
+
+        public void Move(Tile tile)
+        {
+            Move(tile, false);
         }
     }
 }

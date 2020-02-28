@@ -8,6 +8,7 @@ using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.Battlefield.MovementSystemScripts;
 
 
 namespace SwordAndBored.Battlefield
@@ -16,17 +17,20 @@ namespace SwordAndBored.Battlefield
     {
         public int stageDifficulty;
         public int numberOfEnemies;
-
+        public TileManager tileManager;
         public GameObject playerPrefab;
         public CameraManager camManager;
         public TurnManager turnManager;
         public Transform unitHolder;
         public GameObject indicator;
-        public GridHolder grid;
+        [HideInInspector]
+        public Tile[,] grid;
 
         void Awake()
         {
-            for(int numUnits=0; numUnits < 1; numUnits++)
+
+            grid = tileManager.grid;
+            for (int numUnits=0; numUnits < 1; numUnits++)
             {
                 IEnemy enemyData = Enemy.GetEnemyFromTier(1);
 

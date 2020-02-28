@@ -54569,30 +54569,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2074492453}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2078956869 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 819310498753851398, guid: 49f732bbb39766d488c269d859715ff9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1881694428}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2078956870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 819310498753851399, guid: 49f732bbb39766d488c269d859715ff9,
     type: 3}
   m_PrefabInstance: {fileID: 1881694428}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2078956871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078956869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15befbcd5535112438a633d202ccc38c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2079009015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56507,13 +56489,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageDifficulty: 1
   numberOfEnemies: 2
+  tileManager: {fileID: 5165644637075364240}
   playerPrefab: {fileID: 3159141201095183994, guid: ef722bf4f72be6c46b0c7f6acd355a31,
     type: 3}
   camManager: {fileID: 5165644637623274078}
   turnManager: {fileID: 5165644636434992688}
   unitHolder: {fileID: 404761842}
   indicator: {fileID: 1655949900}
-  grid: {fileID: 2078956871}
 --- !u!114 &5165644636434992688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56608,7 +56590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcb87d1ac398d64ba3ded402741d2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 2078956871}
+  tileManager: {fileID: 5165644637075364240}
   playerPrefab: {fileID: 3159141201095183994, guid: ef722bf4f72be6c46b0c7f6acd355a31,
     type: 3}
   indicator: {fileID: 1655949900}
@@ -56632,7 +56614,6 @@ MonoBehaviour:
   tileContainer: {fileID: 2078956870}
   width: 50
   height: 50
-  gridHold: {fileID: 2078956871}
   size: 50
 --- !u!4 &5165644637075364241
 Transform:
