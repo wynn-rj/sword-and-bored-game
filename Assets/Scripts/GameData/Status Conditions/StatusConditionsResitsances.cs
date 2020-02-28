@@ -13,7 +13,7 @@ namespace SwordAndBored.GameData.Modifiers
         public StatusConditionsResistances(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryRowFromTableWithID("Defense_Modifiers", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Status_Conditions_Resistances", inputID);
 
             ID = inputID;
             if (reader.NextRow())

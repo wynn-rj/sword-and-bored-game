@@ -25,8 +25,8 @@ namespace SwordAndBored.GameData.Equipment
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
-                int defenseModifierID = reader.GetIntFromCol("Defense_Modifier_FK");
-                StatusConditionsResistances = new StatusConditionsResistances(defenseModifierID);
+                int statusConditionsResitancesID = reader.GetIntFromCol("Status_Conditions_Resistances_FK");
+                StatusConditionsResistances = new StatusConditionsResistances(statusConditionsResitancesID);
 
                 Physical_Defense = reader.GetIntFromCol("Physical_Defense");
                 Magic_Defense = reader.GetIntFromCol("Magic_Defense");
