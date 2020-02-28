@@ -1,6 +1,6 @@
 ﻿using SwordAndBored.GameData.Database;
 
-namespace SwordAndBored.GameData.Modifiers
+namespace SwordAndBored.GameData.StatusConditions
 {
     public class StatusConditionsAttack : IStatusConditionsAttack
     {

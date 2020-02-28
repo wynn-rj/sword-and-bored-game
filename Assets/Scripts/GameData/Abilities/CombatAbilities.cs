@@ -1,5 +1,5 @@
 ﻿using SwordAndBored.GameData.Database;
-using SwordAndBored.GameData.Modifiers;
+using SwordAndBored.GameData.StatusConditions;
 
 namespace SwordAndBored.GameData.Abilities
 {
