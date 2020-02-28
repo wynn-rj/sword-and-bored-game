@@ -9,6 +9,9 @@ namespace SwordAndBored.GameData.Abilities
         public int Damage { get; set; }
         public int Accuracy { get; set; }
         public int Range { get; set; }
+        public int Length { get; set; }
+        public int Width { get; set; }
+        public string Shape { get; set; }
         public bool IsPhysical { get; set; }
         public IStatusConditionsAttack StatusConditionsAttack { get; set; }
         public string Name { get; set; }
@@ -34,6 +37,9 @@ namespace SwordAndBored.GameData.Abilities
                 Accuracy = reader.GetIntFromCol("Accuracy");
                 Range = reader.GetIntFromCol("Range");
                 IsPhysical = reader.GetIntFromCol("Is_Physical") == 0;
+                Length = reader.GetIntFromCol("Length");
+                Width = reader.GetIntFromCol("Width");
+                Shape = reader.GetStringFromCol("Shape");
             }
             reader.CloseReader();
             conn.CloseConnection();
