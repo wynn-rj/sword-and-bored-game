@@ -10,7 +10,7 @@ namespace SwordAndBored.GameData.Abilities
         public int Accuracy { get; set; }
         public int Range { get; set; }
         public bool IsPhysical { get; set; }
-        public IModifierAttack AttackModifiers { get; set; }
+        public IStatusConditionsAttack StatusConditionsAttack { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
@@ -28,7 +28,7 @@ namespace SwordAndBored.GameData.Abilities
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
                 int attackModifiersID = reader.GetIntFromCol("Attack_Modifiers_FK");
-                AttackModifiers = new AttackModifiers(attackModifiersID);
+                StatusConditionsAttack = new StatusConditionsAttack(attackModifiersID);
 
                 Damage = reader.GetIntFromCol("Damage");
                 Accuracy = reader.GetIntFromCol("Accuracy");
@@ -42,13 +42,13 @@ namespace SwordAndBored.GameData.Abilities
         override public string ToString()
         {
             return "{Ability: " + ID + ", Descriptor: " + Name + ", Damage: " + Damage
-                + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + AttackModifiers + "}";
+                + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + StatusConditionsAttack + "}";
         }
 
         public string LongString()
         {
             return "Ability: {ID: " + ID + ", Descriptor: " + Name + ", Damage: " + Damage
-                + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + AttackModifiers + "}";
+                + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + StatusConditionsAttack + "}";
         }
 
         public string ShortString()
