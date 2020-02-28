@@ -10,6 +10,7 @@ namespace SwordAndBored.GameData.Units
     public class Unit : IUnit
     {
         public int ID {get; set;}
+        public bool IsDead { get; set; }
         public ISpellBook SpellBook { get; set; }
         public IStats Stats { get; set; }
         public List<IAbility> Abilities {
@@ -65,6 +66,7 @@ namespace SwordAndBored.GameData.Units
                 int statusConditionActiveID = reader.GetIntFromCol("Status_Conditions_Acitve_FK");
                 StatusConditionsActive = new StatusConditionsActive(statusConditionActiveID);
 
+                IsDead = reader.GetIntFromCol("Is_Dead") > 0;
                 Abilities = new List<IAbility>();
                 Abilities.AddRange(Weapon.Abilities);
                 Abilities.AddRange(SpellBook.Abilities);
@@ -79,6 +81,7 @@ namespace SwordAndBored.GameData.Units
             ID = -1;
             XP = 0;
             Level = 1;
+            IsDead = false;
 
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInputStr("Roles", "Name", RoleName);
