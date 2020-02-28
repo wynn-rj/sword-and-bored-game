@@ -12,7 +12,7 @@ using SwordAndBored.GameData.Units;
 
 namespace SwordAndBored.Battlefield
 {
-    public class EnemyManager : MonoBehaviour
+    public class EnemyFactory : MonoBehaviour
     {
         public int stageDifficulty;
         public int numberOfEnemies;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Battlefield;
 using UnityEngine.EventSystems;
+using SwordAndBored.Battlefield.AStar;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
@@ -47,6 +48,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
             {
                 List<Tile> path = star.FindPath(currentTile, brain.creature.gridHolder, brain.creature);
                 if (EventSystem.current.IsPointerOverGameObject()) return;
+                lr.enabled = true;
                 show.Display(lr, path);
                 brain.creature.FollowPath(path);
             }

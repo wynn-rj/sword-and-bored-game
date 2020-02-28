@@ -4,7 +4,7 @@ using UnityEngine;
 using SwordAndBored.Battlefield.CreaturScripts;
 
 
-namespace SwordAndBored.Battlefield
+namespace SwordAndBored.Battlefield.AStar
 {
     class Node
     {
