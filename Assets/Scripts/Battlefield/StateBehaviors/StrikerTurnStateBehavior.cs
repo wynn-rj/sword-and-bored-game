@@ -4,6 +4,7 @@ using UnityEngine;
 using SwordAndBored.Battlefield;
 using SwordAndBored.Battlefield.CreaturScripts;
 using UnityEngine.EventSystems;
+using SwordAndBored.Battlefield.AStar;
 
 public class StrikerTurnStateBehavior : StateMachineBehaviour
 {

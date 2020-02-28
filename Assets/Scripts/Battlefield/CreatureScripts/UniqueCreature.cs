@@ -28,6 +28,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public GridHolder gridHolder;
         bool start = true;
         bool onMoveTile = false;
+        LineRenderer lr;
 
         //Used for astar
         private List<Tile> path;
@@ -42,6 +43,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             abilityContainer = GetComponent<UnitAbilitiesContainer>();
             stats = GetComponent<UnitStats>();
             outline = GetComponent<Outline>();
+            lr = GetComponent<LineRenderer>();
         }
 
         /// <summary>
@@ -92,7 +94,15 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 outline.enabled = false;
             }
 
-            if (path != null) MoveAlongPath();
+            if (path != null)
+            {
+                MoveAlongPath(); 
+            } else
+            {
+                lr.enabled = false;
+            }
+
+
 
             animator.SetFloat("Speed", (agent.velocity.magnitude / 3.5f));
         }

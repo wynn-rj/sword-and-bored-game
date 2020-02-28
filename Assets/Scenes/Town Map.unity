@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingDataAsset: {fileID: 112000000, guid: 836e11734cd59544e88056de9acb8ddf,
+    type: 2}
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6609,6 +6610,16 @@ MonoBehaviour:
   unitOnTile: {fileID: 0}
   walkable: 1
   coordinates: {x: 0, y: 0}
+  x: 0
+  y: 0
+  f: 0
+  g: 0
+  h: 0
+  Up: {fileID: 0}
+  Left: {fileID: 0}
+  Right: {fileID: 0}
+  Down: {fileID: 0}
+  grid: {fileID: 0}
 --- !u!1001 &235291666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48047,7 +48058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1818314862
 Transform:
   m_ObjectHideFlags: 0
@@ -56438,7 +56449,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5165644636097227996}
-  - component: {fileID: 5165644636097227997}
   m_Layer: 0
   m_Name: Enemy Manager
   m_TagString: Untagged
@@ -56460,26 +56470,6 @@ Transform:
   m_Father: {fileID: 5165644637272959076}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5165644636097227997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5165644636097227995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e548576c009654440ae167fd8d1546cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageDifficulty: 5
-  numberOfEnemies: 5
-  playerPrefab: {fileID: 3159141201095183994, guid: ef722bf4f72be6c46b0c7f6acd355a31,
-    type: 3}
-  camManager: {fileID: 5165644637623274078}
-  turnManager: {fileID: 5165644636434992688}
-  unitHolder: {fileID: 404761842}
-  indicator: {fileID: 1655949900}
 --- !u!114 &5165644636434992688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56496,8 +56486,7 @@ MonoBehaviour:
   playerUnits: []
   activePlayer: {fileID: 0}
   text: {fileID: 135663658}
-  actionsLeft:
-  - {fileID: 135663659}
+  actionsLeft: {fileID: 135663659}
   enemies: []
   winCanvas: {fileID: 135663656}
   hotbar: {fileID: 135663657}
@@ -56600,6 +56589,7 @@ MonoBehaviour:
   width: 50
   height: 50
   gridHold: {fileID: 1655949899}
+  size: 50
 --- !u!4 &5165644637075364241
 Transform:
   m_ObjectHideFlags: 0
