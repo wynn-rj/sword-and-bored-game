@@ -23,19 +23,11 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, brain.selectingCreaturesLayerMask))
         {
-            
-            GameObject target = hit.collider.gameObject;
-            UniqueCreature enem = target.GetComponent<UniqueCreature>();
-            if (enem && enem != brain.creature)
-            {
-                enem.hightlight();
-            }
+
+            brain.creature.abilityContainer.HighlightTarget(0, hit);
             if (Input.GetButtonDown("Fire1"))
             {
                 brain.creature.abilityContainer.UseAbility(0, hit);
-
-                animator.SetBool("UseAbility", false);
-
             }
 
         }
