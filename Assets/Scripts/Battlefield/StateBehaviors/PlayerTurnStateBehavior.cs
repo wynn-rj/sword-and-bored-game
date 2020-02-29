@@ -44,6 +44,8 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
 
         abilityCanvas = brain.manager.hotbar;
         abilitySelector = abilityCanvas.GetComponent<AbilitySelector>();
+        abilitySelector.currentlySelectedNum = -1;
+        abilitySelector.highlightedNum = -1;
         abilityButtons = abilitySelector.AbilityButtons;
         for(int i=0; i<abilityButtons.Length; i++)
         {
@@ -83,12 +85,13 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
             {
                 animator.SetInteger("Ability", i);
                 animator.SetBool("UseAbility", true);
-            }/* else if(abilitySelector.currentlySelectedNum > 0)
+            } else if(abilitySelector.currentlySelectedNum > 0)
             {
-                animator.SetInteger("Ability", abilitySelector.currentlySelectedNum);
+                animator.SetInteger("Ability", abilitySelector.currentlySelectedNum -1);
                 animator.SetBool("UseAbility", true);
                 abilitySelector.currentlySelectedNum = -1;
-            }*/
+                
+            }
         }
 
         if (Input.GetButtonDown("Next")) {

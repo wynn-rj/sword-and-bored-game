@@ -4,18 +4,19 @@ using UnityEngine.EventSystems;
 
 public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [HideInInspector]
-    public bool isSelected;
+    public Canvas canvas;
+    public int num;
+    private AbilitySelector abilitySelector;
     // Start is called before the first frame update
     void Start()
     {
-        isSelected = false;
+        abilitySelector = canvas.GetComponent<AbilitySelector>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isSelected)
+        if(num == abilitySelector.highlightedNum)
         {
             GetComponent<Image>().color = Color.green;
         } else
