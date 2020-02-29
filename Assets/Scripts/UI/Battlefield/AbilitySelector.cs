@@ -7,6 +7,8 @@ public class AbilitySelector : MonoBehaviour
 
     [HideInInspector]
     public int currentlySelectedNum;
+    [HideInInspector]
+    public int highlightedNum;
 
     private KeyCode[] keyCodes = {
              KeyCode.Alpha1,
@@ -23,6 +25,7 @@ public class AbilitySelector : MonoBehaviour
     void Start()
     {
         currentlySelectedNum = -1;
+        highlightedNum = -1;
     }
 
     // Update is called once per frame
@@ -66,12 +69,8 @@ public class AbilitySelector : MonoBehaviour
 
     public void SelectedAbilityButton(int num)
     {
-        if (currentlySelectedNum > 0)
-        {
-            AbilityButtons[currentlySelectedNum - 1].GetComponent<AbilityButtonHighlight>().isSelected = false;
-            currentlySelectedNum = num;
-            AbilityButtons[currentlySelectedNum - 1].GetComponent<AbilityButtonHighlight>().isSelected = true;
-        }
+        currentlySelectedNum = num;
+        highlightedNum = num;
     }
 
 }
