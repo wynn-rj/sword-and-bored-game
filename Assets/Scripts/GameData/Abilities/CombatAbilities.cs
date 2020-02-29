@@ -11,12 +11,14 @@ namespace SwordAndBored.GameData.Abilities
         public int Range { get; set; }
         public int Length { get; set; }
         public int Width { get; set; }
-        public string Shape { get; set; }
+        public int Shape { get; set; }
         public bool IsPhysical { get; set; }
         public IStatusConditionsAttack StatusConditionsAttack { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
+
+        public enum ShapeEnum {Point = 0, Sphere = 1, Cross = 2, Line = 3}
 
         public CombatAbilities(int inputID)
         {
@@ -39,7 +41,7 @@ namespace SwordAndBored.GameData.Abilities
                 IsPhysical = reader.GetIntFromCol("Is_Physical") == 0;
                 Length = reader.GetIntFromCol("Length");
                 Width = reader.GetIntFromCol("Width");
-                Shape = reader.GetStringFromCol("Shape");
+                Shape = reader.GetIntFromCol("Shape");
             }
             reader.CloseReader();
             conn.CloseConnection();
