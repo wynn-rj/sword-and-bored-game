@@ -30,7 +30,7 @@ namespace SwordAndBored.Battlefield
         {
 
             grid = tileManager.grid;
-            for (int numUnits=0; numUnits < 1; numUnits++)
+            for (int numUnits=0; numUnits < 3; numUnits++)
             {
                 IEnemy enemyData = Enemy.GetEnemyFromTier(1);
 
