@@ -67,6 +67,7 @@ namespace SwordAndBored.GameData.Units
                 StatusConditionsActive = new StatusConditionsActive(statusConditionActiveID);
 
                 IsDead = reader.GetIntFromCol("Is_Dead") > 0;
+
                 Abilities = new List<IAbility>();
                 Abilities.AddRange(Weapon.Abilities);
                 Abilities.AddRange(SpellBook.Abilities);
