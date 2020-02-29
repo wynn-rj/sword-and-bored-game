@@ -18,6 +18,7 @@ namespace SwordAndBored.Battlefield
         public LayerMask tileMapLayerMask;
         [Header("Player Selection")]
         public LayerMask selectingCreaturesLayerMask;
+        public LayerMask selectingGroundLayerMask;
 
         public TurnManager manager;
 

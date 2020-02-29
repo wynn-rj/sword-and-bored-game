@@ -1690,8 +1690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7fe20fdabd92143bb1623128e54245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  currentTile: {fileID: 0}
   creatureName: Dave The Fighter
   maxHealth: 20
   health: 0
@@ -1708,7 +1706,6 @@ MonoBehaviour:
   currentCamera: {fileID: 3159141201642896361}
   animator: {fileID: 3159141201733096179}
   isEnemy: 0
-  gridHolder: {fileID: 0}
 --- !u!114 &3159141201095183990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,8 +1718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60730ca9d6af88c438352ebba4517cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities:
-  - {fileID: 11400000, guid: e699f432928f28a46a20eeb7adc28c91, type: 2}
+  sphereFile: {fileID: 0}
 --- !u!114 &3159141201095183993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,6 +1810,9 @@ MonoBehaviour:
   selectingCreaturesLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  selectingGroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1025
   manager: {fileID: 0}
   indicatorRend: {fileID: 0}
   cam: {fileID: 0}
@@ -1928,6 +1927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd05f429cdb19004bafea04be2994bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  currentTile: {fileID: 0}
 --- !u!1 &3159141201137843270
 GameObject:
   m_ObjectHideFlags: 0
