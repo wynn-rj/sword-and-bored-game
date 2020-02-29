@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using SwordAndBored.Battlefield.CreaturScripts;
+using System.Collections.Generic;
 
 public class AbilitySelector : MonoBehaviour
 {
     public GameObject[] AbilityButtons;
-
+    public GameObject descriptionPanel;
     [HideInInspector]
     public int currentlySelectedNum;
     [HideInInspector]
     public int highlightedNum;
+    [HideInInspector]
+    public List<Ability> AbilityList;
 
     private KeyCode[] keyCodes = {
              KeyCode.Alpha1,
@@ -26,6 +30,12 @@ public class AbilitySelector : MonoBehaviour
     {
         currentlySelectedNum = -1;
         highlightedNum = -1;
+
+        foreach (GameObject button in AbilityButtons)
+        {
+            button.GetComponent<AbilityButtonHighlight>().descriptionPanel = descriptionPanel;
+        }
+        descriptionPanel.SetActive(false);
     }
 
     // Update is called once per frame

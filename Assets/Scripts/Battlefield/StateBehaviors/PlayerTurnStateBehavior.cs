@@ -44,6 +44,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
 
         abilityCanvas = brain.manager.hotbar;
         abilitySelector = abilityCanvas.GetComponent<AbilitySelector>();
+        abilitySelector.AbilityList = abilityList;
         abilitySelector.SelectedAbilityButton(-1);
         abilityButtons = abilitySelector.AbilityButtons;
         for(int i=0; i<abilityButtons.Length; i++)
