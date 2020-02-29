@@ -86,10 +86,16 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     }
                 }
             } else {
-                if (Vector3.Distance(user.transform.position, hit.point) <= range)
+                if (range == 0)
                 {
-                    shapeRend.enabled = true;
-                    shape.transform.position = hit.point;
+                    
+                } else
+                {
+                    if (Vector3.Distance(user.transform.position, hit.point) <= range)
+                    {
+                        shapeRend.enabled = true;
+                        shape.transform.position = hit.point;
+                    }
                 }
             }
         }
