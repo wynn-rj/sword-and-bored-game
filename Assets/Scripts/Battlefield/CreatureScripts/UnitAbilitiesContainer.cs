@@ -7,13 +7,13 @@ namespace SwordAndBored.Battlefield.CreaturScripts
     public class UnitAbilitiesContainer : MonoBehaviour
     {
         [Header("Ability Info")]
-        public List<AbstractAbilitySO> abilities = new List<AbstractAbilitySO>();
+        public List<AbstractAbility> abilities = new List<AbstractAbility>();
         UniqueCreature unit;
 
         void Start()
         {
             unit = GetComponent<UniqueCreature>();
-            foreach (AbstractAbilitySO ability in abilities)
+            foreach (AbstractAbility ability in abilities)
             {
                 ability.Initialize(transform.gameObject);
             }
