@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3574175829349428878}
   - component: {fileID: 3574175829349428849}
   - component: {fileID: 3574175829349428848}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AoeSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
