@@ -54,7 +54,7 @@ namespace SwordAndBored.Battlefield
                 uniqueCreature.maxHealth = enemyData.Stats.HP;
                 uniqueCreature.maxMovement = enemyData.Stats.Movement;
                 uniqueCreature.isEnemy = true;
-
+                
                 //Movement
                 ms.grid = grid;
 
