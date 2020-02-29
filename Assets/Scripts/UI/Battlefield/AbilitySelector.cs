@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
-using SwordAndBored.Battlefield.CreaturScripts;
-using System.Collections.Generic;
 
 public class AbilitySelector : MonoBehaviour
 {
@@ -11,8 +8,6 @@ public class AbilitySelector : MonoBehaviour
     public int currentlySelectedNum;
     [HideInInspector]
     public int highlightedNum;
-    [HideInInspector]
-    public List<Ability> AbilityList;
 
     private KeyCode[] keyCodes = {
              KeyCode.Alpha1,
@@ -95,5 +90,4 @@ public class AbilitySelector : MonoBehaviour
             button.GetComponent<AbilityButtonHighlight>().highlightNum = highlightedNum;
         }
     }
-
 }
