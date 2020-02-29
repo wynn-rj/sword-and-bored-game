@@ -47,6 +47,14 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         {
             abilities[i].ShowTarget(hit);
         }
+
+        public void StopAoe()
+        {
+            for (int i = 0; i < abilities.Count; i++)
+            {
+                abilities[i].StopShowAoe();
+            }
+        }
     }
 
 }

@@ -27,6 +27,7 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
             lm = brain.selectingGroundLayerMask;
         } else
         {
+            brain.creature.abilityContainer.StopAoe();
             lm = brain.selectingCreaturesLayerMask;
         }
         Ray ray = brain.cam.ScreenPointToRay(Input.mousePosition);
@@ -53,6 +54,7 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         brain.outline.enabled = false;
+        brain.creature.abilityContainer.StopAoe();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
