@@ -43,17 +43,6 @@ namespace SwordAndBored.GameData.Equipment
                 StringAbilities() + "}";
         }
 
-        public string LongString()
-        {
-            return "Weapon: {ID: " + ID + ", Descriptor: " + Name + ", Abilities " +
-                StringAbilities() + "}";
-        }
-
-        public string ShortString()
-        {
-            return "{Weapon: " + ID + ", Descriptor: " + Name + "}";
-        }
-
         private string StringAbilities()
         {
             string result = "";

@@ -52,16 +52,5 @@ namespace SwordAndBored.GameData.Abilities
             return "{Ability: " + ID + ", Descriptor: " + Name + ", Damage: " + Damage
                 + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + StatusConditionsAttack + "}";
         }
-
-        public string LongString()
-        {
-            return "Ability: {ID: " + ID + ", Descriptor: " + Name + ", Damage: " + Damage
-                + ", Accuracy: " + Accuracy + ", Range: " + Range + ", AttackModifiers: " + StatusConditionsAttack + "}";
-        }
-
-        public string ShortString()
-        {
-            return "{Ability: " + ID + ", Descriptor: " + Name + "}";
-        }
     }
 }

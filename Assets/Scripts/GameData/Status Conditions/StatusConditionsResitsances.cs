@@ -32,16 +32,5 @@ namespace SwordAndBored.GameData.StatusConditions
             return "{DefenseModifier: " + ID + ", Fire_Resist: " + Fire_Resist + ", Posion_Resist: " + Posion_Resist
                 + ", Bleed_Resist: " + Bleed_Resist + ", Stun_Resist: " + Stun_Resist + "}";
         }
-
-        public string LongString()
-        {
-            return "DefenseModifier: {ID: " + ID + ", Fire_Resist: " + Fire_Resist + ", Posion_Resist: " + Posion_Resist
-                + ", Bleed_Resist: " + Bleed_Resist + ", Stun_Resist: " + Stun_Resist + "}";
-        }
-
-        public string ShortString()
-        {
-            return "{DefenseModifier: " + ID + "}";
-        }
     }
 }

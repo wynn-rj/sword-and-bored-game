@@ -39,19 +39,5 @@ namespace SwordAndBored.GameData.StatusConditions
                 ", Posion: " + Posion_Damage + "(" + Posion_Chance + "%)" +
                 ", Bleed: " + Bleed_Damage + "(" + Bleed_Chance + "%)" + ", Stun: (" + Stun_Chance + "%)}";
         }
-
-        public string ShortString()
-        {
-            return "{AttackModifiers: " + ID + ", Fire: " + Fire_Damage + "(" + Fire_Chance + "%)" +
-                ", Posion: " + Posion_Damage + "(" + Posion_Chance + "%)" +
-                ", Bleed: " + Bleed_Damage + "(" + Bleed_Chance + "%)" + ", Stun: (" + Stun_Chance + "%)}";
-        }
-
-        public string LongString()
-        {
-            return "{AttackModifiers: " + ID + ", Fire: " + Fire_Damage + "(" + Fire_Chance + "%)" + 
-                ", Posion: " + Posion_Damage + "(" + Posion_Chance + "%)" +
-                ", Bleed: " + Bleed_Damage + "(" + Bleed_Chance + "%)" + ", Stun: (" + Stun_Chance +  "%)}";
-        }
     }
 }

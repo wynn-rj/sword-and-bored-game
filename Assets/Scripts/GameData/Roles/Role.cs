@@ -34,15 +34,5 @@ namespace SwordAndBored.GameData.Roles
         {
             return "{Role: " + ID + ", Descriptior: " + Name.ToString() + ", Stats: " + RoleStats.ToString() + "}";
         }
-
-        public string LongString()
-        {
-            return "Role: {ID: " + ID + ", Descriptior: " + Name + ", Stats: " + RoleStats + "}";
-        }
-
-        public string ShortString()
-        {
-            return "{Role: " + ID + ", Descriptior: " + Name + ", Stats: " + RoleStats.ID + "}";
-        }
     }
 }

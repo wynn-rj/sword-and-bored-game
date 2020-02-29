@@ -146,17 +146,5 @@ namespace SwordAndBored.GameData.Units
             return "{Unit: " + ID + ", Descriptor: " + Name.ToString() + ", Role: " + Role
                 + ", Stats: " + Stats.ToString();// + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
         }
-
-        public string LongString()
-        {
-            return "Unit: {ID: " + ID + ", Descriptor: " + Name + ", Role: " + Role
-                + ", Stats: " + Stats + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
-        }
-
-        public string ShortString()
-        {
-            return "{Unit: " + ID + ", Descriptor: " + Name + ", Role: " + Role.ID + ", Stats: " 
-                + Stats + ", Weapon: " + Weapon.ToString() + ", Armor: " + Armor.ToString() + "}";
-        }
     }
 }
