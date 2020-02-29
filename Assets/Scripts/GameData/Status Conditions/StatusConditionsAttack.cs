@@ -16,7 +16,7 @@ namespace SwordAndBored.GameData.StatusConditions
         public StatusConditionsAttack(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryRowFromTableWithID("Status_Conditions_Attack", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Status_Conditions_Attacks", inputID);
 
             ID = inputID;
             if (reader.NextRow())

@@ -9,7 +9,8 @@
         int Physical_Defense { get; set; }
         int Magic_Attack { get; set; }
         int Magic_Defense { get; set; }
-        int HP { get; set; }
+        int Max_HP { get; set; }
+        int Current_HP { get; set; }
         int Initiative { get; set; }
         int Movement { get; set; }
         int Evasion { get; set; }

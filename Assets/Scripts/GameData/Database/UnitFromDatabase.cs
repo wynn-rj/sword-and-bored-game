@@ -33,7 +33,6 @@ namespace SwordAndBored.GameData.Database
             {
                 Unit unit = new Unit(1);
                 IStats stats = unit.Stats;
-                stats.HP -= 1;
                 textBox.text = stats.Save().ToString();
             }
             if (Input.GetKeyDown(KeyCode.K)) {
