@@ -16270,6 +16270,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3252253870641584966, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253870641584966, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253870678708395, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253870678708395, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253870681098067, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253870681098067, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3252253870693660790, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -16380,6 +16410,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3252253871215475769, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253871215475769, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3252253871552499209, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -16389,6 +16429,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SlowDownTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253871738350504, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253871738350504, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3252253871895481720, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
@@ -16405,6 +16455,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetNormalTime
       objectReference: {fileID: 0}
+    - target: {fileID: 3252253872145000169, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253872145000169, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3252253872212836034, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -16414,6 +16474,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SpeedUpTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253872264738598, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253872264738598, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3252253872503047326, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
@@ -16434,6 +16504,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253872620935312, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253872620935312, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253872669629818, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 648428928}
+    - target: {fileID: 3252253872669629818, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: num
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3, type: 3}
