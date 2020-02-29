@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using SwordAndBored.Battlefield.CreaturScripts;
 
 public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -9,6 +10,10 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
     public int highlightNum;
     [HideInInspector]
     public GameObject descriptionPanel;
+    [HideInInspector]
+    public Ability ability;
+    [HideInInspector]
+    public bool isEnabled;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +34,19 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Mouse is over GameObject.");
-        descriptionPanel.SetActive(true);
+        if (isEnabled)
+        {
+            Debug.Log("Mouse is over GameObject.");
+            descriptionPanel.SetActive(true);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Mouse left button");
-        descriptionPanel.SetActive(false);
+        if (isEnabled)
+        {
+            Debug.Log("Mouse left button");
+            descriptionPanel.SetActive(false);
+        }
     }
 }
