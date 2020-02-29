@@ -25,6 +25,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             abilities[i].TriggerAbility(target);
             Debug.Log(abilities[i].AttackName);
             unit.action = false;
+            unit.animator.SetBool("UseAbility", false);
+        }
+
+        public void HighlightTarget(int i, RaycastHit hit)
+        {
+            abilities[i].ShowTarget(hit);
         }
     }
 
