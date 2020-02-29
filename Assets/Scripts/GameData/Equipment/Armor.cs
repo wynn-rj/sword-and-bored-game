@@ -41,17 +41,5 @@ namespace SwordAndBored.GameData.Equipment
                 + StatusConditionsResistances.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: " 
                 + Magic_Defense +  "}";
         }
-
-        public string LongString()
-        {
-            return "Armor: {ID: " + ID + ", Descriptor: " + Name.ToString() + ", DefenseModifier: "
-                + StatusConditionsResistances.ToString() + ", Physical Defense: " + Physical_Defense + ", Magic_Defense: "
-                + Magic_Defense + "}";
-        }
-
-        public string ShortString()
-        {
-            return "{Armor: " + ID + ", Descriptor: " + Name + "}";
-        }
     }
 }
