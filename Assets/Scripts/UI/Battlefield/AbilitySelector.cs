@@ -80,7 +80,6 @@ public class AbilitySelector : MonoBehaviour
     public void ResetAbilitySelection(int num)
     {
         currentlySelectedNum = num;
-        //highlightedNum = num;
         foreach (GameObject button in AbilityButtons)
         {
             button.GetComponent<AbilityButtonHighlight>().highlightNum = highlightedNum;
