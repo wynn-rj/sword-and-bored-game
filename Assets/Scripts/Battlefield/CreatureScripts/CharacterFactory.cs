@@ -66,6 +66,11 @@ namespace SwordAndBored.Battlefield
                 stats.evasion = unitTable.Stats.Evasion;
                 stats.role = unitTable.Role.Name;
 
+                //Abilities
+
+                abilities.abilities.Add(new Ability());
+
+
                 //brain
                 brain.tileIndictor = indicator;
                 indicator.GetComponentInChildren<Renderer>().enabled = false;

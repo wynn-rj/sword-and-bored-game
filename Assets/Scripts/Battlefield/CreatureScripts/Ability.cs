@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SwordAndBored.GameData.Abilities;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
-    [CreateAssetMenu(fileName = "Data", menuName = "Abilities/MeleeAttack", order = 1)]
-    public class MeleeAttackAbilitySO : AbstractAbilitySO
+    public class Ability : AbstractAbility
     {
+        /*
+        public Ability(CombatAbilities abilityStats)
+        {
 
-        public int damageDice;
-        public int range;
+        }*/
+
+
+
+        int damage = 0;
+        int range;
+        int accuraccy;
+
         UniqueCreature user;
 
         public override void Initialize(GameObject obj)
@@ -21,7 +30,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             UniqueCreature enemy = target.GetComponent<UniqueCreature>();
             if (true)
             {
-                enemy.Damage(Roll(damageDice));
+                enemy.Damage(25);
                 //Debug.Log("Hit");
             } else
             {
