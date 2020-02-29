@@ -79,7 +79,7 @@ namespace SwordAndBored.Battlefield
                 brain.tileIndictor = indicator;
                 indicator.GetComponentInChildren<Renderer>().enabled = false;
                 brain.startCoordinates = new Vector2(numUnits * 2 + 25, 25);
-
+                brain.manager = turnManager;
                 unit.transform.parent = unitHolder;
 
                 numUnits += 2;
