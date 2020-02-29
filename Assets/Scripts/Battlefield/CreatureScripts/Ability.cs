@@ -14,15 +14,19 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             range = abilityStats.Range;
             accuraccy = abilityStats.Accuracy;
             length = abilityStats.Length;
+            width = abilityStats.Width;
             aoe = abilityStats.Shape > 0;
+            description = abilityStats.Description;
         }
 
         UnitAbilitiesContainer container;
+        public string description;
         public bool aoe;
         public int damage;
         public int range;
         public int accuraccy;
         public int length;
+        public int width;
         GameObject shape;
         Renderer shapeRend;
 
@@ -63,6 +67,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 UniqueCreature enemy = getEnemy(hit);
                 if (true)
                 {
+                    //Run damage equation
                     enemy.Damage(damage);
                     //Debug.Log("Hit");
                 }
@@ -77,6 +82,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         {
             if (!aoe)
             {
+                StopShowAoe();
                 if (Vector3.Distance(user.transform.position, hit.point) <= range)
                 {
                     UniqueCreature enem = getEnemy(hit);
@@ -94,9 +100,18 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     if (Vector3.Distance(user.transform.position, hit.point) <= range)
                     {
                         shapeRend.enabled = true;
+                        shape.transform.localScale = new Vector3(length, length, width);
                         shape.transform.position = hit.point;
                     }
                 }
+            }
+        }
+
+        public void StopShowAoe()
+        {
+            if (shapeRend)
+            {
+                shapeRend.enabled = false;
             }
         }
 
