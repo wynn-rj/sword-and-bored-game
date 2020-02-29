@@ -17,7 +17,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
 
         public bool aoe = false;
-        public int damage = 10;
+        public int damage;
         public int range;
         public int accuraccy;
 
@@ -40,25 +40,38 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         void pointAttack(RaycastHit hit)
         {
-            GameObject target = hit.collider.gameObject;
-            UniqueCreature enemy = target.GetComponent<UniqueCreature>();
-            if (enemy)
+            if (Vector3.Distance(user.transform.position, hit.point) <= range)
             {
-                enemy.hightlight();
-            }
-
-            if (true)
-            {
-                enemy.Damage(damage);
-                //Debug.Log("Hit");
-            }
-            else
-            {
-                //Debug.Log("Miss");
+                UniqueCreature enemy = getEnemy(hit);
+                if (true)
+                {
+                    enemy.Damage(damage);
+                    //Debug.Log("Hit");
+                }
+                else
+                {
+                    //Debug.Log("Miss");
+                }
             }
         }
 
+        public override void ShowTarget(RaycastHit hit)
+        {
+            if (Vector3.Distance(user.transform.position, hit.point) <= range)
+            {
+                UniqueCreature enem = getEnemy(hit);
+                if (enem && enem != user)
+                {
+                    enem.hightlight();
+                }
+            }
+        }
 
-    
+        UniqueCreature getEnemy(RaycastHit hit)
+        {
+            GameObject target = hit.collider.gameObject;
+            UniqueCreature enem = target.GetComponent<UniqueCreature>();
+            return enem;
+        }
     }
 }
