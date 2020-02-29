@@ -14,7 +14,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
 
 
-        int damage = 0;
+        int damage = 10;
         int range;
         int accuraccy;
 
@@ -23,7 +23,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public override void Initialize(GameObject obj)
         {
             user = obj.GetComponent<UniqueCreature>();
-            AttackName = "Spahggetti";
         }
 
         public override void TriggerAbility(GameObject target)
