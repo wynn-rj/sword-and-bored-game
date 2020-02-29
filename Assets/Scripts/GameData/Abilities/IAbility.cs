@@ -11,6 +11,6 @@ namespace SwordAndBored.GameData.Abilities
         bool IsPhysical { get; set; }
         int Length { get; set; }
         int Width { get; set; }
-        string Shape { get; set; }
+        int Shape { get; set; }
     }
 }
