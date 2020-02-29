@@ -31,6 +31,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         brain.indicatorRend.enabled = true;
         brain.outline.enabled = true;
         ms = animator.GetComponent<MovementSystem>();
+        Debug.Log(brain.GetComponent<UnitAbilitiesContainer>().abilities);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -6,6 +6,7 @@ using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.Battlefield.MovementSystemScripts;
+using SwordAndBored.GameData.Abilities;
 
 namespace SwordAndBored.Battlefield
 {
@@ -28,7 +29,7 @@ namespace SwordAndBored.Battlefield
             int numUnits = 0;
             while (reader.NextRow())
             {
-                Unit unitTable = new Unit(reader.GetIntFromCol("ID"));
+                IUnit dataUnit = new Unit(reader.GetIntFromCol("ID"));
         
                 GameObject unit = Instantiate(playerPrefab, new Vector3(numUnits, 1.5f, 0), Quaternion.identity);
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
@@ -47,28 +48,31 @@ namespace SwordAndBored.Battlefield
                 uniqueCreature.isEnemy = false;
 
                 //UniqueCreature
-                uniqueCreature.creatureName = unitTable.Name;
-                uniqueCreature.maxHealth = unitTable.Stats.Max_HP;
-                uniqueCreature.maxMovement = unitTable.Stats.Movement;
+                uniqueCreature.creatureName = dataUnit.Name;
+                uniqueCreature.maxHealth = dataUnit.Stats.Max_HP;
+                uniqueCreature.maxMovement = dataUnit.Stats.Movement;
 
                 //Movement
                 ms.grid = grid;
 
                 //stats
-                stats.health = unitTable.Stats.Max_HP;
-                stats.attack = unitTable.Stats.Physical_Attack;
-                stats.magicAttack = unitTable.Stats.Magic_Attack;
-                stats.defense = unitTable.Stats.Physical_Defense;
-                stats.magicDefense = unitTable.Stats.Magic_Defense;
-                stats.movement = unitTable.Stats.Movement;
-                stats.speedIntit = unitTable.Stats.Initiative;
-                stats.accuracy = unitTable.Stats.Accuracy;
-                stats.evasion = unitTable.Stats.Evasion;
-                stats.role = unitTable.Role.Name;
+                stats.health = dataUnit.Stats.Max_HP;
+                stats.attack = dataUnit.Stats.Physical_Attack;
+                stats.magicAttack = dataUnit.Stats.Magic_Attack;
+                stats.defense = dataUnit.Stats.Physical_Defense;
+                stats.magicDefense = dataUnit.Stats.Magic_Defense;
+                stats.movement = dataUnit.Stats.Movement;
+                stats.speedIntit = dataUnit.Stats.Initiative;
+                stats.accuracy = dataUnit.Stats.Accuracy;
+                stats.evasion = dataUnit.Stats.Evasion;
+                stats.role = dataUnit.Role.Name;
 
                 //Abilities
-
-                abilities.abilities.Add(new Ability());
+                foreach (IAbility dataAbility in dataUnit.Abilities)
+                {
+                    abilities.abilities.Add(new Ability(dataAbility));
+                }
+                
 
 
                 //brain
