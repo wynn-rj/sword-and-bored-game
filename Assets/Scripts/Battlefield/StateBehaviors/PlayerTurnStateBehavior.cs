@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Battlefield;
@@ -22,6 +22,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
          KeyCode.Alpha9,
     };
     private Canvas abilityCanvas;
+    private AbilitySelector abilitySelector;
     private GameObject[] abilityButtons;
     BrainManager brain;
     MovementSystem ms;
@@ -36,13 +37,13 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         ms = animator.GetComponent<MovementSystem>();
 
         List<Ability> abilityList = brain.GetComponent<UnitAbilitiesContainer>().abilities;
-        foreach(Ability inList in abilityList)
+/*        foreach(Ability inList in abilityList)
         {
             Debug.Log($"Name: {inList.name}, Damage: {inList.damage}, Accuracy: {inList.accuraccy}, AOE: {inList.aoe}, Range: {inList.range}");
-        }
+        }*/
 
         abilityCanvas = brain.manager.hotbar;
-        AbilitySelector abilitySelector = abilityCanvas.GetComponent<AbilitySelector>();
+        abilitySelector = abilityCanvas.GetComponent<AbilitySelector>();
         abilityButtons = abilitySelector.AbilityButtons;
         for(int i=0; i<abilityButtons.Length; i++)
         {
@@ -82,6 +83,11 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
             {
                 animator.SetInteger("Ability", i);
                 animator.SetBool("UseAbility", true);
+            } else if(abilitySelector.currentlySelectedNum > 0)
+            {
+                animator.SetInteger("Ability", abilitySelector.currentlySelectedNum);
+                animator.SetBool("UseAbility", true);
+                abilitySelector.currentlySelectedNum = -1;
             }
         }
 
