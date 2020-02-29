@@ -7,6 +7,8 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
     public int num;
     [HideInInspector]
     public int highlightNum;
+    [HideInInspector]
+    public GameObject descriptionPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +29,13 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //If your mouse hovers over the GameObject with the script attached, output this message
         Debug.Log("Mouse is over GameObject.");
+        descriptionPanel.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Mouse left button");
+        descriptionPanel.SetActive(false);
     }
 }
