@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class AbilityButtonHighlight : MonoBehaviour
+public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [HideInInspector]
     public bool isSelected;
@@ -21,5 +22,21 @@ public class AbilityButtonHighlight : MonoBehaviour
         {
             GetComponent<Image>().color = Color.white;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //If your mouse hovers over the GameObject with the script attached, output this message
+        Debug.Log("Mouse is over GameObject.");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("Mouse left button");
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Mouse clicked");
     }
 }

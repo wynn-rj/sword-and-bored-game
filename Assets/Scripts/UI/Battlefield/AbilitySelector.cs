@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AbilitySelector : MonoBehaviour
 {
@@ -23,7 +22,7 @@ public class AbilitySelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentlySelectedNum = 1;
+        currentlySelectedNum = -1;
     }
 
     // Update is called once per frame
@@ -71,4 +70,5 @@ public class AbilitySelector : MonoBehaviour
         currentlySelectedNum = num;
         AbilityButtons[currentlySelectedNum - 1].GetComponent<AbilityButtonHighlight>().isSelected = true;
     }
+
 }
