@@ -4049,17 +4049,29 @@ PrefabInstance:
     - target: {fileID: 2640706262179793565, guid: e6e6f1327c7c09b4a9c88d10b82ba7be,
         type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
+<<<<<<< HEAD
       value: 1
+=======
+      value: 0.5019608
+>>>>>>> forgot to save scene
       objectReference: {fileID: 0}
     - target: {fileID: 2640706262899850546, guid: e6e6f1327c7c09b4a9c88d10b82ba7be,
         type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
+<<<<<<< HEAD
       value: 1
+=======
+      value: 0.5019608
+>>>>>>> forgot to save scene
       objectReference: {fileID: 0}
     - target: {fileID: 2640706263060790143, guid: e6e6f1327c7c09b4a9c88d10b82ba7be,
         type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
+<<<<<<< HEAD
       value: 1
+=======
+      value: 0.5019608
+>>>>>>> forgot to save scene
       objectReference: {fileID: 0}
     - target: {fileID: 2640706263094940767, guid: e6e6f1327c7c09b4a9c88d10b82ba7be,
         type: 3}
@@ -4074,7 +4086,11 @@ PrefabInstance:
     - target: {fileID: 2640706263325635107, guid: e6e6f1327c7c09b4a9c88d10b82ba7be,
         type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
+<<<<<<< HEAD
       value: 1
+=======
+      value: 0.5019608
+>>>>>>> forgot to save scene
       objectReference: {fileID: 0}
     - target: {fileID: 7614209433420437647, guid: e6e6f1327c7c09b4a9c88d10b82ba7be,
         type: 3}
