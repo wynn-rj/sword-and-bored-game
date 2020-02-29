@@ -9,7 +9,8 @@ namespace SwordAndBored.GameData.Units
         public int Physical_Defense { get; set; }
         public int Magic_Attack { get; set; }
         public int Magic_Defense { get; set; }
-        public int HP { get; set; }
+        public int Max_HP { get; set; }
+        public int Current_HP { get; set; }
         public int Initiative { get; set; }
         public int Movement { get; set; }
         public int Evasion { get; set; }
@@ -27,7 +28,8 @@ namespace SwordAndBored.GameData.Units
                 Physical_Defense = reader.GetIntFromCol("Physical_Defense");
                 Magic_Attack = reader.GetIntFromCol("Magic_Attack");
                 Magic_Defense = reader.GetIntFromCol("Magic_Defense");
-                HP = reader.GetIntFromCol("HP");
+                Max_HP = reader.GetIntFromCol("Max_HP");
+                Current_HP = reader.GetIntFromCol("Current_HP");
                 Initiative = reader.GetIntFromCol("Initiative");
                 Movement = reader.GetIntFromCol("Movement");
                 Evasion = reader.GetIntFromCol("Evasion");
@@ -44,7 +46,8 @@ namespace SwordAndBored.GameData.Units
             Physical_Defense = copyForNewRow.Physical_Defense;
             Magic_Attack = copyForNewRow.Magic_Attack;
             Magic_Defense = copyForNewRow.Magic_Defense;
-            HP = copyForNewRow.HP;
+            Max_HP = copyForNewRow.Max_HP;
+            Current_HP = copyForNewRow.Current_HP;
             Initiative = copyForNewRow.Initiative;
             Movement = copyForNewRow.Movement;
             Evasion = copyForNewRow.Evasion;
@@ -56,9 +59,9 @@ namespace SwordAndBored.GameData.Units
             // New Entry
             if (ID == -1)
             {
-                string queryString = "INSERT INTO Stats (Physical_Attack, Physical_Defense, Magic_Attack, Magic_Defense, HP, Initiative, Movement, Evasion" +
+                string queryString = "INSERT INTO Stats (Physical_Attack, Physical_Defense, Magic_Attack, Magic_Defense, Max_HP, HP, Initiative, Movement, Evasion" +
                     ", Accuracy) VALUES ";
-                queryString += "( " + Physical_Attack + ", " + Physical_Defense + ", " + Magic_Attack + ", " + Magic_Defense + ", " + HP + ", " +
+                queryString += "( " + Physical_Attack + ", " + Physical_Defense + ", " + Magic_Attack + ", " + Magic_Defense + ", " + Max_HP + ", " + Current_HP + ", " +
                     Initiative + ", " + Movement + ", " + Evasion + ", " + Accuracy + ");";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
@@ -74,7 +77,7 @@ namespace SwordAndBored.GameData.Units
             else //Update
             {
                 string queryString = $"UPDATE Stats SET Physical_Attack = {Physical_Attack}, Physical_Defense = {Physical_Defense}, Magic_Attack = {Magic_Attack}" +
-                    $", Magic_Defense = {Magic_Defense}, HP = {HP}, Initiative = {Initiative}, Movement = {Movement}, Evasion = {Evasion}, Accuracy = {Accuracy}" +
+                    $", Magic_Defense = {Magic_Defense}, Max_HP = {Max_HP}, Current_HP = {Current_HP}, Initiative = {Initiative}, Movement = {Movement}, Evasion = {Evasion}, Accuracy = {Accuracy}" +
                     $" WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
                 return conn.ExecuteNonQuery(queryString);
@@ -84,14 +87,14 @@ namespace SwordAndBored.GameData.Units
         override public string ToString()
         {
             return "{Stats: " + ID + ", Physical_Attack: " + Physical_Attack + ", Physical_Defense: " + Physical_Defense + ", Magic_Attack: " + Magic_Attack 
-                + ", Magic_Defense: " + Magic_Defense + ", HP: " + HP + ", Initiative: " + Initiative 
+                + ", Magic_Defense: " + Magic_Defense + ", HP: " + Max_HP + ", Initiative: " + Initiative 
                 + ", Movement: " + Movement + ", Evasion: " + Evasion + ", Accuracy: " + Accuracy + "}";
         }
 
         public string LongString()
         {
             return "Stats: {ID: " + ID + ", Physical_Attack: " + Physical_Attack + ", Physical_Defense: " + Physical_Defense + ", Magic_Attack: " + Magic_Attack
-                + ", Magic_Defense: " + Magic_Defense + ", HP: " + HP + ", Initiative: " + Initiative
+                + ", Magic_Defense: " + Magic_Defense + ", HP: " + Max_HP + ", Initiative: " + Initiative
                 + ", Movement: " + Movement + ", Evasion: " + Evasion + ", Accuracy: " + Accuracy + "}";
         }
 
