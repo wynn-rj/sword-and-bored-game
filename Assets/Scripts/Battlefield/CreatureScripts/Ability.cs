@@ -13,20 +13,36 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             damage = abilityStats.Damage;
             range = abilityStats.Range;
             accuraccy = abilityStats.Accuracy;
+            length = abilityStats.Length;
+            aoe = abilityStats.Shape > 0;
         }
 
-
-        public bool aoe = false;
+        UnitAbilitiesContainer container;
+        public bool aoe;
         public int damage;
         public int range;
         public int accuraccy;
+        public int length;
+        GameObject shape;
+        Renderer shapeRend;
 
         UniqueCreature user;
 
-        public override void Initialize(GameObject obj)
+        public override void Initialize(UnitAbilitiesContainer container, GameObject obj, GameObject shape)
         {
             user = obj.GetComponent<UniqueCreature>();
-            AttackName = "Spahggetti";
+            this.container = container;
+            if (aoe)
+            {
+                this.shape = shape;
+                shapeRend = this.shape.GetComponent<Renderer>();
+            }
+            
+        }
+
+        public void Initialize(UnitAbilitiesContainer container, GameObject obj)
+        {
+            Initialize(container, obj, null);
         }
 
         public override void TriggerAbility(RaycastHit hit)
@@ -35,6 +51,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             if (!aoe)
             {
                 pointAttack(hit);
+            } else
+            {
+
             }
         }
 
@@ -57,12 +76,21 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public override void ShowTarget(RaycastHit hit)
         {
-            if (Vector3.Distance(user.transform.position, hit.point) <= range)
+            if (!aoe)
             {
-                UniqueCreature enem = getEnemy(hit);
-                if (enem && enem != user)
+                if (Vector3.Distance(user.transform.position, hit.point) <= range)
                 {
-                    enem.hightlight();
+                    UniqueCreature enem = getEnemy(hit);
+                    if (enem && enem != user)
+                    {
+                        enem.hightlight();
+                    }
+                }
+            } else {
+                if (Vector3.Distance(user.transform.position, hit.point) <= range)
+                {
+                    shapeRend.enabled = true;
+                    shape.transform.position = hit.point;
                 }
             }
         }

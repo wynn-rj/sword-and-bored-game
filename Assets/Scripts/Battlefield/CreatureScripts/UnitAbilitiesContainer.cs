@@ -9,14 +9,30 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         [Header("Ability Info")]
         public List<Ability> abilities = new List<Ability>();
         UniqueCreature unit;
+        [HideInInspector]
+        public GameObject sphereFile;
 
         void Start()
         {
+            sphereFile = Resources.Load<GameObject>("AOE/AoeSphere");
             unit = GetComponent<UniqueCreature>();
-            foreach (AbstractAbility ability in abilities)
+            foreach (Ability ability in abilities)
             {
-                ability.Initialize(transform.gameObject);
+                if (ability.aoe)
+                {
+                    GameObject sphere = Instantiate(sphereFile, Vector3.zero, Quaternion.identity);
+                    sphere.GetComponent<Renderer>().enabled = false;
+                    ability.Initialize(this, transform.gameObject, sphere);
+                } else
+                {
+                    ability.Initialize(this, transform.gameObject);
+                }
             }
+        }
+
+        public bool IsAoe(int i)
+        {
+            return abilities[i].aoe;
         }
 
         public void UseAbility(int i, RaycastHit target)
@@ -25,7 +41,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             abilities[i].TriggerAbility(target);
             Debug.Log(abilities[i].AttackName);
             unit.action = false;
-            unit.animator.SetBool("UseAbility", false);
         }
 
         public void HighlightTarget(int i, RaycastHit hit)

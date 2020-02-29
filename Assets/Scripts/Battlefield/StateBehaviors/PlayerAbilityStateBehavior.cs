@@ -8,6 +8,8 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
 {
 
     BrainManager brain;
+    LayerMask lm;
+    int abilityToUse = 0;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,15 +21,24 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        abilityToUse = animator.GetInteger("Ability");
+        if (brain.creature.abilityContainer.IsAoe(abilityToUse))
+        {
+            lm = brain.selectingGroundLayerMask;
+        } else
+        {
+            lm = brain.selectingCreaturesLayerMask;
+        }
         Ray ray = brain.cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, brain.selectingCreaturesLayerMask))
+        if (Physics.Raycast(ray, out hit, 100, lm))
         {
 
-            brain.creature.abilityContainer.HighlightTarget(0, hit);
+            brain.creature.abilityContainer.HighlightTarget(abilityToUse, hit);
             if (Input.GetButtonDown("Fire1"))
             {
-                brain.creature.abilityContainer.UseAbility(0, hit);
+                brain.creature.abilityContainer.UseAbility(abilityToUse, hit);
+                animator.SetBool("UseAbility", false);
             }
 
         }
