@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using SwordAndBored.Battlefield.AstarStuff;
 using SwordAndBored.Battlefield.CreaturScripts;
 using SwordAndBored.Battlefield.MovementSystemScripts;
+using UnityEngine.UI;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
          KeyCode.Alpha8,
          KeyCode.Alpha9,
     };
+    private Canvas abilityCanvas;
+    private GameObject[] abilityButtons;
     BrainManager brain;
     MovementSystem ms;
 
@@ -31,11 +34,27 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         brain.indicatorRend.enabled = true;
         brain.outline.enabled = true;
         ms = animator.GetComponent<MovementSystem>();
+
         List<Ability> abilityList = brain.GetComponent<UnitAbilitiesContainer>().abilities;
         foreach(Ability inList in abilityList)
         {
             Debug.Log($"Name: {inList.name}, Damage: {inList.damage}, Accuracy: {inList.accuraccy}, AOE: {inList.aoe}, Range: {inList.range}");
         }
+
+        abilityCanvas = brain.manager.hotbar;
+        AbilitySelector abilitySelector = abilityCanvas.GetComponent<AbilitySelector>();
+        abilityButtons = abilitySelector.AbilityButtons;
+        for(int i=0; i<abilityButtons.Length; i++)
+        {
+            if(i<abilityList.Count)
+            {
+                abilityButtons[i].GetComponent<Button>().interactable = true;
+            } else
+            {
+                abilityButtons[i].GetComponent<Button>().interactable = false;
+            }
+        }
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
