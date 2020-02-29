@@ -37,7 +37,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 this.shape = shape;
                 shapeRend = this.shape.GetComponent<Renderer>();
             }
-            
         }
 
         public void Initialize(UnitAbilitiesContainer container, GameObject obj)
