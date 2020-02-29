@@ -23,6 +23,7 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, brain.selectingCreaturesLayerMask))
         {
+            
             GameObject target = hit.collider.gameObject;
             UniqueCreature enem = target.GetComponent<UniqueCreature>();
             if (enem && enem != brain.creature)
@@ -31,7 +32,7 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                brain.creature.abilityContainer.UseAbility(0, target);
+                brain.creature.abilityContainer.UseAbility(0, hit);
 
                 animator.SetBool("UseAbility", false);
 

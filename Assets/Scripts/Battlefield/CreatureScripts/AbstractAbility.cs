@@ -5,10 +5,10 @@ using UnityEngine;
 namespace SwordAndBored.Battlefield.CreaturScripts { 
     public abstract class AbstractAbility
     {
-        public string AttackName;
+        public string name;
 
         public abstract void Initialize(GameObject obj);
-        public abstract void TriggerAbility(GameObject target);
+        public abstract void TriggerAbility(RaycastHit hit);
         
 
     }

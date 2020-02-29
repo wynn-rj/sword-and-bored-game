@@ -19,7 +19,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             }
         }
 
-        public void UseAbility(int i, GameObject target)
+        public void UseAbility(int i, RaycastHit target)
         {
             unit.animator.SetTrigger("Attack");
             abilities[i].TriggerAbility(target);
