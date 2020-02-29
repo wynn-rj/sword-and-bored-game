@@ -66,9 +66,12 @@ public class AbilitySelector : MonoBehaviour
 
     public void SelectedAbilityButton(int num)
     {
-        AbilityButtons[currentlySelectedNum - 1].GetComponent<AbilityButtonHighlight>().isSelected = false;
-        currentlySelectedNum = num;
-        AbilityButtons[currentlySelectedNum - 1].GetComponent<AbilityButtonHighlight>().isSelected = true;
+        if (currentlySelectedNum > 0)
+        {
+            AbilityButtons[currentlySelectedNum - 1].GetComponent<AbilityButtonHighlight>().isSelected = false;
+            currentlySelectedNum = num;
+            AbilityButtons[currentlySelectedNum - 1].GetComponent<AbilityButtonHighlight>().isSelected = true;
+        }
     }
 
 }
