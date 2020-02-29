@@ -2,21 +2,21 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Canvas canvas;
     public int num;
-    private AbilitySelector abilitySelector;
+    [HideInInspector]
+    public int highlightNum;
     // Start is called before the first frame update
     void Start()
     {
-        abilitySelector = canvas.GetComponent<AbilitySelector>();
+        highlightNum = -1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(num == abilitySelector.highlightedNum)
+        if(num == highlightNum)
         {
             GetComponent<Image>().color = Color.green;
         } else
@@ -34,10 +34,5 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Mouse left button");
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("Mouse clicked");
     }
 }
