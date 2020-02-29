@@ -23,7 +23,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         {
             unit.animator.SetTrigger("Attack");
             abilities[i].TriggerAbility(target);
-            Debug.Log(abilities[i].AttackName);
             unit.action = false;
         }
     }
