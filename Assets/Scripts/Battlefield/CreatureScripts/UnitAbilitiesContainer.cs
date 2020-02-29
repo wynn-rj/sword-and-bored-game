@@ -7,7 +7,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
     public class UnitAbilitiesContainer : MonoBehaviour
     {
         [Header("Ability Info")]
-        public List<AbstractAbility> abilities = new List<AbstractAbility>();
+        public List<Ability> abilities = new List<Ability>();
         UniqueCreature unit;
 
         void Start()
@@ -23,6 +23,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         {
             unit.animator.SetTrigger("Attack");
             abilities[i].TriggerAbility(target);
+            Debug.Log(abilities[i].AttackName);
             unit.action = false;
         }
     }
