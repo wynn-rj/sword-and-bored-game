@@ -16,10 +16,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         }
 
 
-        bool aoe = false;
-        int damage = 10;
-        int range;
-        int accuraccy;
+        public bool aoe = false;
+        public int damage = 10;
+        public int range;
+        public int accuraccy;
 
         UniqueCreature user;
 
