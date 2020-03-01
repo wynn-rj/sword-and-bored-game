@@ -2,68 +2,56 @@
 using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
-using UnityEngine.EventSystems;
+using SwordAndBored.Utilities.UnityHelper;
+using SwordAndBored.Utilities;
+using System.Collections.Generic;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
-    public class TileSelect : MonoBehaviour
+    public class TileSelect : OnClickMonoBehaviour, IObserver<ITileSelectSubscriber>
     {
-        public TileManager tileManager;
-        public Material material;
-        public IHexGridCell lastSelectedTile;
-        public Vector3 tilePosition;
+        [SerializeField] private Material material;
         private GameObject lastClicked;
         private Material lastClickedMaterial;
+        private readonly IList<ITileSelectSubscriber> subscribers = new List<ITileSelectSubscriber>();
 
-#if DEBUG
         void Awake()
         {
-            AssertHelper.IsSetInEditor(tileManager, this);
+            AssertHelper.IsSetInEditor(material, this);
+            clickMask = LayerMask.GetMask(new string[] { "HexTile" });
         }
-#endif
 
-        void Update()
+        protected override void OnClick(RaycastHit hit)
         {
-            if (Input.GetMouseButtonDown(0))
+            GameObject selectedObject = hit.collider.gameObject.transform.parent.gameObject;
+            AssertHelper.Assert(selectedObject.name.Contains("hextile"), "Clicked on unexpected gameobject: " + selectedObject.name, this);
+            IHexGridCell clickedTile = selectedObject.GetComponent<MonoHexGridCell>().HexGridCell;
+            if (clickedTile.HasComponent<UnselectableComponent>()) return;
+            
+            ISelectionComponent selectionComponent = clickedTile.GetComponent<ISelectionComponent>();
+            if (!(selectionComponent is null))
             {
-                OnClick();
+                selectionComponent.Select();
             }
-        }
+            foreach (ITileSelectSubscriber subscriber in subscribers)
+            {
+                subscriber.OnTileSelect(clickedTile);
+            }
 
-        void OnClick()
-        {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Highlight selected tile
             if (lastClicked)
             {
                 lastClicked.GetComponent<MeshRenderer>().material = lastClickedMaterial;
                 lastClicked = null;
                 lastClickedMaterial = null;
             }
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                Transform selectedTransform = hit.collider.gameObject.transform;
-                Point<int> gridPoint = HexPoint.GetPointFromCenter(selectedTransform.position.x, selectedTransform.position.z, selectedTransform.localScale.x);
-                lastSelectedTile = tileManager.hexTiling[gridPoint.X, gridPoint.Y];
-                if (lastSelectedTile is null) return;
-
-                ISelectionComponent selectionComponent = lastSelectedTile.GetComponent<ISelectionComponent>();
-                if (!(selectionComponent is null))
-                {
-                    selectionComponent.Select();
-                }
-
-                // Highlight selected tile
-                if (hit.collider.gameObject.name.Contains("Clone"))
-                {
-                    float tileHeight = hit.collider.gameObject.GetComponent<Renderer>().bounds.size.y;
-                    tilePosition = selectedTransform.position + new Vector3(0, tileHeight, 0);
-                    lastClicked = hit.collider.gameObject;
-                    lastClickedMaterial = lastClicked.GetComponent<MeshRenderer>().material;
-                    lastClicked.GetComponent<MeshRenderer>().material = material;
-                    
-                }
-            }
+            lastClicked = hit.collider.gameObject;
+            lastClickedMaterial = lastClicked.GetComponent<MeshRenderer>().material;
+            lastClicked.GetComponent<MeshRenderer>().material = material; 
         }
+
+        public void Subscribe(ITileSelectSubscriber subscriber) => subscribers.Add(subscriber);
+
+        public bool Unsubscribe(ITileSelectSubscriber subscriber) => subscribers.Remove(subscriber);
     }
 }
