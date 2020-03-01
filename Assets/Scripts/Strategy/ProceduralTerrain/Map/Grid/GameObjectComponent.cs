@@ -4,6 +4,11 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
 {
     class GameObjectComponent : AbstractCellComponent
     {
-        public GameObject gameObject { get; set; }
+        public GameObject GameObject { get; }
+
+        public GameObjectComponent(GameObject gameObject)
+        {
+            GameObject = gameObject;
+        }
     }
 }
