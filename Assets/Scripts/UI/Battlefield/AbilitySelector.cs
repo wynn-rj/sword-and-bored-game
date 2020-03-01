@@ -51,6 +51,10 @@ public class AbilitySelector : MonoBehaviour
                 if (Input.GetKeyDown(keyCodes[i]))
                 {
                     SelectedAbilityButton(i + 1);
+                    DisplayDescriptiorPanel(i + 1);
+                } else if(Input.GetKeyUp(keyCodes[i]))
+                {
+                    TurnOffDescriptorPanel(i + 1);
                 }
             }
         }
@@ -64,6 +68,16 @@ public class AbilitySelector : MonoBehaviour
         {
             button.GetComponent<AbilityButtonHighlight>().highlightNum = highlightedNum;
         }
+    }
+
+    public void DisplayDescriptiorPanel(int num)
+    {
+        AbilityButtons[num - 1].GetComponent<AbilityButtonHighlight>().OnPointerEnter(null);
+    }
+
+    public void TurnOffDescriptorPanel(int num)
+    {
+        AbilityButtons[num - 1].GetComponent<AbilityButtonHighlight>().OnPointerExit(null);
     }
 
     public void ResetAbilitySelection(int num)
