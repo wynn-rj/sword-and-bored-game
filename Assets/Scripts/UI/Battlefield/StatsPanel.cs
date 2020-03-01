@@ -28,8 +28,8 @@ namespace SwordAndBored.UI.Battlefield {
                 UnitStats unitStats = activePlayer.GetComponent<UnitStats>();
                 nameText.SetText(activePlayer.creatureName);
                 healthText.SetText(unitStats.health.ToString());
-                pAttackText.SetText(unitStats.attack.ToString());
-                pDefenseText.SetText(unitStats.defense.ToString());
+                pAttackText.SetText(unitStats.physicalAttack.ToString());
+                pDefenseText.SetText(unitStats.physicalDefense.ToString());
                 mAttackText.SetText(unitStats.magicAttack.ToString());
                 mDefenseText.SetText(unitStats.magicDefense.ToString());
                 movementText.SetText(unitStats.movement.ToString());

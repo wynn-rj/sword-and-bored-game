@@ -8,9 +8,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts
     {
         [Header("Player Stats")]
         public int health;
-        public int attack;
+        public int physicalAttack;
         public int magicAttack;
-        public int defense;
+        public int physicalDefense;
         public int magicDefense;
         public int speedIntit;
         public int movement;
