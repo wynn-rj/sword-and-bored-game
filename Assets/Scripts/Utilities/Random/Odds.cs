@@ -1,4 +1,6 @@
-﻿namespace SwordAndBored.Utilities.Random
+﻿using System.Collections.Generic;
+
+namespace SwordAndBored.Utilities.Random
 {
     /// <summary>
     /// A class for returning random odds of events happening
@@ -57,6 +59,11 @@
         public static T SelectAtRandom<T>(T[] collection)
         {
             return collection[Instance.Random.Next(collection.Length)];
+        }
+
+        public static T SelectAtRandom<T>(IList<T> collection)
+        {
+            return collection[Instance.Random.Next(collection.Count)];
         }
     }
 }
