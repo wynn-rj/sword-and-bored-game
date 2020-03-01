@@ -71,15 +71,15 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 {
                     if (enemy.GetComponent<UniqueCreature>())
                     {
-                        Debug.Log(enemy.GetComponent<UniqueCreature>().creatureName);
+                        UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
                         // Accuracy Check
                         //Damage Equation
-                        if (AccuracyCheck(enemy.GetComponent<UniqueCreature>()))
+                        if (AccuracyCheck(enemyCreature))
                         {
-                            enemy.GetComponent<UniqueCreature>().Damage(DamageEquation(enemy.GetComponent<UniqueCreature>()));
+                            enemyCreature.Damage(DamageEquation(enemyCreature));
                         } else
                         {
-                            Debug.Log("Miss");
+                            enemyCreature.Miss();
                         }
                         
                     }
@@ -102,7 +102,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     }
                     else
                     {
-                        Debug.Log("Miss");
+                        enemy.GetComponent<UniqueCreature>().Miss();
                     }
                     //Debug.Log("Hit");
                 }
