@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using SwordAndBored.Battlefield.CreaturScripts;
 
 public class AbilitySelector : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class AbilitySelector : MonoBehaviour
     public int currentlySelectedNum;
     [HideInInspector]
     public int highlightedNum;
+    [HideInInspector]
+    public List<Ability> abilityList;
+    [HideInInspector]
+    public bool setAbilityList;
+    
 
     private KeyCode[] keyCodes = {
              KeyCode.Alpha1,
@@ -31,44 +38,21 @@ public class AbilitySelector : MonoBehaviour
             button.GetComponent<AbilityButtonHighlight>().descriptionPanel = descriptionPanel;
         }
         descriptionPanel.SetActive(false);
+        setAbilityList = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (setAbilityList)
         {
-            SelectedAbilityButton(1);
-        } else if(Input.GetKeyDown(KeyCode.Alpha2)) {
-            SelectedAbilityButton(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SelectedAbilityButton(3);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SelectedAbilityButton(4);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SelectedAbilityButton(5);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            SelectedAbilityButton(6);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            SelectedAbilityButton(7);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            SelectedAbilityButton(8);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            SelectedAbilityButton(9);
+            for (int i = 0; i < abilityList.Count; i++)
+            {
+                if (Input.GetKeyDown(keyCodes[i]))
+                {
+                    SelectedAbilityButton(i + 1);
+                }
+            }
         }
     }
 
