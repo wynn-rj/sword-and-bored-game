@@ -6,18 +6,21 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
     public class EmptyGridCell: IHexGridCell
     {
         public HexPoint Position { get; }
+        public HexGrid ParentGrid { get; }
+        public IHexGridCell[] Neighbors => ParentGrid.CellNeighbors(this);
 
-        public IEnumerable<ICellComponent> Components => ComponentList;
+        public IEnumerable<ICellComponent> Components => componentList;
 
-        private List<ICellComponent> ComponentList;
-        private NestingSelectionActionComponent selectionComponents;
+        private readonly List<ICellComponent> componentList;
+        private readonly NestingSelectionActionComponent selectionComponents;
 
-        public EmptyGridCell(int x, int y, float gridRadius)
+        public EmptyGridCell(int x, int y, float gridRadius, HexGrid parentGrid)
         {
             Position = new HexPoint(x, y, gridRadius);
-            ComponentList = new List<ICellComponent>();
+            componentList = new List<ICellComponent>();
             selectionComponents = new NestingSelectionActionComponent();
             selectionComponents.Parent = this;
+            ParentGrid = parentGrid;
         }
 
         public void AddComponent(ICellComponent component)
@@ -26,13 +29,13 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
             {
                 if (selectionComponents.InternalComponents.Count == 0)
                 {
-                    ComponentList.Add(selectionComponents);
+                    componentList.Add(selectionComponents);
                 }
                 selectionComponents.InternalComponents.Add(selectionComponent);
             }
             else
             {
-                ComponentList.Add(component);
+                componentList.Add(component);
             }
             component.Parent = this;
         }
@@ -44,11 +47,11 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
                 bool success = selectionComponents.InternalComponents.Remove(selectionComponent);
                 if (success && selectionComponents.InternalComponents.Count == 0)
                 {
-                    ComponentList.Remove(selectionComponents);
+                    componentList.Remove(selectionComponents);
                 }
                 return success;
             }
-            return ComponentList.Remove(component);
+            return componentList.Remove(component);
         }
 
         public bool RemoveComponent<T>() where T : ICellComponent
@@ -58,17 +61,17 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
                 if (selectionComponents.InternalComponents.Count > 0)
                 {
                     selectionComponents.InternalComponents.Clear();
-                    ComponentList.Remove(selectionComponents);
+                    componentList.Remove(selectionComponents);
                     return true;
                 }
                 return false;
             }
-            return ComponentList.Remove(GetComponent<T>());
+            return componentList.Remove(GetComponent<T>());
         }        
 
         public T GetComponent<T>() where T : ICellComponent
         {
-            foreach (ICellComponent component in ComponentList)
+            foreach (ICellComponent component in componentList)
             {
                 if (component is T)
                 {
@@ -82,7 +85,22 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
                     return (T)component;
                 }
             }
-            return default(T);
+            return default;
+        }
+
+        public bool HasComponent(ICellComponent component)
+        {
+            bool storedInInternal = false;
+            if (component is ISelectionComponent selectionComponent)
+            {
+                storedInInternal = selectionComponents.InternalComponents.Contains(selectionComponent);
+            }
+            return storedInInternal || componentList.Contains(component);
+        }
+
+        public bool HasComponent<T>() where T : ICellComponent
+        {
+            return !Equals(GetComponent<T>(), default);
         }
     }
 }
