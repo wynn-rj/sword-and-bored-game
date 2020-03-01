@@ -18,8 +18,6 @@ namespace SwordAndBored.GameData.Abilities
         public string Description { get; set; }
         public string FlavorText { get; set; }
 
-        public enum ShapeEnum {Point = 0, Sphere = 1, Cross = 2, Line = 3}
-
         public CombatAbilities(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
