@@ -17,6 +17,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             width = abilityStats.Width;
             aoe = abilityStats.Shape > 0;
             description = abilityStats.Description;
+            isPhysical = abilityStats.IsPhysical;
         }
 
         UnitAbilitiesContainer container;
@@ -27,6 +28,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public int accuraccy;
         public int length;
         public int width;
+        public bool isPhysical;
         GameObject shape;
         Renderer shapeRend;
 
@@ -56,7 +58,23 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 pointAttack(hit);
             } else
             {
+                aoeAttack(hit);
+            }
+        }
 
+        void aoeAttack(RaycastHit hit)
+        {
+            if (Vector3.Distance(user.transform.position, hit.point) <= range)
+            {
+                Collider[] enemies = Physics.OverlapSphere(hit.point, length);
+                foreach (Collider enemy in enemies)
+                {
+                    Debug.Log("Pew");
+                    if (enemy.GetComponent<UniqueCreature>())
+                    {
+                        enemy.GetComponent<UniqueCreature>().Damage(damage);
+                    }
+                }
             }
         }
 
@@ -97,6 +115,16 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     
                 } else
                 {
+
+                    Collider[] enemies = Physics.OverlapSphere(hit.point, ((float) length) / 2f);
+                    foreach (Collider enemy in enemies)
+                    {
+                        if (enemy.GetComponent<UniqueCreature>())
+                        {
+                            enemy.GetComponent<UniqueCreature>().hightlight();
+                        }
+                    }
+
                     if (Vector3.Distance(user.transform.position, hit.point) <= range)
                     {
                         shapeRend.enabled = true;
