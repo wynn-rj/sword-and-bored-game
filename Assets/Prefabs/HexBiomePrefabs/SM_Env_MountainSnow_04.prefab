@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3385194}
   - component: {fileID: 2308890}
   m_Layer: 0
-  m_Name: SM_Env_MountainSnow_02
+  m_Name: SM_Env_MountainSnow_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
