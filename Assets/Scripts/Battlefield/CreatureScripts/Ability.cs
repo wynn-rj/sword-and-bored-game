@@ -72,8 +72,16 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     if (enemy.GetComponent<UniqueCreature>())
                     {
                         Debug.Log(enemy.GetComponent<UniqueCreature>().creatureName);
+                        // Accuracy Check
                         //Damage Equation
-                        enemy.GetComponent<UniqueCreature>().Damage(DamageEquation(enemy.GetComponent<UniqueCreature>()));
+                        if (AccuracyCheck(enemy.GetComponent<UniqueCreature>()))
+                        {
+                            enemy.GetComponent<UniqueCreature>().Damage(DamageEquation(enemy.GetComponent<UniqueCreature>()));
+                        } else
+                        {
+                            Debug.Log("Miss");
+                        }
+                        
                     }
                 }
             }
@@ -86,8 +94,16 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 UniqueCreature enemy = getEnemy(hit);
                 if (true)
                 {
+                    // Accuracy Check
                     //Run damage equation
-                    enemy.Damage(DamageEquation(enemy));
+                    if (AccuracyCheck(enemy))
+                    {
+                        enemy.Damage(DamageEquation(enemy));
+                    }
+                    else
+                    {
+                        Debug.Log("Miss");
+                    }
                     //Debug.Log("Hit");
                 }
                 else
@@ -155,6 +171,13 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             int finalDamage = Mathf.RoundToInt(preMods * randomMod);
             Debug.Log(finalDamage);
             return finalDamage;
+        }
+
+        public bool AccuracyCheck(UniqueCreature enemy)
+        {
+            //int extraMods = (user.stats.accuracy - enemy.stats.evasion) * 3;
+            int foundValue = Random.Range(0, 100);
+            return foundValue < accuraccy;
         }
 
         public void StopShowAoe()
