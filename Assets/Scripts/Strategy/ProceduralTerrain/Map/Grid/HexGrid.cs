@@ -10,7 +10,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
     public class HexGrid
     {
         private readonly IHexGridCell[,] gridCells;
-        private readonly float cellRadius;
         private readonly int xDim;
         private readonly int yDim;
 
@@ -39,10 +38,9 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
             xDim = (int)Math.Ceiling(width / 2);
             yDim = (int)Math.Ceiling(width / 2);
             gridCells = new IHexGridCell[2 * xDim + 1, 2 * yDim + 1];
-            this.cellRadius = cellRadius;
             for (int x = -xDim; x <= xDim; x++) {
                 for (int y = -yDim; y <= yDim; y++) {
-                    gridCells[x + xDim, y + yDim] = new EmptyGridCell(x, y, cellRadius);
+                    gridCells[x + xDim, y + yDim] = new EmptyGridCell(x, y, cellRadius, this);
                 }
             }
         }
@@ -52,14 +50,14 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
         /// </summary>
         /// <param name="cell">The position of the cell</param>
         /// <returns>The 6 cells surrounding a cell</returns>
-        public IEnumerable<IHexGridCell> CellNeighbors(IHexGridCell cell) => CellNeighbors(cell.Position.GridPoint);
+        public IHexGridCell[] CellNeighbors(IHexGridCell cell) => CellNeighbors(cell.Position.GridPoint);
 
         /// <summary>
         /// Returns the 6 cells surrounding a cell
         /// </summary>
         /// <param name="pos">The position of the cell</param>
         /// <returns>The 6 cells surrounding a cell</returns>
-        public IEnumerable<IHexGridCell> CellNeighbors(Point<int> pos) => CellNeighbors(pos.X, pos.Y);
+        public IHexGridCell[] CellNeighbors(Point<int> pos) => CellNeighbors(pos.X, pos.Y);
 
         /// <summary>
         /// Returns the 6 cells surrounding a cell
@@ -67,15 +65,16 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
         /// <param name="x">The x index of the cell</param>
         /// <param name="y">The y index of the cell</param>
         /// <returns>The 6 cells surrounding a cell</returns>
-        public IEnumerable<IHexGridCell> CellNeighbors(int x, int y)
+        public IHexGridCell[] CellNeighbors(int x, int y)
         {
+            int yShift = (x % 2 == 0) ? -1 : 1;
             return new IHexGridCell[] {
                 GetCell(x, y + 1), 
                 GetCell(x, y - 1),
                 GetCell(x - 1, y),
-                GetCell(x - 1, y + 1),
+                GetCell(x - 1, y + yShift),
                 GetCell(x + 1, y),
-                GetCell(x + 1, y + 1)
+                GetCell(x + 1, y + yShift)
             };
         }
 
@@ -88,6 +87,11 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
         public IHexGridCell this[int x, int y]
         {
             get => GetCell(x, y);
+        }
+
+        public IHexGridCell this[Point<int> p]
+        {
+            get => GetCell(p.X, p.Y);
         }
 
         private IHexGridCell GetCell(int x, int y)
