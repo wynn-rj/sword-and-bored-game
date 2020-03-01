@@ -23,6 +23,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
              *  (-2, 1)         (0, 1) 
              *          (-1, 0)        (1, 0)
              *  (-2, 0)         (0, 0)
+             *          (-1, -1)       (1, -1)
              */
             GridPoint = new Point<int>(gridX, gridY);
             float r = RadiusToInradius(gridRadius);
@@ -35,18 +36,24 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
             Center = new Point<float>(centerX, centerY);
         }
 
-        public static Point<int> GetPointFromCenter(float x, float y, float radius)
+        /// <summary>
+        /// Convert the grid point center to a vector 3
+        /// </summary>
+        /// <param name="y">The y value for the vector 3</param>
+        /// <returns>The grid point center as a vector 3</returns>
+        public Vector3 CenterAsVector3(float y)
         {
-            float r = RadiusToInradius(radius);
-            int gridX = Mathf.RoundToInt(x / (1.5f * radius));
-            float yShift = (gridX % 2 != 0) ? -r : 0;
-            int gridY = Mathf.RoundToInt((y + yShift) / (2 * r));
-            return new Point<int>(gridX, gridY);
+            return new Vector3(Center.X, y, Center.Y);
         }
 
         private static float RadiusToInradius(float r)
         {
             return InradiusConstant * r;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} ({1})", GridPoint, Center);
         }
     }
 }
