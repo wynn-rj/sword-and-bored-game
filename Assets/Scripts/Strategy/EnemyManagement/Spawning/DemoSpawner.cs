@@ -1,35 +1,47 @@
-﻿using SwordAndBored.Utilities.Debug;
+﻿using SwordAndBored.GameData.Units;
+using SwordAndBored.Strategy.Movement;
+using SwordAndBored.Strategy.ProceduralTerrain;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
+using SwordAndBored.Strategy.TimeSystem.TimeManager;
+using SwordAndBored.Utilities.Debug;
 using UnityEngine;
 
 namespace SwordAndBored.Strategy.EnemyManagement.Spawning
 {
     public class DemoSpawner : MonoBehaviour
     {
-        public GameObject enemyPrefab;
+        [SerializeField] private EnemyMovementController enemyPrefab;
+        [SerializeField] private TileManager tileManager;
+        [SerializeField] private AbstractTimeManager turnManager;
+        [SerializeField] private float enemyPlacementHeight = 0;
 
 #if DEBUG
         void Awake()
         {
             AssertHelper.IsSetInEditor(enemyPrefab, this);
+            AssertHelper.IsSetInEditor(tileManager, this);
+            AssertHelper.IsSetInEditor(turnManager, this);
         }
 #endif
 
         void Start()
-        {            
-            // Place an enemy in each biome
-            PlaceEnemy(-147, 16, -157.6166f);
-            PlaceEnemy(-111, 1, -116.0474f);
-            PlaceEnemy(-87, 5, -122.9756f);
-            PlaceEnemy(-45, 4, 1.73205f);
-            PlaceEnemy(-39, 21, 677.54998f);
-            PlaceEnemy(96, 16, 96.99484f);
+        {
+            IEnemy[] enemyList = new IEnemy[] { Enemy.GetEnemyFromTier(1) };
+            IHexGridCell enemyBase = tileManager.hexTiling[(Constants.mapWidth / 2) - Constants.xMargin,
+                (Constants.mapHeight / 2) - Constants.yMargin];
+            foreach (IHexGridCell neighbor in enemyBase.Neighbors)
+            {
+                PlaceEnemy(enemyList, neighbor);
+            }
         }
 
-        private void PlaceEnemy(float x, float y, float z)
+        private void PlaceEnemy(IEnemy[] enemies, IHexGridCell location)
         {
-            // Place on top of hex tile
-            y += 7;
-            Instantiate(enemyPrefab, new Vector3(x, y, z), Quaternion.identity).transform.parent = transform;
+            EnemyMovementController enemy = Instantiate(enemyPrefab, transform);
+            enemy.transform.position = location.Position.CenterAsVector3(enemyPlacementHeight);
+            enemy.Enemies = enemies;
+            enemy.StartLocation = location;
+            turnManager.Subscribe(enemy);
         }
-    }
+}
 }
