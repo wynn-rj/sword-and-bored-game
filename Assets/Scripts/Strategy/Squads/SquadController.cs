@@ -13,6 +13,7 @@ namespace SwordAndBored.Strategy.Squads
         {
             base.PreTimeStepUpdate();
             wipePath = true;
+            // Update gold here
         }
 
         public override void GoTo(IHexGridCell location)
