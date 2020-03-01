@@ -67,8 +67,6 @@ namespace SwordAndBored.Battlefield
                 stats.magicDefense = enemyData.Stats.Magic_Defense;
                 stats.movement = enemyData.Stats.Movement;
                 stats.speedIntit = enemyData.Stats.Initiative;
-                stats.accuracy = enemyData.Stats.Accuracy;
-                stats.evasion = enemyData.Stats.Evasion;
 
                 //brain
                 brain.tileIndictor = indicator;

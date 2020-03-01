@@ -63,8 +63,6 @@ namespace SwordAndBored.Battlefield
                 stats.magicDefense = dataUnit.Stats.Magic_Defense;
                 stats.movement = dataUnit.Stats.Movement;
                 stats.speedIntit = dataUnit.Stats.Initiative;
-                stats.accuracy = dataUnit.Stats.Accuracy;
-                stats.evasion = dataUnit.Stats.Evasion;
                 stats.role = dataUnit.Role.Name;
 
                 //Abilities
