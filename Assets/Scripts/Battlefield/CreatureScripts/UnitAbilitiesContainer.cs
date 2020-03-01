@@ -9,20 +9,35 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         [Header("Ability Info")]
         public List<Ability> abilities = new List<Ability>();
         UniqueCreature unit;
-        [HideInInspector]
-        public GameObject sphereFile;
 
         void Start()
         {
-            sphereFile = Resources.Load<GameObject>("AOE/AoeSphere");
             unit = GetComponent<UniqueCreature>();
             foreach (Ability ability in abilities)
             {
                 if (ability.aoe)
                 {
-                    GameObject sphere = Instantiate(sphereFile, Vector3.zero, Quaternion.identity);
-                    sphere.GetComponent<Renderer>().enabled = false;
-                    ability.Initialize(this, transform.gameObject, sphere);
+                    switch (ability.aoeShape)
+                    {
+                        case 1:
+                            GameObject sphereFile = Resources.Load<GameObject>("AOE/AoeSphere");
+                            GameObject sphere = Instantiate(sphereFile, Vector3.zero, Quaternion.identity);
+                            sphere.GetComponent<Renderer>().enabled = false;
+                            ability.Initialize(this, transform.gameObject, sphere);
+                            break;
+                        case 2:
+
+                            break;
+                        case 3:
+                            GameObject cubeFile = Resources.Load<GameObject>("AOE/AoeCube");
+                            GameObject cube = Instantiate(cubeFile, Vector3.zero, Quaternion.identity);
+                            cube.GetComponent<Renderer>().enabled = false;
+                            ability.Initialize(this, transform.gameObject, cube);
+                            break;
+                        default:
+                            Debug.Log("Something broke in unit abilities container");
+                            break;
+                    }
                 } else
                 {
                     ability.Initialize(this, transform.gameObject);

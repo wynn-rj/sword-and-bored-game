@@ -33,7 +33,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         void Start()
         {
-            health = maxHealth;
+            //health = maxHealth;
             brain = GetComponent<BrainManager>();
             currentMat = GetComponent<Renderer>();
             abilityContainer = GetComponent<UnitAbilitiesContainer>();
@@ -80,6 +80,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             {
                 outline.enabled = false;
             }
+
+            stats.health = health;
         
             animator.SetFloat("Speed", (ms.agent.velocity.magnitude / 3.5f));
         }

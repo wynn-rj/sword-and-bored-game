@@ -6,7 +6,8 @@ using SwordAndBored.GameData.Abilities;
 namespace SwordAndBored.Battlefield.CreaturScripts {
     public class Ability : AbstractAbility
     {
-        
+        public enum ShapeEnum { Point = 0, Sphere = 1, Cross = 2, Line = 3 }
+
         public Ability(IAbility abilityStats)
         {
             name = abilityStats.Name;
@@ -18,6 +19,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             aoe = abilityStats.Shape > 0;
             description = abilityStats.Description;
             isPhysical = abilityStats.IsPhysical;
+            aoeShape = abilityStats.Shape;
         }
 
         UnitAbilitiesContainer container;
@@ -29,6 +31,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public int length;
         public int width;
         public bool isPhysical;
+        public int aoeShape;
         GameObject shape;
         Renderer shapeRend;
 
@@ -64,25 +67,100 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         void aoeAttack(RaycastHit hit)
         {
-            if (Vector3.Distance(user.transform.position, hit.point) <= range)
+            if (range == 0)
             {
-                Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
-                foreach (Collider enemy in enemies)
+                switch (aoeShape)
                 {
-                    if (enemy.GetComponent<UniqueCreature>())
-                    {
-                        UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
-                        // Accuracy Check
-                        //Damage Equation
-                        if (AccuracyCheck(enemyCreature))
+                    case 1:
+                        Vector3 dir = hit.point - user.transform.position;
+                        dir = new Vector3(dir.x, 0, dir.z);
+                        dir.Normalize();
+                        Vector3 point = user.transform.position + dir * ((float)length / 2f);
+                        Collider[] enemies = Physics.OverlapSphere(point, ((float)length) / 2f);
+                        foreach (Collider enemy in enemies)
                         {
-                            enemyCreature.Damage(DamageEquation(enemyCreature));
-                        } else
-                        {
-                            enemyCreature.Miss();
+                            if (enemy.GetComponent<UniqueCreature>())
+                            {
+                                UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
+                                // Accuracy Check
+                                //Damage Equation
+                                if (AccuracyCheck(enemyCreature))
+                                {
+                                    enemyCreature.Damage(DamageEquation(enemyCreature));
+                                } else
+                                {
+                                    enemyCreature.Miss();
+                                }
+                        
+                            }
                         }
                         
-                    }
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+                        Vector3 dir3 = hit.point - user.transform.position;
+                        dir = new Vector3(dir3.x, 0, dir3.z);
+                        dir.Normalize();
+                        Vector3 point3 = user.transform.position + dir * ((float)length / 2f);
+                        Collider[] enemies3 = Physics.OverlapBox(point3, new Vector3(length, length, width), shape.transform.rotation);
+                        foreach (Collider enemy in enemies3)
+                        {
+                            if (enemy.GetComponent<UniqueCreature>())
+                            {
+                                UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
+                                // Accuracy Check
+                                //Damage Equation
+                                if (AccuracyCheck(enemyCreature))
+                                {
+                                    enemyCreature.Damage(DamageEquation(enemyCreature));
+                                }
+                                else
+                                {
+                                    enemyCreature.Miss();
+                                }
+
+                            }
+                        }
+                        break;
+                }
+            } else
+            {
+                switch (aoeShape)
+                {
+                    case 1:
+                        if (Vector3.Distance(user.transform.position, hit.point) <= range)
+                        {
+                            Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
+                            foreach (Collider enemy in enemies)
+                            {
+                                if (enemy.GetComponent<UniqueCreature>())
+                                {
+                                    UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
+                                    // Accuracy Check
+                                    //Damage Equation
+                                    if (AccuracyCheck(enemyCreature))
+                                    {
+                                        enemyCreature.Damage(DamageEquation(enemyCreature));
+                                    }
+                                    else
+                                    {
+                                        enemyCreature.Miss();
+                                    }
+
+                                }
+                            }
+                        }
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+
+                        break;
                 }
             }
         }
@@ -129,7 +207,25 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             } else {
                 if (range == 0)
                 {
-                    
+                    shapeRend.enabled = true;
+                    shape.transform.localScale = new Vector3(1, 1, length);
+                    Vector3 dir = hit.point - user.transform.position;
+                    dir = new Vector3(dir.x, 0, dir.z);
+                    dir.Normalize();
+                    shape.transform.position = user.transform.position + dir * ((float)length / 2f);
+                    shape.transform.LookAt(user.transform.position);
+                    Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, new Vector3(shapeRend.bounds.size.x, shapeRend.bounds.size.y, shapeRend.bounds.size.z), shape.transform.rotation);
+                    foreach (Collider enemy in enemies3)
+                    {
+                        if (enemy.GetComponent<UniqueCreature>())
+                        {
+                            UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
+                            // Accuracy Check
+                            //Damage Equation
+                            enemyCreature.hightlight();
+
+                        }
+                    }
                 } else
                 {
 
@@ -169,7 +265,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
             float randomMod = Random.Range(.85f, 1f);
             int finalDamage = Mathf.RoundToInt(preMods * randomMod);
-            Debug.Log(finalDamage);
             return finalDamage;
         }
 
