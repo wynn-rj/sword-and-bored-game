@@ -6,7 +6,9 @@ using SwordAndBored.Battlefield.CreaturScripts;
 
 public class PlayerAbilityStateBehavior : StateMachineBehaviour
 {
-
+    private Canvas abilityCanvas;
+    private GameObject[] abilityButtons;
+    private AbilitySelector abilitySelector;
     BrainManager brain;
     LayerMask lm;
     int abilityToUse = 0;
@@ -16,6 +18,8 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
     {
         brain = animator.GetComponent<BrainManager>();
         brain.outline.enabled = true;
+        abilityCanvas = brain.manager.hotbar;
+        abilitySelector = abilityCanvas.GetComponent<AbilitySelector>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -47,6 +51,13 @@ public class PlayerAbilityStateBehavior : StateMachineBehaviour
         if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Fire2"))
         {
             animator.SetBool("UseAbility", false);
+        }
+
+        if (abilitySelector.currentlySelectedNum > 0)
+        {
+            animator.SetInteger("Ability", abilitySelector.currentlySelectedNum - 1);
+            animator.SetBool("UseAbility", true);
+            abilitySelector.ResetAbilitySelection(-1);
         }
     }
 
