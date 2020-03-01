@@ -27,7 +27,7 @@ namespace SwordAndBored.Strategy.EnemyManagement.Spawning
         void Start()
         {
             IEnemy[] enemyList = new IEnemy[] { Enemy.GetEnemyFromTier(1) };
-            IHexGridCell enemyBase = tileManager.hexTiling[(Constants.mapWidth / 2) - Constants.xMargin,
+            IHexGridCell enemyBase = tileManager.HexTiling[(Constants.mapWidth / 2) - Constants.xMargin,
                 (Constants.mapHeight / 2) - Constants.yMargin];
             foreach (IHexGridCell neighbor in enemyBase.Neighbors)
             {
