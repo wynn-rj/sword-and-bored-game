@@ -176,8 +176,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public bool AccuracyCheck(UniqueCreature enemy)
         {
             //int extraMods = (user.stats.accuracy - enemy.stats.evasion) * 3;
-            int foundValue = Random.Range(0, 100);
-            return foundValue < accuraccy;
+            return accuraccy > Random.Range(0,100);
         }
 
         public void StopShowAoe()
