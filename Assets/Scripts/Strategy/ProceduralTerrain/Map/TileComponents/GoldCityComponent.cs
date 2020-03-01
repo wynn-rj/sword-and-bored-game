@@ -5,16 +5,16 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
 {
     class GoldCityComponent : AbstractSelectionComponent
     {
-        public Gold Gold { get; private set; }
+        public ResourceManager ResourceManager { get; private set; }
 
-        public GoldCityComponent(Gold gold)
+        public GoldCityComponent(ResourceManager resourceManager)
         {
-            Gold = gold;
+            ResourceManager = resourceManager;
         }
 
         public override void Select()
         {
-            Gold.Amount += 100;
+            ResourceManager.GoldAmount += 100;
         }
     }
 }
