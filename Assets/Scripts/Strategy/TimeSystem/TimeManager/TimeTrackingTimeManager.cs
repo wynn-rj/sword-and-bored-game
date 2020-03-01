@@ -1,6 +1,8 @@
 ﻿using SwordAndBored.Strategy.TimeSystem.Subscribers;
 using SwordAndBored.Strategy.Transitions;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
@@ -9,7 +11,8 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
         protected override IList<IPreTimeStepSubscriber> PreTimeStepSubscribers { get; set; }
         protected override IList<IPostTimeStepSubscriber> PostTimeStepSubscribers { get; set; }
 
-        public ulong startingTimeStep = 0;
+        [UnityEngine.SerializeField] private ulong startingTimeStep = 0;
+        private readonly object timeStepLock = new object();
 
         public TimeTrackingTimeManager()
         {
@@ -20,17 +23,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 
         public override void AdvanceTimeStep()
         {
-            foreach (IPostTimeStepSubscriber postTimeStepSubscriber in PostTimeStepSubscribers)
-            {
-                postTimeStepSubscriber.PostTimeStepUpdate();
-            }
-
-            TimeStep++;
-
-            foreach (IPreTimeStepSubscriber preTimeStepSubscriber in PreTimeStepSubscribers)
-            {
-                preTimeStepSubscriber.PreTimeStepUpdate();
-            }
+            Task.Run(AsyncAdvanceTimeStep);
         }
 
         public void AddPostTimeStepSubscriber(IPostTimeStepSubscriber postTimeStepSubscriber)
@@ -42,6 +35,36 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
         {
             SceneSharing.timeStep = TimeStep;
             SceneSharing.useStoredTimeStep = true;
+        }
+
+        private void AsyncAdvanceTimeStep()
+        {
+            if (!Monitor.TryEnter(timeStepLock))
+            {
+                return;
+            }
+            try
+            {
+                List<Task> tasks = new List<Task>();
+                foreach (IPostTimeStepSubscriber postTimeStepSubscriber in PostTimeStepSubscribers)
+                {
+                    tasks.Add(Task.Run(postTimeStepSubscriber.PostTimeStepUpdate));
+                }
+                Task.WaitAll(tasks.ToArray());
+
+                TimeStep++;
+
+                tasks.Clear();
+                foreach (IPreTimeStepSubscriber preTimeStepSubscriber in PreTimeStepSubscribers)
+                {
+                    tasks.Add(Task.Run(preTimeStepSubscriber.PreTimeStepUpdate));
+                }
+                Task.WaitAll(tasks.ToArray());
+            }
+            finally
+            {
+                Monitor.Exit(timeStepLock);
+            }
         }
     }
 }
