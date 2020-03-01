@@ -33,10 +33,10 @@ namespace SwordAndBored.Strategy.Squads
         {
             AssertHelper.IsSetInEditor(tileManager, this);
             tileManager.GetComponent<TileSelect>().Subscribe(this);
-            ProceduralTerrain.Map.Grid.HexGrid map = tileManager.hexTiling;
-            DeploySquad(null, map[0, 0]);
-            DeploySquad(null, map[1, 0]);
-            DeploySquad(null, map[2, 0]);
+            ProceduralTerrain.Map.Grid.HexGrid map = tileManager.HexTiling;
+            DeploySquad(new IUnit[1], map[0, 0]);
+            DeploySquad(new IUnit[1], map[1, 0]);
+            DeploySquad(new IUnit[1], map[2, 0]);
         }
 
         void Update()
