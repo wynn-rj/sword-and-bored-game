@@ -57,9 +57,9 @@ namespace SwordAndBored.Battlefield
 
                 //stats
                 stats.health = dataUnit.Stats.Max_HP;
-                stats.attack = dataUnit.Stats.Physical_Attack;
+                stats.physicalAttack = dataUnit.Stats.Physical_Attack;
                 stats.magicAttack = dataUnit.Stats.Magic_Attack;
-                stats.defense = dataUnit.Stats.Physical_Defense;
+                stats.physicalDefense = dataUnit.Stats.Physical_Defense;
                 stats.magicDefense = dataUnit.Stats.Magic_Defense;
                 stats.movement = dataUnit.Stats.Movement;
                 stats.speedIntit = dataUnit.Stats.Initiative;

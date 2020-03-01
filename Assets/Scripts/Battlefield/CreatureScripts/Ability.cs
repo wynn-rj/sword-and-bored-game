@@ -72,7 +72,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     if (enemy.GetComponent<UniqueCreature>())
                     {
                         Debug.Log(enemy.GetComponent<UniqueCreature>().creatureName);
-                        enemy.GetComponent<UniqueCreature>().Damage(damage);
+                        //Damage Equation
+                        enemy.GetComponent<UniqueCreature>().Damage(DamageEquation(enemy.GetComponent<UniqueCreature>()));
                     }
                 }
             }
@@ -86,7 +87,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 if (true)
                 {
                     //Run damage equation
-                    enemy.Damage(damage);
+                    enemy.Damage(DamageEquation(enemy));
                     //Debug.Log("Hit");
                 }
                 else
@@ -134,6 +135,26 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     }
                 }
             }
+        }
+
+        public int DamageEquation(UniqueCreature enemy)
+        {
+            int levelStaticForNow = 50;
+            float levelMult = (4 * levelStaticForNow / 5f);
+            float topPart;
+            if (isPhysical)
+            {
+                topPart = levelMult * damage * (user.stats.physicalAttack * 1.0f / enemy.stats.physicalDefense);
+            } else
+            {
+                topPart = levelMult * damage * (user.stats.magicAttack  * 1.0f / enemy.stats.magicDefense);
+            }
+            float preMods = (topPart / 50f) + 2;
+
+            float randomMod = Random.Range(.85f, 1f);
+            int finalDamage = Mathf.RoundToInt(preMods * randomMod);
+            Debug.Log(finalDamage);
+            return finalDamage;
         }
 
         public void StopShowAoe()
