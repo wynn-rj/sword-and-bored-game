@@ -13,8 +13,6 @@
         int Current_HP { get; set; }
         int Initiative { get; set; }
         int Movement { get; set; }
-        int Evasion { get; set; }
-        int Accuracy { get; set; }
 
         int Save();
     }
