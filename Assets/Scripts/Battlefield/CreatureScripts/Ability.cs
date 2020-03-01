@@ -66,12 +66,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         {
             if (Vector3.Distance(user.transform.position, hit.point) <= range)
             {
-                Collider[] enemies = Physics.OverlapSphere(hit.point, length);
+                Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
                 foreach (Collider enemy in enemies)
                 {
-                    Debug.Log("Pew");
                     if (enemy.GetComponent<UniqueCreature>())
                     {
+                        Debug.Log(enemy.GetComponent<UniqueCreature>().creatureName);
                         enemy.GetComponent<UniqueCreature>().Damage(damage);
                     }
                 }
@@ -119,7 +119,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     Collider[] enemies = Physics.OverlapSphere(hit.point, ((float) length) / 2f);
                     foreach (Collider enemy in enemies)
                     {
-                        if (enemy.GetComponent<UniqueCreature>())
+                        
+                        if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
                         {
                             enemy.GetComponent<UniqueCreature>().hightlight();
                         }
