@@ -12,6 +12,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         /// </summary>
         HexPoint Position { get; }
 
+        HexGrid ParentGrid { get; }
+
+        IHexGridCell[] Neighbors { get; }
+
         /// <summary>
         /// An enumeration of all the components attached to the cell
         /// </summary>
@@ -43,5 +47,19 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         /// <typeparam name="T">The type of the component to retrieve</typeparam>
         /// <returns>The component of type T</returns>
         T GetComponent<T>() where T : ICellComponent;
+
+        /// <summary>
+        /// Returns whether a cell has a specific component
+        /// </summary>
+        /// <param name="component">The component to find</param>
+        /// <returns>Whether or not the cell has the component</returns>
+        bool HasComponent(ICellComponent component);
+
+        /// <summary>
+        /// Returns whether a cell has a specific component
+        /// </summary>
+        /// <typeparam name="T">The type of the component to find</typeparam>
+        /// <returns>Whether or not the cell has the component</returns>
+        bool HasComponent<T>() where T : ICellComponent;
     } 
 }
