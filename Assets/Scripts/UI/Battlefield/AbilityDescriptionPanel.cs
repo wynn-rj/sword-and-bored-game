@@ -10,5 +10,6 @@ public class AbilityDescriptionPanel : MonoBehaviour
     public void DisplayDataInUI(Ability ability)
     {
         nameText.text = ability.name;
+        descriptionText.text = ability.description;
     }
 }
