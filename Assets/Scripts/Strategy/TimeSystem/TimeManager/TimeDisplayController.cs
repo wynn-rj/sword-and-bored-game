@@ -7,9 +7,10 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
     public class TimeDisplayController : MonoBehaviour, IPreTimeStepSubscriber
     {
-        public AbstractTimeManager timeManager;
-
+        [SerializeField] private AbstractTimeManager timeManager;
         private Text text;
+        private string turnString;
+        private volatile bool changeText;
 
         void Awake()
         {
@@ -22,7 +23,16 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
         {
             timeManager.Subscribe(this);
             PreTimeStepUpdate();
-        }        
+        }
+
+        void Update()
+        {
+            if (changeText)
+            {
+                text.text = turnString;
+                changeText = false;
+            }
+        }
 
         public void OnDestroy()
         {
@@ -34,7 +44,8 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 
         public void PreTimeStepUpdate()
         {
-            text.text = string.Format("Turn: {0}", timeManager.TimeStep);
+            turnString = string.Format("Turn: {0}", timeManager.TimeStep);
+            changeText = true;
         }
     }
 }
