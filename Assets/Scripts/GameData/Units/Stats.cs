@@ -13,8 +13,6 @@ namespace SwordAndBored.GameData.Units
         public int Current_HP { get; set; }
         public int Initiative { get; set; }
         public int Movement { get; set; }
-        public int Evasion { get; set; }
-        public int Accuracy { get; set; }
 
         public Stats(int inputID)
         {
@@ -32,8 +30,6 @@ namespace SwordAndBored.GameData.Units
                 Current_HP = reader.GetIntFromCol("Current_HP");
                 Initiative = reader.GetIntFromCol("Initiative");
                 Movement = reader.GetIntFromCol("Movement");
-                Evasion = reader.GetIntFromCol("Evasion");
-                Accuracy = reader.GetIntFromCol("Accuracy");
             }
             reader.CloseReader();
             conn.CloseConnection();
@@ -50,8 +46,6 @@ namespace SwordAndBored.GameData.Units
             Current_HP = copyForNewRow.Current_HP;
             Initiative = copyForNewRow.Initiative;
             Movement = copyForNewRow.Movement;
-            Evasion = copyForNewRow.Evasion;
-            Accuracy = copyForNewRow.Accuracy;
         }
 
         public int Save()
@@ -76,7 +70,7 @@ namespace SwordAndBored.GameData.Units
             else //Update
             {
                 string queryString = $"UPDATE Stats SET Physical_Attack = {Physical_Attack}, Physical_Defense = {Physical_Defense}, Magic_Attack = {Magic_Attack}" +
-                    $", Magic_Defense = {Magic_Defense}, Max_HP = {Max_HP}, Current_HP = {Current_HP}, Initiative = {Initiative}, Movement = {Movement}, Evasion = {Evasion}, Accuracy = {Accuracy}" +
+                    $", Magic_Defense = {Magic_Defense}, Max_HP = {Max_HP}, Current_HP = {Current_HP}, Initiative = {Initiative}, Movement = {Movement}" +
                     $" WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
                 return ID;
@@ -87,7 +81,7 @@ namespace SwordAndBored.GameData.Units
         {
             return "{Stats: " + ID + ", Physical_Attack: " + Physical_Attack + ", Physical_Defense: " + Physical_Defense + ", Magic_Attack: " + Magic_Attack 
                 + ", Magic_Defense: " + Magic_Defense + ", HP: " + Max_HP + ", Initiative: " + Initiative 
-                + ", Movement: " + Movement + ", Evasion: " + Evasion + ", Accuracy: " + Accuracy + "}";
+                + ", Movement: " + Movement + "}";
         }
     }
 }

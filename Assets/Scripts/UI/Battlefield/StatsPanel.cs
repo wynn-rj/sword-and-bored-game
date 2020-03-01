@@ -10,8 +10,7 @@ namespace SwordAndBored.UI.Battlefield {
         public TurnManager turnManager;
 
         public TMP_Text nameText, healthText, pAttackText, pDefenseText,
-            mAttackText, mDefenseText, movementText, initiativeText, evasionText,
-            accuracyText, roleText;
+            mAttackText, mDefenseText, movementText, initiativeText, roleText;
 
 
         // Update is called once per frame
@@ -34,8 +33,6 @@ namespace SwordAndBored.UI.Battlefield {
                 mDefenseText.SetText(unitStats.magicDefense.ToString());
                 movementText.SetText(unitStats.movement.ToString());
                 initiativeText.SetText(unitStats.speedIntit.ToString());
-                evasionText.SetText(unitStats.evasion.ToString());
-                accuracyText.SetText(unitStats.accuracy.ToString());
                 roleText.SetText(unitStats.role);
             }
         }
