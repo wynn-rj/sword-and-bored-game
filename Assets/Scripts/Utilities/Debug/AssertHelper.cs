@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace SwordAndBored.Utilities.Debug
 {
@@ -17,6 +16,21 @@ namespace SwordAndBored.Utilities.Debug
             if (obj is null)
             {
                 UnityEngine.Debug.LogError(typeof(T).Name + " is not set for " + context.GetType().Name, context);
+            }
+        }
+
+        [Conditional("DEBUG")]
+        public static void Assert(bool cond, string message, UnityEngine.Object context = null)
+        {
+            if (cond) return;
+           
+            if (context) 
+            {
+                UnityEngine.Debug.LogError(message, context);
+            }
+            else
+            {
+                UnityEngine.Debug.LogError(message);
             }
         }
     }
