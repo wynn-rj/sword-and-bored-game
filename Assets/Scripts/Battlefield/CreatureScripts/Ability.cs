@@ -105,10 +105,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                         dir = new Vector3(dir3.x, 0, dir3.z);
                         dir.Normalize();
                         Vector3 point3 = user.transform.position + dir * ((float)length / 2f);
-                        Collider[] enemies3 = Physics.OverlapBox(point3, new Vector3(length, length, width), shape.transform.rotation);
+                        Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
                         foreach (Collider enemy in enemies3)
                         {
-                            if (enemy.GetComponent<UniqueCreature>())
+                            if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
                             {
                                 UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
                                 // Accuracy Check
@@ -214,10 +214,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     dir.Normalize();
                     shape.transform.position = user.transform.position + dir * ((float)length / 2f);
                     shape.transform.LookAt(user.transform.position);
-                    Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, new Vector3(shapeRend.bounds.size.x, shapeRend.bounds.size.y, shapeRend.bounds.size.z), shape.transform.rotation);
+                    Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
                     foreach (Collider enemy in enemies3)
                     {
-                        if (enemy.GetComponent<UniqueCreature>())
+                        if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
                         {
                             UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
                             // Accuracy Check
