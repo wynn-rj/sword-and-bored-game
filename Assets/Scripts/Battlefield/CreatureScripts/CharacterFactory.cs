@@ -50,13 +50,15 @@ namespace SwordAndBored.Battlefield
                 //UniqueCreature
                 uniqueCreature.creatureName = dataUnit.Name;
                 uniqueCreature.maxHealth = dataUnit.Stats.Max_HP;
+                uniqueCreature.health = dataUnit.Stats.Current_HP;
                 uniqueCreature.maxMovement = dataUnit.Stats.Movement;
 
                 //Movement
                 ms.grid = grid;
 
                 //stats
-                stats.health = dataUnit.Stats.Max_HP;
+                stats.health = dataUnit.Stats.Current_HP;
+                stats.maxHealth = dataUnit.Stats.Max_HP;
                 stats.physicalAttack = dataUnit.Stats.Physical_Attack;
                 stats.magicAttack = dataUnit.Stats.Magic_Attack;
                 stats.physicalDefense = dataUnit.Stats.Physical_Defense;

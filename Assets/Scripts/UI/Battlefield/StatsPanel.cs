@@ -9,7 +9,7 @@ namespace SwordAndBored.UI.Battlefield {
         public GameObject statsPanel;
         public TurnManager turnManager;
 
-        public TMP_Text nameText, healthText, pAttackText, pDefenseText,
+        public TMP_Text healthText, pAttackText, pDefenseText,
             mAttackText, mDefenseText, movementText, initiativeText, roleText;
 
 
@@ -25,15 +25,14 @@ namespace SwordAndBored.UI.Battlefield {
             {
                 UniqueCreature activePlayer = turnManager.activePlayer.gameObject.GetComponent<UniqueCreature>();
                 UnitStats unitStats = activePlayer.GetComponent<UnitStats>();
-                nameText.SetText(activePlayer.creatureName);
-                healthText.SetText(unitStats.health.ToString());
-                pAttackText.SetText(unitStats.physicalAttack.ToString());
-                pDefenseText.SetText(unitStats.physicalDefense.ToString());
-                mAttackText.SetText(unitStats.magicAttack.ToString());
-                mDefenseText.SetText(unitStats.magicDefense.ToString());
-                movementText.SetText(unitStats.movement.ToString());
-                initiativeText.SetText(unitStats.speedIntit.ToString());
-                roleText.SetText(unitStats.role);
+                healthText.text = $"HP: {unitStats.health} / {unitStats.maxHealth}";
+                pAttackText.text = $"Physical Attack: {unitStats.physicalAttack}";
+                pDefenseText.text = $"Physical Defense: {unitStats.physicalDefense}";
+                mAttackText.text = $"Magic Attack: {unitStats.magicAttack}";
+                mDefenseText.text = $"Magic Defense: {unitStats.magicDefense}";
+                movementText.text = $"Movement: {unitStats.movement}";
+                initiativeText.text = $"Initiative: {unitStats.speedIntit}";
+                roleText.text = $"Role: {unitStats.role}";
             }
         }
     }
