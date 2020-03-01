@@ -26,10 +26,6 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         ms = animator.GetComponent<MovementSystem>();
 
         List<Ability> abilityList = brain.GetComponent<UnitAbilitiesContainer>().abilities;
-/*        foreach(Ability inList in abilityList)
-        {
-            Debug.Log($"Name: {inList.name}, Damage: {inList.damage}, Accuracy: {inList.accuraccy}, AOE: {inList.aoe}, Range: {inList.range}");
-        }*/
 
         abilityCanvas = brain.manager.hotbar;
         abilitySelector = abilityCanvas.GetComponent<AbilitySelector>();

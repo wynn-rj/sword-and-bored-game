@@ -36,7 +36,6 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (isEnabled)
         {
-            Debug.Log("Mouse is over GameObject.");
             descriptionPanel.SetActive(true);
             descriptionPanel.GetComponent<AbilityDescriptionPanel>().DisplayDataInUI(ability);
         }
@@ -46,7 +45,6 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (isEnabled)
         {
-            Debug.Log("Mouse left button");
             descriptionPanel.SetActive(false);
         }
     }
