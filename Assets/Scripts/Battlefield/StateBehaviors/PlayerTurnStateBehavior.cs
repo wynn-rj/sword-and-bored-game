@@ -10,17 +10,6 @@ using UnityEngine.UI;
 
 public class PlayerTurnStateBehavior : StateMachineBehaviour
 {
-    private KeyCode[] keyCodes = {
-         KeyCode.Alpha1,
-         KeyCode.Alpha2,
-         KeyCode.Alpha3,
-         KeyCode.Alpha4,
-         KeyCode.Alpha5,
-         KeyCode.Alpha6,
-         KeyCode.Alpha7,
-         KeyCode.Alpha8,
-         KeyCode.Alpha9,
-    };
     private Canvas abilityCanvas;
     private AbilitySelector abilitySelector;
     private GameObject[] abilityButtons;
@@ -80,19 +69,11 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
                 ms.Move(endTile, true);
             }
         }
-
-        for (int i = 0; i < keyCodes.Length; i++)
+        if(abilitySelector.currentlySelectedNum > 0)
         {
-            if (Input.GetKeyDown(keyCodes[i]))
-            {
-                animator.SetInteger("Ability", i);
-                animator.SetBool("UseAbility", true);
-            } else if(abilitySelector.currentlySelectedNum > 0)
-            {
-                animator.SetInteger("Ability", abilitySelector.currentlySelectedNum -1);
-                animator.SetBool("UseAbility", true);
-                abilitySelector.ResetAbilitySelection(-1);
-            }
+            animator.SetInteger("Ability", abilitySelector.currentlySelectedNum -1);
+            animator.SetBool("UseAbility", true);
+            abilitySelector.ResetAbilitySelection(-1);
         }
 
         if (Input.GetButtonDown("Next")) {
