@@ -9,8 +9,7 @@ namespace SwordAndBored.Strategy.Transitions
         private bool alreadyLoading = false;
         void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.name);
-            if (other.name.Contains("Player"))
+            if (other.name.Contains("Squad"))
             {
                 if (!alreadyLoading)
                 {
