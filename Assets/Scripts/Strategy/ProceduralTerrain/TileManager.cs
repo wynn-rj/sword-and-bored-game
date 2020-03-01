@@ -5,48 +5,56 @@ using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using SwordAndBored.Strategy.GameResources;
 using System.Collections.Generic;
 using UnityEngine;
+using SwordAndBored.Utilities.Debug;
+using SwordAndBored.Utilities.Random;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
     public class TileManager : MonoBehaviour
     { 
-        public GameObject snowMountainTile;
-        public GameObject mountainTile;
-        public GameObject forestTile;
-        public GameObject plainTile;
-        public GameObject desertTile;
-        public GameObject riverTile;
-        public GameObject enemyCreepTile;
-        public GameObject enemyTile;
-        public GameObject playerTile;
-        public HexGrid hexTiling;
-        public Gold gold;
-        public GameObject goldCity;
+        [SerializeField] private List<GameObject> snowMountainTiles;
+        [SerializeField] private List<GameObject> mountainTiles;
+        [SerializeField] private List<GameObject> forestTiles;
+        [SerializeField] private List<GameObject> plainTiles;
+        [SerializeField] private List<GameObject> desertTiles;
+        [SerializeField] private List<GameObject> riverTiles;
+        [SerializeField] private List<GameObject> enemyCreepTiles;
+        [SerializeField] private List<GameObject> enemyTiles;
+        [SerializeField] private List<GameObject> playerTiles;
+        [SerializeField] private Gold gold;
+        [SerializeField] private GameObject goldCity;
 
-        private IDictionary<System.Type, GameObject> terrainToGameObject;
+        private IDictionary<System.Type, List<GameObject>> terrainToGameObject;
         private System.Random fixedRandom;
+
+        public HexGrid HexTiling { get; private set; }
 
         private void Start()
         {
-            terrainToGameObject = new Dictionary<System.Type, GameObject>()
+            terrainToGameObject = new Dictionary<System.Type, List<GameObject>>()
             {
-                { typeof(PlayerTerritoryTerrainComponent), playerTile },
-                { typeof(EnemyTerritoryTerrainComponent), enemyTile },
-                { typeof(GrasslandTerrainComponent), plainTile },
-                { typeof(ForestTerrainComponent), forestTile },
-                { typeof(DesertTerrainComponent), desertTile },
-                { typeof(MountainTerrainComponent), mountainTile },
-                { typeof(SnowTerrainComponent), snowMountainTile },
-                { typeof(RiverTerrainComponent), riverTile },
+                { typeof(PlayerTerritoryTerrainComponent), playerTiles },
+                { typeof(EnemyTerritoryTerrainComponent), enemyTiles },
+                { typeof(GrasslandTerrainComponent), plainTiles },
+                { typeof(ForestTerrainComponent), forestTiles },
+                { typeof(DesertTerrainComponent), desertTiles },
+                { typeof(MountainTerrainComponent), mountainTiles },
+                { typeof(SnowTerrainComponent), snowMountainTiles },
+                { typeof(RiverTerrainComponent), riverTiles },
             };
-            foreach (KeyValuePair<System.Type, GameObject> kv in terrainToGameObject)
+            foreach (KeyValuePair<System.Type, List<GameObject>> kv in terrainToGameObject)
             {
-                kv.Value.transform.localScale = new Vector3(Constants.hexRadius, Constants.hexRadius, 1);
-                kv.Value.transform.rotation = Quaternion.Euler(-90, 0, 90);
+                AssertHelper.IsSetInEditor(kv.Value, this);
+                AssertHelper.Assert(kv.Value.Count > 0, "Supplied empty list of tiles for " + kv.Key.Name, this);
+                foreach (GameObject prefab in kv.Value)
+                {
+                    prefab.transform.localScale = new Vector3(Constants.hexRadius, Constants.hexRadius, 1);
+                    prefab.transform.rotation = Quaternion.Euler(-90, 0, 90);
+                }
             }
 
             fixedRandom = new System.Random(12345);
-            hexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
+            HexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
             PrepareTiles();
             BuildTiles();
         }
@@ -59,7 +67,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             int enemyBaseY = yDim - Constants.yMargin;
             float creepSpreadModifier = Mathf.Pow((Constants.mapWidth / 5f), 2f);
 
-            foreach (IHexGridCell tile in hexTiling.AllCells)
+            foreach (IHexGridCell tile in HexTiling.AllCells)
             {
                 Point<int> gridPoint = tile.Position.GridPoint;
                 bool activeCreep = (Mathf.Pow(gridPoint.X - enemyBaseX, 2f) / creepSpreadModifier) + (Mathf.Pow(gridPoint.Y - enemyBaseY, 2f) / creepSpreadModifier) - Random.Range(0, 0.2f) < 1;
@@ -85,7 +93,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 tileTerrains.Key.AddComponent(newTerrain);
             }
 
-            hexTiling[-xDim + Constants.xMargin + 5, -yDim + Constants.yMargin + 5].AddComponent(new GoldCityComponent(gold));
+            HexTiling[-xDim + Constants.xMargin + 5, -yDim + Constants.yMargin + 5].AddComponent(new GoldCityComponent(gold));
         }
 
         private void BuildTiles()
@@ -94,7 +102,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             GameObject hexMap = new GameObject("HexTiling");
             System.Type[] tileHolderComponents = new System.Type[] { typeof(MonoHexGridCell) };
 
-            foreach (IHexGridCell tile in hexTiling.AllCells)
+            foreach (IHexGridCell tile in HexTiling.AllCells)
             {
                 Vector3 tileLocation = new Vector3(tile.Position.Center.X, 0, tile.Position.Center.Y);
                 GameObject tileHolder = new GameObject(TileName(tile), tileHolderComponents);
@@ -103,11 +111,11 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 tileHolder.GetComponent<MonoHexGridCell>().HexGridCell = tile;
                 tile.AddComponent(new GameObjectComponent(tileHolder));
 
-                GameObject terrainPrefab = terrainToGameObject[tile.GetComponent<ITerrainComponent>().GetType()];
+                GameObject terrainPrefab = Odds.SelectAtRandom(terrainToGameObject[tile.GetComponent<ITerrainComponent>().GetType()]);
                 AddToTileHolder(tileHolder, terrainPrefab, tileHeight, Constants.terrainObjectName);
                 if (tile.HasComponent<CreepComponent>())
                 {
-                    AddToTileHolder(tileHolder, enemyCreepTile, tileHeight, Constants.creepObjectName);
+                    AddToTileHolder(tileHolder, Odds.SelectAtRandom(enemyCreepTiles), tileHeight, Constants.creepObjectName);
                     tile.GetComponent<CreepComponent>().SetTileHolder(tileHolder);
                 }
 
@@ -120,16 +128,16 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
         private void CreateBase(int x, int y, bool isPlayer, IDictionary<IHexGridCell, bool> baseTerrains)
         {
-            IHexGridCell centerBaseTile = hexTiling[x, y];
+            IHexGridCell centerBaseTile = HexTiling[x, y];
             centerBaseTile.RemoveComponent<CreepComponent>();
             centerBaseTile.AddComponent((isPlayer) ? (new PlayerBaseComponent() as ICellComponent) : new EnemyBaseComponent());
             baseTerrains.Add(centerBaseTile, isPlayer);
-            foreach (IHexGridCell neighbor in hexTiling.CellNeighbors(centerBaseTile))
+            foreach (IHexGridCell neighbor in HexTiling.CellNeighbors(centerBaseTile))
             {
                 baseTerrains.Add(neighbor, isPlayer);
                 neighbor.RemoveComponent<CreepComponent>();
             }
-            hexTiling[x, y].AddComponent(new GoldCityComponent(gold));
+            HexTiling[x, y].AddComponent(new GoldCityComponent(gold));
         }
 
         private ITerrainComponent GetTileTerrain(IHexGridCell tile)
