@@ -87,6 +87,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
     {
         brain.indicatorRend.enabled = false;
         brain.outline.enabled = false;
+        abilityButtons[0].GetComponent<AbilityButtonHighlight>().descriptionPanel.SetActive(false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
