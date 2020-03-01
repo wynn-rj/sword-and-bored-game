@@ -9,12 +9,7 @@ using UnityEngine;
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
     public class TileManager : MonoBehaviour
-    {        
-        private int xDim;
-        private int yDim;
-        
-        GameObject hexMap;
-
+    { 
         public GameObject snowMountainTile;
         public GameObject mountainTile;
         public GameObject forestTile;
@@ -28,14 +23,29 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         public Gold gold;
         public GameObject goldCity;
 
+        private IDictionary<System.Type, GameObject> terrainToGameObject;
+        private System.Random fixedRandom;
+
         private void Start()
         {
-            hexMap = new GameObject();
-            hexMap.name = "HexTiling";
+            terrainToGameObject = new Dictionary<System.Type, GameObject>()
+            {
+                { typeof(PlayerTerritoryTerrainComponent), playerTile },
+                { typeof(EnemyTerritoryTerrainComponent), enemyTile },
+                { typeof(GrasslandTerrainComponent), plainTile },
+                { typeof(ForestTerrainComponent), forestTile },
+                { typeof(DesertTerrainComponent), desertTile },
+                { typeof(MountainTerrainComponent), mountainTile },
+                { typeof(SnowTerrainComponent), snowMountainTile },
+                { typeof(RiverTerrainComponent), riverTile },
+            };
+            foreach (KeyValuePair<System.Type, GameObject> kv in terrainToGameObject)
+            {
+                kv.Value.transform.localScale = new Vector3(Constants.hexRadius, Constants.hexRadius, 1);
+                kv.Value.transform.rotation = Quaternion.Euler(-90, 0, 90);
+            }
 
-            xDim = Constants.mapWidth / 2;
-            yDim = Constants.mapHeight / 2;
-
+            fixedRandom = new System.Random(12345);
             hexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
             PrepareTiles();
             BuildTiles();
@@ -43,6 +53,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
         private void PrepareTiles()
         {
+            int xDim = Constants.mapWidth / 2;
+            int yDim = Constants.mapHeight / 2;
             int enemyBaseX = xDim - Constants.xMargin;
             int enemyBaseY = yDim - Constants.yMargin;
             float creepSpreadModifier = Mathf.Pow((Constants.mapWidth / 5f), 2f);
@@ -50,17 +62,13 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             foreach (IHexGridCell tile in hexTiling.AllCells)
             {
                 Point<int> gridPoint = tile.Position.GridPoint;
-                if ((Mathf.Pow(gridPoint.X - enemyBaseX, 2f) / creepSpreadModifier) + (Mathf.Pow(gridPoint.Y - enemyBaseY, 2f) / creepSpreadModifier) - Random.Range(0, 0.2f) < 1)
+                bool activeCreep = (Mathf.Pow(gridPoint.X - enemyBaseX, 2f) / creepSpreadModifier) + (Mathf.Pow(gridPoint.Y - enemyBaseY, 2f) / creepSpreadModifier) - Random.Range(0, 0.2f) < 1;
+                ITerrainComponent terrainComponent = GetTileTerrain(tile);
+                tile.AddComponent(terrainComponent);
+                if (!(terrainComponent is RiverTerrainComponent))
                 {
-                    ITerrainComponent creep = new CreepTerrainComponent()
-                    {
-                        Height = GetTileHeight(tile),
-                        WaterLevel = GetTileWaterLevel(tile)
-                    };
-                    tile.AddComponent(creep);
-                    continue;
+                    tile.AddComponent(new CreepComponent(activeCreep));
                 }
-                tile.AddComponent(GetTileTerrain(tile));
             }
 
             IDictionary<IHexGridCell, bool> baseTerrains = new Dictionary<IHexGridCell, bool>();
@@ -82,34 +90,30 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
         private void BuildTiles()
         {
-            Quaternion tileRotation = Quaternion.Euler(-90, 0, 90);
-            IDictionary<System.Type, GameObject> terrainToGameObject = new Dictionary<System.Type, GameObject>()
-            {
-                { typeof(CreepTerrainComponent), enemyCreepTile },
-                { typeof(PlayerTerritoryTerrainComponent), playerTile },
-                { typeof(EnemyTerritoryTerrainComponent), enemyTile },
-                { typeof(GrasslandTerrainComponent), plainTile },
-                { typeof(ForestTerrainComponent), forestTile },
-                { typeof(DesertTerrainComponent), desertTile },
-                { typeof(MountainTerrainComponent), mountainTile },
-                { typeof(SnowTerrainComponent), snowMountainTile },
-                { typeof(RiverTerrainComponent), riverTile },
-            };
-            foreach (GameObject gameObject in terrainToGameObject.Values)
-            {
-                gameObject.transform.localScale = new Vector3(Constants.hexRadius, Constants.hexRadius, Constants.hexRadius * 6);
-            }
+            Vector3 tileHeight = new Vector3(0, -1, 0);
+            GameObject hexMap = new GameObject("HexTiling");
+            System.Type[] tileHolderComponents = new System.Type[] { typeof(MonoHexGridCell) };
+
             foreach (IHexGridCell tile in hexTiling.AllCells)
             {
-                ITerrainComponent terrain = tile.GetComponent<ITerrainComponent>();
-                Vector3 tileLocation = new Vector3(tile.Position.Center.X, terrain.Height, tile.Position.Center.Y);
-                GameObject tilePrefab = Instantiate(terrainToGameObject[terrain.GetType()], tileLocation, tileRotation);
-                tilePrefab.transform.parent = hexMap.transform;
-                GoldCityComponent gc = tile.GetComponent<GoldCityComponent>();
-                if(!(gc is null))
+                Vector3 tileLocation = new Vector3(tile.Position.Center.X, 0, tile.Position.Center.Y);
+                GameObject tileHolder = new GameObject(TileName(tile), tileHolderComponents);
+                tileHolder.transform.position = tileLocation;
+                tileHolder.transform.parent = hexMap.transform;
+                tileHolder.GetComponent<MonoHexGridCell>().HexGridCell = tile;
+                tile.AddComponent(new GameObjectComponent(tileHolder));
+
+                GameObject terrainPrefab = terrainToGameObject[tile.GetComponent<ITerrainComponent>().GetType()];
+                AddToTileHolder(tileHolder, terrainPrefab, tileHeight, Constants.terrainObjectName);
+                if (tile.HasComponent<CreepComponent>())
                 {
-                    float tileHeight = tilePrefab.GetComponent<Renderer>().bounds.size.y;
-                    GameObject goldCityPrefab = Instantiate(goldCity, tileLocation + new Vector3(0, tileHeight, 0), Quaternion.identity);
+                    AddToTileHolder(tileHolder, enemyCreepTile, tileHeight, Constants.creepObjectName);
+                    tile.GetComponent<CreepComponent>().SetTileHolder(tileHolder);
+                }
+
+                if (tile.HasComponent<GoldCityComponent>())
+                {
+                    AddToTileHolder(tileHolder, goldCity);
                 }
             }
         }
@@ -117,11 +121,13 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         private void CreateBase(int x, int y, bool isPlayer, IDictionary<IHexGridCell, bool> baseTerrains)
         {
             IHexGridCell centerBaseTile = hexTiling[x, y];
+            centerBaseTile.RemoveComponent<CreepComponent>();
             centerBaseTile.AddComponent((isPlayer) ? (new PlayerBaseComponent() as ICellComponent) : new EnemyBaseComponent());
             baseTerrains.Add(centerBaseTile, isPlayer);
             foreach (IHexGridCell neighbor in hexTiling.CellNeighbors(centerBaseTile))
             {
                 baseTerrains.Add(neighbor, isPlayer);
+                neighbor.RemoveComponent<CreepComponent>();
             }
             hexTiling[x, y].AddComponent(new GoldCityComponent(gold));
         }
@@ -136,6 +142,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             {
                 bool isSnowy = waterLevel > Constants.snowMountainWaterLvlThreshold && height > Constants.snowMountainHeightThreshold;
                 terrain = (isSnowy) ? (new SnowTerrainComponent() as ITerrainComponent) : new MountainTerrainComponent();
+            }
+            else if (height < Constants.riverHeightThreshold && waterLevel > Constants.riverWaterLevelThreshold)
+            {
+                terrain = new RiverTerrainComponent();
             }
             else
             {
@@ -161,14 +171,34 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         private int GetTileHeight(IHexGridCell tile)
         {
             Point<int> gridPoint = tile.Position.GridPoint;
-            return Mathf.FloorToInt(Mathf.PerlinNoise(gridPoint.X / 25f + 1000, gridPoint.Y / 25f + 1000) * 30);
+            return Mathf.FloorToInt(Mathf.PerlinNoise((gridPoint.X * Constants.hexRadius) / 25f + 1000, (gridPoint.Y * Constants.hexRadius) / 25f + 1000) * 30);
         }
 
         private float GetTileWaterLevel(IHexGridCell tile)
         {
             Point<int> gridPoint = tile.Position.GridPoint;
-            return (Mathf.Pow(((gridPoint.X + (Constants.mapWidth / 2f)) / Constants.mapWidth) - 0.5f, 3) + 0.5f)
-                 * (Mathf.Pow(((gridPoint.Y + (Constants.mapHeight / 2f)) / Constants.mapHeight) + 0.5f, 1 / 3f) + 0.75f) + Random.Range(0, 0.035f);
+            return (Mathf.Pow(((-gridPoint.X + (Constants.mapWidth / 2f)) / Constants.mapWidth) - 0.5f, 3) + 0.5f)
+                 * (Mathf.Pow(((-gridPoint.Y + (Constants.mapHeight / 2f)) / Constants.mapHeight) + 0.5f, 1 / 3f) + 0.75f) 
+                 + ((float)fixedRandom.NextDouble() * 0.05f);
+        }
+
+        private static string TileName(IHexGridCell tile)
+        {
+            return string.Format("hextile_{0}_{1}", tile.Position.GridPoint.X, tile.Position.GridPoint.Y);
+        }
+
+        private static GameObject AddToTileHolder(GameObject tileHolder, GameObject prefab, Vector3 atLocation = default, string name = null)
+        {
+            GameObject gameObject = Instantiate(prefab, tileHolder.transform, false);
+            if (atLocation != default)
+            {
+                gameObject.transform.localPosition = atLocation;
+            }
+            if (name != null)
+            {
+                gameObject.name = name;
+            }
+            return gameObject;
         }
     }
 }
