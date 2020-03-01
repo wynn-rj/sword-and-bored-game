@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using SwordAndBored.UI.Battlefield;
+using UnityEngine.UI;
 
 
 namespace SwordAndBored.Battlefield.CreaturScripts
@@ -37,15 +39,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
         void Update()
         {
-            if (health <= 0)
-            {
-                Destroy(transform.gameObject);
-            }
-        }
-
-        public void Damage(int damage)
-        {
-            health -= damage;
             if (health <= 0)
             {
                 Destroy(transform.gameObject);

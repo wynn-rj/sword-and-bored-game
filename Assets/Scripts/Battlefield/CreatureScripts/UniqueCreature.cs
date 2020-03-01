@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using SwordAndBored.Battlefield.MovementSystemScripts;
+using UnityEngine.UI;
+using SwordAndBored.UI.Battlefield;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
     public class UniqueCreature : UnitBase
@@ -26,6 +28,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         BrainManager brain;
         public bool isEnemy;
         MovementSystem ms;
+        Text damageMessage;
 
 
         void Start()
@@ -37,6 +40,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             stats = GetComponent<UnitStats>();
             outline = GetComponent<Outline>();
             ms = GetComponent<MovementSystem>();
+            damageMessage = GetComponent<HealthBar>().popup;
         }
 
         /// <summary>
@@ -79,7 +83,20 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         
             animator.SetFloat("Speed", (ms.agent.velocity.magnitude / 3.5f));
         }
-        
+
+        public void Damage(int damage)
+        {
+            health -= damage;
+            Color newColor = Color.red;
+            newColor.a = 255;
+            damageMessage.text = "-" + damage;
+            damageMessage.color = newColor;
+            if (health <= 0)
+            {
+                Destroy(transform.gameObject);
+            }
+        }
+
     }
 
 }
