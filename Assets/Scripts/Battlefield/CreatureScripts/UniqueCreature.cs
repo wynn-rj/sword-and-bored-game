@@ -97,6 +97,14 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             }
         }
 
+        public void Miss()
+        {
+            Color newColor = Color.blue;
+            newColor.a = 255;
+            damageMessage.text = "Missed!";
+            damageMessage.color = newColor;
+        }
+
     }
 
 }
