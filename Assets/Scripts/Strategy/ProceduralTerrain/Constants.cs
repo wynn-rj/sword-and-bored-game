@@ -2,16 +2,18 @@
 
 public static class Constants
 {
-    public static readonly int hexRadius = 2;
-    public static readonly int mapWidth = 100;
-    public static readonly int mapHeight = 100;
-    public static readonly int mountainHeightThreshold = 14;
-    public static readonly int riverHeightThreshold = 7;
-    public static readonly float riverWaterLevelThreshold = .8f;
+    public static readonly int hexRadius = 4;
+    public static readonly int mapWidth = 40;
+    public static readonly int mapHeight = 40;
+    public static readonly int mountainHeightThreshold = 22;
+    public static readonly int riverHeightThreshold = 8;
+    public static readonly float riverWaterLevelThreshold = .92f;
     public static readonly float snowMountainWaterLvlThreshold = .9f;
-    public static readonly float plainsWaterLevelThreshold = .8f;
-    public static readonly float forestWaterLevelThreshold = .9f;
-    public static readonly int snowMountainHeightThreshold = 20;
+    public static readonly float plainsWaterLevelThreshold = .85f;
+    public static readonly float forestWaterLevelThreshold = 1.0f;
+    public static readonly int snowMountainHeightThreshold = 23;
     public static readonly int xMargin = Mathf.FloorToInt(mapWidth * .05f);
     public static readonly int yMargin = Mathf.FloorToInt(mapHeight * .05f);
+    public static readonly string terrainObjectName = "TerrainTile";
+    public static readonly string creepObjectName = "CreepTile";
 }
