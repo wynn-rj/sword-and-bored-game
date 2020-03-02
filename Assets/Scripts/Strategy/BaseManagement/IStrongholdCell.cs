@@ -1,5 +1,5 @@
 ﻿using SwordAndBored.UI.BaseGUI;
-public interface IStrongholdCell : ICanvas, IClickable
+public interface IStrongholdCell : ICanvasDisplayable, IClickable
 {
     int Index { get; set; }
 }
