@@ -1,4 +1,5 @@
-﻿using SwordAndBored.Strategy.TimeSystem.Subscribers;
+﻿using SwordAndBored.Utilities.UnityHelper;
+using SwordAndBored.Strategy.TimeSystem.Subscribers;
 using SwordAndBored.Strategy.Transitions;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,12 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             PostTimeStepSubscribers.Add(postTimeStepSubscriber);
         }
 
-        public void OnDestroy()
+        void Awake()
+        {
+            gameObject.AddComponent<UnityMainThreadDispatcher>();
+        }
+
+        void OnDestroy()
         {
             SceneSharing.timeStep = TimeStep;
             SceneSharing.useStoredTimeStep = true;
