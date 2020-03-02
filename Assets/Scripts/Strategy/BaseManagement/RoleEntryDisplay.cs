@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 namespace SwordAndBored.Strategy.BaseManagement
 {
-    public class UnitEntryDisplay : MonoBehaviour
+    public class RoleEntryDisplay : MonoBehaviour
     {
-        public UnitEntry unitEntry;
+        public RoleEntry unitEntry;
 
         public Text EntryRole;
 
