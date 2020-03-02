@@ -2,6 +2,9 @@
 {
     public class EmptyStrongholdCell : GenericStrongholdCell
     {
-        // TODO: this class will be used
+        /*
+         * Code currently not in use.
+         */
+
     }
 }
