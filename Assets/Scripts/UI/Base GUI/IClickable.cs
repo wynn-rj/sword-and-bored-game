@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 namespace SwordAndBored.UI.BaseGUI
 {
@@ -15,6 +14,6 @@ namespace SwordAndBored.UI.BaseGUI
 
         void AddListener(Action<int> action, int index);
 
-        void AddListener(Action<GameObject> func, GameObject arg);
+        void AddListener(Action<GameObject> func, GameObject gameObject);
     }
 }
