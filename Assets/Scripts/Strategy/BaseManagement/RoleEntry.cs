@@ -2,8 +2,8 @@
 
 namespace SwordAndBored.Strategy.BaseManagement.SO
 {
-    [CreateAssetMenu(fileName = "New Unit Base Entry", menuName = "Unit Entry")]
-    public class UnitEntry : ScriptableObject
+    [CreateAssetMenu(fileName = "New Role Base Entry", menuName = "Role Entry")]
+    public class RoleEntry : ScriptableObject
     {
         public string RoleName;
         public string RoleDescription;
