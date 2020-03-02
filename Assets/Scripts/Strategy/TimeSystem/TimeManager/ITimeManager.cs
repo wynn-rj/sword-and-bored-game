@@ -14,6 +14,11 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
         ulong TimeStep { get; }
 
         /// <summary>
+        /// Returns true if AdvanceTimeStep is currently running
+        /// </summary>
+        bool IsTimeStepAdvancing { get; }
+
+        /// <summary>
         /// End the current time step and go to the next one
         /// </summary>
         void AdvanceTimeStep();
