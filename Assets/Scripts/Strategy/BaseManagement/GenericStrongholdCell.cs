@@ -48,14 +48,14 @@ namespace SwordAndBored.Strategy.BaseManagement
             clickableObject.onClick.AddListener(() => action());
         }
 
-        public void AddListener(Action<int> action, int go)
+        public void AddListener(Action<int> action, int index)
         {
-            clickableObject.onClick.AddListener(() => action(go));
+            clickableObject.onClick.AddListener(() => action(index));
         }
 
-        public void AddListener(Action<GameObject> action, GameObject go)
+        public void AddListener(Action<GameObject> action, GameObject gameObject)
         {
-            clickableObject.onClick.AddListener(() => action(go));
+            clickableObject.onClick.AddListener(() => action(gameObject));
         }
     }
 }
