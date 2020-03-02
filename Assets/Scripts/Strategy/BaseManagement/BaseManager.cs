@@ -42,5 +42,10 @@ namespace SwordAndBored.Strategy.BaseManagement
             activeCanvas = temp;
             activeCanvas.gameObject.SetActive(true);
         }
+
+        public void UnloadStrongholdCanvas()
+        {
+            StrongholdCanvas.SetActive(false);
+        }
     }
 }
