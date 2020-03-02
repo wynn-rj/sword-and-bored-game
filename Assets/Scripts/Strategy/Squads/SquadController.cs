@@ -7,9 +7,22 @@ namespace SwordAndBored.Strategy.Squads
 {
     public class SquadController : GenericSquadController
     {
+        private bool wipePath;
+
+        public override void PreTimeStepUpdate()
+        {
+            base.PreTimeStepUpdate();
+            wipePath = true;
+        }
+
         public override void GoTo(IHexGridCell location)
         {
             //Make A* call here
+            if (wipePath)
+            {
+                path.Clear();
+                wipePath = false;
+            }
             path.Enqueue(location);
             TraversePath();
         }
