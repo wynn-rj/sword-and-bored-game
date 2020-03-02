@@ -2,7 +2,7 @@
 
 namespace SwordAndBored.UI.BaseGUI
 {
-    public interface ICanvas
+    public interface ICanvasDisplayable
     {
         GameObject Canvas { get; set; }
 
