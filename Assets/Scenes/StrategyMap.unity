@@ -193,10 +193,10 @@ MonoBehaviour:
   - {fileID: 2254964206901426321, guid: 7dd02c0ae2eb889418fddf707fd2a254, type: 3}
   - {fileID: 2254964206901426321, guid: 1b192f29b36b80d4c877e51e04126398, type: 3}
   plainTiles:
-  - {fileID: 7773579186357716762, guid: 172ea8f4116228a498cb6e609609d8f1, type: 3}
   - {fileID: 7773579186357716762, guid: ce04a44dde9dc5540b518d0712fb969f, type: 3}
-  - {fileID: 7773579186357716762, guid: 098cab5c01205924cb6cf6d300711f7a, type: 3}
-  - {fileID: 7773579186357716762, guid: 67508add27d0db24fbfb31308cba44cf, type: 3}
+  - {fileID: 7773579186357716762, guid: eea2223aa3e58e848a9c47a2cbdc8844, type: 3}
+  - {fileID: 7773579186357716762, guid: 8a5fbe314f7c4fc45b2559e9cbe78614, type: 3}
+  - {fileID: 7773579186357716762, guid: 996c2f194ef03fd4687e0235cb4577b5, type: 3}
   - {fileID: 7773579186357716762, guid: 07ae63a31377f5248a5744c754b4f685, type: 3}
   desertTiles:
   - {fileID: 7569573118826674648, guid: 041c16f8cef23b34eafc0a6b6005af48, type: 3}
@@ -312,7 +312,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: NaN, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 2.0522773e-29, y: 0, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
