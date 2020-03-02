@@ -1,4 +1,4 @@
-﻿namespace SwordAndBored.Strategy.BaseManagement
+﻿namespace SwordAndBored.Strategy.BaseManagement.Buildings
 {
     public class EmptyStrongholdCell : GenericStrongholdCell
     {
