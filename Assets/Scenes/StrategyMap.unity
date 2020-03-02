@@ -185,12 +185,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snowMountainTiles:
   - {fileID: 919403797241978269, guid: 009aa807c5037a34ba03aaa627e563d5, type: 3}
+  - {fileID: 919403797241978269, guid: 6ae178f6154044942a05da5bbd73a2e0, type: 3}
   mountainTiles:
   - {fileID: 8596542989825101288, guid: b2a9641c98d62e44d933ac0d5e667f1e, type: 3}
+  - {fileID: 8596542989825101288, guid: a2c4055d5674bb34abf4a52d4b594625, type: 3}
   forestTiles:
   - {fileID: 2254964206901426321, guid: 7dd02c0ae2eb889418fddf707fd2a254, type: 3}
+  - {fileID: 2254964206901426321, guid: 1b192f29b36b80d4c877e51e04126398, type: 3}
   plainTiles:
   - {fileID: 7773579186357716762, guid: 172ea8f4116228a498cb6e609609d8f1, type: 3}
+  - {fileID: 7773579186357716762, guid: ce04a44dde9dc5540b518d0712fb969f, type: 3}
+  - {fileID: 7773579186357716762, guid: 098cab5c01205924cb6cf6d300711f7a, type: 3}
+  - {fileID: 7773579186357716762, guid: 67508add27d0db24fbfb31308cba44cf, type: 3}
+  - {fileID: 7773579186357716762, guid: 07ae63a31377f5248a5744c754b4f685, type: 3}
   desertTiles:
   - {fileID: 7569573118826674648, guid: 041c16f8cef23b34eafc0a6b6005af48, type: 3}
   riverTiles:
@@ -305,7 +312,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.93e-43, y: 0.000000055445327, z: 7.93e-43, w: 6e-44}
+  m_BoundingSphereOverride: {x: NaN, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
