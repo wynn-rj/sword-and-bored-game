@@ -169,8 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68777021c114b64581b6ef3d5b6aca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resource: {fileID: 790575574}
-  resourceDisplay: {fileID: 1207073172}
 --- !u!1 &243915879
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,25 +231,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b323942aa501fa4fa2f0bca9f42ed8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snowMountainTiles:
-  - {fileID: 919403797241978269, guid: 009aa807c5037a34ba03aaa627e563d5, type: 3}
-  mountainTiles:
-  - {fileID: 8596542989825101288, guid: b2a9641c98d62e44d933ac0d5e667f1e, type: 3}
-  forestTiles:
-  - {fileID: 2254964206901426321, guid: 7dd02c0ae2eb889418fddf707fd2a254, type: 3}
-  plainTiles:
-  - {fileID: 7773579186357716762, guid: 172ea8f4116228a498cb6e609609d8f1, type: 3}
-  desertTiles:
-  - {fileID: 7569573118826674648, guid: 041c16f8cef23b34eafc0a6b6005af48, type: 3}
-  riverTiles:
-  - {fileID: 7272779508043203150, guid: f305d35d6ca11d8448ac422df9c92c03, type: 3}
-  enemyCreepTiles:
-  - {fileID: 8470466673652612023, guid: 49ea0e137960e4c47bb0b39a70a674b8, type: 3}
-  enemyTiles:
-  - {fileID: 5726928801443668064, guid: fd1b4f0990a2ab24fbcef7f7e28a006c, type: 3}
-  playerTiles:
-  - {fileID: 4042848301412141742, guid: 1dc946f47b01c9a4084971c7fbdb95b1, type: 3}
-  gold: {fileID: 790575574}
+  snowMountainTiles: []
+  mountainTiles: []
+  forestTiles: []
+  plainTiles: []
+  desertTiles: []
+  riverTiles: []
+  enemyCreepTiles: []
+  enemyTiles: []
+  playerTiles: []
+  resourceManager: {fileID: 997271957}
   goldCity: {fileID: 2774154546472210458, guid: 370ffbd45180d3641bcf18a76dcfd856,
     type: 3}
 --- !u!4 &404240876
@@ -512,6 +501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997271956}
+  - component: {fileID: 997271957}
   m_Layer: 0
   m_Name: ResourceManager
   m_TagString: Untagged
@@ -529,11 +519,23 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3, y: -19.404856, z: -8.660254}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 790575573}
+  m_Children: []
   m_Father: {fileID: 243915880}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997271957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997271955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397a1afebb812d04fa6a4fbdc7dd18b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceDisplay: {fileID: 1207073172}
 --- !u!1 &1175683014
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +677,7 @@ RectTransform:
   m_Children:
   - {fileID: 1207073173}
   - {fileID: 1957204982}
+  - {fileID: 49606706}
   m_Father: {fileID: 243915880}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -834,8 +837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8627795531300272213, guid: 8f8331beb1fb9214cb7dd4916d20aa3e,
     type: 3}
-  tileManager: {fileID: 404240875}
-  turnManager: {fileID: 4568864100514284661}
+  tileManager: {fileID: 0}
+  turnManager: {fileID: 0}
   enemyPlacementHeight: 0
 --- !u!4 &1981606831
 Transform:
