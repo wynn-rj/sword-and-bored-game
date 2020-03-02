@@ -1,19 +1,24 @@
-﻿using SwordAndBored.Strategy.Movement;
+﻿using SwordAndBored.Strategy.GameResources;
+using SwordAndBored.Strategy.Movement;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using SwordAndBored.Utilities.Debug;
+using System;
 
 namespace SwordAndBored.Strategy.Squads
 {
     public class SquadController : GenericSquadController
     {
         private bool wipePath;
+        private bool performUpkeep;
+
+        public Action UpkeepFunction { private get; set; }
 
         public override void PreTimeStepUpdate()
         {
             base.PreTimeStepUpdate();
             wipePath = true;
-            // Update gold here
+            performUpkeep = true;
         }
 
         public override void GoTo(IHexGridCell location)
@@ -61,7 +66,18 @@ namespace SwordAndBored.Strategy.Squads
         {
             base.Start();
             AssertHelper.Assert(Units != null && Units.Length > 0, "Squad controller has no squad", this);
+            AssertHelper.Assert(UpkeepFunction != null, "Squad has no resource manager", this);
         }
 #endif
+
+        protected override void Update()
+        {
+            base.Update();
+            if (performUpkeep)
+            {
+                UpkeepFunction();
+                performUpkeep = false;
+            }
+        }
     }
 }
