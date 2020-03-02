@@ -74,6 +74,7 @@ namespace SwordAndBored.Strategy.Squads
 
         public void OnTileSelect(IHexGridCell selectedTile)
         {
+            if (turnManager.IsTimeStepAdvancing) return;
             SquadController squad = GetSquadOnTile(selectedTile);
             if (squad)
             {
