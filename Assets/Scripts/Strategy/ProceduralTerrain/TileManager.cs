@@ -21,7 +21,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         [SerializeField] private List<GameObject> enemyCreepTiles;
         [SerializeField] private List<GameObject> enemyTiles;
         [SerializeField] private List<GameObject> playerTiles;
-        [SerializeField] private Gold gold;
+        [SerializeField] private ResourceManager resourceManager;
         [SerializeField] private GameObject goldCity;
 
         private IDictionary<System.Type, List<GameObject>> terrainToGameObject;
@@ -93,7 +93,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 tileTerrains.Key.AddComponent(newTerrain);
             }
 
-            HexTiling[-xDim + Constants.xMargin + 5, -yDim + Constants.yMargin + 5].AddComponent(new GoldCityComponent(gold));
+            HexTiling[-xDim + Constants.xMargin + 5, -yDim + Constants.yMargin + 5].AddComponent(new GoldCityComponent(resourceManager));
         }
 
         private void BuildTiles()
@@ -137,7 +137,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 baseTerrains.Add(neighbor, isPlayer);
                 neighbor.RemoveComponent<CreepComponent>();
             }
-            HexTiling[x, y].AddComponent(new GoldCityComponent(gold));
+            HexTiling[x, y].AddComponent(new GoldCityComponent(resourceManager));
         }
 
         private ITerrainComponent GetTileTerrain(IHexGridCell tile)
