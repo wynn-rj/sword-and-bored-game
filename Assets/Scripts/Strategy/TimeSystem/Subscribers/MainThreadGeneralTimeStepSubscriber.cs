@@ -12,18 +12,8 @@ namespace SwordAndBored.Strategy.TimeSystem.Subscribers
 
         protected void EnterMainThread()
         {
-            try
-            {
-                UnityMainThreadDispatcher.Instance.RunOnMainThread(LockedMainThreadUpdate);
-            }
-            catch (Exception exception)
-            {
-                Debug.LogException(exception);
-            }
-            finally
-            {
-                mainThreadExitControl.WaitOne();
-            }
+            UnityMainThreadDispatcher.Instance.RunOnMainThread(LockedMainThreadUpdate);
+            mainThreadExitControl.WaitOne();
         }
 
         private void LockedMainThreadUpdate()
