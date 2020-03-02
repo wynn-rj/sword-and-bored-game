@@ -59,7 +59,8 @@ namespace SwordAndBored.Strategy.Movement
             AssertHelper.Assert(StartLocation != null, "No start location given", this);
             AssertHelper.Assert(!StartLocation.HasComponent<CreatureComponent>(), 
                 "Tried to place creature on creature at " + StartLocation.Position, this);
-            UpdateLocation(StartLocation);
+            bool success = UpdateLocation(StartLocation);
+            AssertHelper.Assert(success, "Failed to set start location", this);
             targetPosition = null;
             height = transform.position.y;
             distanceCanTravel = ResetMovement();

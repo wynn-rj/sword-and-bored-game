@@ -43,5 +43,5 @@ namespace SwordAndBored.Strategy.EnemyManagement.Spawning
             enemy.StartLocation = location;
             turnManager.Subscribe(enemy);
         }
-}
+    }
 }
