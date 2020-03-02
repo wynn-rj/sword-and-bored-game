@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Utilities.Random;
+using SwordAndBored.Strategy.TimeSystem.TimeManager;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
@@ -22,7 +23,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         [SerializeField] private List<GameObject> enemyTiles;
         [SerializeField] private List<GameObject> playerTiles;
         [SerializeField] private ResourceManager resourceManager;
-        [SerializeField] private GameObject goldCity;
+        [SerializeField] private GameObject city;
+        [SerializeField] private TimeTrackingTimeManager timeManager;
 
         private IDictionary<System.Type, List<GameObject>> terrainToGameObject;
         private System.Random fixedRandom;
@@ -52,6 +54,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                     prefab.transform.rotation = Quaternion.Euler(-90, 0, 90);
                 }
             }
+
+            City cityScript = city.GetComponent<City>();
+            cityScript.resourceManager = this.resourceManager;
+            timeManager.Subscribe(cityScript);
 
             fixedRandom = new System.Random(12345);
             HexTiling = new HexGrid(Constants.hexRadius, Constants.mapWidth, Constants.mapHeight);
@@ -93,7 +99,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 tileTerrains.Key.AddComponent(newTerrain);
             }
 
-            HexTiling[-xDim + Constants.xMargin + 5, -yDim + Constants.yMargin + 5].AddComponent(new GoldCityComponent(resourceManager));
+            HexTiling[-xDim + Constants.xMargin + 5, -yDim + Constants.yMargin + 5].AddComponent(new CityComponent());
         }
 
         private void BuildTiles()
@@ -119,9 +125,9 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                     tile.GetComponent<CreepComponent>().SetTileHolder(tileHolder);
                 }
 
-                if (tile.HasComponent<GoldCityComponent>())
+                if (tile.HasComponent<CityComponent>())
                 {
-                    AddToTileHolder(tileHolder, goldCity);
+                    AddToTileHolder(tileHolder, city);
                 }
             }
         }
@@ -137,7 +143,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 baseTerrains.Add(neighbor, isPlayer);
                 neighbor.RemoveComponent<CreepComponent>();
             }
-            HexTiling[x, y].AddComponent(new GoldCityComponent(resourceManager));
+            HexTiling[x, y].AddComponent(new CityComponent());
         }
 
         private ITerrainComponent GetTileTerrain(IHexGridCell tile)
