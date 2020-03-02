@@ -7,22 +7,16 @@ namespace SwordAndBored.UI.Utility
 {
     public class GridLayoutCellSize : MonoBehaviour
     {
-        public int numberOfCells;
-        public int numberOfColumns;
+        [SerializeField] private int numberOfCells;
+        [SerializeField] private int numberOfColumns;
+        [SerializeField] private int padding;
 
+        private RectTransform rectTransform;
         private float width;
         private float height;
 
-        private int padding;
-
-        private RectTransform rectTransform;
-
         void Start()
         {
-            numberOfCells = 6;
-            numberOfColumns = 3;
-            padding = 10;
-
             rectTransform = gameObject.GetComponent<RectTransform>();
             width = rectTransform.rect.width;
             height = rectTransform.rect.height;
