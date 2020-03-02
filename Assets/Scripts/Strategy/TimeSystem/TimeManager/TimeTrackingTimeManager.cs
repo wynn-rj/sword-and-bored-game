@@ -19,6 +19,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             TimeStep = (SceneSharing.useStoredTimeStep) ? SceneSharing.timeStep : startingTimeStep;
             PreTimeStepSubscribers = new List<IPreTimeStepSubscriber>();
             PostTimeStepSubscribers = new List<IPostTimeStepSubscriber>();
+            IsTimeStepAdvancing = false;
         }
 
         public override void AdvanceTimeStep()
@@ -45,6 +46,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             }
             try
             {
+                IsTimeStepAdvancing = true;
                 List<Task> tasks = new List<Task>();
                 foreach (IPostTimeStepSubscriber postTimeStepSubscriber in PostTimeStepSubscribers)
                 {
@@ -60,6 +62,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
                     tasks.Add(Task.Run(preTimeStepSubscriber.PreTimeStepUpdate));
                 }
                 Task.WaitAll(tasks.ToArray());
+                IsTimeStepAdvancing = false;
             }
             finally
             {

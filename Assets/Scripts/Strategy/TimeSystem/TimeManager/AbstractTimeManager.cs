@@ -8,6 +8,8 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
     {
         public ulong TimeStep { get; protected set; }
 
+        public bool IsTimeStepAdvancing { get; protected set; }
+
         protected abstract IList<IPreTimeStepSubscriber> PreTimeStepSubscribers { get; set; }
         protected abstract IList<IPostTimeStepSubscriber> PostTimeStepSubscribers { get; set; }
 
