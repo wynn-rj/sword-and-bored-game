@@ -6,15 +6,39 @@ using UnityEngine;
 
 namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
-    public class Barracks : GenericStrongholdCell
+    public class Barracks : GenericBuilding
     {
-        private IList<IUnit> buildableUnits;
+        private IList<IUnit> activeUnitsList;
 
-        private void Awake()
+        [SerializeField] private GameObject trainUnitCanvas;
+
+        public GameObject TrainUnitCanvas
         {
-            GameObject newCanvas = Instantiate(Canvas, Vector3.zero, Quaternion.identity);
-            SetCanvas(newCanvas);
-            Canvas.gameObject.SetActive(false);     
+            get { return trainUnitCanvas; }
+        }
+
+        void Awake()
+        {
+            /*
+             * TO DO: Get all active units from database and save to list
+             */
+
+            /*
+             * TO DO: Create entries for all units, and place in GUI display
+             */
+        }
+
+        public void TrainUnit()
+        {
+            MainCanvas.SetActive(false);
+            trainUnitCanvas.SetActive(true);
+        }
+
+        void CreateUnitEntry()
+        {
+            /*
+             * TO DO: Construct unit entry, add to GUI display
+             */
         }
     }
 }
