@@ -133,7 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitFactory: {fileID: 0}
   UnitRole: {fileID: 4516079508941560549}
-  UnitName: {fileID: 0}
 --- !u!1 &160991981310293210
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +147,7 @@ GameObject:
   - component: {fileID: 666749313139441235}
   - component: {fileID: 1489892825595752537}
   m_Layer: 5
-  m_Name: UnitEntry
+  m_Name: RoleEntry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88de42b32f6cbe84bbaae831c6f12bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitEntry: {fileID: 0}
+  RoleEntry: {fileID: 0}
   EntryRole: {fileID: 4516079508941560549}
   EntryDescription: {fileID: 160991981825912363}
   EntryImage: {fileID: 160991981789627130}
