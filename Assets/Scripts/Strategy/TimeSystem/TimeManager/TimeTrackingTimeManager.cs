@@ -35,11 +35,6 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             PostTimeStepSubscribers.Add(postTimeStepSubscriber);
         }
 
-        void Awake()
-        {
-            gameObject.AddComponent<UnityMainThreadDispatcher>();
-        }
-
         void OnDestroy()
         {
             SceneSharing.timeStep = TimeStep;
