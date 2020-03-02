@@ -49,13 +49,17 @@ namespace SwordAndBored.Strategy.Movement
 
         private void DeterminePath()
         {
+            path.Clear();
+            AssertHelper.Assert(Location != null, "Location was null!", this);
             IHexGridCell gridCell = Location;
             for (int i = 0; i < averageMovement; i++)
             {
+                IHexGridCell tempGridCell;
                 do
                 {
-                    gridCell = Odds.SelectAtRandom(gridCell.Neighbors);
-                } while (gridCell is null);
+                    tempGridCell = Odds.SelectAtRandom(gridCell.Neighbors);
+                } while (tempGridCell is null);
+                gridCell = tempGridCell;
                 path.Enqueue(gridCell);
             }
         }
