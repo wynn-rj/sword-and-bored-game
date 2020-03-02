@@ -5,12 +5,10 @@ using SwordAndBored.Utilities.Debug;
 
 namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
-    public class TimeDisplayController : MonoBehaviour, IPreTimeStepSubscriber
+    public class TimeDisplayController : MainThreadPreTimeStepSubscriber
     {
         [SerializeField] private AbstractTimeManager timeManager;
         private Text text;
-        private string turnString;
-        private volatile bool changeText;
 
         void Awake()
         {
@@ -22,16 +20,7 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
         void Start()
         {
             timeManager.Subscribe(this);
-            PreTimeStepUpdate();
-        }
-
-        void Update()
-        {
-            if (changeText)
-            {
-                text.text = turnString;
-                changeText = false;
-            }
+            MainThreadPreTimeStepUpdate();
         }
 
         public void OnDestroy()
@@ -42,10 +31,9 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             }
         }
 
-        public void PreTimeStepUpdate()
+        protected override void MainThreadPreTimeStepUpdate()
         {
-            turnString = string.Format("Turn: {0}", timeManager.TimeStep);
-            changeText = true;
+            text.text = string.Format("Turn: {0}", timeManager.TimeStep);
         }
     }
 }
