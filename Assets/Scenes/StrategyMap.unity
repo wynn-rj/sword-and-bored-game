@@ -923,8 +923,10 @@ MonoBehaviour:
     type: 3}
   turnManager: {fileID: 4568864100514284661}
   tileManager: {fileID: 404240875}
+  resourceManager: {fileID: 997271957}
   loseSquadFocusKey: 27
   squadPlacementHeight: 0
+  squadUpkeepCost: 1
 --- !u!4 &2131103751
 Transform:
   m_ObjectHideFlags: 0
@@ -983,6 +985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5411f1825cf34c041a1dd04719537b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTimeStepAdvancing: 0
   startingTimeStep: 0
 --- !u!114 &4568864100514284663
 MonoBehaviour:
