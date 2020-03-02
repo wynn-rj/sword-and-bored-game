@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 8391576530119518118}
   - component: {fileID: 8391576530119518116}
   m_Layer: 5
-  m_Name: Barracks
+  m_Name: BarracksCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,8 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 2933463580907986680, guid: c196eefcd9846d54e88f4be7e7a7c155, type: 3}
   clickableObject: {fileID: 8391576530070980349}
-  CanvasObject: {fileID: 2933463580907986680, guid: c196eefcd9846d54e88f4be7e7a7c155,
-    type: 3}
+  trainUnitCanvas: {fileID: 0}
 --- !u!1 &8391576530738500877
 GameObject:
   m_ObjectHideFlags: 0
