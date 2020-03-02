@@ -1,8 +1,10 @@
 ﻿using SwordAndBored.Strategy.TimeSystem.Subscribers;
 using SwordAndBored.Strategy.Transitions;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
@@ -62,10 +64,24 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
                     tasks.Add(Task.Run(preTimeStepSubscriber.PreTimeStepUpdate));
                 }
                 Task.WaitAll(tasks.ToArray());
-                IsTimeStepAdvancing = false;
+            }
+            catch (AggregateException exceptions)
+            {
+                Debug.LogWarning("Exception(s) detected during advancing of time step");
+                exceptions.Handle((x) => 
+                {
+                    Debug.LogException(x);
+                    return true;
+                }) ;
+                Debug.Log("End of advancing of time step exceptions");
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception);
             }
             finally
             {
+                IsTimeStepAdvancing = false;
                 Monitor.Exit(timeStepLock);
             }
         }
