@@ -209,8 +209,8 @@ MonoBehaviour:
   playerTiles:
   - {fileID: 4042848301412141742, guid: 1dc946f47b01c9a4084971c7fbdb95b1, type: 3}
   resourceManager: {fileID: 997271957}
-  goldCity: {fileID: 2774154546472210458, guid: 370ffbd45180d3641bcf18a76dcfd856,
-    type: 3}
+  city: {fileID: 5405729400767052015, guid: daddedb96b5f17346a31eb4c2bb6691f, type: 3}
+  timeManager: {fileID: 4568864100514284661}
 --- !u!4 &404240876
 Transform:
   m_ObjectHideFlags: 0
