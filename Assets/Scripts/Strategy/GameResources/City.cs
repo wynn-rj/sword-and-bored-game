@@ -6,7 +6,7 @@ using SwordAndBored.Strategy.TimeSystem.TimeManager;
 
 namespace SwordAndBored.Strategy.GameResources
 {
-    public class City : MonoBehaviour, IPostTimeStepSubscriber
+    public class City : MainThreadPostTimeStepSubscriber
     {
         public ResourceManager resourceManager { get; set; }
         public bool underPlayerControl = true;
@@ -15,7 +15,7 @@ namespace SwordAndBored.Strategy.GameResources
         {
             underPlayerControl = true;
         }
-        public void PostTimeStepUpdate()
+        protected override void MainThreadPostTimeStepUpdate()
         {
             Debug.Log("City Update");
             Debug.Log("GoldAmount: " + resourceManager.GoldAmount);
