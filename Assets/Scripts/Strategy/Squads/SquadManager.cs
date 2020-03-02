@@ -5,6 +5,7 @@ using SwordAndBored.Strategy.ProceduralTerrain;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Utilities.Debug;
+using SwordAndBored.Strategy.GameResources;
 
 namespace SwordAndBored.Strategy.Squads
 {
@@ -13,8 +14,10 @@ namespace SwordAndBored.Strategy.Squads
         [SerializeField] private SquadController squadPrefab;
         [SerializeField] private TimeTrackingTimeManager turnManager;
         [SerializeField] private TileManager tileManager;
+        [SerializeField] private ResourceManager resourceManager;
         [SerializeField] private KeyCode loseSquadFocusKey = KeyCode.Escape;
         [SerializeField] private float squadPlacementHeight = 0;
+        [SerializeField] private int squadUpkeepCost = 1;
 
         private readonly IList<SquadController> squads = new List<SquadController>();
 
@@ -26,12 +29,12 @@ namespace SwordAndBored.Strategy.Squads
             AssertHelper.IsSetInEditor(squadPrefab, this);
             AssertHelper.IsSetInEditor(turnManager, this);
             AssertHelper.IsSetInEditor(tileManager, this);
+            AssertHelper.IsSetInEditor(resourceManager, this);
         }
 #endif
 
         void Start()
         {
-            AssertHelper.IsSetInEditor(tileManager, this);
             tileManager.GetComponent<TileSelect>().Subscribe(this);
             ProceduralTerrain.Map.Grid.HexGrid map = tileManager.HexTiling;
             DeploySquad(new IUnit[1], map[0, 0]);
@@ -53,6 +56,7 @@ namespace SwordAndBored.Strategy.Squads
             squad.transform.position = location.Position.CenterAsVector3(squadPlacementHeight);
             squad.Units = units;
             squad.StartLocation = location;
+            squad.UpkeepFunction = () => resourceManager.GoldAmount -= squadUpkeepCost;
             squads.Add(squad);
             turnManager.Subscribe(squad);
             return squad;
