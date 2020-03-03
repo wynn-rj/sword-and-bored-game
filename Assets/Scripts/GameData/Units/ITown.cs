@@ -7,5 +7,7 @@ namespace SwordAndBored.GameData.Units
         int X { get; set; }
         int Y { get; set; }
         List<IUnit> Units { get; set; }
+
+        int Save();
     }
 }

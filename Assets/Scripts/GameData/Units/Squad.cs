@@ -16,5 +16,10 @@ namespace SwordAndBored.GameData.Units
         {
             throw new System.NotImplementedException();
         }
+
+        public int Save()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

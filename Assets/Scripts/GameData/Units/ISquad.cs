@@ -9,5 +9,6 @@ namespace SwordAndBored.GameData.Units
         List<IUnit> Units { get; set; }
 
         int AverageMovement();
+        int Save();
     }
 }
