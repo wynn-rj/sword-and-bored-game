@@ -30,11 +30,16 @@ namespace SwordAndBored.GameData.Units
         public IArmor Armor { get; set; }
         public IRole Role { get; set; }
         public IStatusConditionsActive StatusConditionsActive { get; set; }
+        public ITown Town { get; set; }
+        public ISquad Squad { get; set; }
         public int XP { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
+
+        private int SquadID { get; set; }
+        private int TownID { get; set; }
 
         public Unit(int inputID)
         {
@@ -65,6 +70,9 @@ namespace SwordAndBored.GameData.Units
 
                 int statusConditionActiveID = reader.GetIntFromCol("Status_Conditions_Acitve_FK");
                 StatusConditionsActive = new StatusConditionsActive(statusConditionActiveID);
+
+                SquadID = reader.GetIntFromCol("Squads_FK");
+                TownID = reader.GetIntFromCol("Towns_FK");
 
                 IsDead = reader.GetIntFromCol("Is_Dead") > 0;
 
@@ -108,15 +116,17 @@ namespace SwordAndBored.GameData.Units
 
         public int Save()
         {
+            int deadValue = IsDead ? 1 : 0;
             // New Entry
             if (ID == -1)
             {
                 Stats.Save();
 
-                string queryString = $"INSERT INTO Units (Name, Description, Flavor_Text, XP, Level, Stats_FK, Role_FK, Weapon_FK, Armor_FK, Spell_Book_FK) VALUES" +
-                    $"({DatabaseHelper.GetNullOrIDStringFromString(Name)}, {DatabaseHelper.GetNullOrIDStringFromString(Description)} , {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}" +
-                    $", {XP}, {Level}, {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}," +
-                    $" {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)})";
+                string queryString = $"INSERT INTO Units (Name, Description, Flavor_Text, XP, Level, Stats_FK, Role_FK, Weapon_FK, Armor_FK, Spell_Book_FK, Squads_FK, Towns_FK, Is_Dead, " +
+                    $"Status_Conditions_Active_FK) VALUES ({DatabaseHelper.GetNullOrIDStringFromString(Name)}, {DatabaseHelper.GetNullOrIDStringFromString(Description)} , " +
+                    $"{DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, {XP}, {Level}, {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, {DatabaseHelper.GetNullOrIDStringFromObject(Role)}," +
+                    $" {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}, {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)}," +
+                    $" {DatabaseHelper.GetNullOrIDStringFromObject(Squad)}, {DatabaseHelper.GetNullOrIDStringFromObject(Town)}, {deadValue}, {DatabaseHelper.GetNullOrIDStringFromObject(StatusConditionsActive)})";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 DatabaseReader reader = conn.ExecuteQuery("SELECT * FROM Units ORDER BY ID Desc LIMIT 1;");
@@ -132,7 +142,9 @@ namespace SwordAndBored.GameData.Units
                 Stats.Save();
                 string queryString = $"UPDATE Units SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}," +
                     $" XP = {XP}, Level = {Level}, Stats_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, Role_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, Weapon_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}" +
-                    $", Armor_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, Spell_Book_FK = {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)} WHERE ID = {ID};";
+                    $", Armor_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, Spell_Book_FK = {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)}, Towns_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Town)}," +
+                    $" Squads_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Squad)}, Status_Conditions_Active_FK = {DatabaseHelper.GetNullOrIDStringFromObject(StatusConditionsActive)} " +
+                    $" Is_Dead = {deadValue} WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();
