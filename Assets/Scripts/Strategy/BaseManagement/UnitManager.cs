@@ -1,5 +1,4 @@
-﻿using SwordAndBored.GameData.Creatures;
-using SwordAndBored.GameData.Units;
+﻿using SwordAndBored.GameData.Units;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
