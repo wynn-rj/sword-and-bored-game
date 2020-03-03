@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.GameData.Units
 {
@@ -15,6 +16,24 @@ namespace SwordAndBored.GameData.Units
         public int Save()
         {
             throw new System.NotImplementedException();
+        }
+
+        public Town(int inputID)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Squads", inputID);
+
+            ID = inputID;
+            if (reader.NextRow())
+            {
+                Name = reader.GetStringFromCol("Name");
+                Description = reader.GetStringFromCol("Description");
+                FlavorText = reader.GetStringFromCol("Flavor_Text");
+                X = reader.GetIntFromCol("X");
+                Y = reader.GetIntFromCol("Y");
+            }
+            conn.CloseConnection();
+            reader.CloseReader();
         }
     }
 }
