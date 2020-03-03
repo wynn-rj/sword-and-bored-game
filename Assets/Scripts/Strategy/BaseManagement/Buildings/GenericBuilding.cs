@@ -5,9 +5,9 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
     public class GenericBuilding : MonoBehaviour, IBuilding
     {
-        public GenericStrongholdCell Cell;
-
         [SerializeField] private GameObject mainCanvas;
+
+        protected GenericStrongholdCell Cell;
 
         public GameObject MainCanvas
         {

@@ -7,17 +7,15 @@ namespace SwordAndBored.Strategy.BaseManagement
 {
     public class BaseManager : MonoBehaviour
     {
-        public GameObject StrongholdCanvas;
+        private Canvas activeCanvas;
+        private Canvas previouslyActiveCanvas;
 
-        private IList<IStrongholdCell> cells;
+        [SerializeField] private GameObject StrongholdCanvas;
 
         public BuildingsManager BuildingManager;
         public UnitManager UnitManager;
 
-        private Canvas activeCanvas;
-        private Canvas previouslyActiveCanvas;
-  
-        void Awake()
+        private void Awake()
         {
             activeCanvas = StrongholdCanvas.GetComponent<Canvas>();
             previouslyActiveCanvas = StrongholdCanvas.GetComponent<Canvas>();    

@@ -7,13 +7,13 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 {
     public class Barracks : GenericBuilding
     {
-        private IList<IUnit> activeUnitsList;
-
         [SerializeField] private GameObject unitEntryPrefab;
         [SerializeField] private GameObject trainUnitCanvas;
         [SerializeField] private GameObject unitListPanel;
         [SerializeField] private DisplayModelController displayModelController;
         [SerializeField] private DisplayDataController displayDataController;
+
+        private IList<IUnit> activeUnitsList;
 
         public GameObject TrainUnitCanvas
         {
@@ -25,7 +25,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
             UnitManager.Instance.GetAllData();
         }
 
-        void Start()
+        private void Start()
         {
             /*
              * TO DO: Get all active units from database and save to list
@@ -71,10 +71,6 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
         /// <param name="unit"></param>
         void CreateUnitEntry(IUnit unit)
         {
-            /*
-             * TO DO: Construct unit entry, add to GUI display
-             */
-
             // Note arg placeholders
             UnitEntry unitEntryData = UnitEntry.CreateInstance(0, unit, null);
 
