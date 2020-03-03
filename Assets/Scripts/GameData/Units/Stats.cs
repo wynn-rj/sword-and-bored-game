@@ -80,7 +80,7 @@ namespace SwordAndBored.GameData.Units
                     $", Magic_Defense = {Magic_Defense}, Max_HP = {Max_HP}, Current_HP = {Current_HP}, Initiative = {Initiative}, Movement = {Movement}, Evasion = {Evasion}, Accuracy = {Accuracy}" +
                     $" WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
-                return conn.ExecuteNonQuery(queryString);
+                return ID;
             }
         }
 
