@@ -1,14 +1,10 @@
-`using SwordAndBored.GameData.Creatures;
+using SwordAndBored.GameData.Creatures;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Roles;
 using SwordAndBored.GameData.Units;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
 
-namespace SwordAndBored.Strategy.BaseManagement
+namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class UnitFactory : MonoBehaviour
     {

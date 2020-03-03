@@ -1,8 +1,4 @@
-﻿using SwordAndBored.Strategy.BaseManagement;
-using SwordAndBored.Strategy.BaseManagement.Buildings;
-using SwordAndBored.UI.BaseGUI;
-using System.Collections;
-using System.Collections.Generic;
+﻿using SwordAndBored.Strategy.BaseManagement.Buildings;
 using UnityEngine;
 
 namespace SwordAndBored.StrategyView.BaseManagement.Buildings

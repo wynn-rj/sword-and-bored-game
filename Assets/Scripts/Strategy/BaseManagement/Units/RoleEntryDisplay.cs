@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SwordAndBored.Strategy.BaseManagement
+namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class RoleEntryDisplay : MonoBehaviour
     {

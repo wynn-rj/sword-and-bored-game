@@ -1,28 +1,29 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShowEntryModel : MonoBehaviour
+namespace SwordAndBored.Strategy.BaseManagement.Units
 {
-    private Transform displayModel;
-    private Action<Transform> clickAction;
-
-    void Start()
+    public class ShowEntryModel : MonoBehaviour
     {
-        GetComponent<Button>().onClick.AddListener(HandleButtonClick);
-    }
+        private Transform displayModel;
+        private Action<Transform> clickAction;
+
+        void Start()
+        {
+            GetComponent<Button>().onClick.AddListener(HandleButtonClick);
+        }
 
 
-    public void Initialize(Transform displayModel, Action<Transform> clickAction)
-    {
-        this.displayModel = displayModel;
-        this.clickAction = clickAction;
-    }
+        public void Initialize(Transform displayModel, Action<Transform> clickAction)
+        {
+            this.displayModel = displayModel;
+            this.clickAction = clickAction;
+        }
 
-    private void HandleButtonClick()
-    {
-        clickAction(displayModel);
+        private void HandleButtonClick()
+        {
+            clickAction(displayModel);
+        }
     }
 }
