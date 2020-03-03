@@ -1,5 +1,4 @@
-﻿using SwordAndBored.Strategy.BaseManagement.SO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace SwordAndBored.Strategy.BaseManagement.Units
