@@ -141,6 +141,22 @@ namespace SwordAndBored.GameData.Units
             }
         }
 
+        public static List<IUnit> GetAllUnits()
+        {
+            List<IUnit> result = new List<IUnit>();
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryAllFromTable("Units");
+            while (reader.NextRow())
+            {
+                IUnit dataUnit = new Unit(reader.GetIntFromCol("ID"));
+                result.Add(dataUnit);
+            }
+            reader.CloseReader();
+            conn.CloseConnection();
+
+            return result;
+        }
+
         override public string ToString()
         {
             return "{Unit: " + ID + ", Descriptor: " + Name.ToString() + ", Role: " + Role
