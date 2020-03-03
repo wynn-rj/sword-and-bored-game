@@ -1,5 +1,9 @@
 ﻿using SwordAndBored.UI.BaseGUI;
-public interface IStrongholdCell : IClickable
+
+namespace SwordAndBored.Strategy.BaseManagement.Buildings
 {
-    int Index { get; set; }
+    public interface IStrongholdCell : IClickable
+    {
+        int Index { get; set; }
+    }
 }

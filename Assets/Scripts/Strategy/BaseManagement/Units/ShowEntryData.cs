@@ -3,24 +3,27 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShowEntryData : MonoBehaviour
+namespace SwordAndBored.Strategy.BaseManagement.Units
 {
-    private IUnit unit;
-    private Action<IUnit> clickAction;
-
-    void Start()
+    public class ShowEntryData : MonoBehaviour
     {
-        GetComponent<Button>().onClick.AddListener(HandleButtonClick);
-    }
+        private IUnit unit;
+        private Action<IUnit> clickAction;
 
-    public void Initialize(IUnit unit, Action<IUnit> clickAction)
-    {
-        this.unit = unit;
-        this.clickAction = clickAction;
-    }
+        void Start()
+        {
+            GetComponent<Button>().onClick.AddListener(HandleButtonClick);
+        }
 
-    private void HandleButtonClick()
-    {
-        clickAction(unit);
+        public void Initialize(IUnit unit, Action<IUnit> clickAction)
+        {
+            this.unit = unit;
+            this.clickAction = clickAction;
+        }
+
+        private void HandleButtonClick()
+        {
+            clickAction(unit);
+        }
     }
 }
