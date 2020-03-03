@@ -1,26 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using SwordAndBored.Strategy.TimeSystem.Subscribers;
-using SwordAndBored.Strategy.TimeSystem.TimeManager;
+﻿using SwordAndBored.Strategy.TimeSystem.Subscribers;
 
 namespace SwordAndBored.Strategy.GameResources
 {
-    public class City : MainThreadPostTimeStepSubscriber
+    public abstract class AbstractCity : MainThreadPostTimeStepSubscriber
     {
-        public ResourceManager resourceManager { get; set; }
-        public bool underPlayerControl = true;
-
-        void Awake()
-        {
-            underPlayerControl = true;
-        }
-        protected override void MainThreadPostTimeStepUpdate()
-        {
-            if(underPlayerControl)
-            {
-                resourceManager.GoldAmount += 1;
-            }
-        }
+        public ResourceManager ResourceManager { get; set; }
+        public bool UnderPlayerControl { get; set; }
     }
 }

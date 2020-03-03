@@ -23,7 +23,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         [SerializeField] private List<GameObject> enemyTiles;
         [SerializeField] private List<GameObject> playerTiles;
         [SerializeField] private ResourceManager resourceManager;
-        [SerializeField] private GameObject city;
+        [SerializeField] private GameObject goldCity;
         [SerializeField] private TimeTrackingTimeManager timeManager;
 
         private IDictionary<System.Type, List<GameObject>> terrainToGameObject;
@@ -55,8 +55,9 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 }
             }
 
-            City cityScript = city.GetComponent<City>();
-            cityScript.resourceManager = this.resourceManager;
+            GoldCity cityScript = goldCity.GetComponent<GoldCity>();
+            cityScript.ResourceManager = this.resourceManager;
+            cityScript.UnderPlayerControl = true;
             timeManager.Subscribe(cityScript);
 
             fixedRandom = new System.Random(12345);
@@ -127,7 +128,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
                 if (tile.HasComponent<CityComponent>())
                 {
-                    AddToTileHolder(tileHolder, city);
+                    AddToTileHolder(tileHolder, goldCity);
                 }
             }
         }
