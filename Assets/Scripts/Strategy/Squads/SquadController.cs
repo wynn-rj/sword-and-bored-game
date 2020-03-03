@@ -13,6 +13,7 @@ namespace SwordAndBored.Strategy.Squads
         private bool performUpkeep;
 
         public Action UpkeepFunction { private get; set; }
+        public Func<bool> IsUserControlledFunction { private get; set; }
 
         public override void PreTimeStepUpdate()
         {
@@ -42,7 +43,8 @@ namespace SwordAndBored.Strategy.Squads
         protected override bool UpdateLocation(IHexGridCell location)
         {
             CreatureComponent otherCreature = location.GetComponent<CreatureComponent>();
-            if (!(otherCreature is null) && !(otherCreature.Creature is EnemyMovementController))
+            if (!(otherCreature is null) &&
+                !(otherCreature.Creature is EnemyMovementController && IsUserControlledFunction()))
             {
                 return false;
             }
