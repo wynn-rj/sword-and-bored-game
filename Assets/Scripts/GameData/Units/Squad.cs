@@ -56,6 +56,23 @@ namespace SwordAndBored.GameData.Units
             reader.CloseReader();
         }
 
+
+        public static List<ISquad> GetAllSquads()
+        {
+            List<ISquad> result = new List<ISquad>();
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryAllFromTable("Squads");
+            while (reader.NextRow())
+            {
+                ISquad dataSquad = new Squad(reader.GetIntFromCol("ID"));
+                result.Add(dataSquad);
+            }
+            reader.CloseReader();
+            conn.CloseConnection();
+
+            return result;
+        }
+
         public int AverageMovement()
         {
             if (Units.Count == 0)
