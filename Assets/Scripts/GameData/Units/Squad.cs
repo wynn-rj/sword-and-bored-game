@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.GameData.Units
 {
@@ -11,6 +12,24 @@ namespace SwordAndBored.GameData.Units
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
+
+        public Squad(int inputID)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Towns", inputID);
+
+            ID = inputID;
+            if (reader.NextRow())
+            {
+                Name = reader.GetStringFromCol("Name");
+                Description = reader.GetStringFromCol("Description");
+                FlavorText = reader.GetStringFromCol("Flavor_Text");
+                X = reader.GetIntFromCol("X");
+                Y = reader.GetIntFromCol("Y");
+            }
+            conn.CloseConnection();
+            reader.CloseReader();
+        }
 
         public int AverageMovement()
         {
