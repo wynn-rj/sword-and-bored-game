@@ -103,6 +103,7 @@ namespace SwordAndBored.GameData.Units
         {
             foreach (IUnit unit in Units)
             {
+                unit.Town = this;
                 unit.Save();
             }
             return Units.Count;
