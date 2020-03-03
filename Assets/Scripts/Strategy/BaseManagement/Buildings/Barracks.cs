@@ -54,10 +54,16 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
             CreateUnitEntry(mage);
         }
 
-        public void TrainUnit()
+        public void EnterTrainUnitCanvas()
         {
             MainCanvas.SetActive(false);
             trainUnitCanvas.SetActive(true);
+        }
+
+        public void ExitTrainUnitCanvas()
+        {
+            MainCanvas.SetActive(true);
+            trainUnitCanvas.SetActive(false);
         }
 
         /// <summary>
