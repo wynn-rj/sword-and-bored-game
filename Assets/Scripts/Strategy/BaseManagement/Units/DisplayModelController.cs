@@ -31,6 +31,11 @@ public class DisplayModelController : MonoBehaviour
 
     public Transform GetModel(string modelName)
     {
-        return modelsDictionary[modelName];
+        if (modelsDictionary.ContainsKey(modelName))
+        {
+            return modelsDictionary[modelName];
+        }
+
+        return modelsDictionary["Empty"];
     }
 }
