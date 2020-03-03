@@ -1,10 +1,7 @@
-﻿using SwordAndBored.StrategyView.BaseManagement;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace SwordAndBored.Strategy.BaseManagement
+namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class TrainUnitListener : MonoBehaviour
     {

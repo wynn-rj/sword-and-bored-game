@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SwordAndBored.Strategy.BaseManagement
+namespace SwordAndBored.Strategy.BaseManagement.Buildings
 {
     public class BuildingsManager : MonoBehaviour
     {

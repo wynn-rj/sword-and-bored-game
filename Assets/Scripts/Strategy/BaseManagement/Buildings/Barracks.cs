@@ -1,6 +1,6 @@
 ﻿using SwordAndBored.GameData.Units;
 using SwordAndBored.Strategy.BaseManagement;
-using System.Collections;
+using SwordAndBored.StrategyView.BaseManagement.Units;
 using System.Collections.Generic;
 using UnityEngine;
 

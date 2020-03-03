@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SwordAndBored.Strategy.BaseManagement.SO
+namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     [CreateAssetMenu(fileName = "New Role Base Entry", menuName = "Role Entry")]
     public class RoleEntry : ScriptableObject

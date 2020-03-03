@@ -1,41 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayModelController : MonoBehaviour
+
+namespace SwordAndBored.StrategyView.BaseManagement.Units
 {
-    private IDictionary<string, Transform> modelsDictionary;
-
-    private void Awake()
+    public class DisplayModelController : MonoBehaviour
     {
-        modelsDictionary = new Dictionary<string, Transform>();
+        private IDictionary<string, Transform> modelsDictionary;
 
-        for (int i = 0; i < transform.childCount; i++)
+        private void Awake()
         {
-            Transform model = transform.GetChild(i);
-            modelsDictionary[model.name] = model;
+            modelsDictionary = new Dictionary<string, Transform>();
 
-            model.gameObject.SetActive(i == 0);
-        }
-    }
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform model = transform.GetChild(i);
+                modelsDictionary[model.name] = model;
 
-    public void EnableModel(Transform modelTransform)
-    {
-        foreach (KeyValuePair<string, Transform> modelPair in modelsDictionary)
-        {
-            Transform transformToToggle = modelPair.Value;
-            bool shouldBeActive = transformToToggle == modelTransform;
-            transformToToggle.gameObject.SetActive(shouldBeActive);
-        }
-    }
-
-    public Transform GetModel(string modelName)
-    {
-        if (modelsDictionary.ContainsKey(modelName))
-        {
-            return modelsDictionary[modelName];
+                model.gameObject.SetActive(i == 0);
+            }
         }
 
-        return modelsDictionary["Empty"];
+        public void EnableModel(Transform modelTransform)
+        {
+            foreach (KeyValuePair<string, Transform> modelPair in modelsDictionary)
+            {
+                Transform transformToToggle = modelPair.Value;
+                bool shouldBeActive = transformToToggle == modelTransform;
+                transformToToggle.gameObject.SetActive(shouldBeActive);
+            }
+        }
+
+        public Transform GetModel(string modelName)
+        {
+            if (modelsDictionary.ContainsKey(modelName))
+            {
+                return modelsDictionary[modelName];
+            }
+
+            return modelsDictionary["Empty"];
+        }
     }
 }
