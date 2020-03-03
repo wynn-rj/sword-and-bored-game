@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204d9e89343eaca4bb1694d7fcdf625a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: f98b41d9a1c5ce040b8f1600dbe3d8a9, type: 2}
+  timeManager: {fileID: 4568864100514284661}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
