@@ -7,7 +7,23 @@ namespace SwordAndBored.GameData.Units
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public List<IUnit> Units { get; set; }
+        public List<IUnit> Units
+        {
+            get
+            {
+                List<IUnit> newUnitList = new List<IUnit>();
+                DatabaseConnection conn = new DatabaseConnection();
+                DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Units", "Towns_FK", ID);
+                while (reader.NextRow())
+                {
+                    int dataUnitID = reader.GetIntFromCol("ID");
+                    IUnit unitInSquad = new Unit(dataUnitID);
+                    newUnitList.Add(unitInSquad);
+                }
+                return newUnitList;
+            }
+            set { }
+        }
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
