@@ -101,7 +101,14 @@ namespace SwordAndBored.GameData.Units
 
         public int Save()
         {
-            throw new System.NotImplementedException();
+            if (ID == -1)
+            {
+
+            } else
+            {
+
+            }
+            return ID;
         }
 
     }
