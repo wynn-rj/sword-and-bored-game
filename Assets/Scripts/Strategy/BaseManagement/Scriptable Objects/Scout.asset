@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoleName: Scout
   RoleDescription: A unit with great vision...
-  RoleArtwork: {fileID: 21300000, guid: 34b03140efa765d4b930bbba132b41fb, type: 3}
+  RoleArtwork: {fileID: 21300000, guid: 12ef784100974d44aab570d010082508, type: 3}
