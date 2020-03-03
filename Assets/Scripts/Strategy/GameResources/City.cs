@@ -17,9 +17,10 @@ namespace SwordAndBored.Strategy.GameResources
         }
         protected override void MainThreadPostTimeStepUpdate()
         {
-            Debug.Log("City Update");
-            Debug.Log("GoldAmount: " + resourceManager.GoldAmount);
-            resourceManager.GoldAmount += 1;
+            if(underPlayerControl)
+            {
+                resourceManager.GoldAmount += 1;
+            }
         }
     }
 }
