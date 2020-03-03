@@ -138,12 +138,26 @@ namespace SwordAndBored.GameData.Units
         {
             if (ID == -1)
             {
+                string queryString = $"INSERT INTO Squads (Name, Description, Flavor_Text, X, Y) VALUES ({DatabaseHelper.GetNullOrIDStringFromString(Name)}, " +
+                    $"{DatabaseHelper.GetNullOrIDStringFromString(Description)} , {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, {X}, {Y});";
+                DatabaseConnection conn = new DatabaseConnection();
+                conn.ExecuteNonQuery(queryString);
+                DatabaseReader reader = conn.ExecuteQuery("SELECT * FROM Squads ORDER BY ID Desc LIMIT 1;");
+                reader.NextRow();
+                ID = reader.GetIntFromCol("ID");
+                reader.CloseReader();
+                conn.CloseConnection();
 
+                return ID;
             } else
             {
-
+                string queryString = $"UPDATE Squads SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}," +
+                    $" Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, X = {X}, Y = {Y}  WHERE ID = {ID};";
+                DatabaseConnection conn = new DatabaseConnection();
+                conn.ExecuteNonQuery(queryString);
+                conn.CloseConnection();
+                return ID;
             }
-            return ID;
         }
 
         public int Delete()
