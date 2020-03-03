@@ -40,6 +40,14 @@ namespace SwordAndBored.GameData.Database
                     textBox.text += unit.ToString();
                 }
             }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                ITown squad = new Town(1);
+                foreach (IUnit unit in squad.Units)
+                {
+                    textBox.text += unit.ToString();
+                }
+            }
         }
     }
 
