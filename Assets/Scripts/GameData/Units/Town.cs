@@ -56,6 +56,22 @@ namespace SwordAndBored.GameData.Units
             reader.CloseReader();
         }
 
+        public static List<ITown> GetAllTowns()
+        {
+            List<ITown> result = new List<ITown>();
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryAllFromTable("Towns");
+            while (reader.NextRow())
+            {
+                ITown dataSquad = new Town(reader.GetIntFromCol("ID"));
+                result.Add(dataSquad);
+            }
+            reader.CloseReader();
+            conn.CloseConnection();
+
+            return result;
+        }
+
         public int Save()
         {
             throw new System.NotImplementedException();
