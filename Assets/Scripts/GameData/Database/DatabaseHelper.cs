@@ -1,4 +1,5 @@
 ﻿using SwordAndBored.GameData.Units;
+using UnityEngine;
 
 namespace SwordAndBored.GameData.Database
 {
@@ -36,6 +37,19 @@ namespace SwordAndBored.GameData.Database
             IUnit unit = new Unit("Mage");
             unit.Name = "Grand Mage Crawfis";
             unit.Save();
+        }
+
+        public static string GetRandomNameFromDatabase()
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            int rInt = Random.Range(1, 30);
+            DatabaseReader reader = conn.ExecuteQuery($"SELECT Name From Random_Names WHERE ID = {rInt}");
+            reader.NextRow();
+            string randName = reader.GetStringFromCol("Name");
+            conn.CloseConnection();
+            reader.CloseReader();
+
+            return randName;
         }
     }
 }
