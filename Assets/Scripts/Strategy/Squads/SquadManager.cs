@@ -57,6 +57,7 @@ namespace SwordAndBored.Strategy.Squads
             squad.Units = units;
             squad.StartLocation = location;
             squad.UpkeepFunction = () => resourceManager.GoldAmount -= squadUpkeepCost;
+            squad.IsUserControlledFunction = () => !turnManager.IsTimeStepAdvancing;
             squads.Add(squad);
             turnManager.Subscribe(squad);
             return squad;
