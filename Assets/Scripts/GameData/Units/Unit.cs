@@ -71,7 +71,6 @@ namespace SwordAndBored.GameData.Units
                 Abilities = new List<IAbility>();
                 Abilities.AddRange(Weapon.Abilities);
                 Abilities.AddRange(SpellBook.Abilities);
-
             }
             reader.CloseReader();
             conn.CloseConnection();
