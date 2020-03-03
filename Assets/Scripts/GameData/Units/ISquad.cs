@@ -8,6 +8,6 @@ namespace SwordAndBored.GameData.Units
         int Y { get; set; }
         List<IUnit> Units { get; set; }
 
-        int Movement();
+        int AverageMovement();
     }
 }
