@@ -106,7 +106,7 @@ namespace SwordAndBored.GameData.Units
             conn.CloseConnection();
         }
 
-        public bool Save()
+        public int Save()
         {
             // New Entry
             if (ID == -1)
@@ -125,7 +125,7 @@ namespace SwordAndBored.GameData.Units
                 reader.CloseReader();
                 conn.CloseConnection();
                 
-                return true;
+                return ID;
 
             } else //Update
             {
@@ -136,7 +136,7 @@ namespace SwordAndBored.GameData.Units
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();
-                return true;
+                return ID;
             }
         }
 
