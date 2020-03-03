@@ -34,7 +34,7 @@ namespace SwordAndBored.GameData.Database
             }
             if (Input.GetKeyDown(KeyCode.P))
             {
-                ISquad squad = new Squad(1);
+                ISquad squad = new Squad(0, 0);
                 foreach (IUnit unit in squad.Units)
                 {
                     textBox.text += unit.ToString();
