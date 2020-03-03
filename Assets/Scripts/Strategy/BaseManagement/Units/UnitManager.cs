@@ -45,10 +45,6 @@ namespace SwordAndBored.Strategy.BaseManagement
         public void SetAllData()
         {
             /*
-             * TO DO: Create database entries for new ICharacters
-             */
-
-            /*
              * TO DO: Update records of existing units
              */
         }
