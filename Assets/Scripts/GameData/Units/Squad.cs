@@ -83,6 +83,23 @@ namespace SwordAndBored.GameData.Units
             reader.CloseReader();
         }
 
+        public Squad(string SquadName, int newX, int newY)
+        {
+            X = newX;
+            Y = newY;
+            Name = SquadName;
+            ID = -1;
+        }
+
+        public Squad(string SquadName, List<IUnit> units, int newX, int newY)
+        {
+            X = newX;
+            Y = newY;
+            Name = SquadName;
+            ID = -1;
+            Units = units;
+        }
+
 
         public static List<ISquad> GetAllSquads()
         {
