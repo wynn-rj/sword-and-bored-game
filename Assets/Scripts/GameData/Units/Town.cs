@@ -11,5 +11,10 @@ namespace SwordAndBored.GameData.Units
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
+
+        public int Save()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
