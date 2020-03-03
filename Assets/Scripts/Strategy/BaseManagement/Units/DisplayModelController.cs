@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-namespace SwordAndBored.StrategyView.BaseManagement.Units
+namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class DisplayModelController : MonoBehaviour
     {
