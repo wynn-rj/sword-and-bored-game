@@ -7,7 +7,23 @@ namespace SwordAndBored.GameData.Units
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public List<IUnit> Units { get; set; }
+        public List<IUnit> Units
+        {
+            get
+            {
+                List<IUnit> newUnitList = new List<IUnit>();
+                DatabaseConnection conn = new DatabaseConnection();
+                DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Units", "Squads_FK", ID);
+                while (reader.NextRow())
+                {
+                    int dataUnitID = reader.GetIntFromCol("ID");
+                    IUnit unitInSquad = new Unit(dataUnitID);
+                    newUnitList.Add(unitInSquad);
+                }
+                return newUnitList;
+            }
+            set { }
+        }
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -29,7 +45,7 @@ namespace SwordAndBored.GameData.Units
 
                 reader.CloseReader();
                 reader = conn.QueryRowFromTableWhereColNameEqualsInt("Units", "Squads_FK", inputID);
-                while(reader.NextRow())
+                while (reader.NextRow())
                 {
                     int dataUnitID = reader.GetIntFromCol("ID");
                     IUnit unitInSquad = new Unit(dataUnitID);
@@ -42,7 +58,19 @@ namespace SwordAndBored.GameData.Units
 
         public int AverageMovement()
         {
-            throw new System.NotImplementedException();
+            if (Units.Count == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                int moveSpeed = 0;
+                foreach (IUnit unit in Units)
+                {
+                    moveSpeed += unit.Stats.Movement;
+                }
+                return moveSpeed / Units.Count;
+            }
         }
 
         public int Save()
