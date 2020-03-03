@@ -148,21 +148,35 @@ namespace SwordAndBored.GameData.Units
                 reader.CloseReader();
                 conn.CloseConnection();
 
+                foreach (IUnit unit in Units)
+                {
+                    unit.Squad = this;
+                    unit.Save();
+                }
+
                 return ID;
-            } else
+            }
+            else
             {
                 string queryString = $"UPDATE Squads SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}," +
                     $" Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, X = {X}, Y = {Y}  WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();
+
+                foreach (IUnit unit in Units)
+                {
+                    unit.Squad = this;
+                    unit.Save();
+                }
+
                 return ID;
             }
         }
 
         public int Delete()
         {
-            foreach(IUnit units in Units)
+            foreach (IUnit units in Units)
             {
                 units.Squad = null;
             }
