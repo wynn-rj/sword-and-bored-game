@@ -33,6 +33,9 @@ namespace SwordAndBored.GameData.Units
         IRole Role { get; set; }
         IStatusConditionsActive StatusConditionsActive { get; set; }
 
+        ISquad Squad { get; set; }
+        ITown Town { get; set; }
+
         int XP { get; set; }
         int Level { get; }
 
