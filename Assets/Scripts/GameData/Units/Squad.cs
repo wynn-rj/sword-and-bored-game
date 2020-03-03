@@ -16,7 +16,7 @@ namespace SwordAndBored.GameData.Units
         public Squad(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryRowFromTableWithID("Towns", inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Squads", inputID);
 
             ID = inputID;
             if (reader.NextRow())
@@ -26,6 +26,15 @@ namespace SwordAndBored.GameData.Units
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
                 X = reader.GetIntFromCol("X");
                 Y = reader.GetIntFromCol("Y");
+
+                reader.CloseReader();
+                reader = conn.QueryRowFromTableWhereColNameEqualsInt("Units", "Squads_FK", inputID);
+                while(reader.NextRow())
+                {
+                    int dataUnitID = reader.GetIntFromCol("ID");
+                    IUnit unitInSquad = new Unit(dataUnitID);
+                    Units.Add(unitInSquad);
+                }
             }
             conn.CloseConnection();
             reader.CloseReader();
