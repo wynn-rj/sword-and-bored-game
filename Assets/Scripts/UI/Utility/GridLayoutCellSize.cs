@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace SwordAndBored.UI.Utility
@@ -18,6 +16,7 @@ namespace SwordAndBored.UI.Utility
         void Start()
         {
             rectTransform = gameObject.GetComponent<RectTransform>();
+
             width = rectTransform.rect.width;
             height = rectTransform.rect.height;
 
