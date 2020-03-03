@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,9 @@ public class UnitEntryDisplay : MonoBehaviour
     public UnitEntry UnitEntry;
 
     public Image UnitImage;
-
-    public Text UnitName;
+    public TMP_Text UnitName;
+    public TMP_Text Squad;
+    public TMP_Text City;
 
     public List<Sprite> RoleSpriteList;
 
