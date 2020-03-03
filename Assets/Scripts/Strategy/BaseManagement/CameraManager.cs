@@ -4,9 +4,8 @@ namespace SwordAndBored.Strategy.BaseManagement
 {
     public class CameraManager : MonoBehaviour
     {
-        public Transform StagingArea;
-
-        public Transform DefaultPosition;
+        [SerializeField] private Transform StagingArea;
+        [SerializeField] private Transform DefaultPosition;
 
         private void Start()
         {
