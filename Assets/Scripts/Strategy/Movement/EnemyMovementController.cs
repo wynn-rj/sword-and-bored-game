@@ -1,6 +1,7 @@
 ﻿using SwordAndBored.GameData.Units;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Utilities.Random;
 
@@ -58,7 +59,7 @@ namespace SwordAndBored.Strategy.Movement
                 do
                 {
                     tempGridCell = Odds.SelectAtRandom(gridCell.Neighbors);
-                } while (tempGridCell is null);
+                } while (tempGridCell is null || tempGridCell.HasComponent<UnselectableComponent>());
                 gridCell = tempGridCell;
                 path.Enqueue(gridCell);
             }
