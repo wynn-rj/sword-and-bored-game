@@ -2,6 +2,7 @@
 using SwordAndBored.GameData.Units;
 using SwordAndBored.GameData.Roles;
 using TMPro;
+using System.Collections.Generic;
 
 namespace SwordAndBored.GameData.Database
 {
@@ -20,44 +21,25 @@ namespace SwordAndBored.GameData.Database
         {
             if (Input.GetKeyDown(KeyCode.U))
             {
-                DatabaseReader reader = conn.QueryAllFromTable("Units");
-                while (reader.NextRow())
+                List<IUnit> all = Unit.GetAllUnits();
+                foreach (IUnit unit in all)
                 {
-                        Unit unit = new Unit(reader.GetIntFromCol("ID"));
-                        textBox.text += unit.ToString() + "\n\n";
+                    textBox.text += unit.ToString();
                 }
-                reader.CloseReader();
-                conn.CloseConnection();
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                Unit unit = new Unit(1);
-                IStats stats = unit.Stats;
-                textBox.text = stats.Save().ToString();
-            }
-            if (Input.GetKeyDown(KeyCode.K)) {
-                textBox.text = createNewUnit().ToString(); 
-            }
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                IRole role = new Role(1);
-                textBox.text = role.RoleStats.ToString();
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
                 IEnemy enemy = new Enemy(1);
                 textBox.text = enemy.ToString();
             }
-        }
-
-        private static int createNewUnit()
-        {
-            IUnit unit = new Unit("Knight")
+            if (Input.GetKeyDown(KeyCode.P))
             {
-                Name = "Insert"
-            };
-            unit.Save();
-            return unit.ID;
+                ISquad squad = new Squad(1);
+                foreach (IUnit unit in squad.Units)
+                {
+                    textBox.text += unit.ToString();
+                }
+            }
         }
     }
 
