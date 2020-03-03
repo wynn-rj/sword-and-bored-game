@@ -13,11 +13,13 @@ public class UnitEntry : ScriptableObject
     public void Init(int id, IUnit unit, IStats stats)
     {
         this.id = id;
+        this.Role = unit.Role.Name;
+        this.UnitName = unit.Name;
         /*
          * TO DO: parse units and stats into string data
          */
-        this.UnitName = unit.Name;
-        this.Role = unit.Role.Name;
+        //this.UnitName = unit.Name;
+        //this.Role = unit.Role.Name;
     }
 
     public static UnitEntry CreateInstance(int id, IUnit unit, IStats stats)
