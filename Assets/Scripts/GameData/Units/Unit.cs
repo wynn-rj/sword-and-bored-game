@@ -31,13 +31,27 @@ namespace SwordAndBored.GameData.Units
         public IArmor Armor { get; set; }
         public IRole Role { get; set; }
         public IStatusConditionsActive StatusConditionsActive { get; set; }
+        private ITown town;
         public ITown Town
         {
             get
             {
-                return new Town(TownID);
+                town = new Town(TownID);
+                return town;
             }
-            set { }
+            set
+            {
+                if (value is null)
+                {
+                    TownID = -1;
+                    town = null;
+                }
+                else
+                {
+                    town = value;
+                    TownID = town.ID;
+                }
+            }
         }
         private ISquad squad;
         public ISquad Squad
@@ -47,13 +61,17 @@ namespace SwordAndBored.GameData.Units
                 squad = new Squad(SquadID);
                 return squad;
             }
-            set { if (value is null) {
+            set
+            {
+                if (value is null)
+                {
                     SquadID = -1;
                     squad = null;
-                } else
+                }
+                else
                 {
-                    SquadID = Squad.ID;
                     squad = value;
+                    SquadID = squad.ID;
                 }
             }
         }
