@@ -101,14 +101,11 @@ namespace SwordAndBored.GameData.Units
 
         public int Save()
         {
-            if (ID == -1)
+            foreach (IUnit unit in Units)
             {
-
-            } else
-            {
-
+                unit.Save();
             }
-            return ID;
+            return Units.Count;
         }
 
     }
