@@ -5,24 +5,24 @@ using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using SwordAndBored.Utilities.UnityHelper;
 using SwordAndBored.Utilities;
 using System.Collections.Generic;
+using SwordAndBored.Strategy.TimeSystem.TimeManager;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
     public class TileSelect : OnClickMonoBehaviour, IObserver<ITileSelectSubscriber>
     {
-        [SerializeField] private Material material;
-        private GameObject lastClicked;
-        private Material lastClickedMaterial;
         private readonly IList<ITileSelectSubscriber> subscribers = new List<ITileSelectSubscriber>();
+        [SerializeField] private AbstractTimeManager timeManager;
 
         void Awake()
         {
-            AssertHelper.IsSetInEditor(material, this);
             clickMask = LayerMask.GetMask(new string[] { "HexTile" });
+            AssertHelper.IsSetInEditor(timeManager, this);
         }
 
         protected override void OnClick(RaycastHit hit)
         {
+            if (timeManager.IsTimeStepAdvancing) return;
             GameObject selectedObject = hit.collider.gameObject.transform.parent.gameObject;
             AssertHelper.Assert(selectedObject.name.Contains("hextile"), "Clicked on unexpected gameobject: " + selectedObject.name, this);
             IHexGridCell clickedTile = selectedObject.GetComponent<MonoHexGridCell>().HexGridCell;
@@ -37,17 +37,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             {
                 subscriber.OnTileSelect(clickedTile);
             }
-
-            // Highlight selected tile
-            if (lastClicked)
-            {
-                lastClicked.GetComponent<MeshRenderer>().material = lastClickedMaterial;
-                lastClicked = null;
-                lastClickedMaterial = null;
-            }
-            lastClicked = hit.collider.gameObject;
-            lastClickedMaterial = lastClicked.GetComponent<MeshRenderer>().material;
-            lastClicked.GetComponent<MeshRenderer>().material = material; 
         }
 
         public void Subscribe(ITileSelectSubscriber subscriber) => subscribers.Add(subscriber);
