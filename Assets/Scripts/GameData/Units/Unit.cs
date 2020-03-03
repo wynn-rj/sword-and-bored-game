@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using SwordAndBored.GameData.Abilities;
 using SwordAndBored.GameData.StatusConditions;
 
-namespace SwordAndBored.GameData.Units 
+namespace SwordAndBored.GameData.Units
 {
     public class Unit : IUnit
     {
-        public int ID {get; set;}
+        public int ID { get; set; }
         public bool IsDead { get; set; }
         public ISpellBook SpellBook { get; set; }
         public IStats Stats { get; set; }
-        public List<IAbility> Abilities {
+        public List<IAbility> Abilities
+        {
             get
             {
                 List<IAbility> NewAbilities = new List<IAbility>();
@@ -30,8 +31,22 @@ namespace SwordAndBored.GameData.Units
         public IArmor Armor { get; set; }
         public IRole Role { get; set; }
         public IStatusConditionsActive StatusConditionsActive { get; set; }
-        public ITown Town { get; set; }
-        public ISquad Squad { get; set; }
+        public ITown Town
+        {
+            get
+            {
+                return new Town(TownID);
+            }
+            set { }
+        }
+        public ISquad Squad
+        {
+            get
+            {
+                return new Squad(SquadID);
+            }
+            set { }
+        }
         public int XP { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
@@ -101,7 +116,8 @@ namespace SwordAndBored.GameData.Units
                 Stats = Role.RoleStats;
                 Stats = new Stats(Role.RoleStats);
                 Name = "No name/Random Default";
-            } else
+            }
+            else
             {
                 // Default role none matched
                 Role = new Role(1);
@@ -134,10 +150,11 @@ namespace SwordAndBored.GameData.Units
                 ID = reader.GetIntFromCol("ID");
                 reader.CloseReader();
                 conn.CloseConnection();
-                
+
                 return ID;
 
-            } else //Update
+            }
+            else //Update
             {
                 Stats.Save();
                 string queryString = $"UPDATE Units SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}," +
