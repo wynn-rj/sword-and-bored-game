@@ -39,13 +39,23 @@ namespace SwordAndBored.GameData.Units
             }
             set { }
         }
+        private ISquad squad;
         public ISquad Squad
         {
             get
             {
-                return new Squad(SquadID);
+                squad = new Squad(SquadID);
+                return squad;
             }
-            set { }
+            set { if (value is null) {
+                    SquadID = -1;
+                    squad = null;
+                } else
+                {
+                    SquadID = Squad.ID;
+                    squad = value;
+                }
+            }
         }
         public int XP { get; set; }
         public int Level { get; set; }

@@ -145,5 +145,17 @@ namespace SwordAndBored.GameData.Units
             }
             return ID;
         }
+
+        public int Delete()
+        {
+            foreach(IUnit units in Units)
+            {
+                units.Squad = null;
+            }
+            DatabaseConnection conn = new DatabaseConnection();
+            int results = conn.ExecuteNonQuery($"DELETE FROM Squads WHERE ID = {ID};");
+            conn.CloseConnection();
+            return results;
+        }
     }
 }
