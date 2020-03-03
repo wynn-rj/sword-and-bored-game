@@ -8,16 +8,11 @@ namespace SwordAndBored.Strategy
         public float speed;
         public int boundary;
 
-        private int screenHeight;
-        private int screenWidth;
-
         readonly float ysensitivity = 15f;
         readonly float zsensitivity = 10f;
 
         void Start()
         {
-            screenHeight = Screen.height;
-            screenWidth = Screen.width;
             if (SceneSharing.cameraPosition != default)
             {
                 this.transform.position = SceneSharing.cameraPosition;
@@ -30,19 +25,19 @@ namespace SwordAndBored.Strategy
             transform.position = zoom;
 
             Vector3 move = transform.position;
-            if (Input.mousePosition.x > screenWidth - boundary || Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 move.x += speed * Time.deltaTime;
             }
-            if (Input.mousePosition.x < 0 + boundary || Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 move.x -= speed * Time.deltaTime;
             }
-            if (Input.mousePosition.y > screenHeight - boundary || Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.UpArrow))
             {
                 move.z += speed * Time.deltaTime;
             }
-            if (Input.mousePosition.y < 0 + boundary || Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
                 move.z -= speed * Time.deltaTime;
             }
