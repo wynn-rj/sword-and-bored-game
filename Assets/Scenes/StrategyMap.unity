@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,7 +209,8 @@ MonoBehaviour:
   playerTiles:
   - {fileID: 4042848301412141742, guid: 1dc946f47b01c9a4084971c7fbdb95b1, type: 3}
   resourceManager: {fileID: 997271957}
-  city: {fileID: 5405729400767052015, guid: daddedb96b5f17346a31eb4c2bb6691f, type: 3}
+  goldCity: {fileID: 5405729400767052015, guid: daddedb96b5f17346a31eb4c2bb6691f,
+    type: 3}
   timeManager: {fileID: 4568864100514284661}
 --- !u!4 &404240876
 Transform:
@@ -312,7 +313,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.0522773e-29, y: 0, z: 0, w: 1e-45}
+  m_BoundingSphereOverride: {x: -2.3404263e-24, y: 2.3937171e-21, z: -3.0590932e+31,
+    w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
