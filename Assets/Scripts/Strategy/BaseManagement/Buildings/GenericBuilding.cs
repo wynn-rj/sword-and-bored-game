@@ -7,12 +7,9 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
     {
         [SerializeField] private GameObject mainCanvas;
 
-        protected GenericStrongholdCell Cell;
+        protected GenericStrongholdCell strongholdCell;
 
-        public GameObject MainCanvas
-        {
-            get { return mainCanvas; }
-        }
+        public GameObject MainCanvas => mainCanvas;
 
         public GameObject Canvas => mainCanvas;
 

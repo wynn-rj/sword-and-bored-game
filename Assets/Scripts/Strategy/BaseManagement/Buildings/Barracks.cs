@@ -15,10 +15,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 
         private IList<IUnit> activeUnitsList;
 
-        public GameObject TrainUnitCanvas
-        {
-            get { return trainUnitCanvas; }
-        }
+        public GameObject TrainUnitCanvas => trainUnitCanvas;
 
         private void Awake()
         {
