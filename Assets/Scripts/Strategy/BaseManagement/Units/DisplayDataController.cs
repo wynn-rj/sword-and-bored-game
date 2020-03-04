@@ -19,8 +19,8 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public void SetData(IUnit unit)
         {
             IStats stats = unit.Stats;
-            MaxHP.text = "Max HP: " + stats.HP.ToString();
-            CurrentHP.text = "Current HP: " + stats.HP.ToString();
+            MaxHP.text = "Max HP: " + stats.Max_HP.ToString();
+            CurrentHP.text = "Current HP: " + stats.Current_HP.ToString();
             Initiative.text = "Initiative: " + stats.Initiative.ToString();
             PhysicalAttack.text = "Physical Attack: " + stats.Physical_Attack.ToString();
             PhysicalDefense.text = "Physical Defense: " + stats.Physical_Defense.ToString();

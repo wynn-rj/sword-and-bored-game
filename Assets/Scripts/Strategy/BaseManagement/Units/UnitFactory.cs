@@ -1,6 +1,4 @@
-using SwordAndBored.GameData.Creatures;
 using SwordAndBored.GameData.Database;
-using SwordAndBored.GameData.Roles;
 using SwordAndBored.GameData.Units;
 using UnityEngine;
 
