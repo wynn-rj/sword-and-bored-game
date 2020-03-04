@@ -8,6 +8,7 @@ using UnityEngine;
 using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Utilities.Random;
 using SwordAndBored.Strategy.TimeSystem.TimeManager;
+using SwordAndBored.UI.Utility;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
@@ -119,11 +120,18 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 tile.AddComponent(new GameObjectComponent(tileHolder));
 
                 GameObject terrainPrefab = Odds.SelectAtRandom(terrainToGameObject[tile.GetComponent<ITerrainComponent>().GetType()]);
-                AddToTileHolder(tileHolder, terrainPrefab, tileHeight, Constants.terrainObjectName);
+                GameObject terrain = AddToTileHolder(tileHolder, terrainPrefab, tileHeight, Constants.terrainObjectName);
+                
                 if (tile.HasComponent<CreepComponent>())
                 {
-                    AddToTileHolder(tileHolder, Odds.SelectAtRandom(enemyCreepTiles), tileHeight, Constants.creepObjectName);
+                    GameObject creep = AddToTileHolder(tileHolder, Odds.SelectAtRandom(enemyCreepTiles), tileHeight, Constants.creepObjectName);
+                    creep.AddComponent<OnHoverOutline>();
                     tile.GetComponent<CreepComponent>().SetTileHolder(tileHolder);
+                }
+
+                if (!tile.HasComponent<UnselectableComponent>())
+                {
+                    terrain.AddComponent<OnHoverOutline>();
                 }
 
                 if (tile.HasComponent<CityComponent>())
