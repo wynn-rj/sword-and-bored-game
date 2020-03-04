@@ -37,6 +37,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
             activePlayer.isMyTurn = true;
+
+            // Reset Turn Behaviors
+            activePlayer.GetComponent<UniqueCreature>().movementLeft = activePlayer.GetComponent<UniqueCreature>().stats.movement;
+            activePlayer.GetComponent<UniqueCreature>().action = true;
         }
 
         public void nextTurn()
@@ -44,6 +48,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
             activePlayer.isMyTurn = true;
+
+            // Reset Turn Behaviors
+            activePlayer.GetComponent<UniqueCreature>().movementLeft = activePlayer.GetComponent<UniqueCreature>().stats.movement;
+            activePlayer.GetComponent<UniqueCreature>().action = true;
         }
 
         void Update()
