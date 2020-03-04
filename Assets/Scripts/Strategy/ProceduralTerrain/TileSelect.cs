@@ -14,6 +14,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
     {
         private readonly IList<ITileSelectSubscriber> subscribers = new List<ITileSelectSubscriber>();
         [SerializeField] private AbstractTimeManager timeManager;
+        private GameObject lastClicked;
 
         void Awake()
         {
@@ -28,7 +29,14 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             AssertHelper.Assert(selectedObject.name.Contains("hextile"), "Clicked on unexpected gameobject: " + selectedObject.name, this);
             IHexGridCell clickedTile = selectedObject.GetComponent<MonoHexGridCell>().HexGridCell;
             if (clickedTile.HasComponent<UnselectableComponent>()) return;
-            
+
+            OnHoverOutline onHoverOutline = hit.collider.gameObject.GetComponent<OnHoverOutline>();
+            if (onHoverOutline)
+            {
+                lastClicked = hit.collider.gameObject;
+                onHoverOutline.OutlineColor = Color.cyan;
+            }
+
             ISelectionComponent selectionComponent = clickedTile.GetComponent<ISelectionComponent>();
             if (!(selectionComponent is null))
             {
@@ -55,6 +63,15 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
             if (onHoverOutline)
             {
                 onHoverOutline.OutlineEnabled = false;
+            }
+        }
+
+        protected override void OnClickRelease()
+        {
+            OnHoverOutline onHoverOutline = lastClicked?.GetComponent<OnHoverOutline>();
+            if (onHoverOutline)
+            {
+                onHoverOutline.OutlineColor = Color.white;
             }
         }
 
