@@ -34,7 +34,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             Ability selectedAbility = null;
-            float distance = Vector3.Distance(animator.gameObject.transform.position, Target.transform.position) - 10f;
+            float distance = Vector3.Distance(animator.gameObject.transform.position, Target.transform.position);
             for (int i=0; i<abilitiesContainer.abilities.Count; i++)
             {
                 Ability ability = abilitiesContainer.abilities[i];
