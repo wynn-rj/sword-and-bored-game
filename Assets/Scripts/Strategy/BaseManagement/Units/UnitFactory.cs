@@ -1,5 +1,6 @@
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.StrategyView.BaseManagement.Buildings;
 using UnityEngine;
 
 namespace SwordAndBored.Strategy.BaseManagement.Units
@@ -10,6 +11,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public string UnitName { get; set; }
 
         public GameObject NameUnitCanvas;
+        public Barracks Barracks;
 
         private IUnit character;
 
@@ -34,6 +36,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             UnitManager.Instance.RegisterUnit(character);
             NameUnitCanvas.gameObject.SetActive(false);
             character.Save();
+            Barracks.CreateUnitEntry(character);
         }
 
         public void CancelUnitTraining()

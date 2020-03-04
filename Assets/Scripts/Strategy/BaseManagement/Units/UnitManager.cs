@@ -1,6 +1,7 @@
 ﻿using SwordAndBored.GameData.Units;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace SwordAndBored.Strategy.BaseManagement.Units
 {
@@ -32,9 +33,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         /// </summary>
         public void GetAllData()
         {
-            /*
-             * TO DO: Populate <>existingUnitList</> with data from database
-             */
+            existingUnitList = Unit.GetAllUnits();
         }
 
         /// <summary>
@@ -50,7 +49,6 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public void RegisterUnit(IUnit character)
         {
             newUnitList.Add(character);
-            //Debug.Log(character.Name);
         }
 
         public IList<IUnit> GetAllUnits()
