@@ -27,12 +27,20 @@ namespace SwordAndBored.Strategy.Squads
         public void GoTo(IHexGridCell location)
         {
             //Make A* call here
+            IHexGridCell start = Location;
             if (wipePath)
             {
                 path.Clear();
                 wipePath = false;
             }
-            path.Enqueue(location);
+            if (path.Count > 0)
+            {
+                start = path.Last;
+            }
+            foreach (IHexGridCell cell in AStarModule.FindPath(start, location))
+            {
+                path.Enqueue(cell);
+            }
             TraversePath();
         }
 
