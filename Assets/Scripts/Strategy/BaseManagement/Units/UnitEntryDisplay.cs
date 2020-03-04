@@ -12,7 +12,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public Image UnitImage;
         public TMP_Text UnitName;
         public TMP_Text Squad;
-        public TMP_Text City;
+        public TMP_Text Town;
 
         public List<Sprite> RoleSpriteList;
 
@@ -27,6 +27,9 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 
             UnitImage.sprite = RoleImageDictionary[UnitEntry.Role];
             UnitName.text = UnitEntry.UnitName;
+
+            Squad.text = "Squad: " + UnitEntry.CurrentSquad;
+            Town.text = "City: " + UnitEntry.CurrentTown;
 
         }
     }

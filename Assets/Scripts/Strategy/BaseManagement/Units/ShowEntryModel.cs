@@ -14,7 +14,6 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             GetComponent<Button>().onClick.AddListener(HandleButtonClick);
         }
 
-
         public void Initialize(Transform displayModel, Action<Transform> clickAction)
         {
             this.displayModel = displayModel;

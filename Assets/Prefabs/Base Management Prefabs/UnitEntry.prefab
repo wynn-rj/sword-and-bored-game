@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -40, y: 0}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4816450190655805983
 CanvasRenderer:
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 4816450190905137679}
   - component: {fileID: 4816450190905137676}
   m_Layer: 5
-  m_Name: City
+  m_Name: Town
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +702,7 @@ MonoBehaviour:
   UnitImage: {fileID: 4816450191362323755}
   UnitName: {fileID: 4816450190655805980}
   Squad: {fileID: 4816450191451403861}
-  City: {fileID: 4816450190905137676}
+  Town: {fileID: 4816450190905137676}
   RoleSpriteList:
   - {fileID: 21300000, guid: 98230a8f88be3e64c99ff20fe1c8dd82, type: 3}
   - {fileID: 21300000, guid: 12ef784100974d44aab570d010082508, type: 3}
