@@ -9,9 +9,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         [Header("Ability Info")]
         public List<Ability> abilities = new List<Ability>();
         UniqueCreature unit;
+        private AudioSource audioSource;
+        public AudioClip audioClip;
 
         void Start()
         {
+            audioSource = GetComponent<BrainManager>().manager.AudioSource;
             unit = GetComponent<UniqueCreature>();
             foreach (Ability ability in abilities)
             {
@@ -56,6 +59,15 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             abilities[i].TriggerAbility(target);
             Debug.Log(abilities[i].AttackName);
             unit.action = false;
+            if (abilities[i].name == "Fire Ball")
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Pause();
+                    audioSource.PlayOneShot(audioClip, 5);
+                    audioSource.Play();
+                }
+            }
         }
 
         public void HighlightTarget(int i, RaycastHit hit)
