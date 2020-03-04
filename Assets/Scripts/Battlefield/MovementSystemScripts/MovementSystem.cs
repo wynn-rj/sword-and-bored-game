@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using SwordAndBored.Battlefield.AstarStuff;
+using SwordAndBored.Battlefield.CreaturScripts;
 using UnityEngine.EventSystems;
 
 namespace SwordAndBored.Battlefield.MovementSystemScripts
@@ -136,13 +137,21 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
 
         public void Move(Tile tile, bool displayPath)
         {
-            List<Tile> path = star.FindPath(tile, grid, this);
-            if (displayPath)
+            if(Vector3.Distance(currentTile.transform.position, tile.transform.position) <= brain.GetComponent<UniqueCreature>().stats.movement + .3f)
             {
-                lr.enabled = true;
-                show.Display(lr, path);
+                Debug.Log("Within movement");
+                List<Tile> path = star.FindPath(tile, grid, this);
+                if (displayPath)
+                {
+                    lr.enabled = true;
+                    show.Display(lr, path);
+                }
+                FollowPath(path);
+            } else
+            {
+                Debug.Log("Not within movement");
             }
-            FollowPath(path);
+
         }
 
         public void Move(Tile tile)
