@@ -6,10 +6,11 @@ using SwordAndBored.Utilities.UnityHelper;
 using SwordAndBored.Utilities;
 using System.Collections.Generic;
 using SwordAndBored.Strategy.TimeSystem.TimeManager;
+using SwordAndBored.UI.Utility;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
-    public class TileSelect : OnClickMonoBehaviour, IObserver<ITileSelectSubscriber>
+    public class TileSelect : OnClickOrHoverMonoBehaviour, IObserver<ITileSelectSubscriber>
     {
         private readonly IList<ITileSelectSubscriber> subscribers = new List<ITileSelectSubscriber>();
         [SerializeField] private AbstractTimeManager timeManager;
@@ -38,6 +39,25 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 subscriber.OnTileSelect(clickedTile);
             }
         }
+
+        protected override void OnHover(RaycastHit hit)
+        {
+            OnHoverOutline onHoverOutline = hit.collider.gameObject.GetComponent<OnHoverOutline>();
+            if (onHoverOutline)
+            {
+                onHoverOutline.OutlineEnabled = true;
+            }
+        }
+
+        protected override void LostHover(GameObject hadHover)
+        {
+            OnHoverOutline onHoverOutline = hadHover.GetComponent<OnHoverOutline>();
+            if (onHoverOutline)
+            {
+                onHoverOutline.OutlineEnabled = false;
+            }
+        }
+
 
         public void Subscribe(ITileSelectSubscriber subscriber) => subscribers.Add(subscriber);
 
