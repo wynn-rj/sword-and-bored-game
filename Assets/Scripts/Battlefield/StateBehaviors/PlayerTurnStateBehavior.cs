@@ -22,6 +22,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
     {
         brain = animator.GetComponent<BrainManager>();
         brain.indicatorRend.enabled = true;
+        brain.GetComponent<UniqueCreature>().movementLeft = brain.GetComponent<UniqueCreature>().stats.movement;
         brain.outline.enabled = true;
         ms = animator.GetComponent<MovementSystem>();
 
