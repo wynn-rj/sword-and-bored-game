@@ -121,6 +121,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11232747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11232749}
+  - component: {fileID: 11232748}
+  m_Layer: 0
+  m_Name: City Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &11232748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11232747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3da06ee4cb26444af1022fdd6b90a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &11232749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11232747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &36599996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -613,7 +656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00004742986}
+  m_AnchoredPosition: {x: 0, y: -0.000045776367}
   m_SizeDelta: {x: 783.99927, y: 300}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &58777156
@@ -1400,7 +1443,10 @@ MonoBehaviour:
   unitEntryPrefab: {fileID: 4816450192289935596, guid: 924da9003ed7c704eaeee23bdc006dd2,
     type: 3}
   trainUnitCanvas: {fileID: 124142745}
+  dispatchUnitCanvas: {fileID: 0}
   unitListPanel: {fileID: 58777154}
+  trainUnitButton: {fileID: 0}
+  dispatchUnitButton: {fileID: 0}
   displayModelController: {fileID: 704373851}
   displayDataController: {fileID: 1904263787}
 --- !u!4 &212993134
