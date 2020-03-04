@@ -10,9 +10,35 @@ namespace SwordAndBored.Strategy.Movement
 {
     public abstract class CreatureMovementController : MonoBehaviour, ITimeStepSubscriber
     {
+        protected class LastQ<T> : Queue<T>
+        {
+            public T Last { get; private set }
+
+            public new void Enqueue(T item)
+            {
+                Last = item;
+                base.Enqueue(item);
+            }
+
+            public new void Clear()
+            {
+                Last = default;
+                base.Clear();
+            }
+
+            public new T Dequeue()
+            {
+                if (Count == 1)
+                {
+                    Last = default;
+                }
+                return base.Dequeue();
+            }
+        }
+
         private const float SPEED = 10;
-               
-        protected readonly Queue<IHexGridCell> path = new Queue<IHexGridCell>();
+
+        protected readonly LastQ<IHexGridCell> path = new LastQ<IHexGridCell>();
         protected CreatureComponent creatureComponent;
 
         [SerializeField] private int distanceCanTravel;
@@ -53,11 +79,11 @@ namespace SwordAndBored.Strategy.Movement
             distanceCanTravel--;
             targetPosition = Location.Position.CenterAsVector3(height);
         }
-        
+
         protected virtual void Start()
         {
             AssertHelper.Assert(StartLocation != null, "No start location given", this);
-            AssertHelper.Assert(!StartLocation.HasComponent<CreatureComponent>(), 
+            AssertHelper.Assert(!StartLocation.HasComponent<CreatureComponent>(),
                 "Tried to place creature on creature at " + StartLocation.Position, this);
             bool success = UpdateLocation(StartLocation);
             AssertHelper.Assert(success, "Failed to set start location", this);
@@ -119,8 +145,8 @@ namespace SwordAndBored.Strategy.Movement
             Monitor.Enter(nextLocationLock);
             try
             {
-                return UpdateLocation(location);    
-            } 
+                return UpdateLocation(location);
+            }
             finally
             {
                 Monitor.Exit(nextLocationLock);
