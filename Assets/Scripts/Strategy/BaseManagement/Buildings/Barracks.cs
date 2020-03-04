@@ -57,7 +57,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
             unitEntryObject.transform.localRotation = Quaternion.identity;
             unitEntryObject.transform.localScale = new Vector3(2, 1, .8f);
 
-            unitEntryObject.GetComponent<UnitEntryDisplay>().UnitEntry = unitEntryData;
+            unitEntryObject.GetComponent<UnitEntryDisplay>().unitEntry = unitEntryData;
             unitEntryObject.GetComponent<UnitEntryDisplay>().SetDisplay();
             unitEntryObject.GetComponent<ShowEntryModel>().Initialize(displayModelController.GetModel(unit.Role.Name), displayModelController.EnableModel);
             unitEntryObject.GetComponent<ShowEntryData>().Initialize(unit, displayDataController.SetData);
