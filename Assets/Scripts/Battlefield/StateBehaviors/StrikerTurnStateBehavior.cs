@@ -20,14 +20,10 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         brain = animator.GetComponent<BrainManager>();
         ms = animator.GetComponent<MovementSystem>();
 
-        // Reset Turn Behaviors
-        brain.GetComponent<UniqueCreature>().movementLeft = brain.GetComponent<UniqueCreature>().stats.movement;
-        brain.GetComponent<UniqueCreature>().action = true;
-
         brain.outline.enabled = true;
         float min = Vector3.Distance(animator.transform.position, brain.manager.playerUnits[0].transform.position);
         int playerToAttack = 0;
-        for (int i = 1; i < brain.manager.playerUnits.Count; i++)
+        for (int i = 0; i < brain.manager.playerUnits.Count; i++)
         {
             float temp = Vector3.Distance(animator.transform.position, brain.manager.playerUnits[i].transform.position);
             if (temp < min)
@@ -47,9 +43,10 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         if (target && target.unitOnTile == null)
         {
             ms.Move(target);
+            animator.SetBool("UseAbility", true);
         }
 
-        if (target && Vector3.Distance(animator.transform.position, target.GetCenterOfTile()) < 1f)
+        /*if (target && Vector3.Distance(animator.transform.position, target.GetCenterOfTile()) <= 1f)
         {
             brain.isMyTurn = false;
         }
@@ -57,7 +54,7 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         if (Input.GetButtonDown("Next"))
         {
             brain.isMyTurn = false;
-        }
+        }*/
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
