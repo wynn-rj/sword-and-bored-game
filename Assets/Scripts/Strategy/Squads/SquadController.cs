@@ -1,4 +1,4 @@
-﻿using SwordAndBored.Strategy.GameResources;
+﻿using SwordAndBored.GameData.Units;
 using SwordAndBored.Strategy.Movement;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
@@ -7,11 +7,12 @@ using System;
 
 namespace SwordAndBored.Strategy.Squads
 {
-    public class SquadController : GenericSquadController
+    public class SquadController : CreatureMovementController
     {
         private bool wipePath;
         private bool performUpkeep;
 
+        public ISquad SquadData { get; set; }
         public Action UpkeepFunction { private get; set; }
         public Func<bool> IsUserControlledFunction { private get; set; }
 
@@ -22,7 +23,7 @@ namespace SwordAndBored.Strategy.Squads
             performUpkeep = true;
         }
 
-        public override void GoTo(IHexGridCell location)
+        public void GoTo(IHexGridCell location)
         {
             //Make A* call here
             if (wipePath)
@@ -67,7 +68,7 @@ namespace SwordAndBored.Strategy.Squads
         protected override void Start()
         {
             base.Start();
-            AssertHelper.Assert(Units != null && Units.Length > 0, "Squad controller has no squad", this);
+            AssertHelper.Assert(SquadData != null, "Squad controller has no squad", this);
             AssertHelper.Assert(UpkeepFunction != null, "Squad has no resource manager", this);
         }
 #endif

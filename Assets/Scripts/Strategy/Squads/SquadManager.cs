@@ -21,7 +21,7 @@ namespace SwordAndBored.Strategy.Squads
 
         private readonly IList<SquadController> squads = new List<SquadController>();
 
-        public GenericSquadController SelectedSquad { get; private set; }
+        public SquadController SelectedSquad { get; private set; }
 
 #if DEBUG
         void Awake()
@@ -50,7 +50,7 @@ namespace SwordAndBored.Strategy.Squads
             }
         }
 
-        public GenericSquadController DeploySquad(IUnit[] units, IHexGridCell location)
+        public SquadController DeploySquad(ISquad squad)
         {
             SquadController squad = Instantiate(squadPrefab, transform);
             squad.transform.position = location.Position.CenterAsVector3(squadPlacementHeight);
