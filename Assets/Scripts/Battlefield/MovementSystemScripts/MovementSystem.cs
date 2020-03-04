@@ -26,6 +26,15 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
         [HideInInspector]
         public Tile currentTile;
 
+        [HideInInspector]
+        public Tile LeftTile;
+        [HideInInspector]
+        public Tile RightTile;
+        [HideInInspector]
+        public Tile UpTile;
+        [HideInInspector]
+        public Tile DownTile;
+
 
         void Awake()
         {
@@ -57,6 +66,22 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
             if (start)
             {
                 currentTile = grid[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y)];
+                if (Mathf.RoundToInt(brain.startCoordinates.x - 1) >= 0)
+                {
+                    LeftTile = grid[Mathf.RoundToInt(brain.startCoordinates.x - 1), Mathf.RoundToInt(brain.startCoordinates.y)];
+                }
+                if (Mathf.RoundToInt(brain.startCoordinates.x + 1) < grid.Length)
+                {
+                    RightTile = grid[Mathf.RoundToInt(brain.startCoordinates.x + 1), Mathf.RoundToInt(brain.startCoordinates.y)];
+                }
+                if (Mathf.RoundToInt(brain.startCoordinates.y - 1) >= 0)
+                {
+                    DownTile = grid[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y - 1)];
+                }
+                if (Mathf.RoundToInt(brain.startCoordinates.y) < grid.Length)
+                {
+                    UpTile = grid[Mathf.RoundToInt(brain.startCoordinates.x), Mathf.RoundToInt(brain.startCoordinates.y + 1)];
+                }
                 MoveOneTile(currentTile);
                 start = false;
             }
