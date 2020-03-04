@@ -97,6 +97,9 @@ namespace SwordAndBored.Strategy.Squads
         {
             foreach (SquadController controller in squads)
             {
+                Point<int> pos = controller.Location.Position.GridPoint;
+                controller.SquadData.X = pos.X;
+                controller.SquadData.Y = pos.Y;
                 controller.SquadData.Save();
             }
         }
