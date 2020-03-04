@@ -18,10 +18,26 @@ namespace SwordAndBored.Strategy.Squads
         [SerializeField] private KeyCode loseSquadFocusKey = KeyCode.Escape;
         [SerializeField] private float squadPlacementHeight = 0;
         [SerializeField] private int squadUpkeepCost = 1;
+        [SerializeField] private SquadController selectedSquad;
 
         private readonly IList<SquadController> squads = new List<SquadController>();
 
-        public SquadController SelectedSquad { get; private set; }
+        public SquadController SelectedSquad
+        {
+            get => selectedSquad;
+            private set
+            {
+                if (selectedSquad)
+                {
+                    selectedSquad.GetComponent<Outline>().enabled = false;
+                }
+                if (value)
+                {
+                    value.GetComponent<Outline>().enabled = true;
+                }
+                selectedSquad = value;
+            }
+        }
 
         public SquadController DeploySquad(string name, List<IUnit> units, IHexGridCell location)
         {
