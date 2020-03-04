@@ -24,7 +24,8 @@ namespace SwordAndBored.UI.Battlefield {
             if(statsPanel.activeSelf)
             {
                 UniqueCreature activePlayer = turnManager.activePlayer.gameObject.GetComponent<UniqueCreature>();
-                UnitStats unitStats = activePlayer.GetComponent<UnitStats>();
+                UnitStats unitStats = activePlayer.stats;
+
                 healthText.text = $"HP: {unitStats.health} / {unitStats.maxHealth}";
                 pAttackText.text = $"Physical Attack: {unitStats.physicalAttack}";
                 pDefenseText.text = $"Physical Defense: {unitStats.physicalDefense}";
