@@ -67,11 +67,14 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
                 ms.Move(endTile, true);
             }
         }
-        if(abilitySelector.currentlySelectedNum > 0)
+        if (brain.HasActionLeft())
         {
-            animator.SetInteger("Ability", abilitySelector.currentlySelectedNum -1);
-            animator.SetBool("UseAbility", true);
-            abilitySelector.ResetAbilitySelection(-1);
+            if (abilitySelector.currentlySelectedNum > 0)
+            {
+                animator.SetInteger("Ability", abilitySelector.currentlySelectedNum - 1);
+                animator.SetBool("UseAbility", true);
+                abilitySelector.ResetAbilitySelection(-1);
+            }
         }
 
         if (Input.GetButtonDown("Next")) {
