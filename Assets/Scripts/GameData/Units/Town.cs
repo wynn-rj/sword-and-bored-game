@@ -7,6 +7,7 @@ namespace SwordAndBored.GameData.Units
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public bool PlayerOwned { get; set; }
         public List<IUnit> Units
         {
             get
@@ -42,6 +43,7 @@ namespace SwordAndBored.GameData.Units
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
                 X = reader.GetIntFromCol("X");
                 Y = reader.GetIntFromCol("Y");
+                PlayerOwned = reader.GetIntFrom("Is_Player_Owned") > 0;
 
                 reader.CloseReader();
                 reader = conn.QueryRowFromTableWhereColNameEqualsInt("Units", "Towns_FK", inputID);
@@ -63,11 +65,13 @@ namespace SwordAndBored.GameData.Units
 
             X = inputX;
             Y = inputY;
+            
             if (reader.NextRow())
             {
                 Name = reader.GetStringFromCol("Name");
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
+                PlayerOwned = reader.GetIntFrom("Is_Player_Owned") > 0;
                 ID = reader.GetIntFromCol("ID");
 
                 reader.CloseReader();
@@ -106,6 +110,11 @@ namespace SwordAndBored.GameData.Units
                 unit.Town = this;
                 unit.Save();
             }
+            int playerOwnedNum = PlayerOwned ? 1 : 0;
+            string queryString = $"UPDATE Towns SET Is_Player_Owned = {playerOwnedNum} WHERE ID = {ID};";
+            DatabaseConnection conn = new DatabaseConnection();
+            conn.ExecuteNonQuery(queryString);
+            conn.CloseConnection();
             return Units.Count;
         }
 
