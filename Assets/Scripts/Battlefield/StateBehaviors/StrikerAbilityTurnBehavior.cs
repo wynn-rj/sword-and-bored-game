@@ -54,6 +54,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             {
                 selectedAbility.EnemyAttackNonAOE(Target.GetComponent<UniqueCreature>());
             }
+            animator.SetBool("UseAbility", false);
             brain.isMyTurn = false;
         }
 
