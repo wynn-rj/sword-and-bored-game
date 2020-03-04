@@ -3271,8 +3271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db58ee01d73183d49954b5edaa609bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StagingArea: {fileID: 1303271098}
-  DefaultPosition: {fileID: 705508445}
+  stagingArea: {fileID: 1303271098}
+  defaultPosition: {fileID: 705508445}
 --- !u!1 &900378044
 GameObject:
   m_ObjectHideFlags: 0

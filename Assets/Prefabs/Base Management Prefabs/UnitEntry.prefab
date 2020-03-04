@@ -698,12 +698,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a25741fa9d7e2f449a067f796666c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitEntry: {fileID: 0}
-  UnitImage: {fileID: 4816450191362323755}
-  UnitName: {fileID: 4816450190655805980}
-  Squad: {fileID: 4816450191451403861}
-  Town: {fileID: 4816450190905137676}
-  RoleSpriteList:
+  unitEntry: {fileID: 0}
+  unitImage: {fileID: 4816450191362323755}
+  unitName: {fileID: 4816450190655805980}
+  squad: {fileID: 4816450191451403861}
+  town: {fileID: 4816450190905137676}
+  roleSpriteList:
   - {fileID: 21300000, guid: 98230a8f88be3e64c99ff20fe1c8dd82, type: 3}
   - {fileID: 21300000, guid: 12ef784100974d44aab570d010082508, type: 3}
   - {fileID: 21300000, guid: e6f3800b8505c4644b6e3f5acd582198, type: 3}
