@@ -57,7 +57,7 @@ namespace SwordAndBored.Strategy.Movement
                 while (successors.Count > 0)
                 {
                     Node successor = successors.Dequeue();
-                    if (successor.isSameCell(destinationNode))
+                    if (successor.IsSameCell(destinationNode))
                     {
                         return GeneratePath(successor);
                     }
@@ -66,7 +66,7 @@ namespace SwordAndBored.Strategy.Movement
                     bool dontAdd = false;
                     foreach (Node openNode in openList)
                     {
-                        if (successor.isSameCell(openNode) && openNode.F < successor.F)
+                        if (successor.IsSameCell(openNode) && openNode.F < successor.F)
                         {
                             dontAdd = true;
                             break;
@@ -77,7 +77,7 @@ namespace SwordAndBored.Strategy.Movement
                     {
                         foreach (Node closedNode in closedList)
                         {
-                            if (successor.isSameCell(closedNode) && closedNode.F < successor.F)
+                            if (successor.IsSameCell(closedNode) && closedNode.F < successor.F)
                             {
                                 dontAdd = true;
                                 break;
@@ -108,6 +108,7 @@ namespace SwordAndBored.Strategy.Movement
 
             }
 
+            path.RemoveAt(path.Count - 1);
             path.Reverse();
 
             return path;
@@ -123,7 +124,7 @@ namespace SwordAndBored.Strategy.Movement
 
             foreach (IHexGridCell cell in childrenCells)
             {
-                if (cell != null && cell.GetComponent<UnselectableComponent>() == null && cell.GetComponent<CreatureComponent>() == null)
+                if (cell != null && !cell.HasComponent<UnselectableComponent>() && !cell.HasComponent<CreatureComponent>()    )
                 {
                     Point<float> thisPoint = cell.Position.Center;
                     float distanceSquared = SquaredDistanceBetweenFloatPoints(thisPoint, destinationPoint);
@@ -138,7 +139,7 @@ namespace SwordAndBored.Strategy.Movement
 
         private static float SquaredDistanceBetweenFloatPoints(Point<float> first, Point<float> second)
         {
-            return ((first.Y - second.Y) * (first.Y - second.Y)) + ((first.X - second.X) + (first.X - second.X));
+            return ((first.Y - second.Y) * (first.Y - second.Y)) + ((first.X - second.X) * (first.X - second.X));
         }
     }
 
