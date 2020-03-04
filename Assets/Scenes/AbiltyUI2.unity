@@ -44404,6 +44404,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1656027561}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1657366200 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7502461644539187357, guid: 71f25190d1f71214e8bfb5211e776821,
+    type: 3}
+  m_PrefabInstance: {fileID: 633842959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1663801621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57130,6 +57136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57801a38741aef46a873225ced17481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioSource: {fileID: 1657366200}
   units: []
   playerUnits: []
   activePlayer: {fileID: 0}

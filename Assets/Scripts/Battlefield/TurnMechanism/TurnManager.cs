@@ -10,6 +10,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 {
     public class TurnManager : MonoBehaviour
     {
+        public AudioSource AudioSource;
         [Header("Units")]
         [HideInInspector]
         public List<GameObject> units = new List<GameObject>();
@@ -20,7 +21,6 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         [Header("UI")]
         TurnOrderController manager;
         public TextMeshProUGUI text;
-
 
         public Image actionsLeft;
         [HideInInspector]
