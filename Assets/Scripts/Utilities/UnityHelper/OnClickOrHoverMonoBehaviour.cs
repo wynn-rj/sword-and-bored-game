@@ -40,6 +40,10 @@ namespace SwordAndBored.Utilities.UnityHelper
                     hasHover = null;
                 }
             }
+            if (Input.GetMouseButtonUp(mouseButton))
+            {
+                OnClickRelease();
+            }
         }
 
         protected abstract void OnHover(RaycastHit hit);
