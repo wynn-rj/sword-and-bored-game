@@ -34,6 +34,22 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         }
         Tile targetedPlayer = brain.manager.playerUnits[playerToAttack].GetComponent<MovementSystem>().currentTile;
         target = ms.grid[targetedPlayer.x + 1, targetedPlayer.y];
+        if (target.unitOnTile)
+        {
+            target = ms.grid[targetedPlayer.x - 1, targetedPlayer.y];
+        }
+        if (target.unitOnTile)
+        {
+            target = ms.grid[targetedPlayer.x - 1, targetedPlayer.y];
+        }
+        if (target.unitOnTile)
+        {
+            target = ms.grid[targetedPlayer.x, targetedPlayer.y - 1];
+        }
+        if (target.unitOnTile)
+        {
+            target = ms.grid[targetedPlayer.x, targetedPlayer.y + 1];
+        }
 
         if (target && target.unitOnTile == null)
         {
