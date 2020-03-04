@@ -191,6 +191,20 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             }
         }
 
+        public void EnemyAttackNonAOE(UniqueCreature unitHit)
+        {
+            // Accuracy Check
+            //Run damage equation
+            if (AccuracyCheck(unitHit))
+            {
+                unitHit.Damage(DamageEquation(unitHit));
+            }
+            else
+            {
+                unitHit.GetComponent<UniqueCreature>().Miss();
+            }
+        }
+
         public override void ShowTarget(RaycastHit hit)
         {
             if (!aoe)
