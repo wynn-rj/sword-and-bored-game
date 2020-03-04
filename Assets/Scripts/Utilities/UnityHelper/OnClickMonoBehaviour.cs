@@ -36,8 +36,14 @@ namespace SwordAndBored.Utilities.UnityHelper
                     OnClick(hit);
                 }
             }
+            if (Input.GetMouseButtonUp(mouseButton))
+            {
+                OnClickRelease();
+            }
         }
 
-        protected abstract void OnClick(RaycastHit hit);         
+        protected abstract void OnClick(RaycastHit hit);  
+        
+        protected virtual void OnClickRelease() { }
     }
 }
