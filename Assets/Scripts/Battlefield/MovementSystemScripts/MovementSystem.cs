@@ -16,8 +16,12 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
         bool start = true;
         bool onMoveTile = false;
         LineRenderer lr;
+        [HideInInspector]
         private List<Tile> path;
+        [HideInInspector]
         private int tileOnPath = 0;
+        [HideInInspector]
+        public bool finishedMoving = false;
 
         AStar star = new AStar();
         DisplayPath show = new DisplayPath();
@@ -100,6 +104,7 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
             else if (path != null && onMoveTile && tileOnPath == 0)
             {
                 path = null;
+                finishedMoving = true;
             }
         }
         

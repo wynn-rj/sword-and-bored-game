@@ -34,15 +34,24 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         }
         Tile targetedPlayer = brain.manager.playerUnits[playerToAttack].GetComponent<MovementSystem>().currentTile;
         target = ms.grid[targetedPlayer.x + 1, targetedPlayer.y];
+
+        if (target && target.unitOnTile == null)
+        {
+            ms.Move(target);
+        } else
+        {
+            ms.finishedMoving = true;
+            Debug.Log("Does not have target location");
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         brain.outline.OutlineColor = Color.yellow;
-        if (target && target.unitOnTile == null)
+
+        if (ms.finishedMoving)
         {
-            ms.Move(target);
             animator.SetBool("UseAbility", true);
         }
 
