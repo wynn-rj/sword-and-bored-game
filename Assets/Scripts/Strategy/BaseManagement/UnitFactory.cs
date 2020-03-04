@@ -1,6 +1,7 @@
 ﻿//using SwordAndBored.GameData.Creatures;
 using SwordAndBored.GameData.Roles;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.Strategy.BaseManagement.Units;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
