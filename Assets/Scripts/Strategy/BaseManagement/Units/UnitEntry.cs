@@ -5,6 +5,8 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class UnitEntry : ScriptableObject
     {
+        public IUnit unit;
+
         public string unitName;
         public string role;
         public string currentTown;
@@ -15,6 +17,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 
         public void Init(IUnit unit)
         {
+            this.unit = unit;
             this.id = unit.ID;
             this.role = unit.Role.Name;
             this.unitName = unit.Name;
