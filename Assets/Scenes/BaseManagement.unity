@@ -721,6 +721,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2515203228394822045, guid: c196eefcd9846d54e88f4be7e7a7c155,
+        type: 3}
+      propertyPath: Barracks
+      value: 
+      objectReference: {fileID: 212993133}
     - target: {fileID: 2515203228709266045, guid: c196eefcd9846d54e88f4be7e7a7c155,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1391,7 +1396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9200c0cf10291489a0ba6f5a5569c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cell: {fileID: 503817033}
   mainCanvas: {fileID: 1556553954}
   unitEntryPrefab: {fileID: 4816450192289935596, guid: 924da9003ed7c704eaeee23bdc006dd2,
     type: 3}
@@ -1812,18 +1816,6 @@ MonoBehaviour:
   buildingsCanvas: {fileID: 189991632}
   Barracks: {fileID: 8391576530119518112, guid: 40eb6cfd83de74f44bfc614faf836031,
     type: 3}
---- !u!114 &503817033 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8391576530119518116, guid: 40eb6cfd83de74f44bfc614faf836031,
-    type: 3}
-  m_PrefabInstance: {fileID: 1353140981}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 293a03097c215624c96c8c5433d81bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &532792010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6984,6 +6976,8 @@ MonoBehaviour:
   MagicDefense: {fileID: 45765799}
   Role: {fileID: 824635016}
   Name: {fileID: 1658944108}
+  Squad: {fileID: 1702564447}
+  Town: {fileID: 2022113317}
 --- !u!1 &2022113315
 GameObject:
   m_ObjectHideFlags: 0
@@ -6996,7 +6990,7 @@ GameObject:
   - component: {fileID: 2022113318}
   - component: {fileID: 2022113317}
   m_Layer: 5
-  m_Name: City
+  m_Name: Town
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

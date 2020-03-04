@@ -7,27 +7,33 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
     {
         public string UnitName;
         public string Role;
-        public string CurrentCity;
+        public string CurrentTown;
+        public string CurrentSquad;
 
         private IStats stats;
         private int id;
 
-        public void Init(int id, IUnit unit, IStats stats)
+        public void Init(IUnit unit)
         {
-            this.id = id;
+            this.id = unit.ID;
             this.Role = unit.Role.Name;
             this.UnitName = unit.Name;
-            /*
-             * TO DO: parse units and stats into string data
-             */
-            //this.UnitName = unit.Name;
-            //this.Role = unit.Role.Name;
+
+            if (!(unit.Squad is null))
+            {
+                this.CurrentSquad = unit.Squad.Name;
+            }
+
+            if (!(unit.Town is null))
+            {
+                this.CurrentTown = unit.Town.Name;
+            }
         }
 
-        public static UnitEntry CreateInstance(int id, IUnit unit, IStats stats)
+        public static UnitEntry CreateInstance(IUnit unit)
         {
             var data = ScriptableObject.CreateInstance<UnitEntry>();
-            data.Init(id, unit, stats);
+            data.Init(unit);
             return data;
         }
     }

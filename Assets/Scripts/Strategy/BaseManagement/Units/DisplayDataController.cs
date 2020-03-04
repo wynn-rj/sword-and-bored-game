@@ -15,6 +15,8 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         [SerializeField] private TMP_Text MagicDefense;
         [SerializeField] private TMP_Text Role;
         [SerializeField] private TMP_Text Name;
+        [SerializeField] private TMP_Text Squad;
+        [SerializeField] private TMP_Text Town;
 
         public void SetData(IUnit unit)
         {
@@ -29,6 +31,16 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 
             Role.text = unit.Role.Name;
             Name.text = unit.Name;
+
+            if (!(unit.Squad is null))
+            {
+                Squad.text = "Squad: " + unit.Squad.Name;
+            }
+
+            if (!(unit.Town is null))
+            {
+                Town.text = "City: " + unit.Town.Name;
+            }
         }
     }
 }

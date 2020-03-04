@@ -59,10 +59,9 @@ namespace SwordAndBored.GameData.Units
             // New Entry
             if (ID == -1)
             {
-                string queryString = "INSERT INTO Stats (Physical_Attack, Physical_Defense, Magic_Attack, Magic_Defense, Max_HP, HP, Initiative, Movement, Evasion" +
-                    ", Accuracy) VALUES ";
+                string queryString = "INSERT INTO Stats (Physical_Attack, Physical_Defense, Magic_Attack, Magic_Defense, Max_HP, Current_HP, Initiative, Movement) VALUES ";
                 queryString += "( " + Physical_Attack + ", " + Physical_Defense + ", " + Magic_Attack + ", " + Magic_Defense + ", " + Max_HP + ", " + Current_HP + ", " +
-                    Initiative + ", " + Movement + ", " + Evasion + ", " + Accuracy + ");";
+                    Initiative + ", " + Movement + ");";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 

@@ -13,12 +13,13 @@ namespace SwordAndBored.Strategy.BaseManagement
         [SerializeField] private GameObject StrongholdCanvas;
 
         public BuildingsManager BuildingManager;
-        public UnitManager UnitManager;
 
         private void Awake()
         {
             activeCanvas = StrongholdCanvas.GetComponent<Canvas>();
-            previouslyActiveCanvas = StrongholdCanvas.GetComponent<Canvas>();    
+            previouslyActiveCanvas = StrongholdCanvas.GetComponent<Canvas>();
+
+            UnitManager.Instance.GetAllData();
         }
 
         /// <summary>
