@@ -23,14 +23,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         {
             if (UnitName.Length == 0)
             {
-                DatabaseConnection conn = new DatabaseConnection();
-                System.Random r = new System.Random();
-                int rInt = r.Next(1, 30);
-                DatabaseReader databaseReader = conn.ExecuteQuery($"SELECT Name FROM Random_Names WHERE ID = {rInt}");
-                databaseReader.NextRow();
-                string randomName = databaseReader.GetStringFromCol("Name");
-                databaseReader.CloseReader();
-                conn.CloseConnection();
+                string randomName = DatabaseHelper.GetRandomNameFromDatabase();
                 character.Name = randomName;
             }
             else
