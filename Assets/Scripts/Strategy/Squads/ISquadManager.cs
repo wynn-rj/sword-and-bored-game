@@ -5,7 +5,7 @@ namespace SwordAndBored.Strategy.Squads
 {
     interface ISquadManager
     {
-        GenericSquadController SelectedSquad { get; }
+        SquadController SelectedSquad { get; }
 
         /// <summary>
         /// Create a squad of units on a give hex cell
@@ -13,7 +13,7 @@ namespace SwordAndBored.Strategy.Squads
         /// <param name="units">The units in the squad</param>
         /// <param name="location">The cell to place the squad on</param>
         /// <returns>The squad game object</returns>
-        GenericSquadController DeploySquad(IUnit[] units, IHexGridCell location);
+        SquadController DeploySquad(IUnit[] units, IHexGridCell location);
 
         /// <summary>
         /// Retrieves a squad of units and destroys the squad
