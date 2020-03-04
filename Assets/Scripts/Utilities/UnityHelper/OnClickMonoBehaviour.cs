@@ -8,8 +8,7 @@ namespace SwordAndBored.Utilities.UnityHelper
         protected int clickMask;
         protected float maxRayCastDistance;
         protected Camera clickCamera;
-
-        private readonly int mouseButton;
+        protected readonly int mouseButton;
 
         protected OnClickMonoBehaviour(int mouseButton = 0)
         {
