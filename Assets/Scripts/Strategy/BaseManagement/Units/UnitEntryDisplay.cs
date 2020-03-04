@@ -7,29 +7,29 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class UnitEntryDisplay : MonoBehaviour
     {
-        public UnitEntry UnitEntry;
+        public UnitEntry unitEntry;
 
-        public Image UnitImage;
-        public TMP_Text UnitName;
-        public TMP_Text Squad;
-        public TMP_Text Town;
+        public Image unitImage;
+        public TMP_Text unitName;
+        public TMP_Text squad;
+        public TMP_Text town;
 
-        public List<Sprite> RoleSpriteList;
+        public List<Sprite> roleSpriteList;
 
         public void SetDisplay()
         {
-            IDictionary<string, Sprite> RoleImageDictionary = new Dictionary<string, Sprite>()
-        {
-            {"Warrior", RoleSpriteList[0]},
-            {"Scout", RoleSpriteList[1]},
-            {"Mage", RoleSpriteList[2]}
-        };
+            IDictionary<string, Sprite> roleImageDictionary = new Dictionary<string, Sprite>()
+            {
+                {"Warrior", roleSpriteList[0]},
+                {"Scout", roleSpriteList[1]},
+                {"Mage", roleSpriteList[2]}
+            };
 
-            UnitImage.sprite = RoleImageDictionary[UnitEntry.Role];
-            UnitName.text = UnitEntry.UnitName;
+            unitImage.sprite = roleImageDictionary[unitEntry.role];
+            unitName.text = unitEntry.unitName;
 
-            Squad.text = "Squad: " + UnitEntry.CurrentSquad;
-            Town.text = "City: " + UnitEntry.CurrentTown;
+            squad.text = "Squad: " + unitEntry.currentSquad;
+            town.text = "City: " + unitEntry.currentTown;
 
         }
     }

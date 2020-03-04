@@ -5,10 +5,10 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class UnitEntry : ScriptableObject
     {
-        public string UnitName;
-        public string Role;
-        public string CurrentTown;
-        public string CurrentSquad;
+        public string unitName;
+        public string role;
+        public string currentTown;
+        public string currentSquad;
 
         private IStats stats;
         private int id;
@@ -16,17 +16,17 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public void Init(IUnit unit)
         {
             this.id = unit.ID;
-            this.Role = unit.Role.Name;
-            this.UnitName = unit.Name;
+            this.role = unit.Role.Name;
+            this.unitName = unit.Name;
 
             if (!(unit.Squad is null))
             {
-                this.CurrentSquad = unit.Squad.Name;
+                this.currentSquad = unit.Squad.Name;
             }
 
             if (!(unit.Town is null))
             {
-                this.CurrentTown = unit.Town.Name;
+                this.currentTown = unit.Town.Name;
             }
         }
 

@@ -5,16 +5,16 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class RoleEntryDisplay : MonoBehaviour
     {
-        public RoleEntry RoleEntry;
-        public Text EntryRole;
-        public Text EntryDescription;
-        public Image EntryImage;
+        public RoleEntry roleEntry;
+        public Text entryRole;
+        public Text entryDescription;
+        public Image entryImage;
 
         void Start()
         {
-            EntryRole.text = RoleEntry.RoleName;
-            EntryDescription.text = RoleEntry.RoleDescription;
-            EntryImage.sprite = RoleEntry.RoleArtwork;
+            entryRole.text = roleEntry.RoleName;
+            entryDescription.text = roleEntry.RoleDescription;
+            entryImage.sprite = roleEntry.RoleArtwork;
         }
     }
 }
