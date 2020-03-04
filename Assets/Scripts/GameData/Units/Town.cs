@@ -43,7 +43,7 @@ namespace SwordAndBored.GameData.Units
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
                 X = reader.GetIntFromCol("X");
                 Y = reader.GetIntFromCol("Y");
-                PlayerOwned = reader.GetIntFrom("Is_Player_Owned") > 0;
+                PlayerOwned = reader.GetIntFromCol("Is_Player_Owned") > 0;
 
                 reader.CloseReader();
                 reader = conn.QueryRowFromTableWhereColNameEqualsInt("Units", "Towns_FK", inputID);
@@ -71,7 +71,7 @@ namespace SwordAndBored.GameData.Units
                 Name = reader.GetStringFromCol("Name");
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
-                PlayerOwned = reader.GetIntFrom("Is_Player_Owned") > 0;
+                PlayerOwned = reader.GetIntFromCol("Is_Player_Owned") > 0;
                 ID = reader.GetIntFromCol("ID");
 
                 reader.CloseReader();
