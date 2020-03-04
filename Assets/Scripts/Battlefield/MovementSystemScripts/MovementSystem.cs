@@ -156,7 +156,6 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
             } else
             {
                 Debug.Log("Not within movement");
-                Debug.Log(brain.MovementLeft());
             }
 
         }
