@@ -19,6 +19,11 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
     {
         brain = animator.GetComponent<BrainManager>();
         ms = animator.GetComponent<MovementSystem>();
+
+        // Reset Turn Behaviors
+        brain.GetComponent<UniqueCreature>().movementLeft = brain.GetComponent<UniqueCreature>().stats.movement;
+        brain.GetComponent<UniqueCreature>().action = true;
+
         brain.outline.enabled = true;
         float min = Vector3.Distance(animator.transform.position, brain.manager.playerUnits[0].transform.position);
         int playerToAttack = 0;
