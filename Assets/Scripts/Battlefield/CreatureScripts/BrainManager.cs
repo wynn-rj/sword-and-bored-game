@@ -91,6 +91,11 @@ namespace SwordAndBored.Battlefield
             return creature.action;
         }
 
+        public int MovementLeft()
+        {
+            return creature.movementLeft;
+        }
+
         public CinemachineVirtualCamera GetCam()
         {
             return creature.currentCamera;
