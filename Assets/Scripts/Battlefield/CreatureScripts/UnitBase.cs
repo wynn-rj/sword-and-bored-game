@@ -22,18 +22,21 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public bool action = true;
 
         public int maxMovement;
-        int movement;
+        public int movementLeft;
 
         void Start()
         {
             health = maxHealth;
-            movement = maxMovement;
+            movementLeft = maxMovement;
+            movementLeft = gameObject.GetComponent<UniqueCreature>().stats.movement;
         }
 
         public void StartTurn()
         {
             action = true;
-            movement = maxMovement;
+            movementLeft = maxMovement;
+            movementLeft = gameObject.GetComponent<UniqueCreature>().stats.movement;
+            Debug.Log("Start turn called");
         }
         
 

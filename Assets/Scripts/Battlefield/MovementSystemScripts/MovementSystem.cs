@@ -137,7 +137,7 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
 
         public void Move(Tile tile, bool displayPath)
         {
-            if(Vector3.Distance(currentTile.transform.position, tile.transform.position) <= brain.GetComponent<UniqueCreature>().stats.movement + .3f)
+            if(Vector3.Distance(currentTile.transform.position, tile.transform.position) <= brain.MovementLeft() + .3f)
             {
                 Debug.Log("Within movement");
                 List<Tile> path = star.FindPath(tile, grid, this);
@@ -146,6 +146,7 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
                     lr.enabled = true;
                     show.Display(lr, path);
                 }
+                brain.GetComponent<UniqueCreature>().movementLeft -= (path.Count - 1);
                 FollowPath(path);
             } else
             {
