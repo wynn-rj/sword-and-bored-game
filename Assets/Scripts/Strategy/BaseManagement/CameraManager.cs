@@ -4,8 +4,8 @@ namespace SwordAndBored.Strategy.BaseManagement
 {
     public class CameraManager : MonoBehaviour
     {
-        [SerializeField] private Transform StagingArea;
-        [SerializeField] private Transform DefaultPosition;
+        [SerializeField] private Transform stagingArea;
+        [SerializeField] private Transform defaultPosition;
 
         private void Start()
         {
@@ -14,12 +14,12 @@ namespace SwordAndBored.Strategy.BaseManagement
 
         public void FocusOnModel()
         {
-            transform.position = StagingArea.transform.position;
+            transform.position = stagingArea.transform.position;
         }
 
         public void UnFocusOnModel()
         {
-            transform.position = DefaultPosition.transform.position;
+            transform.position = defaultPosition.transform.position;
         }
     }
 }

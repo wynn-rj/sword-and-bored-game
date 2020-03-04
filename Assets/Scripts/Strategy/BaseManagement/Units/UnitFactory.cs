@@ -10,15 +10,15 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public string UnitRole { get; set; }
         public string UnitName { get; set; }
 
-        public GameObject NameUnitCanvas;
-        public Barracks Barracks;
+        public GameObject nameUnitCanvas;
+        public Barracks barracks;
 
         private IUnit character;
 
         public void StageUnitForTraining()
         {
             character = new Unit(UnitRole);
-            NameUnitCanvas.SetActive(true);
+            nameUnitCanvas.SetActive(true);
         }
 
         public void ConfirmUnitTraining()
@@ -34,14 +34,14 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             }
             
             UnitManager.Instance.RegisterUnit(character);
-            NameUnitCanvas.gameObject.SetActive(false);
+            nameUnitCanvas.gameObject.SetActive(false);
             character.Save();
-            Barracks.CreateUnitEntry(character);
+            barracks.CreateUnitEntry(character);
         }
 
         public void CancelUnitTraining()
         {
-            NameUnitCanvas.gameObject.SetActive(false);
+            nameUnitCanvas.gameObject.SetActive(false);
         }
     }
 }
