@@ -37,8 +37,7 @@ namespace SwordAndBored.Strategy.Squads
 
         protected override int ResetMovement()
         {
-            //TODO: Get squad average speed
-            return 3;
+            return SquadData.AverageMovement();
         }
 
         protected override bool UpdateLocation(IHexGridCell location)
