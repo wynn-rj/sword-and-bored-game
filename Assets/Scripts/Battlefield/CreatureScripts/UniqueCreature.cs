@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using SwordAndBored.UI.Battlefield;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
-    public class UniqueCreature : UnitBase
+    public class UniqueCreature : MonoBehaviour
     {
         [Header("Material Info")]
         public Material[] mat;
@@ -30,6 +30,18 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         MovementSystem ms;
         Text damageMessage;
 
+        [Header("Creature Info")]
+        public string creatureName;
+        public int maxHealth;
+        public int health;
+        public Animator anim;
+
+        [HideInInspector]
+        public bool action = true;
+
+        public int maxMovement;
+        public int movementLeft;
+
 
         void Start()
         {
@@ -41,6 +53,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             outline = GetComponent<Outline>();
             ms = GetComponent<MovementSystem>();
             damageMessage = GetComponent<HealthBar>().popup;
+
+            health = maxHealth;
+            movementLeft = stats.movement;
         }
 
         /// <summary>
@@ -84,6 +99,11 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             stats.health = health;
         
             animator.SetFloat("Speed", (ms.agent.velocity.magnitude / 3.5f));
+
+            if (health <= 0)
+            {
+                Destroy(transform.gameObject);
+            }
         }
 
         public void Damage(int damage)

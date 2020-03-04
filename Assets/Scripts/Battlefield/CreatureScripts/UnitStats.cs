@@ -15,8 +15,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public int magicDefense;
         public int speedIntit;
         public int movement;
-        public int accuracy;
-        public int evasion;
         public string role;
     }
 
