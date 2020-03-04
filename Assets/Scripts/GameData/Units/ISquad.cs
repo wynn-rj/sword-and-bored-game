@@ -10,5 +10,6 @@ namespace SwordAndBored.GameData.Units
 
         int AverageMovement();
         int Save();
+        int Delete();
     }
 }
