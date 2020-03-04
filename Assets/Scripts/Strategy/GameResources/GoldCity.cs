@@ -10,7 +10,7 @@ namespace SwordAndBored.Strategy.GameResources
         {
             if(UnderPlayerControl)
             {
-                ResourceManager.GoldAmount += 1;
+                ResourceManager.GoldAmount += 5;
             }
         }
     }
