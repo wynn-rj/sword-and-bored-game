@@ -23,44 +23,10 @@ namespace SwordAndBored.Strategy.Squads
 
         public SquadController SelectedSquad { get; private set; }
 
-#if DEBUG
-        void Awake()
+        public SquadController DeploySquad(string name, List<IUnit> units, IHexGridCell location)
         {
-            AssertHelper.IsSetInEditor(squadPrefab, this);
-            AssertHelper.IsSetInEditor(turnManager, this);
-            AssertHelper.IsSetInEditor(tileManager, this);
-            AssertHelper.IsSetInEditor(resourceManager, this);
-        }
-#endif
-
-        void Start()
-        {
-            tileManager.GetComponent<TileSelect>().Subscribe(this);
-            ProceduralTerrain.Map.Grid.HexGrid map = tileManager.HexTiling;
-            DeploySquad(new IUnit[1], map[0, 0]);
-            DeploySquad(new IUnit[1], map[1, 0]);
-            DeploySquad(new IUnit[1], map[2, 0]);
-        }
-
-        void Update()
-        {
-            if (Input.GetKeyDown(loseSquadFocusKey))
-            {
-                SelectedSquad = null;
-            }
-        }
-
-        public SquadController DeploySquad(ISquad squad)
-        {
-            SquadController squad = Instantiate(squadPrefab, transform);
-            squad.transform.position = location.Position.CenterAsVector3(squadPlacementHeight);
-            squad.Units = units;
-            squad.StartLocation = location;
-            squad.UpkeepFunction = () => resourceManager.GoldAmount -= squadUpkeepCost;
-            squad.IsUserControlledFunction = () => !turnManager.IsTimeStepAdvancing;
-            squads.Add(squad);
-            turnManager.Subscribe(squad);
-            return squad;
+            ISquad squad = new Squad(name, units, location.Position.GridPoint.X, location.Position.GridPoint.Y);
+            return DeploySquad(squad);
         }
 
         public IUnit[] CollectSquad(IHexGridCell location)
@@ -68,7 +34,8 @@ namespace SwordAndBored.Strategy.Squads
             SquadController squad = GetSquadOnTile(location);
             if (squad)
             {
-                IUnit[] units = squad.Units;
+                IUnit[] units = squad.SquadData.Units.ToArray();
+                squad.SquadData.Delete();
                 squads.Remove(squad);
                 turnManager.Unsubscribe(squad);
                 Destroy(squad);
@@ -85,7 +52,7 @@ namespace SwordAndBored.Strategy.Squads
             {
                 SelectSquad(squad);
                 return;
-            }            
+            }
 
             if (SelectedSquad)
             {
@@ -98,6 +65,56 @@ namespace SwordAndBored.Strategy.Squads
         {
             SelectedSquad = squadToSelect;
         }
+
+#if DEBUG
+        void Awake()
+        {
+            AssertHelper.IsSetInEditor(squadPrefab, this);
+            AssertHelper.IsSetInEditor(turnManager, this);
+            AssertHelper.IsSetInEditor(tileManager, this);
+            AssertHelper.IsSetInEditor(resourceManager, this);
+        }
+#endif
+
+        private void Start()
+        {
+            tileManager.GetComponent<TileSelect>().Subscribe(this);
+            foreach (ISquad squad in Squad.GetAllSquads())
+            {
+                DeploySquad(squad);
+            }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(loseSquadFocusKey))
+            {
+                SelectedSquad = null;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            foreach (SquadController controller in squads)
+            {
+                controller.SquadData.Save();
+            }
+        }
+
+        private SquadController DeploySquad(ISquad squad)
+        {
+            SquadController controller = Instantiate(squadPrefab, transform);
+            IHexGridCell location = tileManager.HexTiling[squad.X, squad.Y];
+            controller.transform.position = location.Position.CenterAsVector3(squadPlacementHeight);
+            controller.SquadData = squad;
+            controller.StartLocation = location;
+            controller.UpkeepFunction = () => resourceManager.GoldAmount -= squadUpkeepCost;
+            controller.IsUserControlledFunction = () => !turnManager.IsTimeStepAdvancing;
+            controller.SquadData.Save();
+            squads.Add(controller);
+            turnManager.Subscribe(controller);
+            return controller;
+        }        
 
         private SquadController GetSquadOnTile(IHexGridCell tile)
         {
