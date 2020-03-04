@@ -9,6 +9,7 @@ using SwordAndBored.Battlefield.TurnMechanism;
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.Battlefield.MovementSystemScripts;
+using SwordAndBored.GameData.Abilities;
 
 
 namespace SwordAndBored.Battlefield
@@ -58,6 +59,12 @@ namespace SwordAndBored.Battlefield
                 
                 //Movement
                 ms.grid = grid;
+
+                //Abilities
+                foreach (IAbility dataAbility in enemyData.Abilities)
+                {
+                    abilities.abilities.Add(new Ability(dataAbility));
+                }
 
 
                 //stats
