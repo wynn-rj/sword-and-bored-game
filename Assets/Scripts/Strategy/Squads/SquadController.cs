@@ -11,6 +11,7 @@ namespace SwordAndBored.Strategy.Squads
     {
         private bool wipePath;
         private bool performUpkeep;
+        private int squadAverageMovement;
 
         public ISquad SquadData { get; set; }
         public Action UpkeepFunction { private get; set; }
@@ -37,7 +38,7 @@ namespace SwordAndBored.Strategy.Squads
 
         protected override int ResetMovement()
         {
-            return SquadData.AverageMovement();
+            return squadAverageMovement;
         }
 
         protected override bool UpdateLocation(IHexGridCell location)
@@ -63,14 +64,13 @@ namespace SwordAndBored.Strategy.Squads
             return true;
         }
 
-#if DEBUG 
         protected override void Start()
         {
-            base.Start();
             AssertHelper.Assert(SquadData != null, "Squad controller has no squad", this);
             AssertHelper.Assert(UpkeepFunction != null, "Squad has no resource manager", this);
+            squadAverageMovement = SquadData.AverageMovement();
+            base.Start();
         }
-#endif
 
         protected override void Update()
         {
