@@ -33,7 +33,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         void Start()
         {
             winCanvas.enabled = false;
-            manager = new TurnOrderController(units.ToArray(), new RandomShuffler<GameObject>());
+            manager = new TurnOrderController(units.ToArray());//, new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
             activePlayer.isMyTurn = true;
