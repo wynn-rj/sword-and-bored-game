@@ -24,7 +24,7 @@ namespace SwordAndBored.Strategy.Movement
                 H = h;
             }
 
-            public bool isSameCell(Node other)
+            public bool IsSameCell(Node other)
             {
                 return Cell == other.Cell;
             }
