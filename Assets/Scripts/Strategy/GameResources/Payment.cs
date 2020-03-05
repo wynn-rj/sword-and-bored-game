@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace SwordAndBored.Strategy.GameResources
 {
@@ -9,5 +6,11 @@ namespace SwordAndBored.Strategy.GameResources
     {
         public String Resource { get; set; }
         public int Cost { get; set; }
+
+        public Payment(string resourceType, int amount)
+        {
+            this.Resource = resourceType;
+            this.Cost = amount;
+        }
     }
 }
