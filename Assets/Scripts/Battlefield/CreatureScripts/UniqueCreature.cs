@@ -130,6 +130,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public void Death()
         {
+            brain.isMyTurn = false;
             if (isEnemy)
             {
                 brain.manager.RemoveUnitFromEnemyList(gameObject);
