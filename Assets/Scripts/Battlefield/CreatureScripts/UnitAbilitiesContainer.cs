@@ -81,6 +81,11 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                 abilities[i].StopShowAoe();
             }
         }
+
+        public void ShowAbilityAnimation()
+        {
+            unit.animator.SetTrigger("Attack");
+        }
     }
 
 }
