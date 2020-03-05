@@ -2,28 +2,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SetActiveCity : MonoBehaviour
+namespace SwordAndBored.StrategyView.BaseManagement.Cities
 {
-    private CityEntry entry;
-    private Action<GameObject> clickAction;
-
-    private void Awake()
+    public class SetActiveCity : MonoBehaviour
     {
-        entry = GetComponent<CityEntryDisplay>().cityEntry;
-    }
+        private CityEntry entry;
+        private Action<GameObject> clickAction;
 
-    void Start()
-    {
-        GetComponent<Button>().onClick.AddListener(HandleButtonClick);
-    }
+        private void Awake()
+        {
+            entry = GetComponent<CityEntryDisplay>().cityEntry;
+        }
 
-    public void Initialize(Action<GameObject> clickAction)
-    {
-        this.clickAction = clickAction;
-    }
+        void Start()
+        {
+            GetComponent<Button>().onClick.AddListener(HandleButtonClick);
+        }
 
-    private void HandleButtonClick()
-    {
-        clickAction(gameObject);
+        public void Initialize(Action<GameObject> clickAction)
+        {
+            this.clickAction = clickAction;
+        }
+
+        private void HandleButtonClick()
+        {
+            clickAction(gameObject);
+        }
     }
 }
