@@ -83,7 +83,7 @@ namespace SwordAndBored.GameData.Database
             return turnNum;
         }
 
-        public static void SetTrunNumber(int turnNum)
+        public static void SetTurnNumber(int turnNum)
         {
             DatabaseConnection conn = new DatabaseConnection();
             conn.ExecuteNonQuery($"UPDATE Resources SET Turn_Number = {turnNum};");
