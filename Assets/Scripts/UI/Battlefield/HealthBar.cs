@@ -12,18 +12,24 @@ namespace SwordAndBored.UI.Battlefield
 
         UniqueCreature unit;
         public Slider healthBar;
+        public Image fillImage;
         float healthRatio;
         public Text popup;
-    
+
         void Start()
         {
             unit = GetComponentInParent<UniqueCreature>();
             popup.color = Color.clear;
+
+            if (!unit.isEnemy)
+            {
+                fillImage.color = Color.blue;
+            }
         }
 
         void Update()
         {
-            healthRatio = (float) unit.health / (float) unit.maxHealth;
+            healthRatio = (float)unit.health / (float)unit.maxHealth;
             healthBar.value = healthRatio;
 
             if (popup.color.a > 0)
