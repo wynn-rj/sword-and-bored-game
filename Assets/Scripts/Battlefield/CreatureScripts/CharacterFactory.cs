@@ -84,6 +84,8 @@ namespace SwordAndBored.Battlefield
 
                 numUnits += 2;
             }
+            conn.CloseConnection();
+            reader.CloseReader();
 
 
         }
