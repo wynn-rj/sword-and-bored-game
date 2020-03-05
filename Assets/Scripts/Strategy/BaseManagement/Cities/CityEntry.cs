@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class CityEntry : ScriptableObject
 {
-    public ITown town;
+    public ITown city;
 
-    public string townName;
+    public string cityName;
 
-    public void Init(ITown town)
+    public void Init(ITown city)
     {
-        this.town = town;
-        this.townName = town.Name;
+        this.city = city;
+        this.cityName = city.Name;
     }
 
-    public static CityEntry CreateInstance(ITown town)
+    public static CityEntry CreateInstance(ITown city)
     {
         var data = ScriptableObject.CreateInstance<CityEntry>();
-        data.Init(town);
+        data.Init(city);
         return data;
     }
 }
