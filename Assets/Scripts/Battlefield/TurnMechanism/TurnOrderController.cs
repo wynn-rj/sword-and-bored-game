@@ -6,7 +6,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 {
     public class TurnOrderController
     {
-        private readonly GameObject[] entities;
+        private readonly List<GameObject> entities;
         private int pointer = 0;
 
         public TurnOrderController(GameObject[] entities)
@@ -19,7 +19,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                 return b.GetComponent<UniqueCreature>().stats.speedIntit.CompareTo(a.GetComponent<UniqueCreature>().stats.speedIntit);
             }
             );
-            this.entities = list.ToArray();
+            this.entities = list;
         }
 
         public TurnOrderController(GameObject[] entities, IShuffler<GameObject> shuffler)
@@ -39,9 +39,14 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         {
             GameObject nextEntity = entities[pointer];
             pointer += 1;
-            pointer %= entities.Length;
+            pointer %= entities.Count;
 
             return nextEntity;
+        }
+
+        public void RemoveEntity(GameObject unit)
+        {
+            entities.Remove(unit);
         }
 
     }

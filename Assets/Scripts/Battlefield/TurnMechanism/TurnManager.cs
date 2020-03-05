@@ -104,7 +104,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void RemoveUnitFromList(GameObject unit)
         {
-            Debug.Log(units.Remove(unit));
+            units.Remove(unit);
+            manager.RemoveEntity(unit);
         }
 
         public void RemoveUnitFromEnemyList(GameObject unit)
@@ -114,7 +115,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void RemoveUnitFromPlayerList(GameObject unit)
         {
-            Debug.Log(playerUnits.Remove(unit));
+            playerUnits.Remove(unit);
         }
     }
 }
