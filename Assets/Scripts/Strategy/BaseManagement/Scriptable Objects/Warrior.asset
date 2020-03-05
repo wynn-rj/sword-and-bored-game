@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb3f9034ebe91d439b1e4bc48e9957a, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  RoleName: Warrior
-  RoleDescription: A robust unit...
-  RoleArtwork: {fileID: 21300000, guid: 98230a8f88be3e64c99ff20fe1c8dd82, type: 3}
+  roleName: Warrior
+  roleDescription: A tank unit...
+  roleCost: 10
+  roleArtwork: {fileID: 21300000, guid: 98230a8f88be3e64c99ff20fe1c8dd82, type: 3}
