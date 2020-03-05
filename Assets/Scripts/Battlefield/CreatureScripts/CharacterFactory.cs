@@ -3,12 +3,12 @@ using SwordAndBored.Battlefield.CreaturScripts;
 using Cinemachine;
 using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
-using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.Battlefield.MovementSystemScripts;
 using SwordAndBored.GameData.Abilities;
 using SwordAndBored.Strategy.Transitions;
 using System.Collections.Generic;
+using SwordAndBored.Utilities.Debug;
 
 namespace SwordAndBored.Battlefield
 {
@@ -24,8 +24,9 @@ namespace SwordAndBored.Battlefield
         public Transform unitHolder;
     
         void Awake()
-        {             
-            IEnumerable<IUnit> unitIDs = (SceneSharing.squadID != -1) ? new Squad(SceneSharing.squadID).Units : GetAllUnits();
+        {
+            AssertHelper.Assert(SceneSharing.squadID != -1, "No squad ID set, defaulting to all units", this);
+            List<IUnit> unitIDs = (SceneSharing.squadID != -1) ? new Squad(SceneSharing.squadID).Units : Unit.GetAllUnits();
             grid = tileManager.grid;
             int numUnits = 0;
             foreach (IUnit dataUnit in unitIDs)
@@ -83,18 +84,6 @@ namespace SwordAndBored.Battlefield
 
                 numUnits += 2;
             }
-        }
-
-        private IEnumerable<IUnit> GetAllUnits() 
-        {
-            Debug.LogWarning("No squad ID set, defaulting to all units");
-            DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryAllFromTable("Units");
-            while (reader.NextRow())
-            {
-                yield return new Unit(reader.GetIntFromCol("ID"));
-            }
-            yield return null;
         }
     }
 }
