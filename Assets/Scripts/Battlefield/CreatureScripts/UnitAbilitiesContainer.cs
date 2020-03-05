@@ -43,7 +43,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                             Debug.Log("Something broke in unit abilities container");
                             break;
                     }
-                } else
+                }
+                else
                 {
                     ability.Initialize(this, transform.gameObject);
                 }
@@ -69,13 +70,15 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                     audioSource.PlayOneShot(fireballSound, 5);
                     audioSource.outputAudioMixerGroup = music;
                     audioSource.Play();
-                } else
+                }
+                else
                 {
                     audioSource.outputAudioMixerGroup = soundEffects;
                     audioSource.PlayOneShot(fireballSound, 5);
                     audioSource.outputAudioMixerGroup = music;
                 }
-            } else if (!abilities[i].isPhysical)
+            }
+            else if (!abilities[i].isPhysical)
             {
                 if (audioSource.isPlaying)
                 {
