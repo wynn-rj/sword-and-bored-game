@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace SwordAndBored.Battlefield.CreaturScripts
 {
@@ -11,6 +12,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         UniqueCreature unit;
         private AudioSource audioSource;
         public AudioClip audioClip;
+        public AudioMixerGroup music, soundEffects;
 
         void Start()
         {
@@ -63,11 +65,15 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                 if (audioSource.isPlaying)
                 {
                     audioSource.Pause();
+                    audioSource.outputAudioMixerGroup = soundEffects;
                     audioSource.PlayOneShot(audioClip, 5);
+                    audioSource.outputAudioMixerGroup = music;
                     audioSource.Play();
                 } else
                 {
+                    audioSource.outputAudioMixerGroup = soundEffects;
                     audioSource.PlayOneShot(audioClip, 5);
+                    audioSource.outputAudioMixerGroup = music;
                 }
             }
         }
