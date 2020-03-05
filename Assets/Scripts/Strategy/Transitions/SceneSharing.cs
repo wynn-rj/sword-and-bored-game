@@ -8,5 +8,6 @@ namespace SwordAndBored.Strategy.Transitions
         public static bool useStoredTimeStep = false;
         public static Vector3 cameraPosition;
         public static int gold;
+        public static int squadID = -1;
     }
 }
