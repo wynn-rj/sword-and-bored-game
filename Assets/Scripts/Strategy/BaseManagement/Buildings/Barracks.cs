@@ -22,7 +22,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
         private IList<IUnit> activeUnitsList;
         private IList<GameObject> unitEntriesList;
 
-        private GameObject activeEntry;
+        [HideInInspector] public GameObject activeEntry;
 
         public GameObject TrainUnitCanvas => trainUnitCanvas;
 
@@ -61,19 +61,18 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 
         public void EnterDispatchUnitCanvas()
         {
-            MainCanvas.SetActive(false);
             dispatchUnitCanvas.SetActive(true);
         }
 
         public void ExitDispatchUnitCanvas()
         {
-            MainCanvas.SetActive(true);
             dispatchUnitCanvas.SetActive(false);
         }
 
         public void SetActiveEntry(GameObject unitEntry)
         {
             activeEntry = unitEntry;
+            dispatchUnitButton.interactable = true;
         }
 
         /// <summary>
@@ -96,14 +95,6 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
             unitEntryObject.GetComponent<SetActiveEntry>().Initialize(SetActiveEntry);
 
             return unitEntryObject;
-        }
-
-        public void DispatchUnit(ITown town)
-        {
-            UnitEntry entryData = activeEntry.GetComponent<UnitEntryDisplay>().unitEntry;
-            IUnit dispatchableUnit = entryData.unit;
-            dispatchableUnit.Town = town;
-            dispatchableUnit.Save();
         }
 
         /// <summary>
