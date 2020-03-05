@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using SwordAndBored.SceneManagement;
+using SwordAndBored.Strategy.Squads;
 
 namespace SwordAndBored.Strategy.Transitions
 {
@@ -9,10 +10,12 @@ namespace SwordAndBored.Strategy.Transitions
         private bool alreadyLoading = false;
         void OnTriggerEnter(Collider other)
         {
-            if (other.name.Contains("Squad"))
+            SquadController squadController = other.gameObject.GetComponent<SquadController>();
+            if (squadController)
             {
                 if (!alreadyLoading)
                 {
+                    SceneSharing.squadID = squadController.SquadData.ID;
                     SceneManager.LoadSceneAsync(GameScenes.BATTLEFIELD);
                     alreadyLoading = true;
                 }
