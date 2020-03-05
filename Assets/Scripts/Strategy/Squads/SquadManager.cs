@@ -44,6 +44,7 @@ namespace SwordAndBored.Strategy.Squads
         public SquadController DeploySquad(string name, List<IUnit> units, IHexGridCell location)
         {
             ISquad squad = new Squad(name, units, location.Position.GridPoint.X, location.Position.GridPoint.Y);
+            squad.Save();
             return DeploySquad(squad);
         }
 
@@ -131,7 +132,6 @@ namespace SwordAndBored.Strategy.Squads
             controller.StartLocation = location;
             controller.UpkeepFunction = () => resourceManager.GoldAmount -= squadUpkeepCost;
             controller.IsUserControlledFunction = () => !turnManager.IsTimeStepAdvancing;
-            controller.SquadData.Save();
             squads.Add(controller);
             turnManager.Subscribe(controller);
             return controller;
