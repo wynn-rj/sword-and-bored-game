@@ -75,16 +75,6 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         {
             animator.SetBool("UseAbility", true);
         }
-
-        /*if (target && Vector3.Distance(animator.transform.position, target.GetCenterOfTile()) <= 1f)
-        {
-            brain.isMyTurn = false;
-        }
-
-        if (Input.GetButtonDown("Next"))
-        {
-            brain.isMyTurn = false;
-        }*/
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

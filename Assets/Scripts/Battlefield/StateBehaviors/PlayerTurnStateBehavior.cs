@@ -73,9 +73,13 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
         {
             if (abilitySelector.currentlySelectedNum > 0)
             {
-                animator.SetInteger("Ability", abilitySelector.currentlySelectedNum - 1);
-                animator.SetBool("UseAbility", true);
-                abilitySelector.ResetAbilitySelection(-1);
+                if (ms.finishedMoving)
+                {
+                    animator.SetInteger("Ability", abilitySelector.currentlySelectedNum - 1);
+                    animator.SetBool("UseAbility", true);
+                    abilitySelector.ResetAbilitySelection(-1);
+                    ms.finishedMoving = false;
+                }
             }
         }
 
