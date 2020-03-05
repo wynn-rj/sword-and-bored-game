@@ -1,13 +1,16 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class CityEntryDisplay : MonoBehaviour
+namespace SwordAndBored.StrategyView.BaseManagement.Cities
 {
-    public CityEntry cityEntry;
-    public TMP_Text cityName;
-
-    public void SetDisplay()
+    public class CityEntryDisplay : MonoBehaviour
     {
-        cityName.text = cityEntry.cityName;
+        public CityEntry cityEntry;
+        public TMP_Text cityName;
+
+        public void SetDisplay()
+        {
+            cityName.text = cityEntry.cityName;
+        }
     }
 }
