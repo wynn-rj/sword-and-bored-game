@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SwordAndBored.GameData.Units;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,12 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             squad.text = "Squad: " + unitEntry.currentSquad;
             town.text = "City: " + unitEntry.currentTown;
 
+        }
+
+        public void UpdateDisplay(IUnit unit)
+        {
+            unitEntry.Init(unit);
+            SetDisplay();
         }
     }
 }
