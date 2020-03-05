@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 38d9e7ff7aa522943a46a843d284931b,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -52061,6 +52061,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 294114411, guid: 75fe0409e6670e74cb07a1727332c84e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 294114412, guid: 75fe0409e6670e74cb07a1727332c84e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -52072,6 +52076,11 @@ PrefabInstance:
     - target: {fileID: 294114414, guid: 75fe0409e6670e74cb07a1727332c84e, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378604842493813647, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3300074828886275136, guid: 75fe0409e6670e74cb07a1727332c84e,
         type: 3}
@@ -52192,6 +52201,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311286, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_text
+      value: Reclamation
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311286, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311286, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311286, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311286, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311286, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311286, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300074830186311287, guid: 75fe0409e6670e74cb07a1727332c84e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3300074830861564572, guid: 75fe0409e6670e74cb07a1727332c84e,
         type: 3}
