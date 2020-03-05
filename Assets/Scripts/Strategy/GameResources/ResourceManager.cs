@@ -31,7 +31,7 @@ namespace SwordAndBored.Strategy.GameResources
         {
             if (CanAffordPurchase(payment))
             {
-                gold -= payment.Cost;
+                GoldAmount -= payment.Cost;
             }
         }
 
