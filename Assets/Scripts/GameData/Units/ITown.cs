@@ -8,6 +8,8 @@ namespace SwordAndBored.GameData.Units
         int Y { get; set; }
         List<IUnit> Units { get; set; }
 
+        bool PlayerOwned { get; set; }
+
         int Save();
     }
 }
