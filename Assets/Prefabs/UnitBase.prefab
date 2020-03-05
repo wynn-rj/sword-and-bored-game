@@ -1862,6 +1862,9 @@ MonoBehaviour:
   health: 0
   anim: {fileID: 3159141200607362923}
   deathSound: {fileID: 8300000, guid: b2c30c67634ec5c478dfc1115fb6342e, type: 3}
+  music: {fileID: 6910875828234299034, guid: d1a7508d48cbef446b7bdfe8ef108d5d, type: 2}
+  soundEffects: {fileID: -2014926482245922405, guid: d1a7508d48cbef446b7bdfe8ef108d5d,
+    type: 2}
   action: 1
   maxMovement: 6
   movementLeft: 0
@@ -1878,6 +1881,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: e6ea40157c24b8a4f8c545f6dfda37c7, type: 3}
+  music: {fileID: 6910875828234299034, guid: d1a7508d48cbef446b7bdfe8ef108d5d, type: 2}
+  soundEffects: {fileID: -2014926482245922405, guid: d1a7508d48cbef446b7bdfe8ef108d5d,
+    type: 2}
 --- !u!114 &3159141201095183993
 MonoBehaviour:
   m_ObjectHideFlags: 0
