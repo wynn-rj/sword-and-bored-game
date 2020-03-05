@@ -1,13 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 public class CityEntryDisplay : MonoBehaviour
 {
     public CityEntry cityEntry;
-    public Text cityName;
+    public TMP_Text cityName;
 
-    void Start()
+    public void SetDisplay()
     {
-        cityName.text = cityEntry.name;
+        cityName.text = cityEntry.cityName;
     }
 }
