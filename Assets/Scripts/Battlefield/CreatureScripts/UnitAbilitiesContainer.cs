@@ -11,7 +11,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public List<Ability> abilities = new List<Ability>();
         UniqueCreature unit;
         private AudioSource audioSource;
-        public AudioClip audioClip;
+        public AudioClip fireballSound, magicSound;
         public AudioMixerGroup music, soundEffects;
 
         void Start()
@@ -66,13 +66,29 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                 {
                     audioSource.Pause();
                     audioSource.outputAudioMixerGroup = soundEffects;
-                    audioSource.PlayOneShot(audioClip, 5);
+                    audioSource.PlayOneShot(fireballSound, 5);
                     audioSource.outputAudioMixerGroup = music;
                     audioSource.Play();
                 } else
                 {
                     audioSource.outputAudioMixerGroup = soundEffects;
-                    audioSource.PlayOneShot(audioClip, 5);
+                    audioSource.PlayOneShot(fireballSound, 5);
+                    audioSource.outputAudioMixerGroup = music;
+                }
+            } else if (!abilities[i].isPhysical)
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Pause();
+                    audioSource.outputAudioMixerGroup = soundEffects;
+                    audioSource.PlayOneShot(magicSound, 5);
+                    audioSource.outputAudioMixerGroup = music;
+                    audioSource.Play();
+                }
+                else
+                {
+                    audioSource.outputAudioMixerGroup = soundEffects;
+                    audioSource.PlayOneShot(magicSound, 5);
                     audioSource.outputAudioMixerGroup = music;
                 }
             }
