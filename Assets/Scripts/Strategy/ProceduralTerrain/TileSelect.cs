@@ -7,6 +7,7 @@ using SwordAndBored.Utilities;
 using System.Collections.Generic;
 using SwordAndBored.Strategy.TimeSystem.TimeManager;
 using SwordAndBored.UI.Utility;
+using SwordAndBored.Strategy.BaseManagement.Towns;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain
 {
@@ -14,6 +15,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
     {
         private readonly IList<ITileSelectSubscriber> subscribers = new List<ITileSelectSubscriber>();
         [SerializeField] private AbstractTimeManager timeManager;
+        [SerializeField] private TownCanvasController townCanvasController;
         private GameObject lastClicked;
 
         void Awake()
@@ -37,6 +39,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 onHoverOutline.OutlineColor = Color.cyan;
             }
 
+            townCanvasController.DisplayedTown = null;
             ISelectionComponent selectionComponent = clickedTile.GetComponent<ISelectionComponent>();
             if (!(selectionComponent is null))
             {
