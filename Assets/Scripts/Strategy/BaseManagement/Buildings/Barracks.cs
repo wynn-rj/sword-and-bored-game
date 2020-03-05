@@ -30,8 +30,6 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
         {
             UnitManager.Instance.GetAllData();
             unitEntriesList = new List<GameObject>();
-
-            //trainUnitButton.onClick.AddListener();
         }
 
         private void Start()
