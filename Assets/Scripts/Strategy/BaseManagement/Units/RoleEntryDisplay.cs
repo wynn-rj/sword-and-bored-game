@@ -8,13 +8,15 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public RoleEntry roleEntry;
         public Text entryRole;
         public Text entryDescription;
+        public Text entryCost;
         public Image entryImage;
 
         void Start()
         {
-            entryRole.text = roleEntry.RoleName;
-            entryDescription.text = roleEntry.RoleDescription;
-            entryImage.sprite = roleEntry.RoleArtwork;
+            entryRole.text = roleEntry.roleName;
+            entryDescription.text = roleEntry.roleDescription;
+            entryImage.sprite = roleEntry.roleArtwork;
+            entryCost.text = roleEntry.roleCost.ToString();
         }
     }
 }

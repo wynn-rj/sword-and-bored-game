@@ -1,6 +1,8 @@
 using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.Strategy.GameResources;
 using SwordAndBored.StrategyView.BaseManagement.Buildings;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwordAndBored.Strategy.BaseManagement.Units
@@ -13,7 +15,16 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public GameObject nameUnitCanvas;
         public Barracks barracks;
 
+        [SerializeField] private ResourceManager resourceManager;
+
         private IUnit unit;
+
+        private IDictionary<string, int> roleCosts = new Dictionary<string, int>()
+        {
+            {"Warrior", 10 },
+            {"Scout", 10 },
+            {"Mage", 10 },
+        };
 
         public void StageUnitForTraining()
         {
@@ -37,6 +48,9 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             nameUnitCanvas.gameObject.SetActive(false);
             unit.Save();
             barracks.CreateUnitEntry(unit);
+
+            IPayment trainingPayment = new Payment(unit.Role.Name, roleCosts[unit.Role.Name]);
+            resourceManager.MakePayment(trainingPayment);
         }
 
         public void CancelUnitTraining()
