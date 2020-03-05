@@ -1861,6 +1861,7 @@ MonoBehaviour:
   maxHealth: 20
   health: 0
   anim: {fileID: 3159141200607362923}
+  deathSound: {fileID: 8300000, guid: b2c30c67634ec5c478dfc1115fb6342e, type: 3}
   action: 1
   maxMovement: 6
   movementLeft: 0
@@ -2762,7 +2763,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159141201642896363}
-  m_LocalRotation: {x: 0.30507964, y: -0.36978045, z: 0.12997949, w: 0.8679252}
+  m_LocalRotation: {x: 0.30507967, y: -0.36978048, z: 0.12997952, w: 0.8679252}
   m_LocalPosition: {x: 8.11, y: 10.05, z: -7.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
