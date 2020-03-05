@@ -65,6 +65,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                     audioSource.Pause();
                     audioSource.PlayOneShot(audioClip, 5);
                     audioSource.Play();
+                } else
+                {
+                    audioSource.PlayOneShot(audioClip, 5);
                 }
             }
         }

@@ -36,6 +36,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public int health;
         public Animator anim;
 
+        public AudioClip deathSound;
+        private AudioSource audioSource;
+
         [HideInInspector]
         public bool action = true;
 
@@ -53,6 +56,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             outline = GetComponent<Outline>();
             ms = GetComponent<MovementSystem>();
             damageMessage = GetComponent<HealthBar>().popup;
+            audioSource = GetComponent<BrainManager>().manager.AudioSource;
 
             health = maxHealth;
             movementLeft = stats.movement;
@@ -130,6 +134,17 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public void Death()
         {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Pause();
+                audioSource.PlayOneShot(deathSound, 5);
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.PlayOneShot(deathSound, 5);
+            }
+
             if (isEnemy)
             {
                 brain.manager.RemoveUnitFromEnemyList(gameObject);
