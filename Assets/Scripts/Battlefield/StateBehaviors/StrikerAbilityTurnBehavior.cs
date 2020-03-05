@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using SwordAndBored.Battlefield.MovementSystemScripts;
 using SwordAndBored.Battlefield.CreaturScripts;
 
