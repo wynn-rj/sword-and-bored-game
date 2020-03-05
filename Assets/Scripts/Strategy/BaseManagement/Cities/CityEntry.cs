@@ -1,22 +1,25 @@
 ﻿using SwordAndBored.GameData.Units;
 using UnityEngine;
 
-public class CityEntry : ScriptableObject
+namespace SwordAndBored.StrategyView.BaseManagement.Cities
 {
-    public ITown city;
-
-    public string cityName;
-
-    public void Init(ITown city)
+    public class CityEntry : ScriptableObject
     {
-        this.city = city;
-        this.cityName = city.Name;
-    }
+        public ITown city;
 
-    public static CityEntry CreateInstance(ITown city)
-    {
-        var data = ScriptableObject.CreateInstance<CityEntry>();
-        data.Init(city);
-        return data;
+        public string cityName;
+
+        public void Init(ITown city)
+        {
+            this.city = city;
+            this.cityName = city.Name;
+        }
+
+        public static CityEntry CreateInstance(ITown city)
+        {
+            var data = ScriptableObject.CreateInstance<CityEntry>();
+            data.Init(city);
+            return data;
+        }
     }
 }
