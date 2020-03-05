@@ -16,7 +16,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             entryRole.text = roleEntry.roleName;
             entryDescription.text = roleEntry.roleDescription;
             entryImage.sprite = roleEntry.roleArtwork;
-            entryCost.text = roleEntry.roleCost.ToString();
+            entryCost.text = "Cost:" + roleEntry.roleCost.ToString();
         }
     }
 }
