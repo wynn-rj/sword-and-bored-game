@@ -6,8 +6,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
 {
     class TownComponent : AbstractSelectionComponent
     {
-        private readonly ITown town;
-        private readonly TownCanvasController townCanvasController;
+        private ITown town;
+        private TownCanvasController townCanvasController;
 
         public TownComponent(ITown town, TownCanvasController townCanvasController)
         {
