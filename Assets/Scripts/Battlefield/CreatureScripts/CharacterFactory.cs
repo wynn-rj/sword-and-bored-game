@@ -72,8 +72,6 @@ namespace SwordAndBored.Battlefield
                 {
                     abilities.abilities.Add(new Ability(dataAbility));
                 }
-                
-
 
                 //brain
                 brain.tileIndictor = indicator;
