@@ -30,7 +30,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             unitName.text = unitEntry.unitName;
 
             squad.text = "Squad: " + unitEntry.currentSquad;
-            town.text = "City: " + unitEntry.currentTown;
+            town.text = "Town: " + unitEntry.currentTown;
 
         }
 

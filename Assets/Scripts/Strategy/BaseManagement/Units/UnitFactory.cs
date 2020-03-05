@@ -13,11 +13,11 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         public GameObject nameUnitCanvas;
         public Barracks barracks;
 
-        private IUnit character;
+        private IUnit unit;
 
         public void StageUnitForTraining()
         {
-            character = new Unit(UnitRole);
+            unit = new Unit(UnitRole);
             nameUnitCanvas.SetActive(true);
         }
 
@@ -26,17 +26,17 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             if (UnitName.Length == 0)
             {
                 string randomName = DatabaseHelper.GetRandomNameFromDatabase();
-                character.Name = randomName;
+                unit.Name = randomName;
             }
             else
             {
-                character.Name = UnitName;
+                unit.Name = UnitName;
             }
             
-            UnitManager.Instance.RegisterUnit(character);
+            UnitManager.Instance.RegisterUnit(unit);
             nameUnitCanvas.gameObject.SetActive(false);
-            character.Save();
-            barracks.CreateUnitEntry(character);
+            unit.Save();
+            barracks.CreateUnitEntry(unit);
         }
 
         public void CancelUnitTraining()
