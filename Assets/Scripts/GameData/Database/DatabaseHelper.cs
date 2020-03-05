@@ -51,5 +51,43 @@ namespace SwordAndBored.GameData.Database
 
             return randName;
         }
+
+        public static int GetGoldAmount()
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.ExecuteQuery($"SELECT Gold From Resources WHERE ID = 1");
+            reader.NextRow();
+            int goldAmount = reader.GetIntFromCol("Gold");
+            conn.CloseConnection();
+            reader.CloseReader();
+
+            return goldAmount;
+        }
+
+        public static void SetGoldAmount(int newAmount)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            conn.ExecuteNonQuery($"UPDATE Resources SET Gold = {newAmount};");
+            conn.CloseConnection();
+        }
+
+        public static int GetTurnNumber()
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.ExecuteQuery($"SELECT Turn_Number From Resources WHERE ID = 1");
+            reader.NextRow();
+            int turnNum = reader.GetIntFromCol("Turn_Number");
+            conn.CloseConnection();
+            reader.CloseReader();
+
+            return turnNum;
+        }
+
+        public static void SetTrunNumber(int turnNum)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            conn.ExecuteNonQuery($"UPDATE Resources SET Turn_Number = {turnNum};");
+            conn.CloseConnection();
+        }
     }
 }
