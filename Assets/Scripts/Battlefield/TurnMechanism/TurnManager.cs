@@ -27,12 +27,14 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public List<GameObject> enemies = new List<GameObject>();
 
         public Canvas winCanvas;
+        public Canvas loseCanvas;
 
         public Canvas hotbar;
 
         void Start()
         {
             winCanvas.enabled = false;
+            loseCanvas.enabled = false;
             manager = new TurnOrderController(units.ToArray());//, new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
@@ -91,6 +93,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             {
                 WinCondition();
             }
+            if (playerUnits.Count == 0)
+            {
+                LoseCondition();
+            }
 
         }
 
@@ -99,7 +105,14 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             winCanvas.enabled = true;
             winCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
-            Debug.Log("You Win!");
+            //Debug.Log("You Win!");
+        }
+
+        public void LoseCondition()
+        {
+            loseCanvas.enabled = true;
+            loseCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
+            hotbar.enabled = false;
         }
 
         public void RemoveUnitFromList(GameObject unit)
