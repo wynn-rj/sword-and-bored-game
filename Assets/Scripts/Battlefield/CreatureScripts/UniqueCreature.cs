@@ -5,6 +5,7 @@ using Cinemachine;
 using SwordAndBored.Battlefield.MovementSystemScripts;
 using UnityEngine.UI;
 using SwordAndBored.UI.Battlefield;
+using UnityEngine.Audio;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
     public class UniqueCreature : MonoBehaviour
@@ -37,6 +38,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public Animator anim;
 
         public AudioClip deathSound;
+        public AudioMixerGroup music, soundEffects;
         private AudioSource audioSource;
 
         [HideInInspector]
@@ -137,12 +139,16 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             if (audioSource.isPlaying)
             {
                 audioSource.Pause();
+                audioSource.outputAudioMixerGroup = soundEffects;
                 audioSource.PlayOneShot(deathSound, 5);
+                audioSource.outputAudioMixerGroup = music;
                 audioSource.Play();
             }
             else
             {
+                audioSource.outputAudioMixerGroup = soundEffects;
                 audioSource.PlayOneShot(deathSound, 5);
+                audioSource.outputAudioMixerGroup = music;
             }
 
             if (isEnemy)
