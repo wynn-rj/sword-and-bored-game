@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using SwordAndBored.Strategy.Transitions;
 
 namespace SwordAndBored.Strategy.GameResources
@@ -27,6 +25,14 @@ namespace SwordAndBored.Strategy.GameResources
         public bool CanAffordPurchase(IPayment payment)
         {
             return payment.Cost <= GoldAmount;
+        }
+
+        public void MakePayment(IPayment payment)
+        {
+            if (CanAffordPurchase(payment))
+            {
+                gold -= payment.Cost;
+            }
         }
 
         private void OnDestroy()
