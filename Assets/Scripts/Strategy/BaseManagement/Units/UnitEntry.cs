@@ -31,6 +31,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
             {
                 this.currentTown = unit.Town.Name;
             }
+            Debug.Log(currentTown);
         }
 
         public static UnitEntry CreateInstance(IUnit unit)
