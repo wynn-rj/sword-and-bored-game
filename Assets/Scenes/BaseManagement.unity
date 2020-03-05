@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 11232749}
   - component: {fileID: 11232748}
   m_Layer: 0
-  m_Name: CityDispatcher
+  m_Name: TownDispatcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,9 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barracks: {fileID: 212993133}
   unitDisplayController: {fileID: 1904263787}
-  cityEntryPrefab: {fileID: 8005748268981667943, guid: fddca6da6f0ac974999f6ff650c4fc99,
+  townEntryPrefab: {fileID: 8005748268981667943, guid: fddca6da6f0ac974999f6ff650c4fc99,
     type: 3}
-  cityEntriesPanel: {fileID: 2026135918}
+  townsEntriesPanel: {fileID: 2026135918}
   confirmDispatchButton: {fileID: 880017506}
 --- !u!4 &11232749
 Transform:
@@ -946,7 +946,7 @@ GameObject:
   - component: {fileID: 129564812}
   - component: {fileID: 129564811}
   m_Layer: 5
-  m_Name: DispatchToCityPanel
+  m_Name: DispatchToTownPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4395,7 +4395,7 @@ GameObject:
   - component: {fileID: 1024879484}
   - component: {fileID: 1024879483}
   m_Layer: 5
-  m_Name: DispatchToCity
+  m_Name: DispatchToTownButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5571,7 +5571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dispatch Unit To City
+  m_text: Dispatch Unit To Town
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8388,7 +8388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'City:'
+  m_text: 'Town:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
