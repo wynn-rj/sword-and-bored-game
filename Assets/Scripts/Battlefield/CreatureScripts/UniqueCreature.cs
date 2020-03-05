@@ -102,7 +102,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
             if (health <= 0)
             {
-                Destroy(transform.gameObject);
+                Death();
             }
         }
 
@@ -115,7 +115,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             damageMessage.color = newColor;
             if (health <= 0)
             {
-                Destroy(transform.gameObject);
+                // Destroy(transform.gameObject);
+                Death();
             }
         }
 
@@ -125,6 +126,19 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             newColor.a = 255;
             damageMessage.text = "Missed!";
             damageMessage.color = newColor;
+        }
+
+        public void Death()
+        {
+            if (isEnemy)
+            {
+                brain.manager.RemoveUnitFromEnemyList(gameObject);
+            } else
+            {
+                brain.manager.RemoveUnitFromPlayerList(gameObject);
+            }
+            brain.manager.RemoveUnitFromList(gameObject);
+            Destroy(gameObject);
         }
 
     }

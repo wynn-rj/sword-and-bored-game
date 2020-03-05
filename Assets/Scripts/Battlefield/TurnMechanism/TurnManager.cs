@@ -101,5 +101,20 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             hotbar.enabled = false;
             Debug.Log("You Win!");
         }
+
+        public void RemoveUnitFromList(GameObject unit)
+        {
+            Debug.Log(units.Remove(unit));
+        }
+
+        public void RemoveUnitFromEnemyList(GameObject unit)
+        {
+            enemies.Remove(unit);
+        }
+
+        public void RemoveUnitFromPlayerList(GameObject unit)
+        {
+            Debug.Log(playerUnits.Remove(unit));
+        }
     }
 }
