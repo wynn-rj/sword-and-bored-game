@@ -31,13 +31,17 @@ namespace SwordAndBored.Strategy.Movement
 
         }
 
-        public static List<IHexGridCell> FindPath(IHexGridCell startCell, IHexGridCell destinationCell)
+        public static List<IHexGridCell> FindPath(IHexGridCell startCell, IHexGridCell destinationCell, bool isSquad = true)
         {
             List<Node> openList = new List<Node>();
             List<Node> closedList = new List<Node>();
 
             Node startNode = new Node(startCell, null);
             Node destinationNode = new Node(destinationCell, null);
+            if (!CellIsOccupiable(destinationCell, isSquad))
+            {
+                return new List<IHexGridCell>();
+            }
 
             openList.Add(startNode);
 
@@ -53,7 +57,7 @@ namespace SwordAndBored.Strategy.Movement
                 }
                 openList.Remove(currentNode);
 
-                Queue<Node> successors = GenerateChildren(currentNode, destinationNode);
+                Queue<Node> successors = GenerateChildren(currentNode, destinationNode, isSquad);
                 while (successors.Count > 0)
                 {
                     Node successor = successors.Dequeue();
@@ -115,7 +119,7 @@ namespace SwordAndBored.Strategy.Movement
         }
 
 
-        private static Queue<Node> GenerateChildren(Node parent, Node destination)
+        private static Queue<Node> GenerateChildren(Node parent, Node destination, bool isSquad)
         {
             Queue<Node> childrenNodes = new Queue<Node>();
 
@@ -124,7 +128,7 @@ namespace SwordAndBored.Strategy.Movement
 
             foreach (IHexGridCell cell in childrenCells)
             {
-                if (cell != null && !cell.HasComponent<UnselectableComponent>() && !cell.HasComponent<CreatureComponent>()    )
+                if (CellIsOccupiable(cell, isSquad))
                 {
                     Point<float> thisPoint = cell.Position.Center;
                     float distanceSquared = SquaredDistanceBetweenFloatPoints(thisPoint, destinationPoint);
@@ -140,6 +144,16 @@ namespace SwordAndBored.Strategy.Movement
         private static float SquaredDistanceBetweenFloatPoints(Point<float> first, Point<float> second)
         {
             return ((first.Y - second.Y) * (first.Y - second.Y)) + ((first.X - second.X) * (first.X - second.X));
+        }
+
+        private static bool CellIsOccupiable(IHexGridCell cell, bool isSquad)
+        {
+            if (cell is null) return false;
+
+            CreatureComponent creatureComponent = cell.GetComponent<CreatureComponent>();
+            System.Type creatureType = isSquad ? typeof(EnemyMovementController) : typeof(Squads.SquadController);
+            return !cell.HasComponent<UnselectableComponent>() &&
+                (creatureComponent is null || creatureComponent.Creature.GetType() == creatureType);
         }
     }
 
