@@ -7,6 +7,8 @@ using SwordAndBored.GameData.Database;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.Battlefield.MovementSystemScripts;
 using SwordAndBored.GameData.Abilities;
+using SwordAndBored.Strategy.Transitions;
+using System.Collections.Generic;
 
 namespace SwordAndBored.Battlefield
 {
@@ -22,15 +24,12 @@ namespace SwordAndBored.Battlefield
         public Transform unitHolder;
     
         void Awake()
-        {
+        {             
+            IEnumerable<IUnit> unitIDs = (SceneSharing.squadID != -1) ? new Squad(SceneSharing.squadID).Units : GetAllUnits();
             grid = tileManager.grid;
-            DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryAllFromTable("Units");
             int numUnits = 0;
-            while (reader.NextRow())
+            foreach (IUnit dataUnit in unitIDs)
             {
-                IUnit dataUnit = new Unit(reader.GetIntFromCol("ID"));
-        
                 GameObject unit = Instantiate(playerPrefab, new Vector3(numUnits, 1.5f, 0), Quaternion.identity);
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
                 UnitAbilitiesContainer abilities = unit.GetComponent<UnitAbilitiesContainer>();
@@ -84,12 +83,18 @@ namespace SwordAndBored.Battlefield
 
                 numUnits += 2;
             }
-            conn.CloseConnection();
-            reader.CloseReader();
-
-
         }
-    
-    }
 
+        private IEnumerable<IUnit> GetAllUnits() 
+        {
+            Debug.LogWarning("No squad ID set, defaulting to all units");
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryAllFromTable("Units");
+            while (reader.NextRow())
+            {
+                yield return new Unit(reader.GetIntFromCol("ID"));
+            }
+            yield return null;
+        }
+    }
 }
