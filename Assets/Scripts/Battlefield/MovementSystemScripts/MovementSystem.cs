@@ -156,6 +156,15 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
             } else
             {
                 Debug.Log("Not within movement");
+                List<Tile> path = star.FindPath(tile, grid, this);
+                path = path.GetRange(path.Count - brain.GetComponent<UniqueCreature>().movementLeft, brain.GetComponent<UniqueCreature>().movementLeft);
+                if (displayPath)
+                {
+                    lr.enabled = true;
+                    show.Display(lr, path);
+                }
+                brain.GetComponent<UniqueCreature>().movementLeft -= (path.Count - 1);
+                FollowPath(path);
             }
 
         }

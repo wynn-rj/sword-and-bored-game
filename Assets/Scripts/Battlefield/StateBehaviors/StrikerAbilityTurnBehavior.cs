@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using SwordAndBored.Battlefield.MovementSystemScripts;
 using SwordAndBored.Battlefield.CreaturScripts;
 
 namespace SwordAndBored.Battlefield.StateBehaviors
@@ -9,11 +10,13 @@ namespace SwordAndBored.Battlefield.StateBehaviors
         BrainManager brain;
         GameObject Target;
         UnitAbilitiesContainer abilitiesContainer;
+        MovementSystem ms;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             brain = animator.GetComponent<BrainManager>();
+            ms = animator.GetComponent<MovementSystem>();
 
             float min = Vector3.Distance(animator.transform.position, brain.manager.playerUnits[0].transform.position);
             int playerToAttack = 0;
@@ -55,6 +58,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
                 selectedAbility.EnemyAttackNonAOE(Target.GetComponent<UniqueCreature>());
             }
             animator.SetBool("UseAbility", false);
+            ms.finishedMoving = false;
             brain.isMyTurn = false;
         }
 

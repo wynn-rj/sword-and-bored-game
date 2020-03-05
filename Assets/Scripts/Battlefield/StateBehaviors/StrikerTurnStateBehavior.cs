@@ -33,6 +33,20 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
             }
         }
         Tile targetedPlayer = brain.manager.playerUnits[playerToAttack].GetComponent<MovementSystem>().currentTile;
+        PickTarget(targetedPlayer);
+
+        if (target && target.unitOnTile == null)
+        {
+            ms.Move(target);
+        } else
+        {
+            ms.finishedMoving = true;
+            Debug.Log("Does not have target location");
+        }
+    }
+
+    private void PickTarget(Tile targetedPlayer)
+    {
         target = ms.grid[targetedPlayer.x + 1, targetedPlayer.y];
         if (target.unitOnTile)
         {
@@ -49,15 +63,6 @@ public class StrikerTurnStateBehavior : StateMachineBehaviour
         if (target.unitOnTile)
         {
             target = ms.grid[targetedPlayer.x, targetedPlayer.y + 1];
-        }
-
-        if (target && target.unitOnTile == null)
-        {
-            ms.Move(target);
-        } else
-        {
-            ms.finishedMoving = true;
-            Debug.Log("Does not have target location");
         }
     }
 
