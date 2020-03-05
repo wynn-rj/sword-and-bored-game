@@ -39,7 +39,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 
             if (!(unit.Town is null))
             {
-                Town.text = "City: " + unit.Town.Name;
+                Town.text = "Town: " + unit.Town.Name;
             }
         }
     }
