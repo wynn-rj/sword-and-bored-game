@@ -23,15 +23,14 @@ namespace SwordAndBored.UI.Battlefield {
 
             if(statsPanel.activeSelf)
             {
-                UniqueCreature activePlayer = turnManager.activePlayer.gameObject.GetComponent<UniqueCreature>();
-                UnitStats unitStats = activePlayer.stats;
+                UnitStats unitStats = turnManager.activePlayer.creature.stats;
 
                 healthText.text = $"HP: {unitStats.health} / {unitStats.maxHealth}";
                 pAttackText.text = $"Physical Attack: {unitStats.physicalAttack}";
                 pDefenseText.text = $"Physical Defense: {unitStats.physicalDefense}";
                 mAttackText.text = $"Magic Attack: {unitStats.magicAttack}";
                 mDefenseText.text = $"Magic Defense: {unitStats.magicDefense}";
-                movementText.text = $"Movement: {unitStats.movement}";
+                movementText.text = $"Movement: {turnManager.activePlayer.creature.movementLeft} / {unitStats.movement}";
                 initiativeText.text = $"Initiative: {unitStats.speedIntit}";
                 roleText.text = $"Role: {unitStats.role}";
             }
