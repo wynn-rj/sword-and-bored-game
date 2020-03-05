@@ -1847,12 +1847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7fe20fdabd92143bb1623128e54245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureName: Dave The Fighter
-  maxHealth: 20
-  health: 0
-  anim: {fileID: 3159141200607362923}
-  action: 1
-  maxMovement: 6
   mat:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   - {fileID: 2100000, guid: 28cfb0e93b8c0eb4096b9c1414c61576, type: 2}
@@ -1863,6 +1857,13 @@ MonoBehaviour:
   currentCamera: {fileID: 3159141201642896361}
   animator: {fileID: 3159141201733096179}
   isEnemy: 0
+  creatureName: Dave The Fighter
+  maxHealth: 20
+  health: 0
+  anim: {fileID: 3159141200607362923}
+  action: 1
+  maxMovement: 6
+  movementLeft: 0
 --- !u!114 &3159141201095183990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,7 +1876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60730ca9d6af88c438352ebba4517cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
   audioClip: {fileID: 8300000, guid: e6ea40157c24b8a4f8c545f6dfda37c7, type: 3}
 --- !u!114 &3159141201095183993
 MonoBehaviour:
@@ -1897,8 +1897,6 @@ MonoBehaviour:
   magicDefense: 0
   speedIntit: 0
   movement: 0
-  accuracy: 0
-  evasion: 0
   role: 
 --- !u!114 &3159141201095183992
 MonoBehaviour:
@@ -1913,6 +1911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3159141201686037837}
+  fillImage: {fileID: 3159141201885272963}
   popup: {fileID: 4326852715619717252}
 --- !u!114 &3937382823411707643
 MonoBehaviour:
@@ -2087,8 +2086,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd05f429cdb19004bafea04be2994bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finishedMoving: 0
   agent: {fileID: 0}
   currentTile: {fileID: 0}
+  LeftTile: {fileID: 0}
+  RightTile: {fileID: 0}
+  UpTile: {fileID: 0}
+  DownTile: {fileID: 0}
 --- !u!1 &3159141201137843270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2762,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159141201642896363}
-  m_LocalRotation: {x: 0.30507967, y: -0.36978048, z: 0.12997952, w: 0.8679252}
+  m_LocalRotation: {x: 0.30507967, y: -0.36978048, z: 0.1299795, w: 0.8679252}
   m_LocalPosition: {x: 8.11, y: 10.05, z: -7.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
