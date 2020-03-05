@@ -56,6 +56,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             } else
             {
                 selectedAbility.EnemyAttackNonAOE(Target.GetComponent<UniqueCreature>());
+                abilitiesContainer.ShowAbilityAnimation();
             }
             animator.SetBool("UseAbility", false);
             ms.finishedMoving = false;
