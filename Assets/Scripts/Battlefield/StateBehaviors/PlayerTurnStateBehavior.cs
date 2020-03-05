@@ -26,6 +26,7 @@ public class PlayerTurnStateBehavior : StateMachineBehaviour
 
         brain.outline.enabled = true;
         ms = animator.GetComponent<MovementSystem>();
+        ms.finishedMoving = true;
 
         List<Ability> abilityList = brain.GetComponent<UnitAbilitiesContainer>().abilities;
 

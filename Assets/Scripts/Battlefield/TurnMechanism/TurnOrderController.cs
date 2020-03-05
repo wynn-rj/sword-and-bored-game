@@ -27,7 +27,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public GameObject NextEntity()
         {
-            if (pointer >= entities.Count)
+            if (pointer > entities.Count)
             {
                 pointer -= 1;
             }
