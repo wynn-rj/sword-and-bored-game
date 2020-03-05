@@ -37,6 +37,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public GameObject NextEntity()
         {
+            if (pointer >= entities.Count)
+            {
+                pointer -= 1;
+            }
             GameObject nextEntity = entities[pointer];
             pointer += 1;
             pointer %= entities.Count;
