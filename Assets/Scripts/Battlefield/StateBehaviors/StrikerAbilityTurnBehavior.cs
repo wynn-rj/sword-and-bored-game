@@ -41,7 +41,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             for (int i=0; i<abilitiesContainer.abilities.Count; i++)
             {
                 Ability ability = abilitiesContainer.abilities[i];
-                if (ability.range >= distance)
+                if (ability.range >= distance - .1f)
                 {
                     selectedAbility = ability;
                     if (ability.damage > selectedAbility.damage)
