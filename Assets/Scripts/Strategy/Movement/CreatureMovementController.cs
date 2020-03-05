@@ -123,7 +123,7 @@ namespace SwordAndBored.Strategy.Movement
 
         protected void OnDestroy()
         {
-            Location.RemoveComponent(creatureComponent);
+            Location?.RemoveComponent(creatureComponent);
         }
 
         protected virtual void ArrivedAtNewLocation() { }
