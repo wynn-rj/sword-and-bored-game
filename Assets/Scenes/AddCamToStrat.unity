@@ -192,8 +192,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0
+  m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -239,7 +239,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166935477}
-  m_LocalRotation: {x: 0.19794522, y: 0.000000013639405, z: -0.000000009255094, w: 0.9802131}
+  m_LocalRotation: {x: 0.19794524, y: -0.000000021250354, z: -0.0000000022094198,
+    w: 0.9802131}
   m_LocalPosition: {x: 0, y: 60, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -624,7 +625,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.19794522, y: 0.000000013639405, z: -0.000000009255094, w: 0.9802131}
+  m_LocalRotation: {x: 0.19794524, y: -0.000000021250354, z: -0.0000000022094198,
+    w: 0.9802131}
   m_LocalPosition: {x: 0, y: 74, z: -110}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -849,6 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freeCam: {fileID: 166935479}
+  squadManager: {fileID: 2131103750}
 --- !u!4 &1635432063
 Transform:
   m_ObjectHideFlags: 0
