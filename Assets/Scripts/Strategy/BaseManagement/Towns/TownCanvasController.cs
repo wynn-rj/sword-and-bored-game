@@ -44,9 +44,9 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
 
         private void UpdateDisplay()
         {
-            foreach (GameObject child in entryContainer.transform)
+            foreach (Transform child in entryContainer.transform)
             {
-                Destroy(child);
+                Destroy(child.gameObject);
             }
 
             if (displayedTown is null) return;
