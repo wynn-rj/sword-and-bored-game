@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freeCam: {fileID: 1774186083}
-  mainCam: {fileID: 0}
+  mainCam: {fileID: 963194227}
 --- !u!4 &734116292
 Transform:
   m_ObjectHideFlags: 0
@@ -1033,8 +1033,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freeCam: {fileID: 1774186083}
-  freeCamFocus: {fileID: 0}
-  squadManager: {fileID: 0}
+  freeCamFocus: {fileID: 734116290}
+  squadManager: {fileID: 6189842458909683263}
 --- !u!4 &1906698780
 Transform:
   m_ObjectHideFlags: 0
@@ -1147,7 +1147,7 @@ PrefabInstance:
     - target: {fileID: 3961204995071270455, guid: 5a24206edd10d11478c13aa1b1b442a6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3961204995071270455, guid: 5a24206edd10d11478c13aa1b1b442a6,
         type: 3}
