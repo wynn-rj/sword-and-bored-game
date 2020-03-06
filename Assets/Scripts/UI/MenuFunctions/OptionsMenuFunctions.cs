@@ -61,11 +61,25 @@ namespace SwordAndBored.UI.MenuFunctions
             gameObject.SetActive(false);
         }
 
-        public void SetVolume(float volumeValue)
+        public void SetMasterVolume(float volumeValue)
         {
             audioMixer.SetFloat("masterVolume", volumeValue);
             PlayerPrefs.SetFloat("masterVolume", volumeValue);
             PlayerPrefs.Save();
+        }
+
+        public void SetMusicVolume(float volumeValue)
+        {
+            audioMixer.SetFloat("musicVolume", volumeValue);
+            //PlayerPrefs.SetFloat("masterVolume", volumeValue);
+            //PlayerPrefs.Save();
+        }
+
+        public void SetVFXVolume(float volumeValue)
+        {
+            audioMixer.SetFloat("vfxVolume", volumeValue);
+            //PlayerPrefs.SetFloat("masterVolume", volumeValue);
+            //PlayerPrefs.Save();
         }
 
         public void SetQuality(int qualityIndex)
