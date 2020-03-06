@@ -8,7 +8,7 @@ public class FreeCameraFocusManager : MonoBehaviour
     private float rotateSpeed = 60;
     private float speed = 100;
     private float ysensitivity = 40f;
-    private float zsensitivity = 20f;
+    private float zsensitivity = 30f;
     public CinemachineVirtualCamera freeCam;
     public Camera mainCam;
     private CinemachineBrain BigBrain;
