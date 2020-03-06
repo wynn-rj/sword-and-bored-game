@@ -37,7 +37,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
         public HexGrid HexTiling { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             terrainToGameObject = new Dictionary<System.Type, List<GameObject>>()
             {
