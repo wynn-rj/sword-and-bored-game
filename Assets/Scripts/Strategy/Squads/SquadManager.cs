@@ -15,6 +15,7 @@ namespace SwordAndBored.Strategy.Squads
         [SerializeField] private TimeTrackingTimeManager turnManager;
         [SerializeField] private TileManager tileManager;
         [SerializeField] private ResourceManager resourceManager;
+        [SerializeField] private SquadCanvasController canvasController;
         [SerializeField] private KeyCode loseSquadFocusKey = KeyCode.Escape;
         [SerializeField] private float squadPlacementHeight = 0;
         [SerializeField] private int squadUpkeepCost = 1;
@@ -36,6 +37,7 @@ namespace SwordAndBored.Strategy.Squads
                     value.GetComponent<Outline>().enabled = true;
                 }
                 selectedSquad = value;
+                canvasController.UpdateDisplayedSquad(selectedSquad?.SquadData);
             }
         }
 
