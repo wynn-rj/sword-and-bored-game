@@ -165,7 +165,7 @@ namespace SwordAndBored.GameData.Units
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();
 
-                foreach (IUnit unit in units)
+                foreach (IUnit unit in units ?? Units)
                 {
                     unit.Squad = this;
                     unit.Save();
