@@ -9,11 +9,11 @@ public class FreeCameraFocusManager : MonoBehaviour
     private float speed = 30;
     public CinemachineVirtualCamera freeCam;
     public Camera mainCam;
-    private CinemachineBrain brain;
+    private CinemachineBrain BigBrain;
 
     private void Start()
     {
-        
+        BigBrain = mainCam.GetComponent<CinemachineBrain>();
     }
 
     void Update()
