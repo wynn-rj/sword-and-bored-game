@@ -24,8 +24,8 @@ public class StrategyCameraSystemManager : MonoBehaviour
             freeCam.m_LookAt = squadManager.SelectedSquad.gameObject.transform;
         } else
         {
-            squadCam.Priority = 0;
-            freeCam.Priority = 1;
+            freeCam.m_Follow = freeCamFocus.transform;
+            freeCam.m_LookAt = freeCamFocus.transform;
         }
     }
 }
