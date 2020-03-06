@@ -690,10 +690,35 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6856843873536348812, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6856843873536348814, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
         type: 3}
       propertyPath: m_Name
       value: ResourceDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856843873621748304, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856843874308172838, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856843874308172838, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856843874308172838, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6856843874308172839, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
         type: 3}
