@@ -7,6 +7,8 @@ public class FreeCameraFocusManager : MonoBehaviour
 {
     private float rotateSpeed = 60;
     private float speed = 100;
+    private float ysensitivity = 40f;
+    private float zsensitivity = 20f;
     public CinemachineVirtualCamera freeCam;
     public Camera mainCam;
     private CinemachineBrain BigBrain;
@@ -20,13 +22,14 @@ public class FreeCameraFocusManager : MonoBehaviour
     {
         if (freeCam.Equals(BigBrain.ActiveVirtualCamera))
         {
-            move();
-            rotate();
+            Move();
+            Rotate();
+            Zoom();
         }
-        
+
     }
 
-    private void move()
+    private void Move()
     {
         Vector3 move = new Vector3();
         if (Input.GetKey(KeyCode.D))
@@ -48,7 +51,24 @@ public class FreeCameraFocusManager : MonoBehaviour
         transform.Translate(move);
     }
 
-    private void rotate()
+    private void Zoom()
+    {
+        Vector3 zoom = new Vector3();
+        if (Input.GetKey(KeyCode.X))
+        {
+            zoom.y -= ysensitivity * Time.deltaTime;
+            zoom.z += zsensitivity * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.Z))
+        {
+            zoom.y += ysensitivity * Time.deltaTime;
+            zoom.z -= zsensitivity * Time.deltaTime;
+        }
+       
+        transform.Translate(zoom);
+    }
+
+    private void Rotate()
     {
         if (Input.GetKey(KeyCode.E))
             transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
