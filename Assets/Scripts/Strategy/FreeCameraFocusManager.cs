@@ -44,4 +44,9 @@ public class FreeCameraFocusManager : MonoBehaviour
             transform.Rotate(-Vector3.up * rotateSpeed * Time.deltaTime);
     }
 
+    private void zoom()
+    {
+
+    }
+
 }
