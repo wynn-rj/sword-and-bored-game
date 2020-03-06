@@ -5,8 +5,8 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 {
     public class TrainUnitListener : MonoBehaviour
     {
-        public UnitFactory UnitFactory;
-        public Text UnitRole;
+        public UnitFactory unitFactory;
+        public Text unitRole;
 
         private Button trainButton;
 
@@ -18,8 +18,8 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 
         void StageUnitForTraining()
         {    
-            UnitFactory.UnitRole = UnitRole.text;
-            UnitFactory.StageUnitForTraining();
+            unitFactory.UnitRole = unitRole.text;
+            unitFactory.StageUnitForTraining();
         }
     }
 }
