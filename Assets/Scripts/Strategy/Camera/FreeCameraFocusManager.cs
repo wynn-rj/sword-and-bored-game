@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +7,18 @@ public class FreeCameraFocusManager : MonoBehaviour
 {
     private float rotateSpeed = 60;
     private float speed = 30;
+    public CinemachineVirtualCamera freeCam;
+    public Camera mainCam;
+    private CinemachineBrain brain;
+
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
+        
         move();
         rotate();
     }
