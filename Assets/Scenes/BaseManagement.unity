@@ -10057,10 +10057,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6856843873536348812, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6856843873536348814, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
         type: 3}
       propertyPath: m_Name
       value: ResourceDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6856843873621748304, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbf7ff9faf6c5f2459a8847c1b22804a, type: 3}
