@@ -6,7 +6,7 @@ using UnityEngine;
 public class FreeCameraFocusManager : MonoBehaviour
 {
     private float rotateSpeed = 60;
-    private float speed = 30;
+    private float speed = 100;
     public CinemachineVirtualCamera freeCam;
     public Camera mainCam;
     private CinemachineBrain BigBrain;
@@ -18,9 +18,12 @@ public class FreeCameraFocusManager : MonoBehaviour
 
     void Update()
     {
+        if (freeCam.Equals(BigBrain.ActiveVirtualCamera))
+        {
+            move();
+            rotate();
+        }
         
-        move();
-        rotate();
     }
 
     private void move()
