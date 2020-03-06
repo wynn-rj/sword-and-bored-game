@@ -1004,7 +1004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitEntryPrefab: {fileID: 3511183601433637377, guid: 8f7ded2d56941694382cffb8dead485e,
     type: 3}
-  squadController: {fileID: 0}
+  squadController: {fileID: 6189842458909683263}
   tileManager: {fileID: 404240875}
   deploySquadButton: {fileID: 1192070597929088462}
   cancelDeployment: {fileID: 1192070599470646026}
