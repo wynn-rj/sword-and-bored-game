@@ -30,7 +30,8 @@ namespace SwordAndBored.Utilities.Debug
             }
             else
             {
-                UnityEngine.Debug.LogError(message);
+                UnityEngine.
+                    .LogError(message);
             }
         }
     }

@@ -165,7 +165,6 @@ namespace SwordAndBored.GameData.Units
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();
 
-                UnityEngine.Debug.Log("Old Squad");
                 foreach (IUnit unit in units)
                 {
                     unit.Squad = this;

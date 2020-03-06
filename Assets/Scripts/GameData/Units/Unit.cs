@@ -72,7 +72,6 @@ namespace SwordAndBored.GameData.Units
                 {
                     squad = value;
                     SquadID = squad.ID;
-                    UnityEngine.Debug.Log(squad.ID);
                 }
             }
         }
