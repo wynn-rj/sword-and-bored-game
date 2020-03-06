@@ -8,7 +8,7 @@ public class StrategyCameraSystemManager : MonoBehaviour
 {
     public CinemachineVirtualCamera freeCam;
     public SquadManager squadManager;
-    public CinemachineVirtualCamera squadCam;
+    private CinemachineVirtualCamera squadCam;
 
     void Start()
     {
