@@ -13,7 +13,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
     class TownCanvasController : MonoBehaviour
     {
         [SerializeField] private GameObject unitEntryPrefab;
-        [SerializeField] private SquadManager squadController;
+        [SerializeField] private SquadManager squadManager;
         [SerializeField] private TileManager tileManager;
         [SerializeField] private Button deploySquadButton;
         [SerializeField] private Button cancelDeployment;
@@ -93,8 +93,17 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
         public void DeploySquad()
         {
             IList<IHexGridCell> cellNeighbors = tileManager.HexTiling.CellNeighbors(displayedTown.X, displayedTown.Y);
+            foreach (IUnit unit in deployedSquad)
+            {
+                Debug.Log(unit.Name);
+            }
             Debug.Log(deployedSquad.Count);
-            squadController.DeploySquad("Name", deployedSquad, Odds.SelectAtRandom<IHexGridCell>(cellNeighbors));
+            /*do
+            {
+
+            } while ();*/
+
+            squadManager.DeploySquad("Name", deployedSquad, Odds.SelectAtRandom<IHexGridCell>(cellNeighbors));
             deployedSquad.Clear();
             gameObject.SetActive(false);
         }
