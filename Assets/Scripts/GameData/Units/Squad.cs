@@ -7,6 +7,7 @@ namespace SwordAndBored.GameData.Units
     {
         public int X { get; set; }
         public int Y { get; set; }
+        private List<IUnit> units;
         public List<IUnit> Units
         {
             get
@@ -22,7 +23,7 @@ namespace SwordAndBored.GameData.Units
                 }
                 return newUnitList;
             }
-            set { }
+            set { units = value; }
         }
         public int ID { get; set; }
         public string Name { get; set; }
@@ -147,10 +148,10 @@ namespace SwordAndBored.GameData.Units
                 ID = reader.GetIntFromCol("ID");
                 reader.CloseReader();
                 conn.CloseConnection();
-
-                foreach (IUnit unit in Units)
+                foreach (IUnit unit in units)
                 {
                     unit.Squad = this;
+                    unit.SquadID = ID;
                     unit.Save();
                 }
 
@@ -164,7 +165,8 @@ namespace SwordAndBored.GameData.Units
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();
 
-                foreach (IUnit unit in Units)
+                UnityEngine.Debug.Log("Old Squad");
+                foreach (IUnit unit in units)
                 {
                     unit.Squad = this;
                     unit.Save();
