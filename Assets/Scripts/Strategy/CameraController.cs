@@ -10,6 +10,7 @@ namespace SwordAndBored.Strategy
 
         readonly float ysensitivity = 15f;
         readonly float zsensitivity = 10f;
+        readonly float rotateSpeed = 60f;
 
         void Start()
         {
@@ -42,6 +43,8 @@ namespace SwordAndBored.Strategy
                 move.z -= speed * Time.deltaTime;
             }
             transform.position = move;
+
+
         }
 
         private void OnDestroy()
