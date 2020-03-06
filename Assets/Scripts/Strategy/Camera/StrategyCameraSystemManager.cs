@@ -7,6 +7,7 @@ using UnityEngine;
 public class StrategyCameraSystemManager : MonoBehaviour
 {
     public CinemachineVirtualCamera freeCam;
+    public GameObject freeCamFocus;
     public SquadManager squadManager;
     private CinemachineVirtualCamera squadCam;
 
@@ -19,9 +20,8 @@ public class StrategyCameraSystemManager : MonoBehaviour
     {
         if (squadManager.SelectedSquad)
         {
-            squadCam = squadManager.SelectedSquad.GetComponent<CinemachineVirtualCamera>();
-            freeCam.Priority = 0;
-            squadCam.Priority = 1;
+            freeCam.m_Follow = squadManager.SelectedSquad.gameObject.transform;
+            freeCam.m_LookAt = squadManager.SelectedSquad.gameObject.transform;
         } else
         {
             squadCam.Priority = 0;
