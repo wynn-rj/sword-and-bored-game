@@ -44,6 +44,7 @@ namespace SwordAndBored.Strategy.Squads
         public SquadController DeploySquad(string name, List<IUnit> units, IHexGridCell location)
         {
             ISquad squad = new Squad(name, units, location.Position.GridPoint.X, location.Position.GridPoint.Y);
+            units.ForEach((unit) => unit.Town = null);
             squad.Save();
             return DeploySquad(squad);
         }

@@ -93,6 +93,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
         public void DeploySquad()
         {
             IList<IHexGridCell> cellNeighbors = tileManager.HexTiling.CellNeighbors(displayedTown.X, displayedTown.Y);
+            Debug.Log(deployedSquad.Count);
             squadController.DeploySquad("Name", deployedSquad, Odds.SelectAtRandom<IHexGridCell>(cellNeighbors));
             deployedSquad.Clear();
             gameObject.SetActive(false);
