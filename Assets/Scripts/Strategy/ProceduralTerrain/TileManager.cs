@@ -108,6 +108,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
             foreach (ITown town in Town.GetAllTowns())
             {
+                if (town.ID == 0) continue;
                 HexTiling[town.X, town.Y].AddComponent(new TownComponent(town, townCanvasController));
             }
         }
