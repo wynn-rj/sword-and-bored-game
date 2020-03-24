@@ -72,58 +72,17 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 switch (aoeShape)
                 {
                     case 1:
-                        Vector3 dir = hit.point - user.transform.position;
-                        dir = new Vector3(dir.x, 0, dir.z);
-                        dir.Normalize();
-                        Vector3 point = user.transform.position + dir * ((float)length / 2f);
+                        Vector3 point = calcPointRangeZero(hit);
                         Collider[] enemies = Physics.OverlapSphere(point, ((float)length) / 2f);
-                        foreach (Collider enemy in enemies)
-                        {
-                            if (enemy.GetComponent<UniqueCreature>())
-                            {
-                                UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
-                                // Accuracy Check
-                                //Damage Equation
-                                if (AccuracyCheck(enemyCreature))
-                                {
-                                    enemyCreature.Damage(DamageEquation(enemyCreature));
-                                } else
-                                {
-                                    enemyCreature.Miss();
-                                }
-                        
-                            }
-                        }
-                        
-
+                        DamageList(enemies);
                         break;
                     case 2:
 
                         break;
                     case 3:
-                        Vector3 dir3 = hit.point - user.transform.position;
-                        dir = new Vector3(dir3.x, 0, dir3.z);
-                        dir.Normalize();
-                        Vector3 point3 = user.transform.position + dir * ((float)length / 2f);
+                        Vector3 point2 = calcPointRangeZero(hit);
                         Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
-                        foreach (Collider enemy in enemies3)
-                        {
-                            if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
-                            {
-                                UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
-                                // Accuracy Check
-                                //Damage Equation
-                                if (AccuracyCheck(enemyCreature))
-                                {
-                                    enemyCreature.Damage(DamageEquation(enemyCreature));
-                                }
-                                else
-                                {
-                                    enemyCreature.Miss();
-                                }
-
-                            }
-                        }
+                        DamageList(enemies3);
                         break;
                 }
             } else
@@ -134,24 +93,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                         if (Vector3.Distance(user.transform.position, hit.point) <= range)
                         {
                             Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
-                            foreach (Collider enemy in enemies)
-                            {
-                                if (enemy.GetComponent<UniqueCreature>())
-                                {
-                                    UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
-                                    // Accuracy Check
-                                    //Damage Equation
-                                    if (AccuracyCheck(enemyCreature))
-                                    {
-                                        enemyCreature.Damage(DamageEquation(enemyCreature));
-                                    }
-                                    else
-                                    {
-                                        enemyCreature.Miss();
-                                    }
-
-                                }
-                            }
+                            DamageList(enemies);
                         }
 
                         break;
@@ -161,6 +103,37 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     case 3:
 
                         break;
+                }
+            }
+        }
+
+        private Vector3 calcPointRangeZero(RaycastHit hit)
+        {
+            Vector3 dir = hit.point - user.transform.position;
+            dir = new Vector3(dir.x, 0, dir.z);
+            dir.Normalize();
+            Vector3 point = user.transform.position + dir * ((float)length / 2f);
+            return point;
+        }
+
+        private void DamageList(Collider[] enemies)
+        {
+            foreach (Collider enemy in enemies)
+            {
+                if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
+                {
+                    UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
+                    // Accuracy Check
+                    //Damage Equation
+                    if (AccuracyCheck(enemyCreature))
+                    {
+                        enemyCreature.Damage(DamageEquation(enemyCreature));
+                    }
+                    else
+                    {
+                        enemyCreature.Miss();
+                    }
+
                 }
             }
         }
@@ -229,29 +202,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     shape.transform.position = user.transform.position + dir * ((float)length / 2f);
                     shape.transform.LookAt(user.transform.position);
                     Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
-                    foreach (Collider enemy in enemies3)
-                    {
-                        if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
-                        {
-                            UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
-                            // Accuracy Check
-                            //Damage Equation
-                            enemyCreature.hightlight();
-
-                        }
-                    }
+                    highlightList(enemies3);
                 } else
                 {
 
-                    Collider[] enemies = Physics.OverlapSphere(hit.point, ((float) length) / 2f);
-                    foreach (Collider enemy in enemies)
-                    {
-                        
-                        if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
-                        {
-                            enemy.GetComponent<UniqueCreature>().hightlight();
-                        }
-                    }
+                    Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
+                    highlightList(enemies);
 
                     if (Vector3.Distance(user.transform.position, hit.point) <= range)
                     {
@@ -259,6 +215,18 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                         shape.transform.localScale = new Vector3(length, length, width);
                         shape.transform.position = hit.point;
                     }
+                }
+            }
+        }
+
+        private void highlightList(Collider[] enemies)
+        {
+            foreach (Collider enemy in enemies)
+            {
+
+                if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
+                {
+                    enemy.GetComponent<UniqueCreature>().hightlight();
                 }
             }
         }
