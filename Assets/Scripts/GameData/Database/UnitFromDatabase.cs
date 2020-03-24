@@ -4,6 +4,8 @@ using SwordAndBored.GameData.Roles;
 using SwordAndBored.GameData.Equipment;
 using TMPro;
 using System.Collections.Generic;
+using System.IO;
+using System;
 
 namespace SwordAndBored.GameData.Database
 {
