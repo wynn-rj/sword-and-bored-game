@@ -16,7 +16,7 @@ namespace SwordAndBored.GameData.Database
         }
         private void CreateDatabaseConnection()
         {
-            conn = new SqliteConnection("URI=file:" + Application.dataPath + "/StreamingAssets/GameData.db");
+            conn = new SqliteConnection("URI=file:" + Application.streamingAssetsPath + "/GameData.db");
             conn.Open();
         }
 
