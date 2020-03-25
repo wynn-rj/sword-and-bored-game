@@ -77,7 +77,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                         DamageList(enemies);
                         break;
                     case 2:
-
+                        Vector3 point3 = calcPointRangeZero(hit);
+                        Collider[] enemies2 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
+                        DamageList(enemies2);
                         break;
                     case 3:
                         Vector3 point2 = calcPointRangeZero(hit);
@@ -101,7 +103,11 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
                         break;
                     case 3:
-
+                        if (Vector3.Distance(user.transform.position, hit.point) <= range)
+                        {
+                            Collider[] enemies = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
+                            DamageList(enemies);
+                        }
                         break;
                 }
             }
