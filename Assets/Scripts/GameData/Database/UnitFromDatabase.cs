@@ -13,7 +13,7 @@ namespace SwordAndBored.GameData.Database
         // Start is called before the first frame update
         void Start()
         {
-            conn = new DatabaseConnection();
+            //conn = new DatabaseConnection();
         }
 
         // Update is called once per frame

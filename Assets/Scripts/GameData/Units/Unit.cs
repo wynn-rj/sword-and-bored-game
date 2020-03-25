@@ -13,6 +13,7 @@ namespace SwordAndBored.GameData.Units
         public bool IsDead { get; set; }
         public ISpellBook SpellBook { get; set; }
         public IStats Stats { get; set; }
+        private List<IAbility> abilities;
         public List<IAbility> Abilities
         {
             get
@@ -24,7 +25,7 @@ namespace SwordAndBored.GameData.Units
             }
             set
             {
-
+                abilities = value;
             }
         }
         public IWeapon Weapon { get; set; }
@@ -119,9 +120,9 @@ namespace SwordAndBored.GameData.Units
 
                 IsDead = reader.GetIntFromCol("Is_Dead") > 0;
 
-                Abilities = new List<IAbility>();
-                Abilities.AddRange(Weapon.Abilities);
-                Abilities.AddRange(SpellBook.Abilities);
+                abilities = new List<IAbility>();
+                abilities.AddRange(Weapon.Abilities);
+                abilities.AddRange(SpellBook.Abilities);
             }
             reader.CloseReader();
             conn.CloseConnection();
