@@ -53,7 +53,7 @@ namespace SwordAndBored.Battlefield
 
         public void Highlight(Color color)
         {
-            Color c = new Color(color.r, color.g, color.b, 20);
+            Color c = new Color(color.r, color.g, color.b, .3f);
             square.color = c;
             b = a + Time.time;
         }
