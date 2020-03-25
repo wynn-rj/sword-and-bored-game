@@ -108,6 +108,15 @@ namespace SwordAndBored.GameData.Equipment
             conn.CloseConnection();
         }
 
+        public InventoryItem(int newID, IWeapon weapon, IArmor armor, ISpellBook spellBook, int quantity)
+        {
+            ID = newID;
+            Weapon = weapon;
+            Armor = armor;
+            SpellBook = spellBook;
+            Quantity = quantity;
+        }
+
         public void SetQuantity(int newQuantity)
         {
             DatabaseConnection conn = new DatabaseConnection();
