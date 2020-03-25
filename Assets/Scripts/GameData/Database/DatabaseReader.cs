@@ -17,10 +17,12 @@ namespace SwordAndBored.GameData.Database
             if (colNum < 0)
             {
                 return -2;
-            } else if(reader.IsDBNull(colNum))
+            }
+            else if (reader.IsDBNull(colNum))
             {
                 return -1;
-            } else
+            }
+            else
             {
                 return reader.GetInt32(colNum);
             }
