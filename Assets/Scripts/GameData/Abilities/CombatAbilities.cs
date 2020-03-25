@@ -17,6 +17,7 @@ namespace SwordAndBored.GameData.Abilities
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
+        public string Animation { get; set; }
 
         public CombatAbilities(int inputID)
         {
@@ -40,6 +41,7 @@ namespace SwordAndBored.GameData.Abilities
                 Length = reader.GetIntFromCol("Length");
                 Width = reader.GetIntFromCol("Width");
                 Shape = reader.GetIntFromCol("Shape");
+                Animation = reader.GetStringFromCol("Animation");
             }
             reader.CloseReader();
             conn.CloseConnection();
