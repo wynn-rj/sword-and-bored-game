@@ -55,6 +55,7 @@ namespace SwordAndBored.Battlefield
         {
             Color c = new Color(color.r, color.g, color.b, 20);
             square.color = c;
+            b = a + Time.time;
         }
 
     }

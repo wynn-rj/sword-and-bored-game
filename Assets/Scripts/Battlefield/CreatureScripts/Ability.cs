@@ -227,6 +227,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
                 {
                     enemy.GetComponent<UniqueCreature>().hightlight();
+                } else if (enemy.GetComponent<Tile>())
+                {
+                    enemy.GetComponent<Tile>().Highlight(Color.red);
                 }
             }
         }
