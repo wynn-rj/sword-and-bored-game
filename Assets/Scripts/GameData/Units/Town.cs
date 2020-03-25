@@ -8,6 +8,7 @@ namespace SwordAndBored.GameData.Units
         public int X { get; set; }
         public int Y { get; set; }
         public bool PlayerOwned { get; set; }
+        private List<IUnit> units;
         public List<IUnit> Units
         {
             get
@@ -21,9 +22,11 @@ namespace SwordAndBored.GameData.Units
                     IUnit unitInSquad = new Unit(dataUnitID);
                     newUnitList.Add(unitInSquad);
                 }
+                conn.CloseConnection();
+                reader.CloseReader();
                 return newUnitList;
             }
-            set { }
+            set { units = value; }
         }
         public int ID { get; set; }
         public string Name { get; set; }
@@ -51,7 +54,7 @@ namespace SwordAndBored.GameData.Units
                 {
                     int dataUnitID = reader.GetIntFromCol("ID");
                     IUnit unitInSquad = new Unit(dataUnitID);
-                    Units.Add(unitInSquad);
+                    units.Add(unitInSquad);
                 }
             }
             conn.CloseConnection();
@@ -80,7 +83,7 @@ namespace SwordAndBored.GameData.Units
                 {
                     int dataUnitID = reader.GetIntFromCol("ID");
                     IUnit unitInSquad = new Unit(dataUnitID);
-                    Units.Add(unitInSquad);
+                    units.Add(unitInSquad);
                 }
             }
             conn.CloseConnection();
@@ -105,7 +108,7 @@ namespace SwordAndBored.GameData.Units
 
         public int Save()
         {
-            foreach (IUnit unit in Units)
+            foreach (IUnit unit in units)
             {
                 unit.Town = this;
                 unit.Save();
@@ -115,7 +118,7 @@ namespace SwordAndBored.GameData.Units
             DatabaseConnection conn = new DatabaseConnection();
             conn.ExecuteNonQuery(queryString);
             conn.CloseConnection();
-            return Units.Count;
+            return units.Count;
         }
 
     }

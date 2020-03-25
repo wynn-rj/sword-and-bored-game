@@ -81,6 +81,8 @@ namespace SwordAndBored.GameData.Units
                 enemiesFromTier.Add(new Enemy(enemyID));
             }
             int randomIndex = Random.Range(0, enemiesFromTier.Count);
+            conn.CloseConnection();
+            reader.CloseReader();
             return enemiesFromTier[randomIndex];
         }
 
