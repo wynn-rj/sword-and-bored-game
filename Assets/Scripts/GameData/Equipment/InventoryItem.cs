@@ -81,6 +81,33 @@ namespace SwordAndBored.GameData.Equipment
             conn.CloseConnection();
         }
 
+        public InventoryItem(int inputID)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Inventory",inputID);
+
+            ID = inputID;
+            if (reader.NextRow())
+            {
+                Quantity = reader.GetIntFromCol("Quantity");
+                int weaponID = reader.GetIntFromCol("Weapon_FK");
+                int armorID = reader.GetIntFromCol("Armor_FK");
+                int spellBookID = reader.GetIntFromCol("Spell_Book_FK");
+                if (weaponID >= 0)
+                {
+                    Weapon = new Weapon(weaponID);
+                } else if (armorID >= 0)
+                {
+                    Armor = new Armor(armorID);
+                } else if (spellBookID >= 0)
+                {
+                    SpellBook = new SpellBook(spellBookID);
+                }
+            }
+            reader.CloseReader();
+            conn.CloseConnection();
+        }
+
         public void SetQuantity(int newQuantity)
         {
             DatabaseConnection conn = new DatabaseConnection();
