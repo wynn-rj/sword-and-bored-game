@@ -143,8 +143,8 @@ namespace SwordAndBored.GameData.Units
         {
             if (ID == -1)
             {
-                string queryString = $"INSERT INTO Squads (Name, Description, Flavor_Text, X, Y, Route) VALUES ({DatabaseHelper.GetNullOrIDStringFromString(Name)}, " +
-                    $"{DatabaseHelper.GetNullOrIDStringFromString(Description)} , {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, {X}, {Y}, {DatabaseHelper.GetNullOrIDStringFromString(Route)});";
+                string queryString = $"INSERT INTO Squads (Name, Description, Flavor_Text, X, Y, Route) VALUES ({DatabaseHelper.GetNullOrStringFromString(Name)}, " +
+                    $"{DatabaseHelper.GetNullOrStringFromString(Description)} , {DatabaseHelper.GetNullOrStringFromString(FlavorText)}, {X}, {Y}, {DatabaseHelper.GetNullOrStringFromString(Route)});";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 DatabaseReader reader = conn.ExecuteQuery("SELECT * FROM Squads ORDER BY ID Desc LIMIT 1;");
@@ -163,8 +163,8 @@ namespace SwordAndBored.GameData.Units
             }
             else
             {
-                string queryString = $"UPDATE Squads SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}," +
-                    $" Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, X = {X}, Y = {Y}, Route = {DatabaseHelper.GetNullOrIDStringFromString(Route)}  WHERE ID = {ID};";
+                string queryString = $"UPDATE Squads SET Name = {DatabaseHelper.GetNullOrStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrStringFromString(Description)}," +
+                    $" Flavor_Text = {DatabaseHelper.GetNullOrStringFromString(FlavorText)}, X = {X}, Y = {Y}, Route = {DatabaseHelper.GetNullOrStringFromString(Route)}  WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();

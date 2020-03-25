@@ -17,7 +17,7 @@ namespace SwordAndBored.GameData.Database
             }
         }
 
-        public static string GetNullOrIDStringFromString(string str)
+        public static string GetNullOrStringFromString(string str)
         {
             if (str is null)
             {
