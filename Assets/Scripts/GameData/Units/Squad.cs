@@ -29,6 +29,7 @@ namespace SwordAndBored.GameData.Units
         }
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Route { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
 
@@ -45,6 +46,7 @@ namespace SwordAndBored.GameData.Units
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
                 X = reader.GetIntFromCol("X");
                 Y = reader.GetIntFromCol("Y");
+                Route = reader.GetStringFromCol("Route");
 
                 reader.CloseReader();
                 reader = conn.QueryRowFromTableWhereColNameEqualsInt("Units", "Squads_FK", inputID);
@@ -141,8 +143,8 @@ namespace SwordAndBored.GameData.Units
         {
             if (ID == -1)
             {
-                string queryString = $"INSERT INTO Squads (Name, Description, Flavor_Text, X, Y) VALUES ({DatabaseHelper.GetNullOrIDStringFromString(Name)}, " +
-                    $"{DatabaseHelper.GetNullOrIDStringFromString(Description)} , {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, {X}, {Y});";
+                string queryString = $"INSERT INTO Squads (Name, Description, Flavor_Text, X, Y, Route) VALUES ({DatabaseHelper.GetNullOrIDStringFromString(Name)}, " +
+                    $"{DatabaseHelper.GetNullOrIDStringFromString(Description)} , {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, {X}, {Y}, {DatabaseHelper.GetNullOrIDStringFromString(Route)});";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 DatabaseReader reader = conn.ExecuteQuery("SELECT * FROM Squads ORDER BY ID Desc LIMIT 1;");
@@ -162,7 +164,7 @@ namespace SwordAndBored.GameData.Units
             else
             {
                 string queryString = $"UPDATE Squads SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}," +
-                    $" Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, X = {X}, Y = {Y}  WHERE ID = {ID};";
+                    $" Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, X = {X}, Y = {Y}, Route = {DatabaseHelper.GetNullOrIDStringFromString(Route)}  WHERE ID = {ID};";
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.ExecuteNonQuery(queryString);
                 conn.CloseConnection();
