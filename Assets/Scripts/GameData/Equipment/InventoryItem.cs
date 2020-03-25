@@ -1,0 +1,92 @@
+﻿using SwordAndBored.GameData.Database;
+
+namespace SwordAndBored.GameData.Equipment
+{
+    public class InventoryItem : IInventoryItem
+    {
+        public IWeapon Weapon { get; }
+        public IArmor Armor { get; }
+        public ISpellBook SpellBook { get; }
+        public int Quantity { get; }
+        public int ID { get; set; }
+
+        public InventoryItem(IWeapon weapon)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Weapon_FK", weapon.ID);
+
+            Weapon = weapon;
+            if (reader.NextRow())
+            {
+                ID = reader.GetIntFromCol("ID");
+                Quantity = reader.GetIntFromCol("Quantity");
+            }
+            else
+            {
+                string query = $"INSERT INTO Inventory (Weapon_FK, Quantity) VALUES ({weapon.ID}, 0);";
+                conn.ExecuteNonQuery(query);
+                Quantity = 0;
+                reader.CloseReader();
+                reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Weapon_FK", weapon.ID);
+                ID = reader.GetIntFromCol("ID");
+            }
+            reader.CloseReader();
+            conn.CloseConnection();
+        }
+
+        public InventoryItem(IArmor armor)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Armor_FK", armor.ID);
+
+            Armor = armor;
+            if (reader.NextRow())
+            {
+                ID = reader.GetIntFromCol("ID");
+                Quantity = reader.GetIntFromCol("Quantity");
+            } else
+            {
+                string query = $"INSERT INTO Inventory (Armor_FK, Quantity) VALUES ({armor.ID}, 0);";
+                conn.ExecuteNonQuery(query);
+                Quantity = 0;
+                reader.CloseReader();
+                reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Armor_FK", armor.ID);
+                ID = reader.GetIntFromCol("ID");
+            }
+            reader.CloseReader();
+            conn.CloseConnection();
+        }
+
+        public InventoryItem(ISpellBook spellBook)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Spell_Book_FK", spellBook.ID);
+
+            SpellBook = spellBook;
+            if (reader.NextRow())
+            {
+                ID = reader.GetIntFromCol("ID");
+                Quantity = reader.GetIntFromCol("Quantity");
+            }
+            else
+            {
+                string query = $"INSERT INTO Inventory (Spell_Book_FK, Quantity) VALUES ({spellBook.ID}, 0);";
+                conn.ExecuteNonQuery(query);
+                Quantity = 0;
+                reader.CloseReader();
+                reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Spell_Book_FK", spellBook.ID);
+                ID = reader.GetIntFromCol("ID");
+            }
+            reader.CloseReader();
+            conn.CloseConnection();
+        }
+
+        public void SetQuantity(int newQuantity)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            string query = $"UPDATE Inventory SET Quantity = {newQuantity} WHERE ID = {ID};";
+            conn.ExecuteNonQuery(query);
+            conn.CloseConnection();
+        }
+    }
+}
