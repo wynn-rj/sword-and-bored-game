@@ -30,7 +30,7 @@ namespace SwordAndBored.Battlefield.AstarStuff
     public class BFS
     {
 
-        public List<Tile> FindPath(Tile goal, Tile[,] grid, MovementSystem ms)
+        public List<Tile> FindMoveZone(Tile goal, Tile[,] grid, MovementSystem ms)
         {
             List<BFSNode> openList = new List<BFSNode>();
             List<BFSNode> closedList = new List<BFSNode>();
