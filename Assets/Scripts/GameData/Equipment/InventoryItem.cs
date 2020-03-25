@@ -44,7 +44,8 @@ namespace SwordAndBored.GameData.Equipment
             {
                 ID = reader.GetIntFromCol("ID");
                 Quantity = reader.GetIntFromCol("Quantity");
-            } else
+            }
+            else
             {
                 string query = $"INSERT INTO Inventory (Armor_FK, Quantity) VALUES ({armor.ID}, 0);";
                 conn.ExecuteNonQuery(query);
@@ -84,7 +85,7 @@ namespace SwordAndBored.GameData.Equipment
         public InventoryItem(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
-            DatabaseReader reader = conn.QueryRowFromTableWithID("Inventory",inputID);
+            DatabaseReader reader = conn.QueryRowFromTableWithID("Inventory", inputID);
 
             ID = inputID;
             if (reader.NextRow())
@@ -96,10 +97,12 @@ namespace SwordAndBored.GameData.Equipment
                 if (weaponID >= 0)
                 {
                     Weapon = new Weapon(weaponID);
-                } else if (armorID >= 0)
+                }
+                else if (armorID >= 0)
                 {
                     Armor = new Armor(armorID);
-                } else if (spellBookID >= 0)
+                }
+                else if (spellBookID >= 0)
                 {
                     SpellBook = new SpellBook(spellBookID);
                 }

@@ -56,7 +56,8 @@ namespace SwordAndBored.GameData.Database
                 }
                 textBox.text = itemText;
             }
-            if (Input.GetKeyDown(KeyCode.W)) {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
                 List<IInventoryItem> items = InventoryHelper.GetWeapons();
                 string itemText = "";
                 foreach (IInventoryItem item in items)
@@ -65,7 +66,8 @@ namespace SwordAndBored.GameData.Database
                 }
                 textBox.text = itemText;
             }
-            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
                 List<IInventoryItem> items = InventoryHelper.GetWeaponsWithOne();
                 string itemText = "";
                 foreach (IInventoryItem item in items)
