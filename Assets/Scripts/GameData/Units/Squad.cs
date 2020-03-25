@@ -21,6 +21,8 @@ namespace SwordAndBored.GameData.Units
                     IUnit unitInSquad = new Unit(dataUnitID);
                     newUnitList.Add(unitInSquad);
                 }
+                conn.CloseConnection();
+                reader.CloseReader();
                 return newUnitList;
             }
             set { units = value; }
