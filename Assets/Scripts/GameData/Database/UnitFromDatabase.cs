@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.GameData.Roles;
+using SwordAndBored.GameData.Equipment;
 using TMPro;
 using System.Collections.Generic;
 
@@ -44,6 +45,34 @@ namespace SwordAndBored.GameData.Database
             {
                 IUnit unit = new Unit(30);
                 textBox.text = unit.Squad.Name;
+            }
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                List<IInventoryItem> items = InventoryHelper.GetAllInventoryItems();
+                string itemText = "";
+                foreach (IInventoryItem item in items)
+                {
+                    itemText += $"ID: {item.ID} ";
+                }
+                textBox.text = itemText;
+            }
+            if (Input.GetKeyDown(KeyCode.W)) {
+                List<IInventoryItem> items = InventoryHelper.GetWeapons();
+                string itemText = "";
+                foreach (IInventoryItem item in items)
+                {
+                    itemText += $"ID: {item.ID} ";
+                }
+                textBox.text = itemText;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                List<IInventoryItem> items = InventoryHelper.GetWeaponsWithOne();
+                string itemText = "";
+                foreach (IInventoryItem item in items)
+                {
+                    itemText += $"ID: {item.ID} ";
+                }
+                textBox.text = itemText;
             }
         }
     }
