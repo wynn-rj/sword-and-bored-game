@@ -168,8 +168,8 @@ namespace SwordAndBored.GameData.Units
                 Stats.Save();
 
                 string queryString = $"INSERT INTO Units (Name, Description, Flavor_Text, XP, Level, Stats_FK, Role_FK, Weapon_FK, Armor_FK, Spell_Book_FK, Squads_FK, Towns_FK, Is_Dead, " +
-                    $"Status_Conditions_Active_FK) VALUES ({DatabaseHelper.GetNullOrIDStringFromString(Name)}, {DatabaseHelper.GetNullOrIDStringFromString(Description)} , " +
-                    $"{DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}, {XP}, {Level}, {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, {DatabaseHelper.GetNullOrIDStringFromObject(Role)}," +
+                    $"Status_Conditions_Active_FK) VALUES ({DatabaseHelper.GetNullOrStringFromString(Name)}, {DatabaseHelper.GetNullOrStringFromString(Description)} , " +
+                    $"{DatabaseHelper.GetNullOrStringFromString(FlavorText)}, {XP}, {Level}, {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, {DatabaseHelper.GetNullOrIDStringFromObject(Role)}," +
                     $" {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}, {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)}," +
                     $" {DatabaseHelper.GetNullOrIDStringFromObject(Squad)}, {DatabaseHelper.GetNullOrIDStringFromObject(Town)}, {deadValue}, {DatabaseHelper.GetNullOrIDStringFromObject(StatusConditionsActive)})";
                 DatabaseConnection conn = new DatabaseConnection();
@@ -186,7 +186,7 @@ namespace SwordAndBored.GameData.Units
             else //Update
             {
                 Stats.Save();
-                string queryString = $"UPDATE Units SET Name = {DatabaseHelper.GetNullOrIDStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrIDStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrIDStringFromString(FlavorText)}," +
+                string queryString = $"UPDATE Units SET Name = {DatabaseHelper.GetNullOrStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrStringFromString(FlavorText)}," +
                     $" XP = {XP}, Level = {Level}, Stats_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, Role_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, Weapon_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}" +
                     $", Armor_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Armor)}, Spell_Book_FK = {DatabaseHelper.GetNullOrIDStringFromObject(SpellBook)}, Towns_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Town)}," +
                     $" Squads_FK = {SquadID}, Status_Conditions_Active_FK = {DatabaseHelper.GetNullOrIDStringFromObject(StatusConditionsActive)}, " +
