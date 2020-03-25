@@ -1,4 +1,4 @@
-using SwordAndBored.GameData.Database;
+using SwordAndBored.GameData;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.Strategy.GameResources;
 using SwordAndBored.StrategyView.BaseManagement.Buildings;
@@ -36,7 +36,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
         {
             if (UnitName.Length == 0)
             {
-                string randomName = DatabaseHelper.GetRandomNameFromDatabase();
+                string randomName = ResourceHelper.GetRandomNameFromDatabase();
                 unit.Name = randomName;
             }
             else
