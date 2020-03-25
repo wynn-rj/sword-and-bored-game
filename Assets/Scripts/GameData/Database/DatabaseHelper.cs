@@ -89,5 +89,24 @@ namespace SwordAndBored.GameData.Database
             conn.ExecuteNonQuery($"UPDATE Resources SET Turn_Number = {turnNum};");
             conn.CloseConnection();
         }
+
+        public static string GetCreepTiles()
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            DatabaseReader reader = conn.ExecuteQuery($"SELECT Creep_Tiles From Resources WHERE ID = 1");
+            reader.NextRow();
+            string creepTiles = reader.GetStringFromCol("Creep_Tiles");
+            conn.CloseConnection();
+            reader.CloseReader();
+
+            return creepTiles;
+        }
+
+        public static void SetCreepTiles(string CreepTiles)
+        {
+            DatabaseConnection conn = new DatabaseConnection();
+            conn.ExecuteNonQuery($"UPDATE Resources SET Creep_Tiles = {GetNullOrStringFromString(CreepTiles)};");
+            conn.CloseConnection();
+        }
     }
 }
