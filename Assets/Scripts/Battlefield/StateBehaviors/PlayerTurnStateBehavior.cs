@@ -49,7 +49,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
                     abilityButtons[i].GetComponent<AbilityButtonHighlight>().isEnabled = false;
                 }
             }
-
+            ms.ShowPossible(animator.GetComponent<UniqueCreature>().movementLeft);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
