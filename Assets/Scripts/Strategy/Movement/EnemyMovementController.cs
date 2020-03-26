@@ -4,12 +4,17 @@ using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Utilities.Random;
+using UnityEngine;
 
 namespace SwordAndBored.Strategy.Movement
 {
     public class EnemyMovementController : CreatureMovementController
     {
         public IEnemy[] Enemies { get; set; }
+
+        [SerializeField] private int manualSetGoalX;
+        [SerializeField] private int manualSetGoalY;
+        [SerializeField] private bool useManualGoal = false;
 
         private int averageMovement;
 
@@ -51,6 +56,14 @@ namespace SwordAndBored.Strategy.Movement
         private void DeterminePath()
         {
             path.Clear();
+            if (useManualGoal)
+            {
+                foreach (IHexGridCell cell in AStarModule.FindPath(Location, Location.ParentGrid[manualSetGoalX, manualSetGoalY]))
+                {
+                    path.Enqueue(cell);
+                }
+                return;
+            }
             AssertHelper.Assert(Location != null, "Location was null!", this);
             IHexGridCell gridCell = Location;
             for (int i = 0; i < averageMovement; i++)
