@@ -169,6 +169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseEmptyObject
       objectReference: {fileID: 0}
+    - target: {fileID: 3961204995071270449, guid: 5a24206edd10d11478c13aa1b1b442a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3961204995071270455, guid: 5a24206edd10d11478c13aa1b1b442a6,
         type: 3}
       propertyPath: m_LocalPosition.x
