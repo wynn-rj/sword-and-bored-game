@@ -22,7 +22,7 @@ namespace SwordAndBored.GameData.Database
 
         public void CloseConnection()
         {
-            conn.Close();
+            conn.Dispose();
         }
 
         public DatabaseReader ExecuteQuery(string query)
