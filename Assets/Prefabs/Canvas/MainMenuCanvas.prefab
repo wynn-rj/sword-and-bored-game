@@ -554,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsCanvas: {fileID: 0}
   creditsCanvas: {fileID: 0}
+  loadCanvas: {fileID: 0}
   confirmQuitPanel: {fileID: 3300074830861564575}
   audioMixer: {fileID: 24100000, guid: d1a7508d48cbef446b7bdfe8ef108d5d, type: 2}
 --- !u!1 &3300074828975422300

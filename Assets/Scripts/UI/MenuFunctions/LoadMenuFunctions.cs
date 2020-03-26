@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using SwordAndBored.GameData.Database;
+using UnityEngine.SceneManagement;
 
 namespace SwordAndBored.UI.MenuFunctions
 {
@@ -44,6 +45,7 @@ namespace SwordAndBored.UI.MenuFunctions
             DatabaseManager.LoadData(previousSaves.options[previousSaves.value].text);
             returnCanvas.gameObject.SetActive(true);
             gameObject.SetActive(false);
+            SceneManager.LoadScene(SceneManagement.GameScenes.BASEVIEW);
         }
 
         public void CancelButtonPressed()
