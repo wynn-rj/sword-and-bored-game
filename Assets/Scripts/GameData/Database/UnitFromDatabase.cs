@@ -78,6 +78,15 @@ namespace SwordAndBored.GameData.Database
                 }
                 textBox.text = itemText;
             }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                string nameText = "";
+                foreach (string name in DatabaseManager.GetPreviousSaveNames())
+                {
+                    nameText += name + "\n";
+                }
+                textBox.text = nameText;
+            }
         }
     }
 
