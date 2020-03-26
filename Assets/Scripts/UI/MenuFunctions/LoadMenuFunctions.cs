@@ -6,11 +6,10 @@ using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.UI.MenuFunctions
 {
-    public class SaveMenuFunctions : MonoBehaviour
+    public class LoadMenuFunctions : MonoBehaviour
     {
         public TMP_Dropdown previousSaves;
-        public TMP_InputField fileInput;
-        public Button saveButton, overwriteButton, cancelButton;
+        public Button loadButton, cancelButton;
         public Canvas returnCanvas;
 
         private List<string> oldFileNames;
@@ -18,54 +17,31 @@ namespace SwordAndBored.UI.MenuFunctions
         void Start()
         {
             oldFileNames = DatabaseManager.GetPreviousSaveNames();
-            if(oldFileNames.Count > 0)
+            if (oldFileNames.Count > 0)
             {
                 previousSaves.AddOptions(oldFileNames);
-            } else
+            }
+            else
             {
                 previousSaves.options[0].text = "No Previous Save Files";
             }
         }
 
-
         public void OnDropdownChanged(int newValue)
         {
             if (newValue > 0)
             {
-                overwriteButton.interactable = true;
+                loadButton.interactable = true;
             }
             else
             {
-                overwriteButton.interactable = false;
+                loadButton.interactable = false;
             }
         }
 
-        public void OnTextInputChanged(string text)
+        public void LoadButtonPressed()
         {
-            if (text.Length > 0)
-            {
-                saveButton.interactable = true;
-            }
-            else
-            {
-                saveButton.interactable = false;
-            }
-        }
-
-        public void SaveButtonPressed()
-        {
-            if (oldFileNames.Contains(fileInput.text)) {
-                // Open panel to confirm overwrite
-                Debug.Log("File already exists with this name");
-            }
-            DatabaseManager.SaveData(fileInput.text);
-            returnCanvas.gameObject.SetActive(true);
-            gameObject.SetActive(false);
-        }
-
-        public void OverwriteButtonPressed()
-        {
-            DatabaseManager.SaveData(fileInput.text);
+            DatabaseManager.LoadData(previousSaves.options[previousSaves.value].text);
             returnCanvas.gameObject.SetActive(true);
             gameObject.SetActive(false);
         }
