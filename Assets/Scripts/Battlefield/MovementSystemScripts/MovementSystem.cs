@@ -24,6 +24,7 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
         public bool finishedMoving = false;
 
         AStar star = new AStar();
+        BFS bfs = new BFS();
         DisplayPath show = new DisplayPath();
         protected BrainManager brain;
         [HideInInspector]
@@ -63,6 +64,16 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
             else
             {
                 lr.enabled = false;
+            }
+
+        }
+
+        public void ShowPossible(int movement)
+        {
+            List<Tile> possible = bfs.GetPossibleMove(grid, this, movement);
+            foreach (Tile tile in possible)
+            {
+                tile.Highlight(Color.blue);
             }
         }
 
