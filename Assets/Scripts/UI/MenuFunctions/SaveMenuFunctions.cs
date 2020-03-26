@@ -11,13 +11,15 @@ namespace SwordAndBored.UI.MenuFunctions
         public TMP_Dropdown previousSaves;
         public TMP_InputField fileInput;
         public Button saveButton, overwriteButton;
+
+        private List<string> oldFileNames;
         // Start is called before the first frame update
         void Start()
         {
-            List<string> oldFilenames = DatabaseManager.GetPreviousSaveNames();
-            if(oldFilenames.Count > 0)
+            oldFileNames = DatabaseManager.GetPreviousSaveNames();
+            if(oldFileNames.Count > 0)
             {
-                previousSaves.AddOptions(oldFilenames);
+                previousSaves.AddOptions(oldFileNames);
             } else
             {
                 previousSaves.options[0].text = "No Previous Save Files";
@@ -55,12 +57,16 @@ namespace SwordAndBored.UI.MenuFunctions
 
         public void SaveButtonPressed()
         {
-            //Handle save text == option
+            if (oldFileNames.Contains(fileInput.text)) {
+                // Open panel to confirm overwrite
+                Debug.Log("File already exists with this name");
+            }
+            DatabaseManager.SaveData(fileInput.text);
         }
 
         public void OverwriteButtonPressed()
         {
-
+            DatabaseManager.SaveData(fileInput.text);
         }
     }
 }
