@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using SwordAndBored.GameData.Database;
 
 namespace SwordAndBored.UI.MenuFunctions
 {
@@ -21,7 +22,13 @@ namespace SwordAndBored.UI.MenuFunctions
         }
         public void StartButtonPressed()
         {
+            DatabaseManager.LoadFromDefault();
             SceneManager.LoadScene(SceneManagement.GameScenes.BASEVIEW);
+        }
+
+        public void LoadButtonPressed()
+        {
+            // Switch Canvas
         }
 
         public void ExitButtonPressed()
