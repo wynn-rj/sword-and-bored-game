@@ -25,10 +25,11 @@ namespace SwordAndBored.UI.MenuFunctions
             previousSaves.ClearOptions();
             previousSaves.AddOptions(emptyOption);
             oldFileNames = DatabaseManager.GetPreviousSaveNames();
-            if(oldFileNames.Count > 0)
+            if (oldFileNames.Count > 0)
             {
                 previousSaves.AddOptions(oldFileNames);
-            } else
+            }
+            else
             {
                 previousSaves.options[0].text = "No Previous Save Files";
             }
@@ -61,7 +62,8 @@ namespace SwordAndBored.UI.MenuFunctions
 
         public void SaveButtonPressed()
         {
-            if (oldFileNames.Contains(fileInput.text)) {
+            if (oldFileNames.Contains(fileInput.text))
+            {
                 // Open panel to confirm overwrite
                 Debug.Log("File already exists with this name");
             }
