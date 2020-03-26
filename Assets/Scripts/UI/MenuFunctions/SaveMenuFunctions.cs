@@ -14,9 +14,16 @@ namespace SwordAndBored.UI.MenuFunctions
         public Canvas returnCanvas;
 
         private List<string> oldFileNames;
+        private List<string> emptyOption;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
+            emptyOption = new List<string>
+            {
+                "----------Select A File----------"
+            };
+            previousSaves.ClearOptions();
+            previousSaves.AddOptions(emptyOption);
             oldFileNames = DatabaseManager.GetPreviousSaveNames();
             if(oldFileNames.Count > 0)
             {
@@ -59,19 +66,33 @@ namespace SwordAndBored.UI.MenuFunctions
                 Debug.Log("File already exists with this name");
             }
             DatabaseManager.SaveData(fileInput.text);
-            returnCanvas.gameObject.SetActive(true);
-            gameObject.SetActive(false);
+            LeaveCanvas();
         }
 
         public void OverwriteButtonPressed()
         {
             DatabaseManager.SaveData(fileInput.text);
-            returnCanvas.gameObject.SetActive(true);
-            gameObject.SetActive(false);
+            LeaveCanvas();
         }
 
         public void CancelButtonPressed()
         {
+            LeaveCanvas();
+        }
+
+        public void LeaveCanvas()
+        {
+            previousSaves.ClearOptions();
+            previousSaves.AddOptions(emptyOption);
+            oldFileNames = DatabaseManager.GetPreviousSaveNames();
+            if (oldFileNames.Count > 0)
+            {
+                previousSaves.AddOptions(oldFileNames);
+            }
+            else
+            {
+                previousSaves.options[0].text = "No Previous Save Files";
+            }
             returnCanvas.gameObject.SetActive(true);
             gameObject.SetActive(false);
         }

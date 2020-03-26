@@ -61,3 +61,7 @@ crashlytics-build.properties
 # IntelliJ cache directory
 .idea/
 
+# Database
+/UserSaves/
+/GameSaves/GameData.db
+/GameSaves/GameData.db.meta
