@@ -64,5 +64,5 @@ crashlytics-build.properties
 # Database
 Assets/StreamingAssets/UserSaves/*.db
 Assets/StreamingAssets/UserSaves/*.db.meta
-Assets/StreamingAssets/GameSaves/GameData.db
-Assets/StreamingAssets/GameSaves/GameData.db.meta
+Assets/StreamingAssets/GameSaves/LiveDatabase.db
+Assets/StreamingAssets/GameSaves/LiveDatabase.db.meta

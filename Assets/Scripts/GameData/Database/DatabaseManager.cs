@@ -9,17 +9,17 @@ namespace SwordAndBored.GameData.Database
     {
         public static void SaveData(string fileName)
         {
-            File.Copy(Application.streamingAssetsPath + "/GameSaves/GameData.db", Application.streamingAssetsPath + $"/UserSaves/{fileName}.db", true);
+            File.Copy(Application.streamingAssetsPath + "/GameSaves/LiveDatabase.db", Application.streamingAssetsPath + $"/UserSaves/{fileName}.db", true);
         }
 
         public static void LoadData(string fileName)
         {
-            File.Copy(Application.streamingAssetsPath + $"/UserSaves/{fileName}.db", Application.streamingAssetsPath + "/GameSaves/GameData.db", true);
+            File.Copy(Application.streamingAssetsPath + $"/UserSaves/{fileName}.db", Application.streamingAssetsPath + "/GameSaves/LiveDatabase.db", true);
         }
 
         public static void LoadFromDefault()
         {
-            File.Copy(Application.streamingAssetsPath + $"/GameSaves/Default.db", Application.streamingAssetsPath + "/GameSaves/GameData.db", true);
+            File.Copy(Application.streamingAssetsPath + $"/GameSaves/Default.db", Application.streamingAssetsPath + "/GameSaves/LiveDatabase.db", true);
         }
 
         public static List<string> GetPreviousSaveNames()
