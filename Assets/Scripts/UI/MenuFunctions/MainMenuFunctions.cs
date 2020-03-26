@@ -7,7 +7,7 @@ namespace SwordAndBored.UI.MenuFunctions
 {
     public class MainMenuFunctions : MonoBehaviour
     {
-        public GameObject optionsCanvas, creditsCanvas;
+        public GameObject optionsCanvas, creditsCanvas, loadCanvas;
         public GameObject confirmQuitPanel;
 
         public AudioMixer audioMixer;
@@ -28,7 +28,8 @@ namespace SwordAndBored.UI.MenuFunctions
 
         public void LoadButtonPressed()
         {
-            // Switch Canvas
+            loadCanvas.SetActive(true);
+            gameObject.SetActive(false);
         }
 
         public void ExitButtonPressed()
