@@ -7,7 +7,7 @@ namespace SwordAndBored.UI.MenuFunctions
 {
     public class PauseFunctions : MonoBehaviour
     {
-        public GameObject pauseCanvas, optionsCanvas;
+        public GameObject pauseCanvas, optionsCanvas, saveCanvas;
 
         // Update is called once per frame
         void Update()
@@ -33,29 +33,37 @@ namespace SwordAndBored.UI.MenuFunctions
                     Time.timeScale = 1.0f;
                 }
             }
+
+
+        }
+
+        public void HotKeys()
+        {
             if (Input.GetKeyDown(KeyCode.M))
             {
                 string name = SceneManager.GetActiveScene().name;
                 if (name.Equals(GameScenes.BASEVIEW))
                 {
                     SceneManager.LoadScene(GameScenes.STRATEGYMAP);
-                } else
+                }
+                else
                 {
                     SceneManager.LoadScene(GameScenes.BASEVIEW);
                 }
-            } else if (Input.GetKeyDown(KeyCode.N))
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
             {
                 SceneManager.LoadScene(GameScenes.BATTLEFIELD);
-            } else if (Input.GetKeyDown(KeyCode.L))
+            }
+            else if (Input.GetKeyDown(KeyCode.L))
             {
                 SceneManager.LoadScene("DatabaseTesting");
             }
 
-            if(Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I))
             {
                 DatabaseHelper.ClearAllUnitsExceptOneFromUnitTable();
             }
-            
         }
 
         public void ResumePressed()
@@ -72,7 +80,9 @@ namespace SwordAndBored.UI.MenuFunctions
 
         public void SaveGamePressed()
         {
-            Debug.Log("Save game");
+            //Debug.Log("Save game");
+            pauseCanvas.SetActive(false);
+            saveCanvas.SetActive(true);
         }
 
         public void LoadGamePressed()
