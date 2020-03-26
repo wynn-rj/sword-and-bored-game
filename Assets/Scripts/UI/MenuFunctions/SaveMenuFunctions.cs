@@ -15,11 +15,50 @@ namespace SwordAndBored.UI.MenuFunctions
         void Start()
         {
             List<string> oldFilenames = DatabaseManager.GetPreviousSaveNames();
-            previousSaves.AddOptions(oldFilenames);
+            if(oldFilenames.Count > 0)
+            {
+                previousSaves.AddOptions(oldFilenames);
+            } else
+            {
+                previousSaves.options[0].text = "No Previous Save Files";
+            }
         }
 
         // Update is called once per frame
         void Update()
+        {
+        }
+
+        public void OnDropdownChanged(int newValue)
+        {
+            if (newValue > 0)
+            {
+                overwriteButton.interactable = true;
+            }
+            else
+            {
+                overwriteButton.interactable = false;
+            }
+        }
+
+        public void OnTextInputChanged(string text)
+        {
+            if (text.Length > 0)
+            {
+                saveButton.interactable = true;
+            }
+            else
+            {
+                saveButton.interactable = false;
+            }
+        }
+
+        public void SaveButtonPressed()
+        {
+            //Handle save text == option
+        }
+
+        public void OverwriteButtonPressed()
         {
 
         }
