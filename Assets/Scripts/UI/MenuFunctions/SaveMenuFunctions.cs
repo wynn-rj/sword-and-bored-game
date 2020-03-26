@@ -10,7 +10,8 @@ namespace SwordAndBored.UI.MenuFunctions
     {
         public TMP_Dropdown previousSaves;
         public TMP_InputField fileInput;
-        public Button saveButton, overwriteButton;
+        public Button saveButton, overwriteButton, cancelButton;
+        public Canvas returnCanvas;
 
         private List<string> oldFileNames;
         // Start is called before the first frame update
@@ -62,11 +63,21 @@ namespace SwordAndBored.UI.MenuFunctions
                 Debug.Log("File already exists with this name");
             }
             DatabaseManager.SaveData(fileInput.text);
+            returnCanvas.gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
 
         public void OverwriteButtonPressed()
         {
             DatabaseManager.SaveData(fileInput.text);
+            returnCanvas.gameObject.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
+        public void CancelButtonPressed()
+        {
+            returnCanvas.gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }
