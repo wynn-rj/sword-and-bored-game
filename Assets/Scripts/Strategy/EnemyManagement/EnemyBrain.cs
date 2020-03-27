@@ -18,7 +18,7 @@ namespace SwordAndBored.Strategy.EnemyManagement
 {
     class EnemyBrain : MonoBehaviour, IPreTimeStepSubscriber
     {
-        [System.Serializable]
+        [Serializable]
         private enum Behaviour
         {
             Aggresive,
@@ -27,12 +27,11 @@ namespace SwordAndBored.Strategy.EnemyManagement
             Loading
         }
 
-        private const int GUARD_DISTANCE_MODIFIER = 2;
         private const float PRODUCTIVITY_DIRECTION_BOUND = 0.2f;
 
         private readonly Dictionary<Behaviour, int> guardDistance = new Dictionary<Behaviour, int>()
         {
-            { Behaviour.Aggresive, -GUARD_DISTANCE_MODIFIER },
+            { Behaviour.Aggresive, 8 },
             { Behaviour.Passive, 4 },
             { Behaviour.Defensive, 2 },
         };
@@ -124,10 +123,18 @@ namespace SwordAndBored.Strategy.EnemyManagement
         {
             ImportantLocations.Add(tileManager.EnemyBase);
             TargetLocations.Add(tileManager.PlayerBase);
-            foreach (IHexGridCell neighbor in tileManager.EnemyBase.Neighbors)
+            foreach (IEnemySquad enemySquad in EnemySquad.GetAllEnemySquads())
             {
-                PlaceEnemy(neighbor);
+                PlaceEnemy(enemySquad);
             }
+            if (Enemies.Count == 0 && turnManager.TimeStep == 0)
+            {
+                foreach (IHexGridCell neighbor in tileManager.EnemyBase.Neighbors)
+                {
+                    PlaceEnemy(neighbor);
+                }
+            }
+            
             foreach (ITown town in Town.GetAllTowns())
             {
                 if (town.PlayerOwned)
@@ -175,9 +182,15 @@ namespace SwordAndBored.Strategy.EnemyManagement
             SceneSharing.enemyMood = Mood;
             SceneSharing.enemyProductivity = Productivity;
             SceneSharing.enemyProductivityDirection = ProductivityDirection;
+            foreach (EnemyMovementController enemy in Enemies)
+            {
+                enemy.Squad.X = enemy.Location.Position.GridPoint.X;
+                enemy.Squad.Y = enemy.Location.Position.GridPoint.Y;
+                enemy.Squad.Save();
+            }
         }
 
-        private void PlaceEnemy(IHexGridCell location = null, IEnemy[] enemies = null)
+        private EnemyMovementController PlaceEnemy(IHexGridCell location = null, IEnemy[] enemies = null)
         {
             if (location == null)
             {
@@ -204,13 +217,21 @@ namespace SwordAndBored.Strategy.EnemyManagement
             turnManager.Subscribe(enemy);
             Enemies.Add(enemy);
             enemy.MovementStrategy = new FixedLocationMovementStrategy(location);
+            enemy.Squad = new EnemySquad(location.Position.GridPoint.X, location.Position.GridPoint.Y);
+            return enemy;
+        }
+
+        private void PlaceEnemy(IEnemySquad enemy)
+        {
+            EnemyMovementController movementController = PlaceEnemy(tileManager.HexTiling[enemy.X, enemy.Y]);
+            movementController.Squad = enemy;
         }
 
         private void DetermineMovementStrategy(EnemyMovementController enemy)
         {
             KeyValuePair<SquadController, int> nearestSquad = GetNearest(squadManager.squads, enemy.Location);
 
-            if (nearestSquad.Value <= guardDistance[currentBehaviour] + GUARD_DISTANCE_MODIFIER)
+            if (nearestSquad.Value <= guardDistance[currentBehaviour])
             {
                 enemy.MovementStrategy = new GuardMovementStrategy(nearestSquad.Key.Location, guardDistance[currentBehaviour]);
                 return;
