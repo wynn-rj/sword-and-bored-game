@@ -171,7 +171,6 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             skeleton.transform.parent = null;
             skeleton.GetComponent<Animator>().SetTrigger("Death");
             Destroy(currentCamera);
-            Destroy()
             Destroy(gameObject);
         }
 
