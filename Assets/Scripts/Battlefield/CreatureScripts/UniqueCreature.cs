@@ -48,6 +48,9 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public int movementLeft;
 
 
+        public GameObject skeleton;
+
+
         void Start()
         {
             //health = maxHealth;
@@ -164,6 +167,11 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 brain.isMyTurn = false;
                 brain.manager.nextTurn();
             }
+            GetComponent<Collider>().enabled = false;
+            skeleton.transform.parent = null;
+            skeleton.GetComponent<Animator>().SetTrigger("Death");
+            Destroy(currentCamera);
+            Destroy()
             Destroy(gameObject);
         }
 
