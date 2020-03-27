@@ -1,17 +1,13 @@
 ﻿using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using SwordAndBored.Utilities.Random;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SwordAndBored.Strategy.Movement.EnemyMovementStrategies
 {
     class WanderMovementStrategy : IEnemyMovementStrategy
     {
-        private const int MAX_ITERATIONS = 10;
+        private const int MAX_ITERATIONS = 20;
 
         public List<IHexGridCell> GetPath(IHexGridCell currentLocation, int speed)
         {
@@ -21,12 +17,18 @@ namespace SwordAndBored.Strategy.Movement.EnemyMovementStrategies
                 Point<int> start = currentLocation.Position.GridPoint;
                 Point<int> randomOffset = new Point<int>(start.X - speed + Odds.DiceRoll(2 * speed), start.Y - speed + Odds.DiceRoll(2 * speed));
                 newLocation = currentLocation.ParentGrid[randomOffset];
-            } while (!newLocation.HasComponent<UnselectableComponent>() && iterations++ < MAX_ITERATIONS);
+                iterations++;
+            } while ((newLocation == null || newLocation.HasComponent<UnselectableComponent>()) && iterations < MAX_ITERATIONS);
             if (iterations == MAX_ITERATIONS)
             {
                 return new List<IHexGridCell>();
             }
-            return AStarModule.FindPath(currentLocation, newLocation);
+            return AStarModule.FindPath(currentLocation, newLocation, false);
+        }
+
+        public override string ToString()
+        {
+            return "Wandering";
         }
     }
 }
