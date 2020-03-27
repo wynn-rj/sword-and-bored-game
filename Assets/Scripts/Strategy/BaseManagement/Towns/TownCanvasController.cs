@@ -190,6 +190,15 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
 
         public void Confirm()
         {
+            List<IUnit> townUnits = new List<IUnit>();
+            foreach (GameObject entryObject in townEntries)
+            {
+                townUnits.Add(entryObject.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+            }
+
+            displayedTown.Units = townUnits;
+            displayedTown.Save();
+
             if (squad == null)
             {
                 DeploySquad();
@@ -199,15 +208,6 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
                 squad.Units = squadUnitData;
                 squad.Save();
             }
-
-            List<IUnit> townUnits = new List<IUnit>();
-            foreach (GameObject entryObject in townEntries)
-            {
-                townUnits.Add(entryObject.GetComponent<UnitEntryDisplay>().unitEntry.unit);
-            }
-
-            displayedTown.Units = townUnits;
-            displayedTown.Save();
 
             squad = null;
             activeEntries.Clear();

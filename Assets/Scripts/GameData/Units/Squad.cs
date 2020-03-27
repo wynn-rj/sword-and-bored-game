@@ -171,13 +171,13 @@ namespace SwordAndBored.GameData.Units
 
                 foreach (IUnit unit in units ?? Units)
                 {
-                    if (unit.Town is null)
+                    if (!(unit.Town == null) && !(unit.Town.Name == null) && unit.Town.Name.Length > 1)
                     {
-                        unit.Squad = this;
+                        unit.Squad = null;
                     }
                     else
                     {
-                        unit.Squad = null;
+                        unit.Squad = this;
                     }
                     unit.Save();
                 }

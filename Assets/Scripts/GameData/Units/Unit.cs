@@ -83,7 +83,7 @@ namespace SwordAndBored.GameData.Units
         public string FlavorText { get; set; }
 
         public int SquadID { get; set; }
-        private int TownID { get; set; }
+        public int TownID { get; set; }
 
         public Unit(int inputID)
         {
