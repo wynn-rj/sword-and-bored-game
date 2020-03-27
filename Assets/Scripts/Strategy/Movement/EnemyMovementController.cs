@@ -1,9 +1,10 @@
 ﻿using SwordAndBored.GameData.Units;
+using SwordAndBored.Strategy.Movement.EnemyMovementStrategies;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 using SwordAndBored.Utilities.Debug;
-using SwordAndBored.Utilities.Random;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SwordAndBored.Strategy.Movement
@@ -11,6 +12,7 @@ namespace SwordAndBored.Strategy.Movement
     public class EnemyMovementController : CreatureMovementController
     {
         public IEnemy[] Enemies { get; set; }
+        public IEnemyMovementStrategy MovementStrategy { get; set; }
 
         [SerializeField] private int manualSetGoalX;
         [SerializeField] private int manualSetGoalY;
@@ -61,26 +63,14 @@ namespace SwordAndBored.Strategy.Movement
 
         private void DeterminePath()
         {
-            path.Clear();
-            if (useManualGoal)
-            {
-                foreach (IHexGridCell cell in AStarModule.FindPath(Location, Location.ParentGrid[manualSetGoalX, manualSetGoalY]))
-                {
-                    path.Enqueue(cell);
-                }
-                return;
-            }
             AssertHelper.Assert(Location != null, "Location was null!", this);
-            IHexGridCell gridCell = Location;
-            for (int i = 0; i < averageMovement; i++)
+            AssertHelper.Assert(MovementStrategy != null, "Enemy doesn't know how to move!", this);
+            path.Clear();
+            List<IHexGridCell> pathToGoal = !useManualGoal ? MovementStrategy.GetPath(Location, averageMovement) :
+                 AStarModule.FindPath(Location, Location.ParentGrid[manualSetGoalX, manualSetGoalY]);
+            foreach (IHexGridCell cell in pathToGoal)
             {
-                IHexGridCell tempGridCell;
-                do
-                {
-                    tempGridCell = Odds.SelectAtRandom(gridCell.Neighbors);
-                } while (tempGridCell is null || tempGridCell.HasComponent<UnselectableComponent>());
-                gridCell = tempGridCell;
-                path.Enqueue(gridCell);
+                path.Enqueue(cell);
             }
         }
     }
