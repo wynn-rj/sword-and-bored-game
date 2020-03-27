@@ -6,6 +6,7 @@ using SwordAndBored.Battlefield.MovementSystemScripts;
 using UnityEngine.UI;
 using SwordAndBored.UI.Battlefield;
 using UnityEngine.Audio;
+using SwordAndBored.GameData.Units;
 
 namespace SwordAndBored.Battlefield.CreaturScripts {
     public class UniqueCreature : MonoBehaviour
@@ -30,6 +31,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public bool isEnemy;
         MovementSystem ms;
         Text damageMessage;
+        [HideInInspector]
+        public IUnit myUnit;
 
         [Header("Creature Info")]
         public string creatureName;
