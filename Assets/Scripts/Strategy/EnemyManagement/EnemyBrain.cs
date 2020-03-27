@@ -12,11 +12,12 @@ using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Utilities.Random;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace SwordAndBored.Strategy.EnemyManagement
 {
-    class EnemyBrain : MonoBehaviour, IPreTimeStepSubscriber
+    class EnemyBrain : MainThreadPreTimeStepSubscriber
     {
         [Serializable]
         private enum Behaviour
@@ -49,25 +50,14 @@ namespace SwordAndBored.Strategy.EnemyManagement
             set
             {
                 mood = Mathf.Clamp(value, -1, 1);
-                if (mood < -0.3f)
-                {
-                    UpdateBehaviour(Behaviour.Defensive);
-                } 
-                else if (mood > 0.3f)
-                {
-                    UpdateBehaviour(Behaviour.Aggresive);
-                }
-                else
-                {
-                    UpdateBehaviour(Behaviour.Passive);
-                }
+                updateBehaviour = true;
             }
         }
 
         private float Productivity
         {
             get => productivity;
-            set => Productivity = Mathf.Clamp(value, -1f, 1f);
+            set => productivity = Mathf.Clamp(value, -1f, 1f);
         }
 
         private float ProductivityDirection
@@ -86,17 +76,18 @@ namespace SwordAndBored.Strategy.EnemyManagement
         [SerializeField] private SquadManager squadManager;
         [SerializeField] private float enemyPlacementHeight = 0;
         [SerializeField] private Behaviour currentBehaviour = Behaviour.Loading;
-        [SerializeField] private float mood;
-        [SerializeField] private float productivity;
-        [SerializeField] private float productivityDirection = 0;
+        [SerializeField] [Range(-1, 1)] private float mood;
+        [SerializeField] [Range(-1, 1)] private float productivity;
+        [SerializeField] [Range(-PRODUCTIVITY_DIRECTION_BOUND, PRODUCTIVITY_DIRECTION_BOUND)] private float productivityDirection = 0;
         private int chaserCount = 0;
+        protected bool updateBehaviour = false;
 
-        public void PreTimeStepUpdate()
+        protected override void MainThreadPreTimeStepUpdate()
         {
             Mood += 0.05f;
             int desiredEnemyCount = ImportantLocations.Count + TargetLocations.Count + squadManager.squads.Count + Mathf.RoundToInt(0.08f * turnManager.TimeStep);
             ProductivityDirection += 0.001f * (desiredEnemyCount - Enemies.Count);
-            productivity += ProductivityDirection;
+            Productivity += ProductivityDirection;
 
             if (Productivity > 0.5f && Odds.DiceRoll(5) == 1)
             {
@@ -134,19 +125,23 @@ namespace SwordAndBored.Strategy.EnemyManagement
                     PlaceEnemy(neighbor);
                 }
             }
-            
+
             foreach (ITown town in Town.GetAllTowns())
             {
+                if (town.ID == 0) continue;
+                Point<int> townLocation = new Point<int>(town.X, town.Y);
                 if (town.PlayerOwned)
                 {
-                    TargetLocations.Add(tileManager.HexTiling[town.X, town.Y]);
+                    TargetLocations.Add(tileManager.HexTiling[townLocation]);
                 }
                 else
                 {
-                    ImportantLocations.Add(tileManager.HexTiling[town.X, town.Y]);
+                    ImportantLocations.Add(tileManager.HexTiling[townLocation]);
                 }
+                Debug.Log(string.Format("Town at {0} flagged as {1} location", townLocation,
+                    town.PlayerOwned ? "Target" : "Important"));
             }
-            
+
             Mood = SceneSharing.enemyMood;
             Productivity = SceneSharing.enemyProductivity;
             if (SceneSharing.enemyControlledLocations > ImportantLocations.Count)
@@ -174,6 +169,30 @@ namespace SwordAndBored.Strategy.EnemyManagement
                     Mood = 0f;
                 }
             }
+            if (updateBehaviour)
+            {
+                foreach (EnemyMovementController enemy in Enemies)
+                {
+                    if (enemy.Location == null)
+                    {
+                        Debug.LogWarning("Delaying behaviour update till enemies are ready");
+                        return;
+                    }
+                }
+                if (mood < -0.3f)
+                {
+                    UpdateBehaviour(Behaviour.Defensive);
+                }
+                else if (mood > 0.3f)
+                {
+                    UpdateBehaviour(Behaviour.Aggresive);
+                }
+                else
+                {
+                    UpdateBehaviour(Behaviour.Passive);
+                }
+                updateBehaviour = false;
+            }
         }
 
         private void OnDestroy()
@@ -197,7 +216,7 @@ namespace SwordAndBored.Strategy.EnemyManagement
                 do
                 {
                     location = Odds.SelectAtRandom(Odds.SelectAtRandom(ImportantLocations).Neighbors);
-                } while (location.HasComponent<UnselectableComponent>());                
+                } while (location.HasComponent<UnselectableComponent>());
             }
             if (enemies == null)
             {
@@ -208,8 +227,9 @@ namespace SwordAndBored.Strategy.EnemyManagement
                 {
                     enemyList.Add(Enemy.GetEnemyFromTier(1));
                 }
+                enemies = enemyList.ToArray();
             }
-           
+
             EnemyMovementController enemy = Instantiate(enemyPrefab, transform);
             enemy.transform.position = location.Position.CenterAsVector3(enemyPlacementHeight);
             enemy.Enemies = enemies;
@@ -229,7 +249,7 @@ namespace SwordAndBored.Strategy.EnemyManagement
 
         private void DetermineMovementStrategy(EnemyMovementController enemy)
         {
-            KeyValuePair<SquadController, int> nearestSquad = GetNearest(squadManager.squads, enemy.Location);
+            KeyValuePair<SquadController, int> nearestSquad = GetNearest(squadManager.squads, enemy.Location, false);
 
             if (nearestSquad.Value <= guardDistance[currentBehaviour])
             {
@@ -260,16 +280,16 @@ namespace SwordAndBored.Strategy.EnemyManagement
 
             int locationsToProtect = Mathf.RoundToInt(ImportantLocations.Count * protectedLocationsPercents[behaviour]);
             for (int i = 0; i < locationsToProtect; i++)
-            {                
+            {
                 IHexGridCell cellToGuard = ImportantLocations[i];
                 while (cellToGuard.HasComponent<UnselectableComponent>())
                 {
                     cellToGuard = Odds.SelectAtRandom(cellToGuard.Neighbors);
-                } 
-                GetNearest(Enemies, cellToGuard).Key.MovementStrategy = new GuardMovementStrategy(cellToGuard, guardDistance[currentBehaviour]);
+                }
+                GetNearestUntasked(Enemies, cellToGuard).Key.MovementStrategy = new GuardMovementStrategy(cellToGuard, guardDistance[currentBehaviour]);
             }
 
-            int locationsToAttack = Mathf.RoundToInt(TargetLocations.Count * (1 - protectedLocationsPercents[behaviour]));            
+            int locationsToAttack = Mathf.RoundToInt(TargetLocations.Count * (1 - protectedLocationsPercents[behaviour]));
             for (int i = 0; i < locationsToAttack; i++)
             {
                 IHexGridCell cellToAttack = Odds.SelectAtRandom(TargetLocations);
@@ -277,7 +297,7 @@ namespace SwordAndBored.Strategy.EnemyManagement
                 {
                     cellToAttack = Odds.SelectAtRandom(cellToAttack.Neighbors);
                 }
-                GetNearest(Enemies, cellToAttack).Key.MovementStrategy = new FixedLocationMovementStrategy(cellToAttack);
+                GetNearestUntasked(Enemies, cellToAttack).Key.MovementStrategy = new FixedLocationMovementStrategy(cellToAttack);
             }
 
             foreach (EnemyMovementController enemy in Enemies)
@@ -287,14 +307,17 @@ namespace SwordAndBored.Strategy.EnemyManagement
                     DetermineMovementStrategy(enemy);
                 }
             }
+            Debug.Log(string.Format(
+                "Enemy Behaviour Updated\n\tProtecting {0} of {1} important locations\n\tAttacking {2} of {3} target locations\n\tChasers active {4}",
+                locationsToProtect, ImportantLocations.Count, locationsToAttack, TargetLocations.Count, chaserCount));
         }
 
-        private static KeyValuePair<T, int> GetNearest<T>(IEnumerable<T> creatures, IHexGridCell destination) where T : CreatureMovementController
+        private static KeyValuePair<T, int> GetNearest<T>(IEnumerable<T> creatures, IHexGridCell destination, bool isEnemyList = true) where T : CreatureMovementController
         {
             KeyValuePair<T, int> nearestCreature = new KeyValuePair<T, int>(null, int.MaxValue);
             foreach (T creature in creatures)
             {
-                int distanceToSquad = AStarModule.FindPath(creature.Location, destination).Count;
+                int distanceToSquad = AStarModule.FindPath(creature.Location, destination, !isEnemyList).Count;
                 if (distanceToSquad < nearestCreature.Value)
                 {
                     nearestCreature = new KeyValuePair<T, int>(creature, distanceToSquad);
@@ -302,5 +325,40 @@ namespace SwordAndBored.Strategy.EnemyManagement
             }
             return nearestCreature;
         }
+
+        private static KeyValuePair<EnemyMovementController, int> GetNearestUntasked(IList<EnemyMovementController> creatures, IHexGridCell destination)
+        {
+            IList<EnemyMovementController> localEnemies = new List<EnemyMovementController>(creatures);
+            KeyValuePair<EnemyMovementController, int> nearestCreature = GetNearest(localEnemies, destination);
+            while (nearestCreature.Key.MovementStrategy != null && localEnemies.Count > 0)
+            {
+                localEnemies.Remove(nearestCreature.Key);
+                nearestCreature = GetNearest(localEnemies, destination);
+            }
+            return nearestCreature;
+        }
+
+#if (UNITY_EDITOR)
+        [CustomEditor(typeof(EnemyBrain))]
+        public class EditorButton : Editor
+        {
+            public override void OnInspectorGUI() //2
+            {
+                base.DrawDefaultInspector();
+                EnemyBrain manage = (EnemyBrain)target; //1
+
+                GUILayout.Space(20f); //2
+                GUILayout.Label("Custom Editor Elements", EditorStyles.boldLabel); //3
+                GUILayout.BeginHorizontal();
+
+                if (GUILayout.Button("Manually Update Behaviour")) //8
+                {
+                    manage.updateBehaviour = true;
+                }
+
+                GUILayout.EndHorizontal();
+            }
+        }
+#endif
     }
 }
