@@ -35,6 +35,8 @@ namespace SwordAndBored.GameData.Units
 
         public Town(int inputID)
         {
+            units = new List<IUnit>();
+
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.QueryRowFromTableWithID("Towns", inputID);
 
@@ -63,6 +65,8 @@ namespace SwordAndBored.GameData.Units
 
         public Town(int inputX, int inputY)
         {
+            units = new List<IUnit>();
+
             DatabaseConnection conn = new DatabaseConnection();
             DatabaseReader reader = conn.ExecuteQuery($"SELECT * FROM Towns WHERE X = {inputX} AND Y = {inputY};");
 
