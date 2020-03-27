@@ -2,7 +2,7 @@
 {
     static class GameScenes
     {
-        public const string BATTLEFIELD = "AbiltyUI2";
+        public const string BATTLEFIELD = "AbiltyUI3";
         public const string STRATEGYMAP = "StrategyMap";
         public const string BASEVIEW = "BaseManagement";
         public const string MAINMENU = "MainMenu";
