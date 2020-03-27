@@ -1868,6 +1868,7 @@ MonoBehaviour:
   action: 1
   maxMovement: 6
   movementLeft: 0
+  skeleton: {fileID: 3159141201733096181}
 --- !u!114 &3159141201095183990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2101,6 +2102,7 @@ MonoBehaviour:
   RightTile: {fileID: 0}
   UpTile: {fileID: 0}
   DownTile: {fileID: 0}
+  notMoving: 1
 --- !u!1 &3159141201137843270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,7 +2772,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3159141201642896363}
-  m_LocalRotation: {x: 0.30507967, y: -0.36978048, z: 0.1299795, w: 0.8679252}
+  m_LocalRotation: {x: 0.30507964, y: -0.36978045, z: 0.12997948, w: 0.8679252}
   m_LocalPosition: {x: 8.11, y: 10.05, z: -7.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
