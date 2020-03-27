@@ -16,13 +16,12 @@ namespace SwordAndBored.Utilities.UnityHelper
             }
         }
         private static UnityMainThreadDispatcher instance;
-        private static Queue<Action> actionQueue;
+        private static readonly Queue<Action> actionQueue = new Queue<Action>();
         private static readonly object queueLock = new object();
 
         private void Awake()
         {
             instance = this;
-            actionQueue = new Queue<Action>();
         }
 
         private void Update()
