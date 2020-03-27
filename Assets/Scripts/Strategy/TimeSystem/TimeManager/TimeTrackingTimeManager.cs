@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using SwordAndBored.GameData;
 
 namespace SwordAndBored.Strategy.TimeSystem.TimeManager
 {
@@ -17,9 +18,8 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
         [UnityEngine.SerializeField] private ulong startingTimeStep = 0;
         private readonly object timeStepLock = new object();
 
-        public TimeTrackingTimeManager()
-        {
-            TimeStep = (SceneSharing.useStoredTimeStep) ? SceneSharing.timeStep : startingTimeStep;
+        private TimeTrackingTimeManager()
+        {            
             PreTimeStepSubscribers = new List<IPreTimeStepSubscriber>();
             PostTimeStepSubscribers = new List<IPostTimeStepSubscriber>();
             IsTimeStepAdvancing = false;
@@ -35,10 +35,18 @@ namespace SwordAndBored.Strategy.TimeSystem.TimeManager
             PostTimeStepSubscribers.Add(postTimeStepSubscriber);
         }
 
+        private void Awake()
+        {
+            TimeStep = (ulong)ResourceHelper.GetTurnNumber();
+        }
+
         void OnDestroy()
         {
-            SceneSharing.timeStep = TimeStep;
-            SceneSharing.useStoredTimeStep = true;
+            if (((ulong)(int)TimeStep) != TimeStep)
+            {
+                Debug.LogError("INTEGER OVERFLOW ON TURN");
+            }
+            ResourceHelper.SetTurnNumber((int)TimeStep);
         }
 
         private void AsyncAdvanceTimeStep()
