@@ -142,6 +142,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public void Death()
         {
+            myUnit.IsDead = true;
             if (audioSource.isPlaying)
             {
                 audioSource.Pause();

@@ -40,6 +40,8 @@ namespace SwordAndBored.GameData.Units
         int SquadID { get; set; }
         int Level { get; }
 
+        bool IsDead { get; set; }
+
         int Save();
     }
 }
