@@ -27,6 +27,8 @@ namespace SwordAndBored.Battlefield
         [HideInInspector]
         public Tile[,] grid;
 
+        public Vector2 startCoords;
+
         void Awake()
         {
 
@@ -79,7 +81,8 @@ namespace SwordAndBored.Battlefield
 
                 //brain
                 brain.tileIndictor = indicator;
-                brain.startCoordinates = new Vector2(25 - numUnits * 2, 27);
+                //brain.startCoordinates = new Vector2(25 - numUnits * 2, 27);
+                brain.startCoordinates = new Vector2(startCoords.x + numUnits, startCoords.y);
 
                 unit.transform.parent = unitHolder;
 

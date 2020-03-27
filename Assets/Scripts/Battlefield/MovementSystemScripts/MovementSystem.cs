@@ -40,7 +40,8 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
         public Tile UpTile;
         [HideInInspector]
         public Tile DownTile;
-
+        [HideInInspector]
+        public bool notMoving = true;
 
         void Awake()
         {
@@ -65,12 +66,22 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
             {
                 lr.enabled = false;
             }
-
+            if (path != null)
+            {
+                notMoving = false;
+            } else
+            {
+                notMoving = true;
+            }
         }
 
-        public void ShowPossible(int movement)
+        public List<Tile> GetPossible(int movement)
         {
-            List<Tile> possible = bfs.GetPossibleMove(grid, this, movement);
+            return bfs.GetPossibleMove(grid, this, movement);
+        }
+
+        public void ShowPossible(List<Tile> possible)
+        {
             foreach (Tile tile in possible)
             {
                 tile.Highlight(Color.blue);

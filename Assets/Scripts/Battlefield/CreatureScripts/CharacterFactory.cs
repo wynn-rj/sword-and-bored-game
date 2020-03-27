@@ -22,6 +22,7 @@ namespace SwordAndBored.Battlefield
         public CameraManager camManager;
         public TurnManager turnManager;
         public Transform unitHolder;
+        public Vector2 startCoords;
     
         void Awake()
         {
@@ -76,7 +77,8 @@ namespace SwordAndBored.Battlefield
                 //brain
                 brain.tileIndictor = indicator;
                 indicator.GetComponentInChildren<Renderer>().enabled = false;
-                brain.startCoordinates = new Vector2(numUnits * 2 + 25, 25);
+                //brain.startCoordinates = new Vector2(numUnits * 2 + 25, 25);
+                brain.startCoordinates = new Vector2(startCoords.x + numUnits, startCoords.y);
                 brain.manager = turnManager;
                 unit.transform.parent = unitHolder;
 
