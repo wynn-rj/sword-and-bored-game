@@ -102,7 +102,7 @@ namespace SwordAndBored.Strategy.Movement
 
         protected virtual bool UpdateLocation(IHexGridCell location)
         {
-            if (location.HasComponent<CreatureComponent>())
+            if (OccupiableLocation(location))
             {
                 return false;
             }
@@ -120,6 +120,8 @@ namespace SwordAndBored.Strategy.Movement
             Location.AddComponent(creatureComponent);
             return true;
         }
+
+        protected virtual bool OccupiableLocation(IHexGridCell location) => location.HasComponent<CreatureComponent>();
 
         protected void OnDestroy()
         {
