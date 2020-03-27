@@ -12,19 +12,33 @@ namespace SwordAndBored.Strategy.Movement
     public class EnemyMovementController : CreatureMovementController
     {
         public IEnemy[] Enemies { get; set; }
-        public IEnemyMovementStrategy MovementStrategy { get; set; }
+        public IEnemyMovementStrategy MovementStrategy
+        {
+            get => movementStrategy;
+            set
+            {
+                movementStrategy = value;
+                name = string.Format("Enemy ({0})", movementStrategy?.GetType().Name.Replace("MovementStrategy", ""));
+                debugName = name + " @ " + Location?.Position;
+            }
+        }
         public IEnemySquad Squad { get; set; }
 
         [SerializeField] private int manualSetGoalX;
         [SerializeField] private int manualSetGoalY;
         [SerializeField] private bool useManualGoal = false;
+#if DEBUG
+        [SerializeField] private string movementDetails = "";
+        private bool updateMovementDescription = true;
+#endif
 
+        private IEnemyMovementStrategy movementStrategy;
         private int averageMovement;
 
-        public override void PreTimeStepUpdate()
+        public override void PostTimeStepUpdate()
         {
-            base.PreTimeStepUpdate();
             DeterminePath();
+            base.PostTimeStepUpdate();
         }
 
         protected override int ResetMovement()
@@ -42,8 +56,22 @@ namespace SwordAndBored.Strategy.Movement
             }
             averageMovement /= Enemies.Length;
             base.Start();
-            DeterminePath();
         }
+
+#if DEBUG
+        protected override void Update()
+        {
+            base.Update();
+            if (useManualGoal)
+            {
+                movementDetails = "Following manual goal";
+            }
+            else
+            {
+                movementDetails = movementStrategy?.ToString();
+            }
+        }
+#endif
 
         protected override void ArrivedAtNewLocation()
         {
@@ -58,8 +86,8 @@ namespace SwordAndBored.Strategy.Movement
 
         protected override bool OccupiableLocation(IHexGridCell location)
         {
-            creatureComponent = location.GetComponent<CreatureComponent>();
-            return creatureComponent?.Creature?.GetType() == typeof(EnemyMovementController);
+            CreatureComponent tileCreatureComponent = location.GetComponent<CreatureComponent>();
+            return tileCreatureComponent == null || tileCreatureComponent.Creature.GetType() != typeof(EnemyMovementController);
         }
 
         private void DeterminePath()
@@ -68,11 +96,14 @@ namespace SwordAndBored.Strategy.Movement
             AssertHelper.Assert(MovementStrategy != null, "Enemy doesn't know how to move!", this);
             path.Clear();
             List<IHexGridCell> pathToGoal = !useManualGoal ? MovementStrategy.GetPath(Location, averageMovement) :
-                 AStarModule.FindPath(Location, Location.ParentGrid[manualSetGoalX, manualSetGoalY]);
+                 AStarModule.FindPath(Location, Location.ParentGrid[manualSetGoalX, manualSetGoalY], false);
             foreach (IHexGridCell cell in pathToGoal)
             {
                 path.Enqueue(cell);
             }
+#if DEBUG
+            updateMovementDescription = true;
+#endif
         }
     }
 }
