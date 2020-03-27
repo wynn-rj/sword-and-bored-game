@@ -12,13 +12,13 @@ namespace SwordAndBored.Battlefield.AstarStuff
         public int y;
 
         public int distance;
-        public NodeB parent;
 
-        public NodeB(NodeB parent, int x, int y, int distance)
+        public bool visted = false;
+
+        public NodeB(int x, int y, int distance)
         {
             this.x = x;
             this.y = y;
-            this.parent = parent;
             this.distance = distance;
         }
 
@@ -28,59 +28,90 @@ namespace SwordAndBored.Battlefield.AstarStuff
     {
         public List<Tile> GetPossibleMove(Tile[,] grid, MovementSystem ms, int movement)
         {
-            int movementLeft = movement;
-            List<NodeB> Q = new List<NodeB>();
-            List<NodeB> visitedList = new List<NodeB>();
-            NodeB s = new NodeB(null, ms.currentTile.x, ms.currentTile.y, movementLeft);
-            Q.Add(s);
-            visitedList.Add(s);
+            int movementLeft = movement + 1;
+            Queue<NodeB> Q = new Queue<NodeB>();
+            List<NodeB> result = new List<NodeB>();
+            NodeB s = new NodeB(ms.currentTile.x, ms.currentTile.y, movementLeft);
+            Q.Enqueue(s);
             while (Q.Count > 0)
             {
+                NodeB v = Q.Dequeue();
 
-                NodeB v = Q[Q.Count - 1];
-                Q.RemoveAt(Q.Count - 1);
-                NodeB up = new NodeB(v, v.x, v.y + 1, v.distance - 1);
-                checkValidity(grid, Q, visitedList, up);
-                NodeB down = new NodeB(v, v.x, v.y - 1, v.distance - 1);
-                checkValidity(grid, Q, visitedList, down);
-                NodeB left = new NodeB(v, v.x - 1, v.y, v.distance - 1);
-                checkValidity(grid, Q, visitedList, left);
-                NodeB right = new NodeB(v, v.x + 1, v.y, v.distance - 1);
-                checkValidity(grid, Q, visitedList, right);
 
-            }
-
-            List<Tile> list = new List<Tile>();
-            foreach (NodeB node in Q)
-            {
-                list.Add(grid[node.x, node.y]);
-            }
-
-            return list;
-        }
-
-        private static void checkValidity(Tile[,] grid, List<NodeB> Q, List<NodeB> visitedList, NodeB currentNode)
-        {
-            if (currentNode.distance > 0 && grid[currentNode.x, currentNode.y] && grid[currentNode.x, currentNode.y].walkable && !grid[currentNode.x, currentNode.y].unitOnTile)
-            {
-                if  (Mathf.Abs(currentNode.x) < 49 && Mathf.Abs(currentNode.y) < 49 && Mathf.Abs(currentNode.x) > 0 && Mathf.Abs(currentNode.y) > 0)
+                NodeB check = new NodeB(v.x, v.y + 1, v.distance - 1);
+                if (grid[check.x, check.y] && grid[check.x, check.y].walkable && !grid[check.x, check.y].unitOnTile)
                 {
-                    bool visit = false;
-                    foreach (NodeB node in visitedList)
+                    if (Mathf.Abs(check.x) < 49 && Mathf.Abs(check.y) < 49 && Mathf.Abs(check.x) > 0 && Mathf.Abs(check.y) > 0)
                     {
-                        if (node == currentNode)
+                        if (!check.visted)
                         {
-                            visit = true;
+                            check.visted = true;
+                            if (check.distance > 0)
+                            {
+                                Q.Enqueue(check);
+                                result.Add(check);
+                            }
                         }
                     }
-                    if (!visit)
+                }
+                check = new NodeB(v.x, v.y - 1, v.distance - 1);
+                if (grid[check.x, check.y] && grid[check.x, check.y].walkable && !grid[check.x, check.y].unitOnTile)
+                {
+                    if (Mathf.Abs(check.x) < 49 && Mathf.Abs(check.y) < 49 && Mathf.Abs(check.x) > 0 && Mathf.Abs(check.y) > 0)
                     {
-                        Q.Add(currentNode);
-                        visitedList.Add(currentNode);
+                        if (!check.visted)
+                        {
+                            check.visted = true;
+                            if (check.distance > 0)
+                            {
+                                Q.Enqueue(check);
+                                result.Add(check);
+                            }
+                        }
+                    }
+                }
+                check = new NodeB(v.x - 1, v.y, v.distance - 1);
+                if (grid[check.x, check.y] && grid[check.x, check.y].walkable && !grid[check.x, check.y].unitOnTile)
+                {
+                    if (Mathf.Abs(check.x) < 49 && Mathf.Abs(check.y) < 49 && Mathf.Abs(check.x) > 0 && Mathf.Abs(check.y) > 0)
+                    {
+                        if (!check.visted)
+                        {
+                            check.visted = true;
+                            if (check.distance > 0)
+                            {
+                                Q.Enqueue(check);
+                                result.Add(check);
+                            }
+                        }
+                    }
+                }
+                check = new NodeB(v.x + 1, v.y, v.distance - 1);
+                if (grid[check.x, check.y] && grid[check.x, check.y].walkable && !grid[check.x, check.y].unitOnTile)
+                {
+                    if (Mathf.Abs(check.x) < 49 && Mathf.Abs(check.y) < 49 && Mathf.Abs(check.x) > 0 && Mathf.Abs(check.y) > 0)
+                    {
+                        if (!check.visted)
+                        {
+                            check.visted = true;
+                            if (check.distance > 0)
+                            {
+                                Q.Enqueue(check);
+                                result.Add(check);
+                            }
+                        }
                     }
                 }
             }
+
+            List<Tile> list = new List<Tile>();
+            foreach (NodeB node in result)
+            {
+                list.Add(grid[node.x, node.y]);
+            }
+            return list;
         }
+        
     }
 
 

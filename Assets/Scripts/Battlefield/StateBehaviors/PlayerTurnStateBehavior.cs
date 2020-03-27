@@ -14,7 +14,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
         private GameObject[] abilityButtons;
         BrainManager brain;
         MovementSystem ms;
-
+        List<Tile> possible;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -49,12 +49,19 @@ namespace SwordAndBored.Battlefield.StateBehaviors
                     abilityButtons[i].GetComponent<AbilityButtonHighlight>().isEnabled = false;
                 }
             }
-            ms.ShowPossible(animator.GetComponent<UniqueCreature>().movementLeft);
+            possible = ms.GetPossible(animator.GetComponent<UniqueCreature>().movementLeft);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            if (!ms.notMoving)
+            {
+                possible = ms.GetPossible(animator.GetComponent<UniqueCreature>().movementLeft);
+            } else
+            {
+                ms.ShowPossible(possible);
+            }
             brain.outline.OutlineColor = Color.blue;
             Ray ray = brain.cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -65,9 +72,20 @@ namespace SwordAndBored.Battlefield.StateBehaviors
                 brain.tileIndictor.transform.position = endTile.GetCenterOfTile();
                 if (endTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
                 {
+                    bool a = false;
+                    foreach (Tile tile in possible)
+                    {
+                        if (endTile == tile)
+                        {
+                            a = true;
+                        }
+                    }
 
-                    if (EventSystem.current.IsPointerOverGameObject()) return;
-                    ms.Move(endTile, true);
+                    if (a)
+                    {
+                        if (EventSystem.current.IsPointerOverGameObject()) return;
+                        ms.Move(endTile, true);
+                    }
                 }
             }
             if (brain.HasActionLeft())

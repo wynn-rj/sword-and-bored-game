@@ -56668,6 +56668,7 @@ MonoBehaviour:
   turnManager: {fileID: 5165644636434992688}
   unitHolder: {fileID: 404761842}
   indicator: {fileID: 1655949900}
+  startCoords: {x: 25, y: 27}
 --- !u!114 &5165644636434992688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56771,6 +56772,7 @@ MonoBehaviour:
   camManager: {fileID: 5165644637623274078}
   turnManager: {fileID: 5165644636434992688}
   unitHolder: {fileID: 404761842}
+  startCoords: {x: 25, y: 20}
 --- !u!114 &5165644637075364240
 MonoBehaviour:
   m_ObjectHideFlags: 0
