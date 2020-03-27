@@ -1,23 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using SwordAndBored.GameData.Equipment;
+using TMPro;
+
 
 namespace SwordAndBored.Strategy.Inventory
 {
     public class InventoryItemButton : MonoBehaviour
     {
+        public TextMeshProUGUI textMesh;
+        public MonoInventory inventory;
+        public IInventoryItem item;
 
-         
-        // Start is called before the first frame update
-        void Start()
+        public void SetText(IInventoryItem item)
         {
-            
+            string name = "";
+            int quant = item.Quantity;
+            if(item.Weapon != null) name = item.Weapon.Name;
+            else if(item.Armor != null) name = item.Armor.Name;
+            else if(item.SpellBook != null)  name = item.SpellBook.Name;
+            textMesh.text = "{name} : {quant}";
         }
 
-        // Update is called once per frame
-        void Update()
+        public void OnClick()
         {
-            
+            inventory.EquipItem(item);
         }
     }
 }
