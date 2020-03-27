@@ -38,6 +38,7 @@ namespace SwordAndBored.GameData.Units
 
         int XP { get; set; }
         int SquadID { get; set; }
+        int TownID { get; set; }
         int Level { get; }
 
         bool IsDead { get; set; }
