@@ -1,13 +1,11 @@
-﻿using SwordAndBored.GameData.Units;
-using SwordAndBored.Strategy.BaseManagement.Units;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ToggleUnitToSquad : MonoBehaviour
 {
-    private Action<IUnit> addAction;
-    private Action<IUnit> removeAction;
+    private Action<GameObject> addAction;
+    private Action<GameObject> removeAction;
 
     private bool added;
 
@@ -17,7 +15,7 @@ public class ToggleUnitToSquad : MonoBehaviour
         added = false;
     }
 
-    public void Initialize(Action<IUnit> addAction, Action<IUnit> removeAction)
+    public void Initialize(Action<GameObject> addAction, Action<GameObject> removeAction)
     {
         this.addAction = addAction;
         this.removeAction = removeAction;
@@ -25,16 +23,15 @@ public class ToggleUnitToSquad : MonoBehaviour
 
     private void HandleButtonClick()
     {
-        IUnit unit = gameObject.GetComponent<UnitEntryDisplay>().unitEntry.unit;
         if (!added)
         {
-            addAction(unit);
+            addAction(gameObject);
             added = true;
             GetComponent<Button>().image.color = Color.red;
         }
         else
         {
-            removeAction(unit);
+            removeAction(gameObject);
             added = false;
             GetComponent<Button>().image.color = Color.white;
         }

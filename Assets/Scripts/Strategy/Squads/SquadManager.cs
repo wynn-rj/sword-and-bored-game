@@ -6,6 +6,8 @@ using SwordAndBored.GameData.Units;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Utilities.Debug;
 using SwordAndBored.Strategy.GameResources;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
+using SwordAndBored.Strategy.BaseManagement.Towns;
 
 namespace SwordAndBored.Strategy.Squads
 {
@@ -16,6 +18,7 @@ namespace SwordAndBored.Strategy.Squads
         [SerializeField] private TileManager tileManager;
         [SerializeField] private ResourceManager resourceManager;
         [SerializeField] private SquadCanvasController canvasController;
+        [SerializeField] private TownCanvasController townCanvasController;
         [SerializeField] private KeyCode loseSquadFocusKey = KeyCode.Escape;
         [SerializeField] private float squadPlacementHeight = 0;
         [SerializeField] private int squadUpkeepCost = 1;
@@ -76,6 +79,12 @@ namespace SwordAndBored.Strategy.Squads
 
             if (SelectedSquad)
             {
+                if (selectedTile.GetComponent<TownComponent>() != null)// && SelectedSquad.GetComponent<IHexGridCell>().Neighbors)
+                {
+                    townCanvasController.LoadCanvas();
+                    return;
+                }
+
                 SelectedSquad.GoTo(selectedTile);
                 SelectedSquad = null;
             }
@@ -136,7 +145,7 @@ namespace SwordAndBored.Strategy.Squads
             squads.Add(controller);
             turnManager.Subscribe(controller);
             return controller;
-        }        
+        }
 
         private SquadController GetSquadOnTile(IHexGridCell tile)
         {
