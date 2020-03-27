@@ -12,6 +12,10 @@ namespace SwordAndBored.GameData.Database
             }
             else
             {
+                if (obj.ID < 0)
+                {
+                    return "null";
+                }
                 return obj.ID.ToString();
             }
         }
