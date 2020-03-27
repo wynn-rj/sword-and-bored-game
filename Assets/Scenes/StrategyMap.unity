@@ -557,8 +557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.25666794, y: -0.000000012518652, z: -0.0000000032684733,
-    w: 0.9664997}
+  m_LocalRotation: {x: 0.25666794, y: -0.000000012518258, z: -0.000000003268576, w: 0.9664997}
   m_LocalPosition: {x: 0, y: 74, z: -60}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -812,8 +811,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774186082}
-  m_LocalRotation: {x: 0.25666794, y: -0.000000012518652, z: -0.0000000032684733,
-    w: 0.9664997}
+  m_LocalRotation: {x: 0.25666794, y: -0.000000012518258, z: -0.000000003268576, w: 0.9664997}
   m_LocalPosition: {x: 0, y: 60, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1075,14 +1073,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1981606829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86d1e1b89ca711943bf110cfcf6896a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f21272d8f083c74c93b7e6b852bba35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8627795531300272213, guid: 8f8331beb1fb9214cb7dd4916d20aa3e,
     type: 3}
   tileManager: {fileID: 404240875}
   turnManager: {fileID: 4568864100514284661}
+  squadManager: {fileID: 6189842458909683263}
   enemyPlacementHeight: 0
+  currentBehaviour: 3
+  mood: 0
+  productivity: 0
+  productivityDirection: 0
 --- !u!4 &1981606831
 Transform:
   m_ObjectHideFlags: 0
