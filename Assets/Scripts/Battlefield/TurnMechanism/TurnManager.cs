@@ -5,6 +5,8 @@ using SwordAndBored.Battlefield.TurnMechanism;
 using UnityEngine.UI;
 using TMPro;
 using SwordAndBored.Battlefield.CreaturScripts;
+using UnityEngine.SceneManagement;
+using SwordAndBored.SceneManagement;
 
 namespace SwordAndBored.Battlefield.TurnMechanism
 {
@@ -105,7 +107,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             winCanvas.enabled = true;
             winCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
-            //Debug.Log("You Win!");
+            GameScenes.BATTLEWIN = true;
+            SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
         }
 
         public void LoseCondition()
@@ -113,6 +116,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             loseCanvas.enabled = true;
             loseCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
+            GameScenes.BATTLEWIN = false;
+            SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
         }
 
         public void RemoveUnitFromList(GameObject unit)
