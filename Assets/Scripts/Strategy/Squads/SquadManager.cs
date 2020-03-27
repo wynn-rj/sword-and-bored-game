@@ -21,7 +21,7 @@ namespace SwordAndBored.Strategy.Squads
         [SerializeField] private int squadUpkeepCost = 1;
         [SerializeField] private SquadController selectedSquad;
 
-        private readonly IList<SquadController> squads = new List<SquadController>();
+        public readonly IList<SquadController> squads = new List<SquadController>();
 
         public SquadController SelectedSquad
         {
