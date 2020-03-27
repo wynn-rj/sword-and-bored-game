@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using SwordAndBored.Strategy.Transitions;
+using SwordAndBored.GameData;
 
 namespace SwordAndBored.Strategy.GameResources
 {
@@ -19,7 +20,7 @@ namespace SwordAndBored.Strategy.GameResources
 
         private void Start()
         {
-            GoldAmount = SceneSharing.gold;
+            GoldAmount = ResourceHelper.GetGoldAmount();
         }
 
         public bool CanAffordPurchase(IPayment payment)
@@ -37,7 +38,7 @@ namespace SwordAndBored.Strategy.GameResources
 
         private void OnDestroy()
         {
-            SceneSharing.gold = GoldAmount;
+            ResourceHelper.SetGoldAmount(GoldAmount);
         }
     }
 }
