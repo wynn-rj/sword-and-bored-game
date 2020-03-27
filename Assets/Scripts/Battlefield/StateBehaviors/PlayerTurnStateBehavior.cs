@@ -15,6 +15,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
         BrainManager brain;
         MovementSystem ms;
         List<Tile> possible;
+        UniqueCreature creature;
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -22,7 +23,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             brain = animator.GetComponent<BrainManager>();
             brain.indicatorRend.enabled = true;
 
-
+            creature = animator.GetComponent<UniqueCreature>();
             brain.outline.enabled = true;
             ms = animator.GetComponent<MovementSystem>();
             ms.finishedMoving = true;
@@ -49,16 +50,21 @@ namespace SwordAndBored.Battlefield.StateBehaviors
                     abilityButtons[i].GetComponent<AbilityButtonHighlight>().isEnabled = false;
                 }
             }
-            possible = ms.GetPossible(animator.GetComponent<UniqueCreature>().movementLeft);
+            possible = ms.GetPossible(creature.movementLeft);
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
+            if (possible == null)
+            {
+                possible = ms.GetPossible(creature.movementLeft);
+            }
+
             if (!ms.notMoving)
             {
-                possible = ms.GetPossible(animator.GetComponent<UniqueCreature>().movementLeft);
-            } else
+                possible = ms.GetPossible(creature.movementLeft);
+            } else if (possible != null)
             {
                 ms.ShowPossible(possible);
             }
@@ -70,7 +76,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             {
                 Tile endTile = hit.collider.GetComponent<Tile>();
                 brain.tileIndictor.transform.position = endTile.GetCenterOfTile();
-                if (endTile.unitOnTile == null && Input.GetButtonDown("Fire1"))
+                if (endTile.unitOnTile == null && Input.GetButtonDown("Fire1") && possible != null)
                 {
                     bool a = false;
                     foreach (Tile tile in possible)
