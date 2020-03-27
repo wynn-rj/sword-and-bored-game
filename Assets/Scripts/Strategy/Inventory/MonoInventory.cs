@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using SwordAndBored.GameData.Equipment;
-using SwordAndBored.GameData;
 
 namespace SwordAndBored.Strategy.Inventory
 {
@@ -31,6 +30,11 @@ namespace SwordAndBored.Strategy.Inventory
             OpenInventory();
         }
 
+        void Start()
+        {
+            OpenInventory();
+        }
+
         public void OpenInventory()
         {
             foreach(GameObject button in buttons)
@@ -45,19 +49,23 @@ namespace SwordAndBored.Strategy.Inventory
             equipmentList = InventoryHelper.GetAllInventoryItemsWithOne();
             foreach(IInventoryItem item in equipmentList)
             {
+                CreateButton(item);
             }
 
         }
 
-        private void CreateButton(IDescriptable desc, int quantity)
+        private void CreateButton(IInventoryItem item)
         {
-            GameObject button = Instantiate(buttonTemplate) as GameObject;
-            button.transform.SetParent(buttonTemplate.transform.parent, false);
+            GameObject buttonObject = Instantiate(buttonTemplate) as GameObject;
+            InventoryItemButton button = buttonObject.GetComponent<InventoryItemButton>();
+            button.SetItem(item);
+            buttonObject.transform.SetParent(buttonTemplate.transform.parent, false);
+            buttonObject.SetActive(true);
         }
 
-        public void EquipItem(IInventoryItem item)
+        public void EquipItem(string itemName)
         {
-            Debug.Log(item.Quantity);
+            Debug.Log(itemName + " : yeet");
         }
     }
 }
