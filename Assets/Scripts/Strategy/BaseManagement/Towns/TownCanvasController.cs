@@ -18,11 +18,17 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
         [SerializeField] private TileManager tileManager;
         [SerializeField] private Button deploySquadButton;
         [SerializeField] private Button cancelDeployment;
-        [SerializeField] private Transform entryContainer;
+        [SerializeField] private Button moveToTownButton;
+        [SerializeField] private Button moveToSquadButton;
+        [SerializeField] private Transform townEntryContainer;
+        [SerializeField] private Transform squadEntryContainer;
 
         private Canvas canvas;
         private ITown displayedTown;
-        private List<IUnit> deployedSquad;
+        private List<GameObject> activeEntries;
+        private List<GameObject> townEntries;
+        private List<GameObject> squadEntries;
+        private ISquad squad;
 
         public ITown DisplayedTown
         {
@@ -36,36 +42,125 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
 
         private void Start()
         {
-            deployedSquad = new List<IUnit>();
+            townEntries = new List<GameObject>();
+            squadEntries = new List<GameObject>();
+            activeEntries = new List<GameObject>();
             canvas = GetComponent<Canvas>();
 
-            deploySquadButton.onClick.AddListener(DeploySquad);
+            deploySquadButton.onClick.AddListener(Confirm);
             cancelDeployment.onClick.AddListener(ExitTownCanvas);
+            moveToTownButton.onClick.AddListener(MoveUnitToTown);
+            moveToSquadButton.onClick.AddListener(MoveUnitToSquad);
         }
 
-        private void UpdateDisplay()
+        private void PreloadCanvas()
         {
-            foreach (Transform child in entryContainer.transform)
+            foreach (Transform child in townEntryContainer.transform)
             {
                 Destroy(child.gameObject);
             }
 
+            foreach (Transform child in squadEntryContainer.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        private void UpdateDisplay()
+        {
+            PreloadCanvas();
+
             if (displayedTown is null) return;
+
+            displayedTown.Units.Clear();
+            displayedTown.Save();
 
             foreach (IUnit unit in displayedTown.Units)
             {
-                CreateTownUnitEntry(unit);
+                townEntries.Add(CreateTownUnitEntry(unit));
             }
 
             gameObject.SetActive(true);
         }
 
+        public void LoadCanvas()
+        {
+            PreloadCanvas();
+
+            displayedTown.Units.Clear();
+            displayedTown.Save();
+            if (displayedTown is null) return;
+
+            foreach (IUnit unit in displayedTown.Units)
+            {
+                townEntries.Add(CreateTownUnitEntry(unit));
+            }
+
+            foreach (IUnit unit in squadManager.SelectedSquad.SquadData.Units)
+            {
+                squadEntries.Add(CreateSquadUnitEntry(unit));
+            }
+
+            squad = squadManager.SelectedSquad.SquadData;
+
+            gameObject.SetActive(true);
+        }
+
+        public void MoveUnitToTown()
+        {
+            foreach (GameObject entry in activeEntries)
+            {
+                if (squadEntries.Contains(entry))
+                {
+                    GameObject townEntry = CreateTownUnitEntry(entry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+                    townEntries.Add(townEntry);
+                    Debug.Log(squadEntries.Count);
+                    squadEntries.Remove(entry);
+                    Debug.Log(squadEntries.Count);
+                    Destroy(entry);
+                }
+            }
+
+            activeEntries.Clear();
+        }
+
+        public void MoveUnitToSquad()
+        {
+            foreach (GameObject entry in activeEntries)
+            {
+                if (townEntries.Contains(entry))
+                {
+                    GameObject squadEntry = CreateSquadUnitEntry(entry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+                    squadEntries.Add(squadEntry);
+                    townEntries.Remove(entry);
+                    Destroy(entry);
+                }
+            }
+
+            activeEntries.Clear();
+        }
+
         private GameObject CreateTownUnitEntry(IUnit unit)
+        {
+            GameObject unitEntryObject = CreateUnitEntry(unit);
+            unitEntryObject.transform.SetParent(townEntryContainer.transform);
+
+            return unitEntryObject;
+        }
+
+        private GameObject CreateSquadUnitEntry(IUnit unit)
+        {
+            GameObject unitEntryObject = CreateUnitEntry(unit);
+            unitEntryObject.transform.SetParent(squadEntryContainer.transform);
+
+            return unitEntryObject;
+        }
+
+        private GameObject CreateUnitEntry(IUnit unit)
         {
             UnitEntry unitEntryData = UnitEntry.CreateInstance(unit);
 
             GameObject unitEntryObject = Instantiate(unitEntryPrefab) as GameObject;
-            unitEntryObject.transform.SetParent(entryContainer.transform);
             unitEntryObject.transform.localRotation = Quaternion.identity;
             unitEntryObject.transform.localScale = new Vector3(1, 1, .8f);
 
@@ -81,14 +176,49 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
             gameObject.SetActive(false);
         }
 
-        public void AddUnitToSquad(IUnit unit)
+        public void AddUnitToSquad(GameObject unitEntry)
         {
-            deployedSquad.Add(unit);
+            activeEntries.Add(unitEntry);
         }
 
-        public void RemoveUnitFromSquad(IUnit unit)
+        public void RemoveUnitFromSquad(GameObject unitEntry)
         {
-            deployedSquad.Remove(unit);
+            activeEntries.Remove(unitEntry);
+        }
+
+        public void Confirm()
+        {
+            if (squad == null)
+            {
+                DeploySquad();
+            }
+            else
+            {
+                List<IUnit> squadUnits = new List<IUnit>();
+                foreach (GameObject entryObject in squadEntries)
+                {
+                    squadUnits.Add(entryObject.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+                }
+
+                Debug.Log(squadEntries.Count);
+                Debug.Log(squadUnits.Count);
+                squad.Units = squadUnits;
+                Debug.Log(squad.Units.Count);
+                squad.Save();
+            }
+
+            List<IUnit> townUnits = new List<IUnit>();
+            foreach (GameObject entryObject in townEntries)
+            {
+                townUnits.Add(entryObject.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+            }
+
+            displayedTown.Units = townUnits;
+            displayedTown.Save();
+
+            squad = null;
+            activeEntries.Clear();
+            gameObject.SetActive(false);
         }
 
         public void DeploySquad()
@@ -102,9 +232,14 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
                 location = Odds.SelectAtRandom<IHexGridCell>(cellNeighbors);
             }
 
+            List<IUnit> deployedSquad = new List<IUnit>();
+
+            foreach (GameObject entry in activeEntries)
+            {
+                deployedSquad.Add(entry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+            }
+
             squadManager.DeploySquad("Name", deployedSquad, location);
-            deployedSquad.Clear();
-            gameObject.SetActive(false);
         }
     }
 }
