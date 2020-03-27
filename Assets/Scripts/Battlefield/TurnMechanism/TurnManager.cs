@@ -107,6 +107,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             winCanvas.enabled = true;
             winCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
+            SaveAllUnits();
             GameScenes.BATTLEWIN = true;
             SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
         }
@@ -116,6 +117,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             loseCanvas.enabled = true;
             loseCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
+            SaveAllUnits();
             GameScenes.BATTLEWIN = false;
             SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
         }
@@ -134,6 +136,14 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public void RemoveUnitFromPlayerList(GameObject unit)
         {
             playerUnits.Remove(unit);
+        }
+
+        public void SaveAllUnits()
+        {
+            foreach (GameObject obj in playerUnits)
+            {
+                obj.GetComponent<UniqueCreature>().myUnit.Save();
+            }
         }
     }
 }
