@@ -8,6 +8,7 @@ namespace SwordAndBored.Strategy.Movement.EnemyMovementStrategies
     class GuardMovementStrategy : FixedLocationMovementStrategy
     {
         private readonly List<IHexGridCell> guardedCells;
+        private CreatureComponent chasing;
 
         public GuardMovementStrategy(IHexGridCell locationToGuard, int guardRadius) : base(locationToGuard)
         {
@@ -22,9 +23,11 @@ namespace SwordAndBored.Strategy.Movement.EnemyMovementStrategies
                 CreatureComponent creatureComponent = cell.GetComponent<CreatureComponent>();
                 if (creatureComponent?.Creature?.GetType() == typeof(CreatureMovementController))
                 {
-                    return AStarModule.FindPath(currentLocation, creatureComponent.Creature.Location);
+                    chasing = creatureComponent;
+                    return AStarModule.FindPath(currentLocation, creatureComponent.Creature.Location, false);
                 }
             }
+            chasing = null;
             return base.GetPath(currentLocation, speed);
         }
 
@@ -42,6 +45,15 @@ namespace SwordAndBored.Strategy.Movement.EnemyMovementStrategies
             {
                 AddGuardedCells(cell, radius - 1);
             }
+        }
+
+        public override string ToString()
+        {
+            if (chasing == null)
+            {
+                return "Guarding " + fixedLocation.Position.ToString();
+            }
+            return "Guarding " + fixedLocation.Position.ToString() + " and chasing " + chasing.Creature.name;
         }
     }
 }

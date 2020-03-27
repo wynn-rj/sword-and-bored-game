@@ -5,6 +5,6 @@ namespace SwordAndBored.Strategy.Movement.EnemyMovementStrategies
 {
     public interface IEnemyMovementStrategy
     {
-        public List<IHexGridCell> GetPath(IHexGridCell currentLocation, int speed);
+        List<IHexGridCell> GetPath(IHexGridCell currentLocation, int speed);
     }
 }

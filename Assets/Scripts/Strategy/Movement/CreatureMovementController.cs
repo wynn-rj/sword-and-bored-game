@@ -40,6 +40,7 @@ namespace SwordAndBored.Strategy.Movement
 
         protected readonly LastQ<IHexGridCell> path = new LastQ<IHexGridCell>();
         protected CreatureComponent creatureComponent;
+        protected string debugName;
 
         [SerializeField] private int distanceCanTravel;
         private Vector3? targetPosition;
@@ -71,9 +72,10 @@ namespace SwordAndBored.Strategy.Movement
                 return;
             }
 
-            if (!SafeUpdateLocation(path.Dequeue()))
+            IHexGridCell nextCell = path.Dequeue();
+            if (!SafeUpdateLocation(nextCell))
             {
-                Debug.Log("Movement blocked");
+                Debug.Log(debugName + ": Movement blocked going to " + nextCell.Position.GridPoint);
                 return;
             }
             distanceCanTravel--;
@@ -83,13 +85,14 @@ namespace SwordAndBored.Strategy.Movement
         protected virtual void Start()
         {
             AssertHelper.Assert(StartLocation != null, "No start location given", this);
-            AssertHelper.Assert(!StartLocation.HasComponent<CreatureComponent>(),
+            AssertHelper.Assert(OccupiableLocation(StartLocation),
                 "Tried to place creature on creature at " + StartLocation.Position, this);
             bool success = UpdateLocation(StartLocation);
             AssertHelper.Assert(success, "Failed to set start location", this);
             targetPosition = null;
             height = transform.position.y;
             distanceCanTravel = ResetMovement();
+            debugName = name + " @ " + Location.Position;
         }
 
         protected virtual void Update()
@@ -97,12 +100,13 @@ namespace SwordAndBored.Strategy.Movement
             if (!(targetPosition is null))
             {
                 MoveTowardsTarget();
+                debugName = name + " @ " + Location.Position;
             }
         }
 
         protected virtual bool UpdateLocation(IHexGridCell location)
         {
-            if (OccupiableLocation(location))
+            if (!OccupiableLocation(location))
             {
                 return false;
             }
@@ -121,7 +125,7 @@ namespace SwordAndBored.Strategy.Movement
             return true;
         }
 
-        protected virtual bool OccupiableLocation(IHexGridCell location) => location.HasComponent<CreatureComponent>();
+        protected virtual bool OccupiableLocation(IHexGridCell location) => !location.HasComponent<CreatureComponent>();
 
         protected void OnDestroy()
         {
