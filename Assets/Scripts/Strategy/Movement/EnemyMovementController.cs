@@ -13,6 +13,7 @@ namespace SwordAndBored.Strategy.Movement
     {
         public IEnemy[] Enemies { get; set; }
         public IEnemyMovementStrategy MovementStrategy { get; set; }
+        public IEnemySquad Squad { get; set; }
 
         [SerializeField] private int manualSetGoalX;
         [SerializeField] private int manualSetGoalY;
