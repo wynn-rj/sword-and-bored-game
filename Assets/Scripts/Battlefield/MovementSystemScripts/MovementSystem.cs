@@ -77,7 +77,13 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
 
         public List<Tile> GetPossible(int movement)
         {
-            return bfs.GetPossibleMove(grid, this, movement);
+            if (currentTile)
+            {
+                return bfs.GetPossibleMove(grid, this, movement);
+            } else
+            {
+                return null;
+            }
         }
 
         public void ShowPossible(List<Tile> possible)
