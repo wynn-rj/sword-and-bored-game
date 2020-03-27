@@ -37,6 +37,9 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
         public HexGrid HexTiling { get; private set; }
 
+        public IHexGridCell EnemyBase { get; private set; }
+        public IHexGridCell PlayerBase { get; private set; }
+
         private void Awake()
         {
             terrainToGameObject = new Dictionary<System.Type, List<GameObject>>()
@@ -171,6 +174,12 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 baseTerrains.Add(neighbor, isPlayer);
                 neighbor.RemoveComponent<CreepComponent>();
             }
+            if (isPlayer) {
+                PlayerBase = centerBaseTile;
+            } else {
+                EnemyBase = centerBaseTile;
+            }
+            
         }
 
         private ITerrainComponent GetTileTerrain(IHexGridCell tile)
