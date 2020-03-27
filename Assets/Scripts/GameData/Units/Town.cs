@@ -8,7 +8,7 @@ namespace SwordAndBored.GameData.Units
         public int X { get; set; }
         public int Y { get; set; }
         public bool PlayerOwned { get; set; }
-        private List<IUnit> units;
+        private List<IUnit> units = new List<IUnit>();
         public List<IUnit> Units
         {
             get
