@@ -11,7 +11,10 @@ namespace SwordAndBored.Strategy.Inventory
         public TextMeshProUGUI textMesh;
         public MonoInventory inventory;
         public IInventoryItem item;
+        private enum ItemType { NONE, ARMOR, WEAPON, SPELLBOOK };
+        private ItemType itemType;
         private string itemName = "default name";
+
 
         private void Start()
         {
@@ -22,15 +25,42 @@ namespace SwordAndBored.Strategy.Inventory
         {
             this.item = item;
             int quant = item.Quantity;
-            if(item.Weapon != null) itemName = item.Weapon.Name;
-            else if(item.Armor != null) itemName = item.Armor.Name;
-            else if(item.SpellBook != null)  itemName = item.SpellBook.Name;
+            if (item.Weapon != null)
+            {
+                itemName = item.Weapon.Name;
+                itemType = ItemType.WEAPON;
+            }
+            else if (item.Armor != null)
+            {
+                itemName = item.Armor.Name;
+                itemType = ItemType.ARMOR;
+            }
+            else if (item.SpellBook != null)
+            {
+                itemName = item.SpellBook.Name;
+                itemType = ItemType.SPELLBOOK;
+            }
+
             textMesh.text = $"{itemName} : {quant}";
         }
 
         public void OnClick()
         {
-            inventory.EquipItem(itemName);
+            switch(itemType)
+            {
+                case ItemType.ARMOR:
+                    inventory.EquipArmor(item);
+                    break;
+                case ItemType.WEAPON:
+                    inventory.EquipWeapon(item);
+                    break;
+                case ItemType.SPELLBOOK:
+                    inventory.EquipSpellbook(item);
+                    break;
+                default:
+                    Debug.Log("what in the Yeet is this item!");
+                    break;
+            }
         }
     }
 }

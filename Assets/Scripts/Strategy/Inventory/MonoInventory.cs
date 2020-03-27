@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using SwordAndBored.GameData.Equipment;
+using SwordAndBored.GameData.Units;
 
 namespace SwordAndBored.Strategy.Inventory
 {
@@ -11,7 +13,11 @@ namespace SwordAndBored.Strategy.Inventory
         private List<IInventoryItem> equipmentList = new List<IInventoryItem>();
         private List<GameObject> buttons = new List<GameObject>();
 
+
         [SerializeField] private GameObject buttonTemplate;
+        [SerializeField] private GameObject unitInventoryDisplay;
+        [SerializeField] private IUnit currentUnit;
+        private UnitInventoryView unitInventory;
 
         private void Awake()
         {
@@ -25,23 +31,25 @@ namespace SwordAndBored.Strategy.Inventory
             }
         }
 
-        void OnEnable()
-        {
-            OpenInventory();
-        }
-
         void Start()
         {
-            OpenInventory();
+            unitInventory = unitInventoryDisplay.GetComponent<UnitInventoryView>();
         }
 
-        public void OpenInventory()
+
+        public void OpenInventory(IUnit unit)
         {
+            currentUnit = unit;
+            DisplayUnit();
             foreach(GameObject button in buttons)
             {
                 Destroy(button);
             }
             ReadInventoryFromDatabaseAndProcess();
+        }
+
+        private void DisplayUnit()
+        {
         }
 
         private void ReadInventoryFromDatabaseAndProcess()
@@ -63,9 +71,23 @@ namespace SwordAndBored.Strategy.Inventory
             buttonObject.SetActive(true);
         }
 
-        public void EquipItem(string itemName)
+        public void EquipArmor(IInventoryItem itemName)
         {
-            Debug.Log(itemName + " : yeet");
+            Debug.Log(itemName + " : ARMOR");
+
         }
+
+        public void EquipWeapon(IInventoryItem item)
+        {
+
+            Debug.Log(item + " : WEAPON");
+        }
+
+        public void EquipSpellbook(IInventoryItem item)
+        {
+
+            Debug.Log(item + " : SPELLBOOK");
+        }
+
     }
 }
