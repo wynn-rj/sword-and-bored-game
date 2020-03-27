@@ -58,6 +58,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
         public void UseAbility(int i, RaycastHit target)
         {
+            transform.LookAt(target.transform, Vector3.up);
             unit.animator.SetTrigger("Attack");
             abilities[i].TriggerAbility(target);
             unit.action = false;
