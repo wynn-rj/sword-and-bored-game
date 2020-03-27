@@ -15,6 +15,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public int height = 25;
         public Tile[,] grid;
         public int size = 50;
+        public LayerMask lm;
 
         private void Awake()
         {
@@ -42,6 +43,15 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             }
         
             tileContainer.position = pos;
+
+            foreach (Tile tile in grid)
+            {
+                if (Physics.Raycast(tileContainer.TransformPoint(tile.transform.position), Vector3.up, 100, lm))
+                {
+                    Debug.Log(tile);
+                    Destroy(tile.gameObject);
+                }
+            }
         }
 
         public void EraseTileMap()
