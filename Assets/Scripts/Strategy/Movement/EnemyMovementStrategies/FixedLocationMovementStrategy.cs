@@ -16,9 +16,14 @@ namespace SwordAndBored.Strategy.Movement.EnemyMovementStrategies
         {
             if (currentLocation != fixedLocation)
             {
-                return AStarModule.FindPath(currentLocation, fixedLocation);
+                return AStarModule.FindPath(currentLocation, fixedLocation, false);
             }
             return new List<IHexGridCell>();
+        }
+
+        public override string ToString()
+        {
+            return "Fixed location " + fixedLocation.Position.ToString();
         }
     }
 }
