@@ -68,7 +68,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
         public IHexGridCell[] CellNeighbors(int x, int y)
         {
             int yShift = (x % 2 == 0) ? -1 : 1;
-            return new IHexGridCell[] {
+            List<IHexGridCell> cells = new List<IHexGridCell> {
                 GetCell(x, y + 1), 
                 GetCell(x, y - 1),
                 GetCell(x - 1, y),
@@ -76,6 +76,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid
                 GetCell(x + 1, y),
                 GetCell(x + 1, y + yShift)
             };
+            cells.RemoveAll(cell => cell == null);
+            return cells.ToArray();
         }
 
         /// <summary>
