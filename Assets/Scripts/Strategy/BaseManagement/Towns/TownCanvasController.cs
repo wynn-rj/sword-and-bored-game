@@ -26,8 +26,9 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
         private Canvas canvas;
         private ITown displayedTown;
         private List<GameObject> activeEntries;
-        private List<GameObject> townEntries;
+        private List<GameObject> townEntries = new List<GameObject>();
         private List<GameObject> squadEntries;
+        private List<IUnit> squadUnitData;
         private ISquad squad;
 
         public ITown DisplayedTown
@@ -40,10 +41,11 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             townEntries = new List<GameObject>();
             squadEntries = new List<GameObject>();
+            squadUnitData = new List<IUnit>();
             activeEntries = new List<GameObject>();
             canvas = GetComponent<Canvas>();
 
@@ -98,7 +100,9 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
 
             foreach (IUnit unit in squadManager.SelectedSquad.SquadData.Units)
             {
-                squadEntries.Add(CreateSquadUnitEntry(unit));
+                GameObject entry = CreateSquadUnitEntry(unit);
+                squadEntries.Add(entry);
+                squadUnitData.Add(entry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
             }
 
             squad = squadManager.SelectedSquad.SquadData;
@@ -114,9 +118,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
                 {
                     GameObject townEntry = CreateTownUnitEntry(entry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
                     townEntries.Add(townEntry);
-                    Debug.Log(squadEntries.Count);
                     squadEntries.Remove(entry);
-                    Debug.Log(squadEntries.Count);
                     Destroy(entry);
                 }
             }
@@ -194,16 +196,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
             }
             else
             {
-                List<IUnit> squadUnits = new List<IUnit>();
-                foreach (GameObject entryObject in squadEntries)
-                {
-                    squadUnits.Add(entryObject.GetComponent<UnitEntryDisplay>().unitEntry.unit);
-                }
-
-                Debug.Log(squadEntries.Count);
-                Debug.Log(squadUnits.Count);
-                squad.Units = squadUnits;
-                Debug.Log(squad.Units.Count);
+                squad.Units = squadUnitData;
                 squad.Save();
             }
 
