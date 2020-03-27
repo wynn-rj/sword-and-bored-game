@@ -48,7 +48,6 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             {
                 if (Physics.Raycast(tileContainer.TransformPoint(tile.transform.position), Vector3.up, 100, lm))
                 {
-                    Debug.Log(tile);
                     Destroy(tile.gameObject);
                 }
             }
