@@ -77,6 +77,7 @@ namespace SwordAndBored.Strategy.Squads
             AssertHelper.Assert(SquadData != null, "Squad controller has no squad", this);
             AssertHelper.Assert(UpkeepFunction != null, "Squad has no resource manager", this);
             squadAverageMovement = SquadData.AverageMovement();
+            name = string.Format("Squad ({0})", SquadData.Name);
             base.Start();
         }
 
