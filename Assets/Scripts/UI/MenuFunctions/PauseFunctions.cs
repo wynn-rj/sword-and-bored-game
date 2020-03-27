@@ -62,7 +62,7 @@ namespace SwordAndBored.UI.MenuFunctions
 
             if (Input.GetKeyDown(KeyCode.I))
             {
-                DatabaseHelper.ClearAllUnitsExceptOneFromUnitTable();
+                //DatabaseHelper.ClearAllUnitsExceptOneFromUnitTable();
             }
         }
 

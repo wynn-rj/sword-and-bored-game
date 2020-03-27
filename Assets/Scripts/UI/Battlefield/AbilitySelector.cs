@@ -26,6 +26,7 @@ public class AbilitySelector : MonoBehaviour
              KeyCode.Alpha7,
              KeyCode.Alpha8,
              KeyCode.Alpha9,
+             KeyCode.Alpha0
          };
     // Start is called before the first frame update
     void Start()
