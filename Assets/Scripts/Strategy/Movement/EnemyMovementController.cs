@@ -53,6 +53,12 @@ namespace SwordAndBored.Strategy.Movement
             }
         }
 
+        protected override bool OccupiableLocation(IHexGridCell location)
+        {
+            creatureComponent = location.GetComponent<CreatureComponent>();
+            return creatureComponent?.Creature?.GetType() == typeof(EnemyMovementController);
+        }
+
         private void DeterminePath()
         {
             path.Clear();
