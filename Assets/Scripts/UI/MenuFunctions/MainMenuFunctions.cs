@@ -23,7 +23,7 @@ namespace SwordAndBored.UI.MenuFunctions
         public void StartButtonPressed()
         {
             DatabaseManager.LoadFromDefault();
-            SceneManager.LoadScene(SceneManagement.GameScenes.BASEVIEW);
+            SceneManager.LoadScene(SceneManagement.GameScenes.STRATEGYMAP);
         }
 
         public void LoadButtonPressed()
