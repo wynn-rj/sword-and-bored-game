@@ -51,7 +51,7 @@ namespace SwordAndBored.UI.MenuFunctions
         {
             DatabaseManager.LoadData(previousSaves.options[previousSaves.value].text);
             LeaveCanvas();
-            SceneManager.LoadScene(SceneManagement.GameScenes.BASEVIEW);
+            SceneManager.LoadScene(SceneManagement.GameScenes.STRATEGYMAP);
         }
 
         public void CancelButtonPressed()
