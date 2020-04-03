@@ -33,6 +33,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public Canvas hotbar;
 
+        public Button endTurnButton;
+
         [HideInInspector]
         public GameObject statsPanel;
 
@@ -68,6 +70,13 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         void Update()
         {
+            if (activePlayer.GetComponent<UniqueCreature>().isEnemy)
+            {
+                endTurnButton.interactable = false;
+            } else
+            {
+                endTurnButton.interactable = true;
+            }
             if (activePlayer && !activePlayer.GetTurnEnd())
             {
                 nextTurn();
