@@ -16,6 +16,10 @@ namespace SwordAndBored.UI.Battlefield {
         // Update is called once per frame
         void Update()
         {
+            if (!turnManager.statsPanel)
+            {
+                turnManager.statsPanel = statsPanel;
+            }
             if (Input.GetKeyDown(KeyCode.C))
             {
                 statsPanel.SetActive(!statsPanel.activeSelf);
