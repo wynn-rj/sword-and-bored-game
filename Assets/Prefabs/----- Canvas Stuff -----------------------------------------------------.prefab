@@ -172,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100754508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6578,6 +6578,14 @@ MonoBehaviour:
   movementText: {fileID: 3252253872526356405}
   initiativeText: {fileID: 3252253872173250947}
   roleText: {fileID: 3252253871930737110}
+  healthTextOther: {fileID: 1705028326}
+  pAttackTextOther: {fileID: 2040439389}
+  pDefenseTextOther: {fileID: 2006080884}
+  mAttackTextOther: {fileID: 85776866}
+  mDefenseTextOther: {fileID: 1926543706}
+  movementTextOther: {fileID: 566313995}
+  initiativeTextOther: {fileID: 1253949561}
+  roleTextOther: {fileID: 1104804053}
 --- !u!1 &3252253871930737108
 GameObject:
   m_ObjectHideFlags: 0
