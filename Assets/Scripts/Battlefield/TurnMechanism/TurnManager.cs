@@ -33,6 +33,9 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public Canvas hotbar;
 
+        [HideInInspector]
+        public GameObject statsPanel;
+
         void Start()
         {
             winCanvas.enabled = false;
@@ -52,6 +55,11 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
             activePlayer.isMyTurn = true;
+
+            if(statsPanel)
+            {
+                statsPanel.SetActive(false);
+            }
 
             // Reset Turn Behaviors
             activePlayer.GetComponent<UniqueCreature>().movementLeft = activePlayer.GetComponent<UniqueCreature>().stats.movement;
