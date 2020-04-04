@@ -12,5 +12,6 @@ namespace SwordAndBored.GameData.Abilities
         int Length { get; set; }
         int Width { get; set; }
         int Shape { get; set; }
+        string Animation { get; set; }
     }
 }
