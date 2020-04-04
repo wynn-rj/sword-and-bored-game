@@ -14,6 +14,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public AudioClip fireballSound, magicSound;
         public AudioMixerGroup music, soundEffects;
 
+        [Header("Weapon")]
+        public GameObject sword;
+        public GameObject book;
+
         void Start()
         {
             audioSource = GetComponent<BrainManager>().manager.AudioSource;
@@ -62,6 +66,18 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             unit.animator.SetTrigger("Attack");
             abilities[i].TriggerAbility(target);
             unit.action = false;
+            
+            if(abilities[i].isPhysical)
+            {
+                sword.SetActive(true);
+                book.SetActive(false);
+            } else
+            {
+                sword.SetActive(false);
+                book.SetActive(true);
+            }
+            
+            // Sound Effects
             if (abilities[i].name == "Fire Ball")
             {
                 if (audioSource.isPlaying)
