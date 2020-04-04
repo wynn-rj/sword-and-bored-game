@@ -78,13 +78,19 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                 sword.SetActive(false);
                 book.SetActive(true);
                 //bow.SetActive(false);
-                unit.animator.SetTrigger("MagicAttack");
+                unit.animator.SetTrigger("SwordAttack"); // Needs separate tree for magic
             } else if (abilities[i].animation == "Bow")
             {
                 sword.SetActive(false);
                 book.SetActive(false);
                 //bow.SetActive(true);
                 unit.animator.SetTrigger("BowAttack");
+            } else //Default right now, should try to fix setup later
+            {
+                sword.SetActive(true);
+                book.SetActive(false);
+                //bow.SetActive(false);
+                unit.animator.SetTrigger("SwordAttack");
             }
             
             // Sound Effects
