@@ -576,6 +576,7 @@ Transform:
   - {fileID: 3159141201963475114}
   - {fileID: 3159141201700204702}
   - {fileID: 3159141200607362922}
+  - {fileID: 883757054785836196}
   m_Father: {fileID: 3159141200408017125}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -829,7 +830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3159141200607362922
 Transform:
   m_ObjectHideFlags: 0
@@ -1886,6 +1887,8 @@ MonoBehaviour:
   music: {fileID: 6910875828234299034, guid: d1a7508d48cbef446b7bdfe8ef108d5d, type: 2}
   soundEffects: {fileID: -2014926482245922405, guid: d1a7508d48cbef446b7bdfe8ef108d5d,
     type: 2}
+  sword: {fileID: 3159141200607362925}
+  book: {fileID: 4186348204609480375}
 --- !u!114 &3159141201095183993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3828,3 +3831,104 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!1001 &5276257876226670526
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3159141200434742774}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.172
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.052
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.54773426
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.43966892
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5649717
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4329959
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 103.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 93.21
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.83
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_Name
+      value: SpellBook
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 464d64290c65bf9498622573b433881b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 464d64290c65bf9498622573b433881b, type: 3}
+--- !u!1 &4186348204609480375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 464d64290c65bf9498622573b433881b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5276257876226670526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &883757054785836196 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 464d64290c65bf9498622573b433881b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5276257876226670526}
+  m_PrefabAsset: {fileID: 0}
