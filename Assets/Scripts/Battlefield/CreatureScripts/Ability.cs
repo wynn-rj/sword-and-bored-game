@@ -20,6 +20,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             description = abilityStats.Description;
             isPhysical = abilityStats.IsPhysical;
             aoeShape = abilityStats.Shape;
+            animation = abilityStats.Animation;
         }
 
         UnitAbilitiesContainer container;
@@ -32,6 +33,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public int width;
         public bool isPhysical;
         public int aoeShape;
+        public string animation;
         GameObject shape;
         Renderer shapeRend;
 

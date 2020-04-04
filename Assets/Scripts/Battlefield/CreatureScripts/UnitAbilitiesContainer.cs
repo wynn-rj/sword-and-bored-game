@@ -17,6 +17,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         [Header("Weapon")]
         public GameObject sword;
         public GameObject book;
+        public GameObject bow;
 
         void Start()
         {
@@ -63,18 +64,27 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public void UseAbility(int i, RaycastHit target)
         {
             transform.LookAt(target.transform, Vector3.up);
-            unit.animator.SetTrigger("Attack"); // Might switch when using different animations
             abilities[i].TriggerAbility(target);
             unit.action = false;
             
-            if(abilities[i].isPhysical)
+            if(abilities[i].animation == "Sword")
             {
                 sword.SetActive(true);
                 book.SetActive(false);
-            } else
+                //bow.SetActive(false);
+                unit.animator.SetTrigger("SwordAttack");
+            } else if (abilities[i].animation == "Magic")
             {
                 sword.SetActive(false);
                 book.SetActive(true);
+                //bow.SetActive(false);
+                unit.animator.SetTrigger("MagicAttack");
+            } else if (abilities[i].animation == "Bow")
+            {
+                sword.SetActive(false);
+                book.SetActive(false);
+                //bow.SetActive(true);
+                unit.animator.SetTrigger("BowAttack");
             }
             
             // Sound Effects
