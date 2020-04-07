@@ -34,6 +34,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public bool isPhysical;
         public int aoeShape;
         public string animation;
+        public ParticleSystem particle;
         GameObject shape;
         Renderer shapeRend;
 
@@ -69,6 +70,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         void aoeAttack(RaycastHit hit)
         {
+            if (particle)
+            {
+                particle.transform.position = hit.transform.position;
+                particle.Stop();
+                particle.Play();
+            }
             if (range == 0)
             {
                 switch (aoeShape)
