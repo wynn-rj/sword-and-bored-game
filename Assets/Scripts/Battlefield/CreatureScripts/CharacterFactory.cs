@@ -41,6 +41,8 @@ namespace SwordAndBored.Battlefield
                 CinemachineVirtualCamera cam = uniqueCreature.currentCamera;
                 Animator anim = unit.GetComponent<Animator>();
                 RuntimeAnimatorController currentAi = Resources.Load<RuntimeAnimatorController>("Ai/PlayerBrain");
+                ParticleSystem particle = Resources.Load<ParticleSystem>("Particles/Fireball");
+                particle = Instantiate(particle);
                 anim.runtimeAnimatorController = currentAi;
                 camManager.cameras.Add(cam.gameObject);
                 turnManager.units.Add(unit);
@@ -72,7 +74,9 @@ namespace SwordAndBored.Battlefield
                 //Abilities
                 foreach (IAbility dataAbility in dataUnit.Abilities)
                 {
-                    abilities.abilities.Add(new Ability(dataAbility));
+                    Ability ab = new Ability(dataAbility);
+                    ab.particle = particle;
+                    abilities.abilities.Add(ab);
                 }
 
                 //brain
