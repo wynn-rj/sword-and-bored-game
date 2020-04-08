@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2747138764058369345}
   - component: {fileID: 2747138764058369344}
   - component: {fileID: 2747138764058369347}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AoeCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
