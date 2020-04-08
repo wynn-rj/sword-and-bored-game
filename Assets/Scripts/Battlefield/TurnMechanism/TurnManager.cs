@@ -54,6 +54,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void nextTurn()
         {
+            activePlayer.isMyTurn = false;
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
             activePlayer.isMyTurn = true;

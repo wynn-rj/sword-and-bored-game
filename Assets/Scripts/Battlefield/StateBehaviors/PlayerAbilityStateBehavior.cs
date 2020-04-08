@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SwordAndBored.Battlefield.StateBehaviors
 {
@@ -36,7 +37,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, lm))
             {
-
+                if (EventSystem.current.IsPointerOverGameObject()) return;
                 brain.creature.abilityContainer.HighlightTarget(abilityToUse, hit);
                 if (Input.GetButtonDown("Fire1"))
                 {
@@ -55,6 +56,7 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             {
                 animator.SetInteger("Ability", abilitySelector.currentlySelectedNum - 1);
                 animator.SetBool("UseAbility", true);
+                brain.creature.abilityContainer.StopAoe();
                 abilitySelector.ResetAbilitySelection(-1);
             }
         }

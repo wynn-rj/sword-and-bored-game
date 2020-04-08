@@ -86,12 +86,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                         DamageList(enemies);
                         break;
                     case 2:
-                        Vector3 point3 = calcPointRangeZero(hit);
+                        //Vector3 point3 = calcPointRangeZero(hit);
                         Collider[] enemies2 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
                         DamageList(enemies2);
                         break;
                     case 3:
-                        Vector3 point2 = calcPointRangeZero(hit);
+                        //Vector3 point2 = calcPointRangeZero(hit);
                         Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
                         DamageList(enemies3);
                         break;
