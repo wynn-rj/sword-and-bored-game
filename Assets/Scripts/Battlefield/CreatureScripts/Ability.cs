@@ -209,15 +209,30 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             } else {
                 if (range == 0)
                 {
-                    shapeRend.enabled = true;
-                    shape.transform.localScale = new Vector3(1, 1, length);
-                    Vector3 dir = hit.point - user.transform.position;
-                    dir = new Vector3(dir.x, 0, dir.z);
-                    dir.Normalize();
-                    shape.transform.position = user.transform.position + dir * ((float)length / 2f);
-                    shape.transform.LookAt(user.transform.position);
-                    Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
-                    highlightList(enemies3);
+                    if (aoeShape == 2)
+                    {
+                        shapeRend.enabled = true;
+                        shape.transform.localScale = new Vector3(width, 1, length);
+                        //Vector3 dir = user.transform.position;
+                        //dir = new Vector3(dir.x, 0, dir.z);
+                        //dir.Normalize();
+                        shape.transform.position = user.transform.position; //+ dir * ((float)length / 2f);
+                        shape.transform.LookAt(user.transform.position);
+                        Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
+                        highlightList(enemies3);
+                    }
+                    else
+                    {
+                        shapeRend.enabled = true;
+                        shape.transform.localScale = new Vector3(width, 1, length);
+                        Vector3 dir = hit.point - user.transform.position;
+                        dir = new Vector3(dir.x, 0, dir.z);
+                        dir.Normalize();
+                        shape.transform.position = user.transform.position + dir * ((float)length / 2f);
+                        shape.transform.LookAt(user.transform.position);
+                        Collider[] enemies3 = Physics.OverlapBox(shape.transform.position, shape.transform.localScale / 2, shape.transform.rotation);
+                        highlightList(enemies3);
+                    }
                 } else
                 {
 
