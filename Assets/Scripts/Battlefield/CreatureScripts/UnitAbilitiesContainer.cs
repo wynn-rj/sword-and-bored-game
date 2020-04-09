@@ -36,7 +36,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts
                             ability.Initialize(this, transform.gameObject, sphere);
                             break;
                         case 2:
-
+                            sphereFile = Resources.Load<GameObject>("AOE/AoeSphere");
+                            sphere = Instantiate(sphereFile, Vector3.zero, Quaternion.identity);
+                            sphere.GetComponent<Renderer>().enabled = false;
+                            ability.Initialize(this, transform.gameObject, sphere);
                             break;
                         case 3:
                             GameObject cubeFile = Resources.Load<GameObject>("AOE/AoeCube");
