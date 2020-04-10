@@ -21,6 +21,11 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public bool IsFrozen;
         public bool IsBleeding;
         public bool IsStunned;
+
+        public bool HasStatus()
+        {
+            return IsBleeding || IsBurning || IsFrozen || IsStunned;
+        }
     }
 
 }
