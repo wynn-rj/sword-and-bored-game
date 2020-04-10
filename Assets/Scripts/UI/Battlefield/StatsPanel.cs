@@ -42,7 +42,7 @@ namespace SwordAndBored.UI.Battlefield
                 movementText.text = $"Movement: {turnManager.activePlayer.creature.movementLeft} / {unitStats.movement}";
                 initiativeText.text = $"Initiative: {unitStats.speedIntit}";
                 roleText.text = $"Role: {unitStats.role}";
-                statusText.text = $"Status:";
+                statusText.text = $"Status: {GetStatusText(unitStats)}";
             }
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -58,6 +58,7 @@ namespace SwordAndBored.UI.Battlefield
             if (Physics.Raycast(ray, out hit, 100, lm))
             {
                 FillOtherStatPanel(hit.collider.gameObject.GetComponent<UniqueCreature>().stats);
+                otherUnitPanel.SetActive(true);
             } else
             {
                 otherUnitPanel.SetActive(false);
@@ -74,7 +75,27 @@ namespace SwordAndBored.UI.Battlefield
             movementTextOther.text = $"Movement: {otherStats.movement}";
             initiativeTextOther.text = $"Initiative: {otherStats.speedIntit}";
             roleTextOther.text = $"Role: {otherStats.role}";
-            statusTextOther.text = $"Status:";
+            statusTextOther.text = $"Status: {GetStatusText(otherStats)}";
+        }
+
+        public string GetStatusText(UnitStats stats)
+        {
+            if (stats.IsStunned)
+            {
+                return "Stunned";
+            } else if (stats.IsFrozen)
+            {
+                return "Frozen";
+            } else if (stats.IsBurning)
+            {
+                return "Burning";
+            } else if (stats.IsBleeding)
+            {
+                return "Bleeding";
+            } else
+            {
+                return "Healthy";
+            }
         }
     }
 }
