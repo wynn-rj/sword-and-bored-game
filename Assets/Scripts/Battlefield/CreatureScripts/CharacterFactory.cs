@@ -71,6 +71,10 @@ namespace SwordAndBored.Battlefield
                 stats.speedIntit = dataUnit.Stats.Initiative;
                 stats.role = dataUnit.Role.Name;
 
+                //Add Armor for defense
+                stats.physicalDefense += dataUnit.Armor.Physical_Defense;
+                stats.magicDefense += dataUnit.Armor.Magic_Defense;
+
                 //Abilities
                 foreach (IAbility dataAbility in dataUnit.Abilities)
                 {

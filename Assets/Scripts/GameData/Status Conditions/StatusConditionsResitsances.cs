@@ -22,6 +22,12 @@ namespace SwordAndBored.GameData.StatusConditions
                 Freeze_Resist = reader.GetIntFromCol("Freeze_Resist");
                 Bleed_Resist = reader.GetIntFromCol("Bleed_Resist");
                 Stun_Resist = reader.GetIntFromCol("Stun_Resist");
+            } else
+            {
+                Fire_Resist = 0;
+                Freeze_Resist = 0;
+                Bleed_Resist = 0;
+                Stun_Resist = 0;
             }
             reader.CloseReader();
             conn.CloseConnection();
