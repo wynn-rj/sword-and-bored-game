@@ -21,6 +21,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             isPhysical = abilityStats.IsPhysical;
             aoeShape = abilityStats.Shape;
             animation = abilityStats.Animation;
+            bleedChance = abilityStats.StatusConditionsAttack.Bleed_Chance;
+            burnChance = abilityStats.StatusConditionsAttack.Fire_Chance;
+            freezeChance = abilityStats.StatusConditionsAttack.Freeze_Chance;
+            stunChance = abilityStats.StatusConditionsAttack.Stun_Chance;
         }
 
         UnitAbilitiesContainer container;
@@ -34,6 +38,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public bool isPhysical;
         public int aoeShape;
         public string animation;
+        public int stunChance;
+        public int burnChance;
+        public int freezeChance;
+        public int bleedChance;
         public ParticleSystem particle;
         GameObject shape;
         Renderer shapeRend;
@@ -56,15 +64,16 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             Initialize(container, obj, null);
         }
 
-        public override void TriggerAbility(RaycastHit hit)
+        public override bool TriggerAbility(RaycastHit hit)
         {
 
             if (!aoe)
             {
-                pointAttack(hit);
+                return pointAttack(hit);
             } else
             {
                 aoeAttack(hit);
+                return true;
             }
         }
 
@@ -153,15 +162,13 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             }
         }
 
-        void pointAttack(RaycastHit hit)
+        bool pointAttack(RaycastHit hit)
         {
             if (Vector3.Distance(user.transform.position, hit.point) <= range)
             {
                 UniqueCreature enemy = getEnemy(hit);
-                if (true)
+                if (enemy)
                 {
-                    // Accuracy Check
-                    //Run damage equation
                     if (AccuracyCheck(enemy))
                     {
                         enemy.Damage(DamageEquation(enemy));
@@ -170,13 +177,14 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     {
                         enemy.GetComponent<UniqueCreature>().Miss();
                     }
-                    //Debug.Log("Hit");
-                }
-                else
+                    return true;
+                } else
                 {
-                    //Debug.Log("Miss");
+                    return false;
                 }
+                //Debug.Log("Hit");
             }
+            return false;
         }
 
         public void EnemyAttackNonAOE(UniqueCreature unitHit)

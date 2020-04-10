@@ -41,8 +41,10 @@ namespace SwordAndBored.Battlefield.StateBehaviors
                 brain.creature.abilityContainer.HighlightTarget(abilityToUse, hit);
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    brain.creature.abilityContainer.UseAbility(abilityToUse, hit);
-                    animator.SetBool("UseAbility", false);
+                    if (brain.creature.abilityContainer.UseAbility(abilityToUse, hit))
+                    {
+                        animator.SetBool("UseAbility", false);
+                    }
                 }
 
             }
