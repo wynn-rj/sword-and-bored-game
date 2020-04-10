@@ -13,7 +13,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             name = abilityStats.Name;
             damage = abilityStats.Damage;
             range = abilityStats.Range;
-            accuraccy = abilityStats.Accuracy;
+            accuracy = abilityStats.Accuracy;
             length = abilityStats.Length;
             width = abilityStats.Width;
             aoe = abilityStats.Shape > 0;
@@ -32,7 +32,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public bool aoe;
         public int damage;
         public int range;
-        public int accuraccy;
+        public int accuracy;
         public int length;
         public int width;
         public bool isPhysical;
@@ -146,20 +146,32 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             {
                 if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
                 {
-                    UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
-                    // Accuracy Check
-                    //Damage Equation
-                    TryAbilityOn(enemyCreature);
-
+                    UseAbilityOnTarget(enemy.GetComponent<UniqueCreature>());
                 }
             }
         }
 
-        public void TryAbilityOn(UniqueCreature target)
+        public void UseAbilityOnTarget(UniqueCreature target)
         {
             if (AccuracyCheck(target))
             {
                 target.Damage(DamageEquation(target));
+                if (!target.stats.HasStatus())
+                {
+                    if (burnChance >  Random.Range(0, 100))
+                    {
+                        target.stats.IsBurning = true;
+                    } else if (bleedChance > Random.Range(0, 100))
+                    {
+                        target.stats.IsBleeding = true;
+                    } else if (freezeChance > Random.Range(0, 100))
+                    {
+                        target.stats.IsFrozen = true;
+                    } else if (stunChance > Random.Range(0, 100))
+                    {
+                        target.stats.IsStunned = true;
+                    }
+                }
             }
             else
             {
@@ -174,13 +186,12 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 UniqueCreature enemy = getEnemy(hit);
                 if (enemy)
                 {
-                    TryAbilityOn(enemy);
+                    UseAbilityOnTarget(enemy);
                     return true;
                 } else
                 {
                     return false;
                 }
-                //Debug.Log("Hit");
             }
             return false;
         }
@@ -292,7 +303,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public bool AccuracyCheck(UniqueCreature enemy)
         {
             //int extraMods = (user.stats.accuracy - enemy.stats.evasion) * 3;
-            return accuraccy > Random.Range(0,100);
+            return accuracy > Random.Range(0,100);
         }
 
         public void StopShowAoe()
