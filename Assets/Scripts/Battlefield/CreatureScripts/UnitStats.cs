@@ -22,6 +22,11 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public bool IsBleeding;
         public bool IsStunned;
 
+        public int BurnResist;
+        public int BleedResist;
+        public int StunResist;
+        public int FreezeResist;
+
         public bool HasStatus()
         {
             return IsBleeding || IsBurning || IsFrozen || IsStunned;
