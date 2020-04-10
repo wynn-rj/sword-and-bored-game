@@ -149,16 +149,21 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     UniqueCreature enemyCreature = enemy.GetComponent<UniqueCreature>();
                     // Accuracy Check
                     //Damage Equation
-                    if (AccuracyCheck(enemyCreature))
-                    {
-                        enemyCreature.Damage(DamageEquation(enemyCreature));
-                    }
-                    else
-                    {
-                        enemyCreature.Miss();
-                    }
+                    TryAbilityOn(enemyCreature);
 
                 }
+            }
+        }
+
+        public void TryAbilityOn(UniqueCreature target)
+        {
+            if (AccuracyCheck(target))
+            {
+                target.Damage(DamageEquation(target));
+            }
+            else
+            {
+                target.Miss();
             }
         }
 
@@ -169,14 +174,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 UniqueCreature enemy = getEnemy(hit);
                 if (enemy)
                 {
-                    if (AccuracyCheck(enemy))
-                    {
-                        enemy.Damage(DamageEquation(enemy));
-                    }
-                    else
-                    {
-                        enemy.GetComponent<UniqueCreature>().Miss();
-                    }
+                    TryAbilityOn(enemy);
                     return true;
                 } else
                 {

@@ -157,7 +157,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts
 
         public void ShowAbilityAnimation()
         {
-            unit.animator.SetTrigger("Attack");
+            sword.SetActive(true);
+            book.SetActive(false);
+            bow.SetActive(false);
+            unit.animator.SetTrigger("SwordAttack");
         }
     }
 
