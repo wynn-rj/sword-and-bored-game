@@ -6,12 +6,9 @@ namespace SwordAndBored.GameData.StatusConditions
     {
         public int ID { get; set; }
         public bool IsStunned { get; set; }
-        public bool IsOnFire { get; set; }
-        public int FireDamage { get; set; }
-        public bool IsPoisoned { get; set; }
-        public int PoisonDamage { get; set; }
+        public bool IsBurning { get; set; }
+        public bool IsFrozen { get; set; }  
         public bool IsBleeding { get; set; }
-        public int BleedDamage { get; set; }
 
         public StatusConditionsActive(int inputID)
         {
@@ -21,11 +18,8 @@ namespace SwordAndBored.GameData.StatusConditions
             ID = inputID;
             if (reader.NextRow())
             {
-                FireDamage = reader.GetIntFromCol("Fire_Damage");
-                IsOnFire = reader.GetIntFromCol("Is_On_Fire") > 0;
-                PoisonDamage = reader.GetIntFromCol("Posion_Damage");
-                IsPoisoned = reader.GetIntFromCol("Is_Poisoned") > 0;
-                BleedDamage = reader.GetIntFromCol("Bleed_Damage");
+                IsBurning = reader.GetIntFromCol("Is_On_Fire") > 0;
+                IsFrozen = reader.GetIntFromCol("Is_Frozen") > 0;
                 IsBleeding = reader.GetIntFromCol("Is_Bleeding") > 0;
                 IsStunned = reader.GetIntFromCol("Is_Stunned") > 0;
             }
