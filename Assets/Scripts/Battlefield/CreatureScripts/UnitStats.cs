@@ -16,6 +16,11 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public int speedIntit;
         public int movement;
         public string role;
+
+        public bool IsBurning;
+        public bool IsFrozen;
+        public bool IsBleeding;
+        public bool IsStunned;
     }
 
 }

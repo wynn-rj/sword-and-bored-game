@@ -7175,6 +7175,7 @@ MonoBehaviour:
   movementText: {fileID: 3252253872526356405}
   initiativeText: {fileID: 3252253872173250947}
   roleText: {fileID: 3252253871930737110}
+  statusText: {fileID: 1567189872}
   healthTextOther: {fileID: 1705028326}
   pAttackTextOther: {fileID: 2040439389}
   pDefenseTextOther: {fileID: 2006080884}
@@ -7183,6 +7184,7 @@ MonoBehaviour:
   movementTextOther: {fileID: 566313995}
   initiativeTextOther: {fileID: 1253949561}
   roleTextOther: {fileID: 1104804053}
+  statusTextOther: {fileID: 616623660}
 --- !u!1 &3252253871930737108
 GameObject:
   m_ObjectHideFlags: 0
