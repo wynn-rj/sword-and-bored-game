@@ -9,7 +9,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public abstract void ShowTarget(RaycastHit hit);
         public abstract void Initialize(UnitAbilitiesContainer container, GameObject obj, GameObject shape);
-        public abstract void TriggerAbility(RaycastHit hit);
+        public abstract bool TriggerAbility(RaycastHit hit);
         
 
     }

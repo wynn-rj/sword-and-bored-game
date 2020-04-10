@@ -64,72 +64,81 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             return abilities[i].aoe;
         }
 
-        public void UseAbility(int i, RaycastHit target)
+        public bool UseAbility(int i, RaycastHit target)
         {
             transform.LookAt(target.transform, Vector3.up);
-            abilities[i].TriggerAbility(target);
-            unit.action = false;
-            
-            if(abilities[i].animation == "Sword")
+            if (abilities[i].TriggerAbility(target))
             {
-                sword.SetActive(true);
-                book.SetActive(false);
-                bow.SetActive(false);
-                unit.animator.SetTrigger("SwordAttack");
-            } else if (abilities[i].animation == "Magic")
-            {
-                sword.SetActive(false);
-                book.SetActive(true);
-                bow.SetActive(false);
-                unit.animator.SetTrigger("SwordAttack"); // Needs separate tree for magic
-            } else if (abilities[i].animation == "Bow")
-            {
-                sword.SetActive(false);
-                book.SetActive(false);
-                bow.SetActive(true);
-                unit.animator.SetTrigger("BowAttack");
-            } else //Default right now, should try to fix setup later
-            {
-                sword.SetActive(true);
-                book.SetActive(false);
-                bow.SetActive(false);
-                unit.animator.SetTrigger("SwordAttack");
-            }
-            
-            // Sound Effects
-            if (abilities[i].name == "Fire Ball")
-            {
-                if (audioSource.isPlaying)
+                unit.action = false;
+
+                if (abilities[i].animation == "Sword")
                 {
-                    audioSource.Pause();
-                    audioSource.outputAudioMixerGroup = soundEffects;
-                    audioSource.PlayOneShot(fireballSound, 5);
-                    audioSource.outputAudioMixerGroup = music;
-                    audioSource.Play();
+                    sword.SetActive(true);
+                    book.SetActive(false);
+                    bow.SetActive(false);
+                    unit.animator.SetTrigger("SwordAttack");
                 }
-                else
+                else if (abilities[i].animation == "Magic")
                 {
-                    audioSource.outputAudioMixerGroup = soundEffects;
-                    audioSource.PlayOneShot(fireballSound, 5);
-                    audioSource.outputAudioMixerGroup = music;
+                    sword.SetActive(false);
+                    book.SetActive(true);
+                    bow.SetActive(false);
+                    unit.animator.SetTrigger("SwordAttack"); // Needs separate tree for magic
                 }
-            }
-            else if (!abilities[i].isPhysical)
+                else if (abilities[i].animation == "Bow")
+                {
+                    sword.SetActive(false);
+                    book.SetActive(false);
+                    bow.SetActive(true);
+                    unit.animator.SetTrigger("BowAttack");
+                }
+                else //Default right now, should try to fix setup later
+                {
+                    sword.SetActive(true);
+                    book.SetActive(false);
+                    bow.SetActive(false);
+                    unit.animator.SetTrigger("SwordAttack");
+                }
+
+                // Sound Effects
+                if (abilities[i].name == "Fire Ball")
+                {
+                    if (audioSource.isPlaying)
+                    {
+                        audioSource.Pause();
+                        audioSource.outputAudioMixerGroup = soundEffects;
+                        audioSource.PlayOneShot(fireballSound, 5);
+                        audioSource.outputAudioMixerGroup = music;
+                        audioSource.Play();
+                    }
+                    else
+                    {
+                        audioSource.outputAudioMixerGroup = soundEffects;
+                        audioSource.PlayOneShot(fireballSound, 5);
+                        audioSource.outputAudioMixerGroup = music;
+                    }
+                }
+                else if (!abilities[i].isPhysical)
+                {
+                    if (audioSource.isPlaying)
+                    {
+                        audioSource.Pause();
+                        audioSource.outputAudioMixerGroup = soundEffects;
+                        audioSource.PlayOneShot(magicSound, 5);
+                        audioSource.outputAudioMixerGroup = music;
+                        audioSource.Play();
+                    }
+                    else
+                    {
+                        audioSource.outputAudioMixerGroup = soundEffects;
+                        audioSource.PlayOneShot(magicSound, 5);
+                        audioSource.outputAudioMixerGroup = music;
+                    }
+                }
+                return true;
+            } else
             {
-                if (audioSource.isPlaying)
-                {
-                    audioSource.Pause();
-                    audioSource.outputAudioMixerGroup = soundEffects;
-                    audioSource.PlayOneShot(magicSound, 5);
-                    audioSource.outputAudioMixerGroup = music;
-                    audioSource.Play();
-                }
-                else
-                {
-                    audioSource.outputAudioMixerGroup = soundEffects;
-                    audioSource.PlayOneShot(magicSound, 5);
-                    audioSource.outputAudioMixerGroup = music;
-                }
+                return false;
             }
         }
 
