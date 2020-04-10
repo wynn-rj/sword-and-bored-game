@@ -22,6 +22,12 @@ namespace SwordAndBored.GameData.StatusConditions
                 IsFrozen = reader.GetIntFromCol("Is_Frozen") > 0;
                 IsBleeding = reader.GetIntFromCol("Is_Bleeding") > 0;
                 IsStunned = reader.GetIntFromCol("Is_Stunned") > 0;
+            } else
+            {
+                IsBurning = false;
+                IsFrozen = false;
+                IsBleeding = false;
+                IsStunned = false;
             }
             reader.CloseReader();
             conn.CloseConnection();

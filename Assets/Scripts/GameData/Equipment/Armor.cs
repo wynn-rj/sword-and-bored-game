@@ -31,6 +31,10 @@ namespace SwordAndBored.GameData.Equipment
                 Physical_Defense = reader.GetIntFromCol("Physical_Defense");
                 Magic_Defense = reader.GetIntFromCol("Magic_Defense");
                 Rarity = reader.GetIntFromCol("Rarity");
+            } else
+            {
+                Physical_Defense = 0;
+                Magic_Defense = 0;
             }
             reader.CloseReader();
             conn.CloseConnection();

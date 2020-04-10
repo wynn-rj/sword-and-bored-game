@@ -22,6 +22,12 @@ namespace SwordAndBored.GameData.StatusConditions
                 Freeze_Chance = reader.GetIntFromCol("Freeze_Chance");
                 Bleed_Chance = reader.GetIntFromCol("Bleed_Chance");
                 Stun_Chance = reader.GetIntFromCol("Stun_Chance");
+            } else
+            {
+                Fire_Chance = 0;
+                Freeze_Chance = 0;
+                Bleed_Chance = 0;
+                Stun_Chance = 0;
             }
             reader.CloseReader();
             conn.CloseConnection();
