@@ -70,6 +70,10 @@ namespace SwordAndBored.Battlefield
                 stats.movement = dataUnit.Stats.Movement;
                 stats.speedIntit = dataUnit.Stats.Initiative;
                 stats.role = dataUnit.Role.Name;
+                stats.IsFrozen = false;
+                stats.IsBurning = false;
+                stats.IsBleeding = false;
+                stats.IsStunned = false;
 
                 //Add Armor for defense
                 stats.physicalDefense += dataUnit.Armor.Physical_Defense;

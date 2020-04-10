@@ -11,9 +11,9 @@ namespace SwordAndBored.UI.Battlefield
         public GameObject currentStatsPanel, otherUnitPanel;
         public TurnManager turnManager;
         public TMP_Text healthText, pAttackText, pDefenseText,
-            mAttackText, mDefenseText, movementText, initiativeText, roleText;
+            mAttackText, mDefenseText, movementText, initiativeText, roleText, statusText;
         public TMP_Text healthTextOther, pAttackTextOther, pDefenseTextOther,
-            mAttackTextOther, mDefenseTextOther, movementTextOther, initiativeTextOther, roleTextOther;
+            mAttackTextOther, mDefenseTextOther, movementTextOther, initiativeTextOther, roleTextOther, statusTextOther;
 
         private BrainManager brain;
 
@@ -42,6 +42,7 @@ namespace SwordAndBored.UI.Battlefield
                 movementText.text = $"Movement: {turnManager.activePlayer.creature.movementLeft} / {unitStats.movement}";
                 initiativeText.text = $"Initiative: {unitStats.speedIntit}";
                 roleText.text = $"Role: {unitStats.role}";
+                statusText.text = $"Status:";
             }
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -73,6 +74,7 @@ namespace SwordAndBored.UI.Battlefield
             movementTextOther.text = $"Movement: {otherStats.movement}";
             initiativeTextOther.text = $"Initiative: {otherStats.speedIntit}";
             roleTextOther.text = $"Role: {otherStats.role}";
+            statusTextOther.text = $"Status:";
         }
     }
 }
