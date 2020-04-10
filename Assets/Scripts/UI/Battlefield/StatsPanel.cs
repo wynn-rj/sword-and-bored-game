@@ -59,7 +59,8 @@ namespace SwordAndBored.UI.Battlefield
             {
                 FillOtherStatPanel(hit.collider.gameObject.GetComponent<UniqueCreature>().stats);
                 otherUnitPanel.SetActive(true);
-            } else
+            }
+            else
             {
                 otherUnitPanel.SetActive(false);
             }
@@ -83,16 +84,20 @@ namespace SwordAndBored.UI.Battlefield
             if (stats.IsStunned)
             {
                 return "Stunned";
-            } else if (stats.IsFrozen)
+            }
+            else if (stats.IsFrozen)
             {
                 return "Frozen";
-            } else if (stats.IsBurning)
+            }
+            else if (stats.IsBurning)
             {
                 return "Burning";
-            } else if (stats.IsBleeding)
+            }
+            else if (stats.IsBleeding)
             {
                 return "Bleeding";
-            } else
+            }
+            else
             {
                 return "Healthy";
             }

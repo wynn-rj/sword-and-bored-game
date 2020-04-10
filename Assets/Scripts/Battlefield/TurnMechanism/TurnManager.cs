@@ -54,7 +54,22 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void nextTurn()
         {
+            // End Turn Behavior
             activePlayer.isMyTurn = false;
+            UniqueCreature endTurnUnique = activePlayer.GetComponent<UniqueCreature>();
+            if (endTurnUnique.stats.IsBleeding)
+            {
+                endTurnUnique.Damage(endTurnUnique.stats.maxHealth / 16);
+            } else if (endTurnUnique.stats.IsBurning)
+            {
+                endTurnUnique.Damage(endTurnUnique.stats.maxHealth / 16);
+            } else if (endTurnUnique.stats.IsStunned)
+            {
+                endTurnUnique.stats.IsStunned = false;
+            }
+
+
+            //Switches Units
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
             activePlayer.isMyTurn = true;
@@ -64,9 +79,27 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                 statsPanel.SetActive(false);
             }
 
+            //Check Status
+            UniqueCreature currentUnique = activePlayer.GetComponent<UniqueCreature>();
+            if (currentUnique.stats.IsBleeding)
+            {
+                currentUnique.stats.magicDefense /= 2;
+            }
+            else if (currentUnique.stats.IsBurning)
+            {
+                currentUnique.stats.physicalAttack /= 2;
+            } else if (currentUnique.stats.IsStunned)
+            {
+                currentUnique.stats.movement = 0;
+            } else if (currentUnique.stats.IsFrozen)
+            {
+                currentUnique.stats.physicalDefense /= 2;
+                currentUnique.stats.movement /= 2;
+            }
+
             // Reset Turn Behaviors
-            activePlayer.GetComponent<UniqueCreature>().movementLeft = activePlayer.GetComponent<UniqueCreature>().stats.movement;
-            activePlayer.GetComponent<UniqueCreature>().action = true;
+            currentUnique.movementLeft = currentUnique.stats.movement;
+            currentUnique.action = true;
         }
 
         void Update()
