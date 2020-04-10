@@ -17,7 +17,7 @@ public class AbilityDescriptionPanel : MonoBehaviour
         {
             rangeText.text = $"{ability.range} Single Target";
         }
-        accuracyText.text = ability.accuraccy.ToString();
+        accuracyText.text = ability.accuracy.ToString();
         if (ability.isPhysical)
         {
             damageText.text = $"{ability.damage} Physical";
