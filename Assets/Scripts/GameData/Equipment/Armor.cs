@@ -35,6 +35,7 @@ namespace SwordAndBored.GameData.Equipment
             {
                 Physical_Defense = 0;
                 Magic_Defense = 0;
+                StatusConditionsResistances = new StatusConditionsResistances(-1);
             }
             reader.CloseReader();
             conn.CloseConnection();
