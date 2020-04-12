@@ -158,16 +158,16 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 target.Damage(DamageEquation(target));
                 if (!target.stats.HasStatus())
                 {
-                    if (burnChance >  Random.Range(0, 100) - target.stats.BurnResist)
+                    if (burnChance >  Random.Range(0, 100) + target.stats.BurnResist)
                     {
                         target.stats.IsBurning = true;
-                    } else if (bleedChance > Random.Range(0, 100) - target.stats.BleedResist)
+                    } else if (bleedChance > Random.Range(0, 100) + target.stats.BleedResist)
                     {
                         target.stats.IsBleeding = true;
-                    } else if (freezeChance > Random.Range(0, 100) - target.stats.FreezeResist)
+                    } else if (freezeChance > Random.Range(0, 100) + target.stats.FreezeResist)
                     {
                         target.stats.IsFrozen = true;
-                    } else if (stunChance > Random.Range(0, 100) - target.stats.StunResist)
+                    } else if (stunChance > Random.Range(0, 100) + target.stats.StunResist)
                     {
                         target.stats.IsStunned = true;
                     }
