@@ -6,5 +6,6 @@ namespace SwordAndBored.GameData.Equipment
     public interface IWeapon : IEquipment
     {
         List<IAbility> Abilities { get; set; }
+        int Rarity { get; set; }
     }
 }

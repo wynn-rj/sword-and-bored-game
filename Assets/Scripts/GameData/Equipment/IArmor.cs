@@ -7,5 +7,6 @@ namespace SwordAndBored.GameData.Equipment
         int Physical_Defense { get; set; }
         int Magic_Defense { get; set; }
         IStatusConditionsResistances StatusConditionsResistances { get; set; }
+        int Rarity { get; set; }
     }
 }
