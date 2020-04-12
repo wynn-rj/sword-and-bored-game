@@ -12,7 +12,7 @@ namespace SwordAndBored.GameData.Equipment
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
-
+        public int Rarity { get; set; }
         public Armor(int inputID)
         {
             DatabaseConnection conn = new DatabaseConnection();
@@ -30,6 +30,7 @@ namespace SwordAndBored.GameData.Equipment
 
                 Physical_Defense = reader.GetIntFromCol("Physical_Defense");
                 Magic_Defense = reader.GetIntFromCol("Magic_Defense");
+                Rarity = reader.GetIntFromCol("Rarity");
             }
             reader.CloseReader();
             conn.CloseConnection();

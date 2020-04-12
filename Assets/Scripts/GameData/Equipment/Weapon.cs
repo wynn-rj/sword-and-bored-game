@@ -11,6 +11,7 @@ namespace SwordAndBored.GameData.Equipment
         public string Name { get; set; }
         public string Description { get; set; }
         public string FlavorText { get; set; }
+        public int Rarity { get; set; }
 
         public Weapon(int inputID)
         {
@@ -23,6 +24,7 @@ namespace SwordAndBored.GameData.Equipment
                 Name = reader.GetStringFromCol("Name");
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
+                Rarity = reader.GetIntFromCol("Rarity");
             }
             reader.CloseReader();
 
