@@ -79,6 +79,13 @@ namespace SwordAndBored.Battlefield
                 stats.movement = enemyData.Stats.Movement;
                 stats.speedIntit = enemyData.Stats.Initiative;
 
+                stats.physicalAttackMax = enemyData.Stats.Physical_Attack;
+                stats.magicAttackMax = enemyData.Stats.Magic_Attack;
+                stats.physicalDefenseMax = enemyData.Stats.Physical_Defense;
+                stats.magicDefenseMax = enemyData.Stats.Magic_Defense;
+                stats.movementMax = enemyData.Stats.Movement;
+                stats.speedIntitMax = enemyData.Stats.Initiative;
+
                 //brain
                 brain.tileIndictor = indicator;
                 //brain.startCoordinates = new Vector2(25 - numUnits * 2, 27);
