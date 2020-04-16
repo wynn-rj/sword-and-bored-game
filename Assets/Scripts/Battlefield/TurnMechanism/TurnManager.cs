@@ -18,6 +18,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public List<GameObject> units = new List<GameObject>();
         [HideInInspector]
         public List<GameObject> playerUnits = new List<GameObject>();
+        private List<UniqueCreature> startingUnits = new List<UniqueCreature>();
         [HideInInspector]
         public BrainManager activePlayer;
         [Header("UI")]
@@ -50,6 +51,11 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             // Reset Turn Behaviors
             activePlayer.GetComponent<UniqueCreature>().movementLeft = activePlayer.GetComponent<UniqueCreature>().stats.movement;
             activePlayer.GetComponent<UniqueCreature>().action = true;
+
+            foreach (GameObject obj in playerUnits)
+            {
+                startingUnits.Add(obj.GetComponent<UniqueCreature>());
+            }
         }
 
         public void nextTurn()
@@ -191,9 +197,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void SaveAllUnits()
         {
-            foreach (GameObject obj in playerUnits)
+            foreach (UniqueCreature creature in startingUnits)
             {
-                obj.GetComponent<UniqueCreature>().myUnit.Save();
+                Debug.Log(creature.myUnit.Name);
+                creature.myUnit.Save();
             }
         }
     }
