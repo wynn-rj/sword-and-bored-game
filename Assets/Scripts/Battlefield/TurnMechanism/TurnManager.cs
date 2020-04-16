@@ -28,8 +28,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         [HideInInspector]
         public List<GameObject> enemies = new List<GameObject>();
 
-        public Canvas endGameCanvas;
-        public TMP_Text endGameText;
+        public Canvas winGameCanvas;
+        public Canvas loseGameCanvas;
 
         public Canvas hotbar;
 
@@ -40,7 +40,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         void Start()
         {
-            endGameCanvas.enabled = false;
+            winGameCanvas.enabled = false;
+            loseGameCanvas.enabled = false;
             manager = new TurnOrderController(units.ToArray());//, new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
@@ -154,9 +155,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void WinCondition()
         {
-            endGameCanvas.enabled = true;
-            endGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
-            endGameText.text = "You Win!";
+            winGameCanvas.enabled = true;
+            winGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
             SaveAllUnits();
             GameScenes.BATTLEWIN = true;
@@ -165,9 +165,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void LoseCondition()
         {
-            endGameCanvas.enabled = true;
-            endGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
-            endGameText.text = "You Lost!";
+            loseGameCanvas.enabled = true;
+            loseGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
             SaveAllUnits();
             GameScenes.BATTLEWIN = false;
