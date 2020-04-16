@@ -252,12 +252,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     }
                 } else
                 {
-
-                    Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
-                    highlightList(enemies);
-
                     if (Vector3.Distance(user.transform.position, hit.point) <= range)
                     {
+                        Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
+                        highlightList(enemies);
                         shapeRend.enabled = true;
                         shape.transform.localScale = new Vector3(length, length, width);
                         shape.transform.position = hit.point;
