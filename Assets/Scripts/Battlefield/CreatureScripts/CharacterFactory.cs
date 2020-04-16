@@ -69,6 +69,14 @@ namespace SwordAndBored.Battlefield
                 stats.magicDefense = dataUnit.Stats.Magic_Defense;
                 stats.movement = dataUnit.Stats.Movement;
                 stats.speedIntit = dataUnit.Stats.Initiative;
+
+                stats.physicalAttackMax = dataUnit.Stats.Physical_Attack;
+                stats.magicAttackMax = dataUnit.Stats.Magic_Attack;
+                stats.physicalDefenseMax = dataUnit.Stats.Physical_Defense;
+                stats.magicDefenseMax = dataUnit.Stats.Magic_Defense;
+                stats.movementMax = dataUnit.Stats.Movement;
+                stats.speedIntitMax = dataUnit.Stats.Initiative;
+                
                 stats.role = dataUnit.Role.Name;
                 
                 stats.IsFrozen = false;

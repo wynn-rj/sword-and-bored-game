@@ -65,10 +65,10 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             UniqueCreature endTurnUnique = activePlayer.GetComponent<UniqueCreature>();
             if (endTurnUnique.stats.IsBleeding)
             {
-                endTurnUnique.Damage(endTurnUnique.stats.maxHealth / 16);
+                endTurnUnique.Damage(endTurnUnique.stats.maxHealth / 8);
             } else if (endTurnUnique.stats.IsBurning)
             {
-                endTurnUnique.Damage(endTurnUnique.stats.maxHealth / 16);
+                endTurnUnique.Damage(endTurnUnique.stats.maxHealth / 8);
             } else if (endTurnUnique.stats.IsStunned)
             {
                 endTurnUnique.stats.IsStunned = false;
@@ -89,18 +89,18 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             UniqueCreature currentUnique = activePlayer.GetComponent<UniqueCreature>();
             if (currentUnique.stats.IsBleeding)
             {
-                currentUnique.stats.magicDefense /= 2;
+                currentUnique.stats.magicDefense = currentUnique.stats.magicDefenseMax / 2;
             }
             else if (currentUnique.stats.IsBurning)
             {
-                currentUnique.stats.physicalAttack /= 2;
+                currentUnique.stats.physicalAttack = currentUnique.stats.physicalAttackMax / 2;
             } else if (currentUnique.stats.IsStunned)
             {
                 currentUnique.stats.movement = 0;
             } else if (currentUnique.stats.IsFrozen)
             {
-                currentUnique.stats.physicalDefense /= 2;
-                currentUnique.stats.movement /= 2;
+                currentUnique.stats.physicalDefense = currentUnique.stats.physicalDefenseMax / 2;
+                currentUnique.stats.movement = currentUnique.stats.movementMax / 2;
             }
 
             // Reset Turn Behaviors
@@ -199,7 +199,6 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         {
             foreach (UniqueCreature creature in startingUnits)
             {
-                Debug.Log(creature.myUnit.Name);
                 creature.myUnit.Save();
             }
         }
