@@ -42,7 +42,7 @@ namespace SwordAndBored.UI.Battlefield
                 movementText.text = $"Movement: {turnManager.activePlayer.creature.movementLeft} / {unitStats.movement}";
                 initiativeText.text = $"Initiative: {unitStats.speedIntit}";
                 roleText.text = $"Role: {unitStats.role}";
-                statusText.text = $"Status: {GetStatusText(unitStats)}";
+                statusText.text = $"Status: {GetStatusText(unitStats, statusText, pDefenseText, mDefenseText, pAttackText, movementText)}";
             }
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -76,29 +76,39 @@ namespace SwordAndBored.UI.Battlefield
             movementTextOther.text = $"Movement: {otherStats.movement}";
             initiativeTextOther.text = $"Initiative: {otherStats.speedIntit}";
             roleTextOther.text = $"Role: {otherStats.role}";
-            statusTextOther.text = $"Status: {GetStatusText(otherStats)}";
+            statusTextOther.text = $"Status: {GetStatusText(otherStats, statusTextOther, pDefenseTextOther, mDefenseTextOther, pAttackTextOther, movementTextOther)}";
         }
 
-        public string GetStatusText(UnitStats stats)
+        public string GetStatusText(UnitStats stats, TMP_Text statusText, TMP_Text pDefenseText, TMP_Text mDefenseText, TMP_Text pAttackText, TMP_Text movementText)
         {
             if (stats.IsStunned)
             {
+                statusText.faceColor = Color.yellow;
+                movementText.faceColor = Color.red;
                 return "Stunned";
             }
             else if (stats.IsFrozen)
             {
+                statusText.faceColor = Color.cyan;
+                movementText.faceColor = Color.red;
+                pDefenseText.faceColor = Color.red;
                 return "Frozen";
             }
             else if (stats.IsBurning)
             {
+                statusText.faceColor = new Color(255,127,80);
+                pAttackText.faceColor = Color.red;
                 return "Burning";
             }
             else if (stats.IsBleeding)
             {
+                statusText.faceColor = Color.red;
+                mDefenseText.faceColor = Color.red;
                 return "Bleeding";
             }
             else
             {
+                statusText.faceColor = Color.black;
                 return "Healthy";
             }
         }
