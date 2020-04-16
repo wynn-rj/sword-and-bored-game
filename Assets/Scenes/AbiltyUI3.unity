@@ -15924,6 +15924,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5165644636434992688}
+    - target: {fileID: 1446300399030732583, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446300399030732583, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446300399030732583, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446300399030732583, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446300399030732583, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3252253870952828378, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_Name
@@ -15984,6 +16009,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3252253871524757194, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3252253871552499209, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15994,6 +16024,11 @@ PrefabInstance:
       propertyPath: turnManager
       value: 
       objectReference: {fileID: 5165644636434992688}
+    - target: {fileID: 3252253872040232281, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_Name
+      value: WinImage
+      objectReference: {fileID: 0}
     - target: {fileID: 3252253872138358405, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -16004,6 +16039,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5165644637592470274}
+    - target: {fileID: 3820390211774084636, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_Name
+      value: LoseImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5993495963760183216, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3, type: 3}
 --- !u!223 &648428927 stripped
@@ -16042,6 +16087,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &648428931 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5640488916615680247, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 648428926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &648998594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36973,18 +37024,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1403432504}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1407162031 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3252253870828112715, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-    type: 3}
-  m_PrefabInstance: {fileID: 648428926}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1408370936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56699,8 +56738,8 @@ MonoBehaviour:
   text: {fileID: 648428930}
   actionsLeft: {fileID: 648428929}
   enemies: []
-  endGameCanvas: {fileID: 648428927}
-  endGameText: {fileID: 1407162031}
+  winGameCanvas: {fileID: 648428927}
+  loseGameCanvas: {fileID: 648428931}
   hotbar: {fileID: 648428928}
   endTurnButton: {fileID: 1934282620}
   statsPanel: {fileID: 0}
