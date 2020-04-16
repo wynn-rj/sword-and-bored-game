@@ -153,7 +153,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public void UseAbilityOnTarget(UniqueCreature target)
         {
-            if (AccuracyCheck(target))
+            if (AccuracyCheck())
             {
                 target.Damage(DamageEquation(target));
                 if (!target.stats.HasStatus())
@@ -200,7 +200,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         {
             // Accuracy Check
             //Run damage equation
-            if (AccuracyCheck(unitHit))
+            if (AccuracyCheck())
             {
                 unitHit.Damage(DamageEquation(unitHit));
             }
@@ -281,7 +281,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public int DamageEquation(UniqueCreature enemy)
         {
-            int levelStaticForNow = 50;
+            int levelStaticForNow = 25;
             float levelMult = (4 * levelStaticForNow / 5f);
             float topPart;
             if (isPhysical)
@@ -298,9 +298,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             return finalDamage;
         }
 
-        public bool AccuracyCheck(UniqueCreature enemy)
+        public bool AccuracyCheck()
         {
-            //int extraMods = (user.stats.accuracy - enemy.stats.evasion) * 3;
             return accuracy > Random.Range(0,100);
         }
 
