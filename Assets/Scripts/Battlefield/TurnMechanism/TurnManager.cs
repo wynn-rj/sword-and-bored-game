@@ -74,7 +74,6 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                 endTurnUnique.stats.IsStunned = false;
             }
 
-
             //Switches Units
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
@@ -85,24 +84,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                 statsPanel.SetActive(false);
             }
 
-            //Check Status
-            UniqueCreature currentUnique = activePlayer.GetComponent<UniqueCreature>();
-            if (currentUnique.stats.IsBleeding)
-            {
-                currentUnique.stats.magicDefense = currentUnique.stats.magicDefenseMax / 2;
-            }
-            else if (currentUnique.stats.IsBurning)
-            {
-                currentUnique.stats.physicalAttack = currentUnique.stats.physicalAttackMax / 2;
-            } else if (currentUnique.stats.IsStunned)
-            {
-                currentUnique.stats.movement = 0;
-            } else if (currentUnique.stats.IsFrozen)
-            {
-                currentUnique.stats.physicalDefense = currentUnique.stats.physicalDefenseMax / 2;
-                currentUnique.stats.movement = currentUnique.stats.movementMax / 2;
-            }
 
+            UniqueCreature currentUnique = activePlayer.GetComponent<UniqueCreature>();
             // Reset Turn Behaviors
             currentUnique.movementLeft = currentUnique.stats.movement;
             currentUnique.action = true;
@@ -156,6 +139,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             {
                 LoseCondition();
             }
+            CheckStatusForAll();
 
         }
 
@@ -200,6 +184,32 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             foreach (UniqueCreature creature in startingUnits)
             {
                 creature.myUnit.Save();
+            }
+        }
+
+        public void CheckStatusForAll()
+        {
+            foreach (GameObject unit in units)
+            {
+                //Check Status
+                UniqueCreature unitCreature = unit.GetComponent<UniqueCreature>();
+                if (unitCreature.stats.IsBleeding)
+                {
+                    unitCreature.stats.magicDefense = unitCreature.stats.magicDefenseMax / 2;
+                }
+                else if (unitCreature.stats.IsBurning)
+                {
+                    unitCreature.stats.physicalAttack = unitCreature.stats.physicalAttackMax / 2;
+                }
+                else if (unitCreature.stats.IsStunned)
+                {
+                    unitCreature.stats.movement = 0;
+                }
+                else if (unitCreature.stats.IsFrozen)
+                {
+                    unitCreature.stats.physicalDefense = unitCreature.stats.physicalDefenseMax / 2;
+                    unitCreature.stats.movement = unitCreature.stats.movementMax / 2;
+                }
             }
         }
     }

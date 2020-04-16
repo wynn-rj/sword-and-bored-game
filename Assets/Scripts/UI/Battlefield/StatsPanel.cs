@@ -16,6 +16,7 @@ namespace SwordAndBored.UI.Battlefield
             mAttackTextOther, mDefenseTextOther, movementTextOther, initiativeTextOther, roleTextOther, statusTextOther;
 
         private BrainManager brain;
+        private UniqueCreature currentRaycasted;
 
         // Update is called once per frame
         void Update()
@@ -48,6 +49,11 @@ namespace SwordAndBored.UI.Battlefield
             {
                 RayCastToUnit();
             }
+            if (currentRaycasted)
+            {
+                otherUnitPanel.SetActive(true);
+                FillOtherStatPanel(currentRaycasted.stats);
+            }
         }
 
         public void RayCastToUnit()
@@ -57,11 +63,13 @@ namespace SwordAndBored.UI.Battlefield
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, lm))
             {
-                FillOtherStatPanel(hit.collider.gameObject.GetComponent<UniqueCreature>().stats);
+                currentRaycasted = hit.collider.gameObject.GetComponent<UniqueCreature>();
                 otherUnitPanel.SetActive(true);
+                FillOtherStatPanel(currentRaycasted.stats);
             }
             else
             {
+                currentRaycasted = null;
                 otherUnitPanel.SetActive(false);
             }
         }
