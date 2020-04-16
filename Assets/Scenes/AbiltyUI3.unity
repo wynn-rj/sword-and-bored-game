@@ -7011,12 +7011,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 259329250}
   m_PrefabAsset: {fileID: 0}
---- !u!223 &261066598 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 261066598, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-    type: 3}
-  m_PrefabInstance: {fileID: 648428926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &261145801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16000,11 +15994,6 @@ PrefabInstance:
       propertyPath: turnManager
       value: 
       objectReference: {fileID: 5165644636434992688}
-    - target: {fileID: 3252253872130121942, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3252253872138358405, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -16015,26 +16004,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5165644637592470274}
-    - target: {fileID: 3252253872253768711, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-        type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252253872253768711, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-        type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252253872253768711, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-        type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252253872253768711, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3, type: 3}
 --- !u!223 &648428927 stripped
@@ -37004,6 +36973,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1403432504}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1407162031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3252253870828112715, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 648428926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1408370936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56718,8 +56699,8 @@ MonoBehaviour:
   text: {fileID: 648428930}
   actionsLeft: {fileID: 648428929}
   enemies: []
-  winCanvas: {fileID: 648428927}
-  loseCanvas: {fileID: 261066598}
+  endGameCanvas: {fileID: 648428927}
+  endGameText: {fileID: 1407162031}
   hotbar: {fileID: 648428928}
   endTurnButton: {fileID: 1934282620}
   statsPanel: {fileID: 0}
