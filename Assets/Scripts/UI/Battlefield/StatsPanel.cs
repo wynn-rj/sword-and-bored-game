@@ -104,7 +104,7 @@ namespace SwordAndBored.UI.Battlefield
             }
             else if (stats.IsBurning)
             {
-                statusText.faceColor = new Color(255,127,80);
+                statusText.faceColor = Color.magenta;
                 pAttackText.faceColor = Color.red;
                 return "Burning";
             }
