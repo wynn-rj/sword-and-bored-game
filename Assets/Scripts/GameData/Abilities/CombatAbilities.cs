@@ -32,7 +32,7 @@ namespace SwordAndBored.GameData.Abilities
                 Description = reader.GetStringFromCol("Description");
                 FlavorText = reader.GetStringFromCol("Flavor_Text");
 
-                int statusConditionsAttackID = reader.GetIntFromCol("Status_Conditions_Attack_FK");
+                int statusConditionsAttackID = reader.GetIntFromCol("Status_Conditions_Attacks_FK");
                 StatusConditionsAttack = new StatusConditionsAttack(statusConditionsAttackID);
 
                 Damage = reader.GetIntFromCol("Damage");

@@ -3,8 +3,6 @@ using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Database;
 using System.Collections.Generic;
 using SwordAndBored.GameData.Abilities;
-using SwordAndBored.GameData.StatusConditions;
-using UnityEngine;
 
 namespace SwordAndBored.GameData.Units
 {
@@ -182,7 +180,6 @@ namespace SwordAndBored.GameData.Units
             }
             else //Update
             {
-                Debug.Log(IsDead);
                 Stats.Save();
                 string queryString = $"UPDATE Units SET Name = {DatabaseHelper.GetNullOrStringFromString(Name)}, Description = {DatabaseHelper.GetNullOrStringFromString(Description)}, Flavor_Text = {DatabaseHelper.GetNullOrStringFromString(FlavorText)}," +
                     $" XP = {XP}, Level = {Level}, Stats_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Stats)}, Role_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Role)}, Weapon_FK = {DatabaseHelper.GetNullOrIDStringFromObject(Weapon)}" +

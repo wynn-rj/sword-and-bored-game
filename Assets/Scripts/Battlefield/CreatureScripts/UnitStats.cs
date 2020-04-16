@@ -15,6 +15,14 @@ namespace SwordAndBored.Battlefield.CreaturScripts
         public int magicDefense;
         public int speedIntit;
         public int movement;
+
+        public int physicalAttackMax;
+        public int magicAttackMax;
+        public int physicalDefenseMax;
+        public int magicDefenseMax;
+        public int speedIntitMax;
+        public int movementMax;
+
         public string role;
 
         public bool IsBurning;
