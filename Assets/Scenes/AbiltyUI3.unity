@@ -17942,12 +17942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!223 &648428931 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 5640488916615680247, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
-    type: 3}
-  m_PrefabInstance: {fileID: 648428926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &648998594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64823,8 +64817,7 @@ MonoBehaviour:
   text: {fileID: 648428930}
   actionsLeft: {fileID: 648428929}
   enemies: []
-  winGameCanvas: {fileID: 648428927}
-  loseGameCanvas: {fileID: 648428931}
+  endGameCanvas: {fileID: 648428927}
   hotbar: {fileID: 648428928}
   endTurnButton: {fileID: 1934282620}
   statsPanel: {fileID: 0}
