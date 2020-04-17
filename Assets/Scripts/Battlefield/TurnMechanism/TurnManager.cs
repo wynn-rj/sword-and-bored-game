@@ -38,6 +38,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         [HideInInspector]
         public GameObject statsPanel;
+        private bool hasLoadedEndScene = false;
 
         void Start()
         {
@@ -131,36 +132,26 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                 }
             }
 
-            if (enemies.Count == 0)
+            if (enemies.Count == 0 || playerUnits.Count == 0)
             {
-                WinCondition();
-            }
-            if (playerUnits.Count == 0)
-            {
-                LoseCondition();
+                EndBattle(enemies.Count == 0);
             }
             CheckStatusForAll();
-
         }
 
-        public void WinCondition()
+        public void EndBattle(bool playerWin)
         {
+            if (hasLoadedEndScene)
+            {
+                return;
+            }
+            hasLoadedEndScene = true;
             winGameCanvas.enabled = true;
             winGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
             SaveAllUnits();
-            GameScenes.BATTLEWIN = true;
-            //SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
-        }
-
-        public void LoseCondition()
-        {
-            loseGameCanvas.enabled = true;
-            loseGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
-            hotbar.enabled = false;
-            SaveAllUnits();
-            GameScenes.BATTLEWIN = false;
-            //SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
+            GameScenes.battleWin = playerWin;
+            SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
         }
 
         public void RemoveUnitFromList(GameObject unit)
