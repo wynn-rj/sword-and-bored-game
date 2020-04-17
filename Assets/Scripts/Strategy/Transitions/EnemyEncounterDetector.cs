@@ -4,6 +4,8 @@ using SwordAndBored.SceneManagement;
 using SwordAndBored.Strategy.Squads;
 using SwordAndBored.Strategy.EnemyManagement;
 using SwordAndBored.Strategy.Movement;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
+using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
 
 namespace SwordAndBored.Strategy.Transitions
 {
@@ -20,6 +22,11 @@ namespace SwordAndBored.Strategy.Transitions
             {
                 if (!alreadyLoading)
                 {
+                    SceneSharing.biome = squadController.Location.GetComponent<ITerrainComponent>().GetType().Name;
+                    if (squadController.Location.HasComponent<TownComponent>())
+                    {
+                        SceneSharing.biome = "Town";
+                    }
                     SceneSharing.squadID = squadController.SquadData.ID;
                     foreach (SquadController squad in squadManager.squads)
                     {
