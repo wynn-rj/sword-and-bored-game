@@ -128,7 +128,10 @@ namespace SwordAndBored.Strategy.EnemyManagement
 
             foreach (ITown town in Town.GetAllTowns())
             {
-                if (town.ID == 0) continue;
+                if (town.Name == "Player Base" || town.Name == "Enemy Base")
+                {
+                    continue;
+                }
                 Point<int> townLocation = new Point<int>(town.X, town.Y);
                 if (town.PlayerOwned)
                 {
