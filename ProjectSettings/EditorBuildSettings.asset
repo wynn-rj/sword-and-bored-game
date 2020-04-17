@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AbiltyUI3.unity
     guid: 12e3d2cd36af0184796c26df3ea4237c
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 237d912091d84854b9a248fae7e4c297
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0c1fde465bc1b5147a36bacd440a44fd,
       type: 2}
