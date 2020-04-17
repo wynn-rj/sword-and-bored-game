@@ -64,6 +64,11 @@ namespace SwordAndBored.Strategy.Movement
             while (!(targetPosition is null)) ;
         }
 
+        public void ClearPath()
+        {
+            path.Clear();
+        }
+
         protected virtual void TraversePath()
         {
             if (distanceCanTravel == 0 || path.Count == 0)
