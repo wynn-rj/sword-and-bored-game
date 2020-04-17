@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SwordAndBored.Strategy.Transitions;
 
 
 [DefaultExecutionOrder(-50)]
@@ -9,33 +10,31 @@ public class BiomeManager : MonoBehaviour
     public GameObject mapTown;
     public GameObject mapPlain;
     public GameObject mapForest;
-    public GameObject mapCreep;
     public GameObject mapDesert;
-    public int mapType;
 
     private void Awake()
     {
 
-        
+        string biomeString = SceneSharing.biome;
 
-        if (mapType == 0)
+
+        switch (biomeString)
         {
-            mapTown.SetActive(true);
-        } else if (mapType == 1)
-        {
-            mapPlain.SetActive(true);
-        }
-        else if (mapType == 2)
-        {
-            mapForest.SetActive(true);
-        }
-        else if (mapType == 3)
-        {
-            mapCreep.SetActive(true);
-        }
-        else if (mapType == 4)
-        {
-            mapDesert.SetActive(true);
+            case "DesertTerrainComponent":
+                mapDesert.SetActive(true);
+                break;
+            case "ForestTerrainComponent":
+                mapForest.SetActive(true);
+                break;
+            case "GrasslandTerrainComponent":
+                mapPlain.SetActive(true);
+                break;
+            case "Town":
+                mapTown.SetActive(true);
+                break;
+            default:
+                mapTown.SetActive(true);
+                break;
         }
     }
 }

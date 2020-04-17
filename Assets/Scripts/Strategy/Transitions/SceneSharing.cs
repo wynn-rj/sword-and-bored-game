@@ -10,5 +10,6 @@ namespace SwordAndBored.Strategy.Transitions
         public static float enemyProductivity = 0;
         public static float enemyProductivityDirection = 0;
         public static int enemyControlledLocations = 1;
+        public static string biome = "Town";
     }
 }
