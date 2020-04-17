@@ -6,6 +6,7 @@
         public const string STRATEGYMAP = "StrategyMap";
         public const string BASEVIEW = "BaseManagement";
         public const string MAINMENU = "MainMenu";
+        public const string ENDGAME = "EndGame";
         public static bool battleWin = false;
     }
 }
