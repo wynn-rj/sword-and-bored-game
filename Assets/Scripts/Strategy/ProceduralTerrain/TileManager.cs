@@ -111,7 +111,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
             foreach (ITown town in Town.GetAllTowns())
             {
-                if (town.ID == 0) continue;
                 HexTiling[town.X, town.Y].AddComponent(new TownComponent(town, townCanvasController));
             }
         }
@@ -146,20 +145,22 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                     terrain.AddComponent<OnHoverOutline>();
                 }
 
-                if (tile.HasComponent<TownComponent>())
-                {
-                    AddToTileHolder(tileHolder, goldCity);
-                }
-
                 if (tile.HasComponent<PlayerBaseComponent>())
                 {
                     AddToTileHolder(tileHolder, playerBase);
+                    continue;
                 }
 
                 if (tile.HasComponent<EnemyBaseComponent>())
                 {
                     AddToTileHolder(tileHolder, enemyBase);
+                    continue;
                 }
+
+                if (tile.HasComponent<TownComponent>())
+                {
+                    AddToTileHolder(tileHolder, goldCity);
+                }                
             }
         }
 
