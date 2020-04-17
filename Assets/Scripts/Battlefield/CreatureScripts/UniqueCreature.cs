@@ -93,10 +93,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             }
         }
 
-        public void hightlight()
+        public void hightlight(Color color)
         {
             b = a + Time.time;
-            outline.OutlineColor = Color.red;
+            outline.OutlineColor = color;
             outline.enabled = true;
         }
         
@@ -120,15 +120,28 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public void Damage(int damage)
         {
+            Color newColor;
+            if (damage > 0)
+            {
+                newColor = Color.red;
+                damageMessage.text = "-" + damage;
+            } else
+            {
+                newColor = Color.yellow;
+                damageMessage.text = "+" + -damage;
+            }
             health -= damage;
-            Color newColor = Color.red;
             newColor.a = 255;
-            damageMessage.text = "-" + damage;
+            
             damageMessage.color = newColor;
             if (health <= 0)
             {
                 // Destroy(transform.gameObject);
                 Death();
+            }
+            if (health > maxHealth)
+            {
+                health = maxHealth;
             }
         }
 
