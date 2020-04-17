@@ -144,10 +144,20 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         {
             foreach (Collider enemy in enemies)
             {
-                if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
+                if (damage > 0)
                 {
-                    UseAbilityOnTarget(enemy.GetComponent<UniqueCreature>());
+                    if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
+                    {
+                        UseAbilityOnTarget(enemy.GetComponent<UniqueCreature>());
+                    }
+                } else
+                {
+                    if (enemy.GetComponent<UniqueCreature>())
+                    {
+                        UseAbilityOnTarget(enemy.GetComponent<UniqueCreature>());
+                    }
                 }
+                
             }
         }
 
@@ -172,6 +182,13 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                         target.stats.IsStunned = true;
                     }
                 }
+                if (damage < 0)
+                {
+                    target.stats.IsBleeding = false;
+                    target.stats.IsBurning = false;
+                    target.stats.IsFrozen = false;
+                    target.stats.IsStunned = false;
+                }
             }
             else
             {
@@ -181,18 +198,35 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         bool pointAttack(RaycastHit hit)
         {
-            if (Vector3.Distance(user.transform.position, hit.point) <= range)
+            if (range > 0)
             {
-                UniqueCreature enemy = getEnemy(hit);
+                if (Vector3.Distance(user.transform.position, hit.point) <= range)
+                {
+                    UniqueCreature enemy = getEnemy(hit);
+                    if (enemy)
+                    {
+                        UseAbilityOnTarget(enemy);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            } else
+            {
+                UniqueCreature enemy = user;
                 if (enemy)
                 {
                     UseAbilityOnTarget(enemy);
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }
             }
+            
             return false;
         }
 
@@ -200,14 +234,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         {
             // Accuracy Check
             //Run damage equation
-            if (AccuracyCheck())
-            {
-                unitHit.Damage(DamageEquation(unitHit));
-            }
-            else
-            {
-                unitHit.GetComponent<UniqueCreature>().Miss();
-            }
+            UseAbilityOnTarget(unitHit);
         }
 
         public override void ShowTarget(RaycastHit hit)
@@ -218,9 +245,18 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                 if (Vector3.Distance(user.transform.position, hit.point) <= range)
                 {
                     UniqueCreature enem = getEnemy(hit);
-                    if (enem && enem != user)
+                    if (damage > 0)
                     {
-                        enem.hightlight();
+                        if (enem && enem != user)
+                        {
+                            enem.hightlight(Color.red);
+                        }
+                    } else
+                    {
+                        if (enem)
+                        {
+                            enem.hightlight(Color.yellow);
+                        }
                     }
                 }
             } else {
@@ -268,13 +304,26 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         {
             foreach (Collider enemy in enemies)
             {
-
-                if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
+                if (damage > 0)
                 {
-                    enemy.GetComponent<UniqueCreature>().hightlight();
-                } else if (enemy.GetComponent<Tile>())
+                    if (enemy.GetComponent<UniqueCreature>() && enemy.GetComponent<UniqueCreature>() != user)
+                    {
+                        enemy.GetComponent<UniqueCreature>().hightlight(Color.red);
+                    }
+                    else if (enemy.GetComponent<Tile>())
+                    {
+                        enemy.GetComponent<Tile>().Highlight(Color.red);
+                    }
+                } else
                 {
-                    enemy.GetComponent<Tile>().Highlight(Color.red);
+                    if (enemy.GetComponent<UniqueCreature>())
+                    {
+                        enemy.GetComponent<UniqueCreature>().hightlight(Color.yellow);
+                    }
+                    else if (enemy.GetComponent<Tile>())
+                    {
+                        enemy.GetComponent<Tile>().Highlight(Color.yellow);
+                    }
                 }
             }
         }
