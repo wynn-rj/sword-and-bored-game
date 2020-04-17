@@ -29,8 +29,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         [HideInInspector]
         public List<GameObject> enemies = new List<GameObject>();
 
-        public Canvas winGameCanvas;
-        public Canvas loseGameCanvas;
+        public Canvas endGameCanvas;
 
         public Canvas hotbar;
 
@@ -42,8 +41,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         void Start()
         {
-            winGameCanvas.enabled = false;
-            loseGameCanvas.enabled = false;
+            endGameCanvas.enabled = false;
             manager = new TurnOrderController(units.ToArray());//, new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
@@ -132,7 +130,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
                 }
             }
 
-            if (enemies.Count == 0 || playerUnits.Count == 0)
+            if (enemies.Count == 0 || playerUnits.Count == 0 && !hasLoadedEndScene)
             {
                 EndBattle(enemies.Count == 0);
             }
@@ -141,17 +139,20 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         public void EndBattle(bool playerWin)
         {
-            if (hasLoadedEndScene)
-            {
-                return;
-            }
             hasLoadedEndScene = true;
-            winGameCanvas.enabled = true;
-            winGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
+            endGameCanvas.enabled = true;
+            endGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
+            if (playerWin)
+            {
+                // Enable Win Panel
+            } else
+            {
+                // Enable Lose Panel
+            }
             hotbar.enabled = false;
             SaveAllUnits();
             GameScenes.battleWin = playerWin;
-            SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
+            //SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
         }
 
         public void RemoveUnitFromList(GameObject unit)
