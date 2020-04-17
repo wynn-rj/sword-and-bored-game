@@ -238,6 +238,8 @@ namespace SwordAndBored.Strategy.EnemyManagement
             Enemies.Add(enemy);
             enemy.MovementStrategy = new FixedLocationMovementStrategy(location);
             enemy.Squad = new EnemySquad(location.Position.GridPoint.X, location.Position.GridPoint.Y);
+            enemy.GetComponent<EnemyEncounterDetector>().enemyBrain = this;
+            enemy.GetComponent<EnemyEncounterDetector>().squadManager = squadManager;
             return enemy;
         }
 
