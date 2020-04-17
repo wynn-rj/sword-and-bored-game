@@ -1,5 +1,7 @@
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
 {
@@ -13,6 +15,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
 
         private readonly List<ICellComponent> componentList;
         private readonly NestingSelectionActionComponent selectionComponents;
+        private readonly object componentLock = new object();
 
         public EmptyGridCell(int x, int y, float gridRadius, HexGrid parentGrid)
         {
@@ -25,67 +28,79 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
 
         public void AddComponent(ICellComponent component)
         {
-            if (component is ISelectionComponent selectionComponent)
+            RunThreadSafe(() =>
             {
-                if (selectionComponents.InternalComponents.Count == 0)
+                if (component is ISelectionComponent selectionComponent)
                 {
-                    componentList.Add(selectionComponents);
+                    if (selectionComponents.InternalComponents.Count == 0)
+                    {
+                        componentList.Add(selectionComponents);
+                    }
+                    selectionComponents.InternalComponents.Add(selectionComponent);
                 }
-                selectionComponents.InternalComponents.Add(selectionComponent);
-            }
-            else
-            {
-                componentList.Add(component);
-            }
-            component.Parent = this;
+                else
+                {
+                    componentList.Add(component);
+                }
+                component.Parent = this;
+            });
         }
 
         public bool RemoveComponent(ICellComponent component)
         {
-            if (component is ISelectionComponent selectionComponent)
+            return RunThreadSafe(() =>
             {
-                bool success = selectionComponents.InternalComponents.Remove(selectionComponent);
-                if (success && selectionComponents.InternalComponents.Count == 0)
+                if (component is ISelectionComponent selectionComponent)
                 {
-                    componentList.Remove(selectionComponents);
+                    bool success = selectionComponents.InternalComponents.Remove(selectionComponent);
+                    if (success && selectionComponents.InternalComponents.Count == 0)
+                    {
+                        componentList.Remove(selectionComponents);
+                    }
+                    return success;
                 }
-                return success;
-            }
-            return componentList.Remove(component);
+                return componentList.Remove(component);
+            });
         }
 
         public bool RemoveComponent<T>() where T : ICellComponent
         {
-            if (typeof(T) is ISelectionComponent)
+            return RunThreadSafe(() =>
             {
-                if (selectionComponents.InternalComponents.Count > 0)
+                if (typeof(T) is ISelectionComponent)
                 {
-                    selectionComponents.InternalComponents.Clear();
-                    componentList.Remove(selectionComponents);
-                    return true;
+                    if (selectionComponents.InternalComponents.Count > 0)
+                    {
+                        selectionComponents.InternalComponents.Clear();
+                        componentList.Remove(selectionComponents);
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
-            }
-            return componentList.Remove(GetComponent<T>());
+                return componentList.Remove(GetComponent<T>());
+            });
         }        
 
         public T GetComponent<T>() where T : ICellComponent
         {
-            foreach (ICellComponent component in componentList)
+            return RunThreadSafe(() =>
             {
-                if (component is T)
+                foreach (ICellComponent component in componentList)
                 {
-                    return (T)component;
+                    if (component is T)
+                    {
+                        return (T)component;
+                    }
                 }
-            }
-            foreach (ICellComponent component in selectionComponents.InternalComponents)
-            {
-                if (component is T)
+                foreach (ICellComponent component in selectionComponents.InternalComponents)
                 {
-                    return (T)component;
+                    if (component is T)
+                    {
+                        return (T)component;
+                    }
                 }
-            }
-            return default;
+                return default;
+            });
         }
 
         public bool HasComponent(ICellComponent component)
@@ -101,6 +116,41 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         public bool HasComponent<T>() where T : ICellComponent
         {
             return !Equals(GetComponent<T>(), default);
+        }
+
+        private T RunThreadSafe<T>(Func<T> action)
+        {
+            try
+            {
+                Monitor.Enter(componentLock);
+                return action();
+            }
+            catch (Exception exception)
+            {
+                UnityEngine.Debug.LogException(exception);
+            }
+            finally
+            {
+                Monitor.Exit(componentLock);
+            }
+            return default;
+        }
+
+        private void RunThreadSafe(Action action)
+        {
+            try
+            {
+                Monitor.Enter(componentLock);
+                action();
+            }
+            catch (Exception exception)
+            {
+                UnityEngine.Debug.LogException(exception);
+            }
+            finally
+            {
+                Monitor.Exit(componentLock);
+            }
         }
     }
 }
