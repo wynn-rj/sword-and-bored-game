@@ -8700,6 +8700,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 298345440}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &298431069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6129140526855924604, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 648428926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &299071310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17779,6 +17785,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5165644636434992688}
+    - target: {fileID: 3252253870828112715, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253870828112715, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253870828112715, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253870828112715, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252253870828112715, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3252253870952828378, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
         type: 3}
       propertyPath: m_Name
@@ -17859,6 +17890,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5165644637592470274}
+    - target: {fileID: 8013044772599932042, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044772599932042, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044772599932042, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044772599932042, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013044772599932042, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3, type: 3}
 --- !u!223 &648428927 stripped
@@ -54527,6 +54583,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1807014587}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1807019784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1168894026544210760, guid: a7419bf9dd2db914d9f2cc62ebeb9aa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 648428926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1809100901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64773,6 +64835,8 @@ MonoBehaviour:
   actionsLeft: {fileID: 648428929}
   enemies: []
   endGameCanvas: {fileID: 648428927}
+  losePanel: {fileID: 1807019784}
+  winPanel: {fileID: 298431069}
   hotbar: {fileID: 648428928}
   endTurnButton: {fileID: 1934282620}
   statsPanel: {fileID: 0}
