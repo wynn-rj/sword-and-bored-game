@@ -25,13 +25,14 @@ namespace SwordAndBored.Strategy.Transitions
             if (GameScenes.battleWin)
             {
 
-                List<ITown> towns = Town.GetAllTowns();
-
-                foreach(Town town in towns)
+                foreach(Town town in Town.GetAllTowns())
                 {
-                    if(squad.X == town.X && squad.Y == town.Y)
+                    foreach(EnemySquad enemy in EnemySquad.GetAllEnemySquads())
                     {
-                        town.PlayerOwned = true;
+                        if (squad.X == town.X && squad.Y == town.Y && squad.X == enemy.X && squad.Y == enemy.Y)
+                        {
+                            town.PlayerOwned = true;
+                        }
                     }
                 }
 
