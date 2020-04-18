@@ -54,6 +54,13 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public GameObject skeleton;
 
 
+        [Header("Effects Objects")]
+        public GameObject burningEffect;
+        public GameObject frozenEffect;
+        public GameObject stunnedEffect;
+        public GameObject bleedingEffect;
+
+
         void Start()
         {
             //health = maxHealth;
@@ -116,6 +123,51 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             {
                 Death();
             }
+
+            SetStatusEffectsObject();
+        }
+
+        public void SetStatusEffectsObject()
+        {
+            if (stats.IsBleeding)
+            {
+                bleedingEffect.SetActive(true);
+
+                stunnedEffect.SetActive(false);
+                frozenEffect.SetActive(false);
+                burningEffect.SetActive(false);
+            }
+            if (stats.IsFrozen)
+            {
+                frozenEffect.SetActive(true);
+
+                stunnedEffect.SetActive(false);
+                burningEffect.SetActive(false);
+                bleedingEffect.SetActive(false);
+            }
+            if (stats.IsBurning)
+            {
+                burningEffect.SetActive(true);
+
+                stunnedEffect.SetActive(false);
+                frozenEffect.SetActive(false);
+                bleedingEffect.SetActive(false);
+            }
+            if (stats.IsStunned)
+            {
+                stunnedEffect.SetActive(true);
+
+                burningEffect.SetActive(false);
+                frozenEffect.SetActive(false);
+                bleedingEffect.SetActive(false);
+            }
+            if (!stats.HasStatus())
+            {
+                stunnedEffect.SetActive(false);
+                burningEffect.SetActive(false);
+                frozenEffect.SetActive(false);
+                bleedingEffect.SetActive(false);
+            }
         }
 
         public void Damage(int damage)
@@ -155,6 +207,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public void Death()
         {
+            burningEffect.SetActive(false);
+            frozenEffect.SetActive(false);
+            bleedingEffect.SetActive(false);
+            stunnedEffect.SetActive(false);
             if (myUnit != null)
             {
                 myUnit.IsDead = true;
