@@ -1,7 +1,7 @@
 using SwordAndBored.GameData;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.Strategy.BaseManagement.Buildings;
 using SwordAndBored.Strategy.GameResources;
-using SwordAndBored.StrategyView.BaseManagement.Buildings;
 using System.Collections.Generic;
 using UnityEngine;
 
