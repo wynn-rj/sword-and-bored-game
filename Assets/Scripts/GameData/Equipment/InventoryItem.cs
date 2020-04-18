@@ -28,6 +28,7 @@ namespace SwordAndBored.GameData.Equipment
                 Quantity = 0;
                 reader.CloseReader();
                 reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Weapon_FK", weapon.ID);
+                reader.NextRow();
                 ID = reader.GetIntFromCol("ID");
             }
             reader.CloseReader();
@@ -52,6 +53,7 @@ namespace SwordAndBored.GameData.Equipment
                 Quantity = 0;
                 reader.CloseReader();
                 reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Armor_FK", armor.ID);
+                reader.NextRow();
                 ID = reader.GetIntFromCol("ID");
             }
             reader.CloseReader();
@@ -76,6 +78,7 @@ namespace SwordAndBored.GameData.Equipment
                 Quantity = 0;
                 reader.CloseReader();
                 reader = conn.QueryRowFromTableWhereColNameEqualsInt("Inventory", "Spell_Book_FK", spellBook.ID);
+                reader.NextRow();
                 ID = reader.GetIntFromCol("ID");
             }
             reader.CloseReader();
