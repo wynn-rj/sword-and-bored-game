@@ -10,14 +10,15 @@ namespace SwordAndBored.Strategy.Inventory
     {
         public static MonoInventory Instance;
 
+        public IUnit CurrentUnit;
+
         private List<IInventoryItem> equipmentList = new List<IInventoryItem>();
         private List<GameObject> buttons = new List<GameObject>();
 
 
         [SerializeField] private GameObject buttonTemplate;
-        [SerializeField] private GameObject unitInventoryDisplay;
-        [SerializeField] private IUnit currentUnit;
-        private UnitInventoryView unitInventory;
+        [SerializeField] private GameObject unitInventoryView;
+        [SerializeField] private UnitEquipmentView unitInventory;
 
         private void Awake()
         {
@@ -31,25 +32,14 @@ namespace SwordAndBored.Strategy.Inventory
             }
         }
 
-        void Start()
-        {
-            unitInventory = unitInventoryDisplay.GetComponent<UnitInventoryView>();
-        }
-
-
         public void OpenInventory(IUnit unit)
         {
-            currentUnit = unit;
-            DisplayUnit();
+            CurrentUnit = unit;
             foreach(GameObject button in buttons)
             {
                 Destroy(button);
             }
             ReadInventoryFromDatabaseAndProcess();
-        }
-
-        private void DisplayUnit()
-        {
         }
 
         private void ReadInventoryFromDatabaseAndProcess()
@@ -74,19 +64,19 @@ namespace SwordAndBored.Strategy.Inventory
         public void EquipArmor(IInventoryItem itemName)
         {
             Debug.Log(itemName + " : ARMOR");
-
+            OpenInventory(CurrentUnit);
         }
 
         public void EquipWeapon(IInventoryItem item)
         {
-
             Debug.Log(item + " : WEAPON");
+            OpenInventory(CurrentUnit);
         }
 
         public void EquipSpellbook(IInventoryItem item)
         {
-
             Debug.Log(item + " : SPELLBOOK");
+            OpenInventory(CurrentUnit);
         }
 
     }
