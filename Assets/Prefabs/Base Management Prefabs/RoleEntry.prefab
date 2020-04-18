@@ -110,6 +110,8 @@ MonoBehaviour:
   entryDescription: {fileID: 3674557800528308938}
   entryCost: {fileID: 2122719366294122008}
   entryImage: {fileID: 6832629439629185354}
+  trainButton: {fileID: 2604330929981675715}
+  resourceManager: {fileID: 0}
 --- !u!1 &3986055667726996526
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,8 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc69f5a090889d42be450f7f91a40a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitFactory: {fileID: 0}
-  UnitRole: {fileID: 8202690436796306850}
+  unitFactory: {fileID: 0}
+  unitRole: {fileID: 0}
 --- !u!1 &4235692163688418282
 GameObject:
   m_ObjectHideFlags: 0

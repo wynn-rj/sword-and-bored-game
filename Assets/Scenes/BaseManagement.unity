@@ -3746,6 +3746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92b948a1097606449687e126339fe43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barracks: {fileID: 0}
 --- !u!114 &1063756429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6856843873536348811, guid: bbf7ff9faf6c5f2459a8847c1b22804a,
@@ -8848,14 +8849,13 @@ GameObject:
   - component: {fileID: 2933463580864322147}
   - component: {fileID: 2933463580864322146}
   - component: {fileID: 2933463580864322145}
-  - component: {fileID: 7797591248169249528}
   m_Layer: 5
   m_Name: TrainUnitCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2933463580864322145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10673,10 +10673,10 @@ RectTransform:
   m_Father: {fileID: 2933463580881120203}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -365.15723}
-  m_SizeDelta: {x: 750, y: 135}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6075753156785432538
 RectTransform:
@@ -10697,10 +10697,10 @@ RectTransform:
   m_Father: {fileID: 2933463580881120203}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -85.15723}
-  m_SizeDelta: {x: 750, y: 135}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6075753156853924921
 RectTransform:
@@ -10721,10 +10721,10 @@ RectTransform:
   m_Father: {fileID: 2933463580881120203}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -225.15723}
-  m_SizeDelta: {x: 750, y: 135}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6258874556402922095
 GameObject:
@@ -10797,6 +10797,8 @@ MonoBehaviour:
   entryDescription: {fileID: 3674557800645186109}
   entryCost: {fileID: 2122719366145644271}
   entryImage: {fileID: 6832629439776483773}
+  trainButton: {fileID: 2604330930099675188}
+  resourceManager: {fileID: 868351968}
 --- !u!114 &6373001175433580824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10814,6 +10816,8 @@ MonoBehaviour:
   entryDescription: {fileID: 3674557800548664481}
   entryCost: {fileID: 2122719366242156659}
   entryImage: {fileID: 6832629439671582497}
+  trainButton: {fileID: 2604330930003228328}
+  resourceManager: {fileID: 868351968}
 --- !u!114 &6373001175499174651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10831,6 +10835,8 @@ MonoBehaviour:
   entryDescription: {fileID: 3674557800211801922}
   entryCost: {fileID: 2122719366040462224}
   entryImage: {fileID: 6832629439874718914}
+  trainButton: {fileID: 2604330929669035339}
+  resourceManager: {fileID: 868351968}
 --- !u!114 &6719661732382887442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11373,18 +11379,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7797591248169249528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2933463580864322144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13ac9d91fa80a9140b9fafa77c8f83b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7999163529612374671
 GameObject:
   m_ObjectHideFlags: 0
