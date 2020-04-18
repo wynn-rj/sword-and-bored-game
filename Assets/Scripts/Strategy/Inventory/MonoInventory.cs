@@ -17,8 +17,7 @@ namespace SwordAndBored.Strategy.Inventory
 
 
         [SerializeField] private GameObject buttonTemplate;
-        [SerializeField] private GameObject unitInventoryView;
-        [SerializeField] private UnitEquipmentView unitInventory;
+        [SerializeField] private UnitEquipmentView unitEquipmentView;
 
         private void Awake()
         {
@@ -35,11 +34,23 @@ namespace SwordAndBored.Strategy.Inventory
         public void OpenInventory(IUnit unit)
         {
             CurrentUnit = unit;
+            gameObject.SetActive(true);
+            unitEquipmentView.gameObject.SetActive(true);
             foreach(GameObject button in buttons)
             {
                 Destroy(button);
             }
             ReadInventoryFromDatabaseAndProcess();
+        }
+
+        public void CloseInventory()
+        {
+            foreach(GameObject button in buttons)
+            {
+                Destroy(button);
+            }
+            unitEquipmentView.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
         private void ReadInventoryFromDatabaseAndProcess()
@@ -64,18 +75,60 @@ namespace SwordAndBored.Strategy.Inventory
         public void EquipArmor(IInventoryItem itemName)
         {
             Debug.Log(itemName + " : ARMOR");
+            if(CurrentUnit != null && CurrentUnit.Armor != null)
+            {
+                InventoryItem unitEquipment = new InventoryItem(CurrentUnit.Armor);
+                unitEquipment.SetQuantity(unitEquipment.Quantity + 1);
+                CurrentUnit.Armor = null;
+            }
+
+            InventoryItem item = itemName as InventoryItem;
+            if(item != null)
+            {
+                CurrentUnit.Armor = item.Armor;
+                item.SetQuantity(item.Quantity - 1);
+            }
+
             OpenInventory(CurrentUnit);
         }
 
-        public void EquipWeapon(IInventoryItem item)
+        public void EquipWeapon(IInventoryItem itemName)
         {
-            Debug.Log(item + " : WEAPON");
+            Debug.Log(itemName + " : WEAPON");
+            if(CurrentUnit != null && CurrentUnit.Weapon != null)
+            {
+                InventoryItem unitEquipment = new InventoryItem(CurrentUnit.Weapon);
+                unitEquipment.SetQuantity(unitEquipment.Quantity + 1);
+                CurrentUnit.Weapon = null;
+            }
+
+            InventoryItem item = itemName as InventoryItem;
+            if(item != null)
+            {
+                CurrentUnit.Weapon = item.Weapon;
+                item.SetQuantity(item.Quantity - 1);
+            }
+
             OpenInventory(CurrentUnit);
         }
 
-        public void EquipSpellbook(IInventoryItem item)
+        public void EquipSpellbook(IInventoryItem itemName)
         {
-            Debug.Log(item + " : SPELLBOOK");
+            Debug.Log(itemName + " : SPELLBOOK");
+            if(CurrentUnit != null && CurrentUnit.SpellBook != null)
+            {
+                InventoryItem unitEquipment = new InventoryItem(CurrentUnit.SpellBook);
+                unitEquipment.SetQuantity(unitEquipment.Quantity + 1);
+                CurrentUnit.SpellBook = null;
+            }
+
+            InventoryItem item = itemName as InventoryItem;
+            if(item != null)
+            {
+                CurrentUnit.SpellBook = item.SpellBook;
+                item.SetQuantity(item.Quantity - 1);
+            }
+
             OpenInventory(CurrentUnit);
         }
 

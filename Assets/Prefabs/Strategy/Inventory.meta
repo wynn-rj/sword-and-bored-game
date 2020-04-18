@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Audio.meta
 guid: 24e2cab9458271947a85fa4937cfee7c
-=======
-guid: 7d198eeb566bf37429bc788adfe8071e
->>>>>>> Applied changes to the current active unit variable:Assets/Abilities.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
