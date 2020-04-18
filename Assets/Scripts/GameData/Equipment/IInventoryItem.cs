@@ -8,5 +8,7 @@ namespace SwordAndBored.GameData.Equipment
         IArmor Armor { get; }
         ISpellBook SpellBook { get; }
         int Quantity { get; }
+
+        void SetQuantity(int quantity);
     }
 }
