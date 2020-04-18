@@ -30,6 +30,8 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public List<GameObject> enemies = new List<GameObject>();
 
         public Canvas endGameCanvas;
+        public GameObject losePanel;
+        public GameObject winPanel;
 
         public Canvas hotbar;
 
@@ -41,7 +43,6 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
         void Start()
         {
-            endGameCanvas.enabled = false;
             manager = new TurnOrderController(units.ToArray());//, new RandomShuffler<GameObject>());
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
             text.text = "Current Player: " + activePlayer.GetName();
@@ -140,15 +141,16 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public void EndBattle(bool playerWin)
         {
             hasLoadedEndScene = true;
-            endGameCanvas.enabled = true;
-            endGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             if (playerWin)
             {
+                winPanel.SetActive(true);
                 // Enable Win Panel
             } else
             {
+                losePanel.SetActive(true);
                 // Enable Lose Panel
             }
+            endGameCanvas.GetComponentInChildren<Animator>().SetTrigger("Win");
             hotbar.enabled = false;
             SaveAllUnits();
             GameScenes.battleWin = playerWin;
