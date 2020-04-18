@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 508089016}
   - component: {fileID: 508089015}
   - component: {fileID: 508089017}
+  - component: {fileID: 508089018}
   m_Layer: 5
   m_Name: Unit Equipment View
   m_TagString: Untagged
@@ -526,6 +527,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &508089018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508089013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077ca208be100000008ca208be100000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponButton: {fileID: 1442781085}
+  ArmorButton: {fileID: 237299999}
+  SpellbookButton: {fileID: 1125780139}
+  unitInfo: {fileID: 1967969858}
+  weaponInfo: {fileID: 1388609797}
+  armorInfo: {fileID: 2011080858}
+  spellbookInfo: {fileID: 550146035}
 --- !u!1 &550146033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonTemplate: {fileID: 1990011636}
+  unitInventoryView: {fileID: 0}
 --- !u!1 &1101365660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,7 +2593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Unit Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2641,7 +2662,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1967969858}
-    characterCount: 8
+    characterCount: 9
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
