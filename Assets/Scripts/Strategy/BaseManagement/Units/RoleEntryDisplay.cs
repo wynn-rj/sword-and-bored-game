@@ -24,14 +24,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Units
 
         private void Update()
         {
-            if (resourceManager.CanAffordPurchase(new Payment("Gold", roleEntry.roleCost)))
-            {
-                trainButton.interactable = true;
-            }
-            else
-            {
-                trainButton.interactable = false;
-            }
+            trainButton.interactable = resourceManager.CanAffordPurchase(new Payment("Gold", roleEntry.roleCost));
         }
     }
 }

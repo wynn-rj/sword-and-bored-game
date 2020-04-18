@@ -48,14 +48,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Buildings
 
         private void Update()
         {
-            if (activeEntry.GetComponent<UnitEntryDisplay>().unitEntry.currentTown != "Player Base")
-            {
-                dispatchUnitButton.interactable = false;
-            }
-            else
-            {
-                dispatchUnitButton.interactable = true;
-            }
+            dispatchUnitButton.interactable = activeEntry.GetComponent<UnitEntryDisplay>().unitEntry.currentTown == "Player Base";
         }
 
         public void EnterTrainUnitCanvas()
