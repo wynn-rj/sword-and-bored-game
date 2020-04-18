@@ -4,6 +4,7 @@ using SwordAndBored.StrategyView.BaseManagement.Buildings;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SwordAndBored.Strategy.Inventory;
 
 namespace SwordAndBored.Strategy.BaseManagement.Buildings
 {
@@ -122,5 +123,11 @@ namespace SwordAndBored.Strategy.BaseManagement.Buildings
              * Re-add children
              */
         }
+
+        public void OpenInventory()
+        {
+            MonoInventory.Instance.OpenInventory(activeEntry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+        }
     }
+
 }
