@@ -1,10 +1,11 @@
 ﻿using SwordAndBored.GameData.Units;
 using SwordAndBored.Strategy.BaseManagement.Units;
+using SwordAndBored.StrategyView.BaseManagement.Buildings;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SwordAndBored.StrategyView.BaseManagement.Buildings
+namespace SwordAndBored.Strategy.BaseManagement.Buildings
 {
     public class Barracks : GenericBuilding
     {
@@ -45,6 +46,18 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
             activeEntry = unitEntriesList[0];
         }
 
+        private void Update()
+        {
+            if (activeEntry.GetComponent<UnitEntryDisplay>().unitEntry.currentTown != "Player Base")
+            {
+                dispatchUnitButton.interactable = false;
+            }
+            else
+            {
+                dispatchUnitButton.interactable = true;
+            }
+        }
+
         public void EnterTrainUnitCanvas()
         {
             MainCanvas.SetActive(false);
@@ -69,8 +82,9 @@ namespace SwordAndBored.StrategyView.BaseManagement.Buildings
 
         public void SetActiveEntry(GameObject unitEntry)
         {
+            activeEntry.gameObject.GetComponent<Image>().color = Color.white;
             activeEntry = unitEntry;
-            dispatchUnitButton.interactable = true;
+            activeEntry.gameObject.GetComponent<Image>().color = Color.grey;
         }
 
         /// <summary>
