@@ -31,6 +31,11 @@ namespace SwordAndBored.Strategy.Inventory
             }
         }
 
+        private void Start()
+        {
+            gameObject.SetActive(false);
+        }
+
         public void OpenInventory(IUnit unit)
         {
             CurrentUnit = unit;
