@@ -154,7 +154,6 @@ namespace SwordAndBored.Battlefield.TurnMechanism
             hotbar.enabled = false;
             SaveAllUnits();
             GameScenes.battleWin = playerWin;
-            //SceneManager.LoadSceneAsync(GameScenes.STRATEGYMAP);
         }
 
         public void RemoveUnitFromList(GameObject unit)
