@@ -31,6 +31,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
         [SerializeField] private GameObject enemyBase;
         [SerializeField] private TimeTrackingTimeManager timeManager;
         [SerializeField] private TownCanvasController townCanvasController;
+        [SerializeField] private TownCanvasController playerBaseCanvasController;
 
         private IDictionary<System.Type, List<GameObject>> terrainToGameObject;
         private System.Random fixedRandom;
@@ -111,6 +112,11 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
 
             foreach (ITown town in Town.GetAllTowns())
             {
+                if (town.Name == "Player Base")
+                {
+                    HexTiling[town.X, town.Y].AddComponent(new TownComponent(town, playerBaseCanvasController));
+                    continue;
+                }
                 HexTiling[town.X, town.Y].AddComponent(new TownComponent(town, townCanvasController));
             }
         }

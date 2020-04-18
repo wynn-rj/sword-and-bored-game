@@ -1,4 +1,5 @@
 ﻿using SwordAndBored.GameData.Units;
+using SwordAndBored.SceneManagement;
 using SwordAndBored.Strategy.BaseManagement.Units;
 using SwordAndBored.Strategy.ProceduralTerrain;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
@@ -7,6 +8,7 @@ using SwordAndBored.Strategy.Squads;
 using SwordAndBored.Utilities.Random;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SwordAndBored.Strategy.BaseManagement.Towns
@@ -233,6 +235,11 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
             }
 
             squadManager.DeploySquad("Name", deployedSquad, location);
+        }
+
+        public void ManageBase()
+        {
+            SceneManager.LoadSceneAsync(GameScenes.BASEVIEW);
         }
     }
 }
