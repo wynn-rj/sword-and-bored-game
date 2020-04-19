@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Units;
 
@@ -41,19 +40,13 @@ namespace SwordAndBored.Strategy.Inventory
             CurrentUnit = unit;
             gameObject.SetActive(true);
             unitEquipmentView.gameObject.SetActive(true);
-            foreach(GameObject button in buttons)
-            {
-                Destroy(button);
-            }
+            DestroyAllButtons();
             ReadInventoryFromDatabaseAndProcess();
         }
 
         public void CloseInventory()
         {
-            foreach(GameObject button in buttons)
-            {
-                Destroy(button);
-            }
+            DestroyAllButtons();
             unitEquipmentView.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
@@ -68,9 +61,18 @@ namespace SwordAndBored.Strategy.Inventory
 
         }
 
+        private void DestroyAllButtons()
+        {
+            foreach(GameObject button in buttons)
+            {
+                Destroy(button);
+            }
+        }
+
         private void CreateButton(IInventoryItem item)
         {
             GameObject buttonObject = Instantiate(buttonTemplate) as GameObject;
+            buttons.Add(buttonObject);
             InventoryItemButton button = buttonObject.GetComponent<InventoryItemButton>();
             button.SetItem(item);
             buttonObject.transform.SetParent(buttonTemplate.transform.parent, false);
@@ -93,7 +95,7 @@ namespace SwordAndBored.Strategy.Inventory
                 CurrentUnit.Armor = item.Armor;
                 item.SetQuantity(item.Quantity - 1);
             }
-
+            CurrentUnit.Save();
             OpenInventory(CurrentUnit);
         }
 
@@ -113,7 +115,7 @@ namespace SwordAndBored.Strategy.Inventory
                 CurrentUnit.Weapon = item.Weapon;
                 item.SetQuantity(item.Quantity - 1);
             }
-
+            CurrentUnit.Save();
             OpenInventory(CurrentUnit);
         }
 
@@ -133,7 +135,7 @@ namespace SwordAndBored.Strategy.Inventory
                 CurrentUnit.SpellBook = item.SpellBook;
                 item.SetQuantity(item.Quantity - 1);
             }
-
+            CurrentUnit.Save();
             OpenInventory(CurrentUnit);
         }
 
