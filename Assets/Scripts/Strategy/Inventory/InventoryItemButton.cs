@@ -41,7 +41,7 @@ namespace SwordAndBored.Strategy.Inventory
                 itemType = ItemType.SPELLBOOK;
             }
 
-            textMesh.text = $"{itemName} : {quant}";
+            textMesh.text = $"{itemType} : {itemName} : {quant}";
         }
 
         public void OnClick()
