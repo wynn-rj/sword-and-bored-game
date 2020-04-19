@@ -23,7 +23,7 @@ namespace SwordAndBored.Strategy.Inventory
             {
                 unitName.text = currentUnit.Name;
 
-                if (currentUnit.Weapon != null)
+                if (currentUnit.Weapon != null && currentUnit.Weapon.Name != null)
                 {
                     weaponInfo.text = currentUnit.Weapon.Name;
                 }
@@ -31,7 +31,7 @@ namespace SwordAndBored.Strategy.Inventory
                 {
                     weaponInfo.text = "No Weapon Equipped";
                 }
-                if (currentUnit.Armor != null)
+                if (currentUnit.Armor != null && currentUnit.Armor.Name != null)
                 {
                     armorInfo.text = currentUnit.Armor.Name;
                 }
@@ -39,7 +39,7 @@ namespace SwordAndBored.Strategy.Inventory
                 {
                     armorInfo.text = "No Armor Equipped";
                 }
-                if (currentUnit.SpellBook != null)
+                if (currentUnit.SpellBook != null && currentUnit.SpellBook.Name != null)
                 {
                     spellbookInfo.text = currentUnit.SpellBook.Name;
                 }
