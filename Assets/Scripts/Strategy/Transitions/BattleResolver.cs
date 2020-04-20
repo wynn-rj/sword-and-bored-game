@@ -2,7 +2,6 @@
 using SwordAndBored.SceneManagement;
 using SwordAndBored.GameData.Units;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 namespace SwordAndBored.Strategy.Transitions
 {
@@ -22,19 +21,18 @@ namespace SwordAndBored.Strategy.Transitions
             }
 
             ISquad squad = new Squad(SceneSharing.squadID);
+
+            foreach (Town town in Town.GetAllTowns())
+            {
+                if (squad.X == town.X && squad.Y == town.Y)
+                {
+                    town.PlayerOwned = GameScenes.battleWin;
+                    town.Save();
+                }
+            }
+
             if (GameScenes.battleWin)
             {
-
-                foreach(Town town in Town.GetAllTowns())
-                {
-                    foreach(EnemySquad enemy in EnemySquad.GetAllEnemySquads())
-                    {
-                        if (squad.X == town.X && squad.Y == town.Y && squad.X == enemy.X && squad.Y == enemy.Y)
-                        {
-                            town.PlayerOwned = true;
-                        }
-                    }
-                }
 
                 foreach (EnemySquad enemy in EnemySquad.GetAllEnemySquads())
                 {
