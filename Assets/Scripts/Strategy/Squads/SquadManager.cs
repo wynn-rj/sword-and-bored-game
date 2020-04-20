@@ -79,12 +79,6 @@ namespace SwordAndBored.Strategy.Squads
 
             if (SelectedSquad)
             {
-                if (selectedTile.GetComponent<TownComponent>() != null)// && SelectedSquad.GetComponent<IHexGridCell>().Neighbors)
-                {
-                    townCanvasController.LoadCanvas();
-                    return;
-                }
-
                 SelectedSquad.GoTo(selectedTile);
                 SelectedSquad = null;
             }
