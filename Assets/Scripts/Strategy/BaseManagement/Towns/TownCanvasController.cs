@@ -55,6 +55,8 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
             cancelDeployment.onClick.AddListener(ExitTownCanvas);
             moveToTownButton.onClick.AddListener(MoveUnitToTown);
             moveToSquadButton.onClick.AddListener(MoveUnitToSquad);
+            gameObject.SetActive(false);
+
         }
 
         private void Update()
@@ -89,30 +91,18 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
                 townEntries.Add(CreateTownUnitEntry(unit));
             }
 
-            gameObject.SetActive(true);
-        }
-
-        public void LoadCanvas()
-        {
-            PreloadCanvas();
-
-            displayedTown.Units.Clear();
-            displayedTown.Save();
-            if (displayedTown is null) return;
-
-            foreach (IUnit unit in displayedTown.Units)
+            ISquad selectedSquad = squadManager?.SelectedSquad?.SquadData;
+            if (!(selectedSquad is null) && displayedTown.X == selectedSquad.X && displayedTown.Y == selectedSquad.Y)
             {
-                townEntries.Add(CreateTownUnitEntry(unit));
-            }
+                foreach (IUnit unit in selectedSquad.Units)
+                {
+                    GameObject entry = CreateSquadUnitEntry(unit);
+                    squadEntries.Add(entry);
+                    squadUnitData.Add(entry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+                }
 
-            foreach (IUnit unit in squadManager.SelectedSquad.SquadData.Units)
-            {
-                GameObject entry = CreateSquadUnitEntry(unit);
-                squadEntries.Add(entry);
-                squadUnitData.Add(entry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
-            }
-
-            squad = squadManager.SelectedSquad.SquadData;
+                squad = selectedSquad;
+            }            
 
             gameObject.SetActive(true);
         }
