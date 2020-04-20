@@ -72,9 +72,9 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
 
         private void UpdateDisplay()
         {
-            PreloadCanvas();
+            if (displayedTown is null || !displayedTown.PlayerOwned) return;
 
-            if (displayedTown is null) return;
+            PreloadCanvas();
 
             displayedTown.Units.Clear();
             displayedTown.Save();
