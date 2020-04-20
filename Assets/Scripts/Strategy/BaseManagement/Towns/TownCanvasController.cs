@@ -57,6 +57,11 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
             moveToSquadButton.onClick.AddListener(MoveUnitToSquad);
         }
 
+        private void Update()
+        {
+            deploySquadButton.interactable = (squadEntries.Count > 0);
+        }
+
         private void PreloadCanvas()
         {
             foreach (Transform child in townEntryContainer.transform)
