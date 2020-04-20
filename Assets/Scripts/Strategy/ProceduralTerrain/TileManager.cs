@@ -136,9 +136,19 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 tileHolder.GetComponent<MonoHexGridCell>().HexGridCell = tile;
                 tile.AddComponent(new GameObjectComponent(tileHolder));
 
+                GameObject townOnTile = tile.HasComponent<PlayerBaseComponent>() ? playerBase : 
+                                        tile.HasComponent<EnemyBaseComponent>() ? enemyBase : 
+                                        tile.HasComponent<TownComponent>() ? goldCity : null;
+                if (townOnTile)
+                {                    
+                    GameObject town = AddToTileHolder(tileHolder, townOnTile, tileHeight);
+                    town.AddComponent<OnHoverOutline>();
+                    continue;
+                }
+
                 GameObject terrainPrefab = Odds.SelectAtRandom(terrainToGameObject[tile.GetComponent<ITerrainComponent>().GetType()]);
                 GameObject terrain = AddToTileHolder(tileHolder, terrainPrefab, tileHeight, Constants.terrainObjectName);
-                
+
                 if (tile.HasComponent<CreepComponent>())
                 {
                     GameObject creep = AddToTileHolder(tileHolder, Odds.SelectAtRandom(enemyCreepTiles), tileHeight, Constants.creepObjectName);
@@ -150,23 +160,6 @@ namespace SwordAndBored.Strategy.ProceduralTerrain
                 {
                     terrain.AddComponent<OnHoverOutline>();
                 }
-
-                if (tile.HasComponent<PlayerBaseComponent>())
-                {
-                    AddToTileHolder(tileHolder, playerBase);
-                    continue;
-                }
-
-                if (tile.HasComponent<EnemyBaseComponent>())
-                {
-                    AddToTileHolder(tileHolder, enemyBase);
-                    continue;
-                }
-
-                if (tile.HasComponent<TownComponent>())
-                {
-                    AddToTileHolder(tileHolder, goldCity);
-                }                
             }
         }
 
