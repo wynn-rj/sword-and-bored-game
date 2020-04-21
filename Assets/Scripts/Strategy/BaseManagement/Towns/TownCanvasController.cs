@@ -29,7 +29,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Towns
         private ITown displayedTown;
         private List<GameObject> activeEntries;
         private List<GameObject> townEntries = new List<GameObject>();
-        private List<GameObject> squadEntries;
+        private List<GameObject> squadEntries = new List<IUnit>();
         private List<IUnit> squadUnitData;
         private ISquad squad;
 
