@@ -107,11 +107,11 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
             if (activePlayer.HasActionLeft())
             {
-                actionsLeft.color = new Color(0, 0, 1, .2f);
+                actionsLeft.color = new Color(0, 0, 1, 1f);
             }
             else
             {
-                actionsLeft.color = new Color(1, 0, 0, .2f);
+                actionsLeft.color = new Color(1, 0, 0, 1f);
             }
 
             if (activePlayer.creature.isEnemy)

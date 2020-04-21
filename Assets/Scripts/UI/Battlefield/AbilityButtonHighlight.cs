@@ -25,7 +25,7 @@ public class AbilityButtonHighlight : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if(num == highlightNum)
         {
-            GetComponent<Image>().color = Color.green;
+            GetComponent<Image>().color = Color.black;
         } else
         {
             GetComponent<Image>().color = Color.white;
