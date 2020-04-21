@@ -103,6 +103,28 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
             });
         }
 
+        public bool HasComponentThatIsNot<T>(T componentNotToBe) where T : ICellComponent
+        {
+            return !Equals(RunThreadSafe(() =>
+            {
+                foreach (ICellComponent component in componentList)
+                {
+                    if (component is T && !component.Equals(componentNotToBe))
+                    {
+                        return (T)component;
+                    }
+                }
+                foreach (ICellComponent component in selectionComponents.InternalComponents)
+                {
+                    if (component is T && !component.Equals(componentNotToBe))
+                    {
+                        return (T)component;
+                    }
+                }
+                return default;
+            }), default);
+        }
+
         public bool HasComponent(ICellComponent component)
         {
             bool storedInInternal = false;

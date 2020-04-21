@@ -61,5 +61,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells
         /// <typeparam name="T">The type of the component to find</typeparam>
         /// <returns>Whether or not the cell has the component</returns>
         bool HasComponent<T>() where T : ICellComponent;
+
+        bool HasComponentThatIsNot<T>(T componentNotToBe) where T : ICellComponent;
     } 
 }
