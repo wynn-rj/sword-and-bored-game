@@ -56,7 +56,13 @@ namespace SwordAndBored.Battlefield.StateBehaviors
             {
                 selectedAbility.EnemyAttackNonAOE(Target.GetComponent<UniqueCreature>());
                 animator.gameObject.transform.LookAt(Target.transform, Vector3.up);
-                abilitiesContainer.ShowAbilityAnimation();
+                if (selectedAbility.animation == "Bow")
+                {
+                    abilitiesContainer.ShowAbilityAnimation("Bow");
+                } else
+                {
+                    abilitiesContainer.ShowAbilityAnimation("Sword");
+                }
 
             }
             animator.SetBool("UseAbility", false);

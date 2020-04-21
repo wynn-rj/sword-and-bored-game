@@ -155,12 +155,22 @@ namespace SwordAndBored.Battlefield.CreaturScripts
             }
         }
 
-        public void ShowAbilityAnimation()
+        public void ShowAbilityAnimation(string weapon)
         {
-            sword.SetActive(true);
-            book.SetActive(false);
-            bow.SetActive(false);
-            unit.animator.SetTrigger("SwordAttack");
+            if (weapon == "Bow") {
+                bow.SetActive(true);
+                book.SetActive(false);
+                sword.SetActive(false);
+                unit.animator.SetTrigger("BowAttack");
+            } else
+            {
+                sword.SetActive(true);
+                book.SetActive(false);
+                bow.SetActive(false);
+                unit.animator.SetTrigger("SwordAttack");
+            }
+
+            
         }
     }
 
