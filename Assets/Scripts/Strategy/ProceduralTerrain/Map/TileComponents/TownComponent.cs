@@ -6,6 +6,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
 {
     class TownComponent : AbstractSelectionComponent
     {
+        public ITown Town { get => new Town(town.ID); }
         private readonly ITown town;
         private readonly TownCanvasController townCanvasController;
         private float timeSinceLastClick;
@@ -22,7 +23,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
             float now = Time.time;
             if (now - timeSinceLastClick < 0.5f)
             {
-                townCanvasController.DisplayedTown = town;
+                townCanvasController.DisplayedTown = Town;
             }
             timeSinceLastClick = now;
         }
