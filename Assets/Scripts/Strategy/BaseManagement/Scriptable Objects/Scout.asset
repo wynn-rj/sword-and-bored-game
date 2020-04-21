@@ -15,4 +15,4 @@ MonoBehaviour:
   roleName: Scout
   roleDescription: A unit with great vision...
   roleCost: 10
-  roleArtwork: {fileID: 21300000, guid: 12ef784100974d44aab570d010082508, type: 3}
+  roleArtwork: {fileID: 0}
