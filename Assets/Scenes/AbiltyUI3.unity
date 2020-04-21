@@ -65037,6 +65037,8 @@ MonoBehaviour:
   turnManager: {fileID: 5165644636434992688}
   unitHolder: {fileID: 404761842}
   startCoords: {x: 25, y: 18}
+  active: {fileID: 2100000, guid: 0d3d9c96cbb6c2e4bbabcc1d6fcdc2e1, type: 2}
+  inactive: {fileID: 2100000, guid: 355f53c38fe295f4b9e7fac8dbc81ef6, type: 2}
 --- !u!114 &5165644637075364240
 MonoBehaviour:
   m_ObjectHideFlags: 0

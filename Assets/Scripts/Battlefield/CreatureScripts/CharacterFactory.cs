@@ -23,7 +23,9 @@ namespace SwordAndBored.Battlefield
         public TurnManager turnManager;
         public Transform unitHolder;
         public Vector2 startCoords;
-    
+        public Material active;
+        public Material inactive;
+
         void Awake()
         {
             AssertHelper.Assert(SceneSharing.squadID != -1, "No squad ID set, defaulting to all units", this);
@@ -97,6 +99,8 @@ namespace SwordAndBored.Battlefield
                 {
                     Ability ab = new Ability(dataAbility);
                     ab.particle = particle;
+                    ab.active = active;
+                    ab.inactive = inactive;
                     abilities.abilities.Add(ab);
                 }
 
