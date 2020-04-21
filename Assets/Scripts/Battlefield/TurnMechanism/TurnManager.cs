@@ -76,7 +76,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
 
             //Switches Units
             activePlayer = manager.NextEntity().GetComponent<BrainManager>();
-            text.text = "Current Player: " + activePlayer.GetName();
+            text.text = "Current Unit: " + activePlayer.GetName();
             activePlayer.isMyTurn = true;
 
             if(statsPanel)
