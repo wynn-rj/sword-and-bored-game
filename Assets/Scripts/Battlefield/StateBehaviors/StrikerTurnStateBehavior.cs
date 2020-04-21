@@ -45,19 +45,19 @@ namespace SwordAndBored.Battlefield.StateBehaviors
         private void PickTarget(Tile targetedPlayer)
         {
             target = ms.grid[targetedPlayer.x + 1, targetedPlayer.y];
-            if (target.unitOnTile)
+            if (target.unitOnTile && brain.gameObject != target.unitOnTile.gameObject)
             {
                 target = ms.grid[targetedPlayer.x - 1, targetedPlayer.y];
             }
-            if (target.unitOnTile)
+            if (target.unitOnTile && brain.gameObject != target.unitOnTile.gameObject)
             {
                 target = ms.grid[targetedPlayer.x - 1, targetedPlayer.y];
             }
-            if (target.unitOnTile)
+            if (target.unitOnTile && brain.gameObject != target.unitOnTile.gameObject)
             {
                 target = ms.grid[targetedPlayer.x, targetedPlayer.y - 1];
             }
-            if (target.unitOnTile)
+            if (target.unitOnTile && brain.gameObject != target.unitOnTile.gameObject)
             {
                 target = ms.grid[targetedPlayer.x, targetedPlayer.y + 1];
             }
