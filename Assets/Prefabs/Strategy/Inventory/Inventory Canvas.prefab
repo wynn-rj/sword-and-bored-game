@@ -832,7 +832,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6238526176622651401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02bc2517242000000351f51724200000, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bc2b317931000000b53b31793100000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryMaster: {fileID: 6238526176151037820}
@@ -2588,7 +2588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00018310547, y: 0}
+  m_AnchoredPosition: {x: -0.00024414062, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6238526177790638975
