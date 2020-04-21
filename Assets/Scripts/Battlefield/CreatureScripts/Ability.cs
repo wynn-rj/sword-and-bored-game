@@ -48,6 +48,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         UniqueCreature user;
 
+
+        public Material active;
+        public Material inactive;
+
         public override void Initialize(UnitAbilitiesContainer container, GameObject obj, GameObject shape)
         {
             user = obj.GetComponent<UniqueCreature>();
@@ -292,6 +296,13 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
                     {
                         Collider[] enemies = Physics.OverlapSphere(hit.point, ((float)length) / 2f);
                         highlightList(enemies);
+                        shapeRend.enabled = true;
+                        shapeRend.material = active;
+                        shape.transform.localScale = new Vector3(length, length, width);
+                        shape.transform.position = hit.point;
+                    } else
+                    {
+                        shapeRend.material = inactive;
                         shapeRend.enabled = true;
                         shape.transform.localScale = new Vector3(length, length, width);
                         shape.transform.position = hit.point;
