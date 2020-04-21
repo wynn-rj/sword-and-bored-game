@@ -23,6 +23,7 @@ namespace SwordAndBored.Strategy.Inventory
             if (!Instance)
             {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
