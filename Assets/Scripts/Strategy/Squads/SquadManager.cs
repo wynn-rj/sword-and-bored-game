@@ -52,6 +52,11 @@ namespace SwordAndBored.Strategy.Squads
             return DeploySquad(squad);
         }
 
+        public void CollectSquad(int x, int y)
+        {
+            CollectSquad(tileManager.HexTiling[x, y]);
+        }
+
         public IUnit[] CollectSquad(IHexGridCell location)
         {
             SquadController squad = GetSquadOnTile(location);
@@ -61,6 +66,7 @@ namespace SwordAndBored.Strategy.Squads
                 squad.SquadData.Delete();
                 squads.Remove(squad);
                 turnManager.Unsubscribe(squad);
+                Destroy(squad.gameObject);
                 Destroy(squad);
                 return units;
             }
@@ -141,7 +147,7 @@ namespace SwordAndBored.Strategy.Squads
             return controller;
         }
 
-        private SquadController GetSquadOnTile(IHexGridCell tile)
+        public SquadController GetSquadOnTile(IHexGridCell tile)
         {
             foreach (SquadController squad in squads)
             {

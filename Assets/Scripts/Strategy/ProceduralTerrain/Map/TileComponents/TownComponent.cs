@@ -21,7 +21,8 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
         public override void Select()
         {
             float now = Time.time;
-            if (now - timeSinceLastClick < 0.5f)
+
+            if (now - timeSinceLastClick < .5f)
             {
                 townCanvasController.DisplayedTown = Town;
             }
