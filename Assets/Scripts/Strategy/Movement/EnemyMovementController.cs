@@ -3,6 +3,7 @@ using SwordAndBored.Strategy.Movement.EnemyMovementStrategies;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
+using SwordAndBored.Strategy.Transitions;
 using SwordAndBored.Utilities.Debug;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,6 +82,23 @@ namespace SwordAndBored.Strategy.Movement
             if (!(creepComponent is null))
             {
                 creepComponent.IsCreepActive = true;
+            }
+
+            if (Location.HasComponent<TownComponent>() && !Location.HasComponentThatIsNot(creatureComponent))
+            {
+                ITown town = Location.GetComponent<TownComponent>().Town;
+                List<IUnit> units = town.Units;
+                if (units?.Count > 0)
+                {
+                    Squad defenseSquad = new Squad("Town defenders", units, town.X, town.Y);
+                    defenseSquad.Save();
+                    BattleStarter.StartBattle(Location, defenseSquad);
+                }
+                else
+                {
+                    town.PlayerOwned = false;
+                    town.Save();
+                }
             }
         }
 

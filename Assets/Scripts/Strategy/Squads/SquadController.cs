@@ -2,6 +2,7 @@
 using SwordAndBored.Strategy.Movement;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.Grid.Cells;
 using SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents;
+using SwordAndBored.Strategy.Transitions;
 using SwordAndBored.Utilities.Debug;
 using System;
 
@@ -42,6 +43,19 @@ namespace SwordAndBored.Strategy.Squads
                 path.Enqueue(cell);
             }
             TraversePath();
+        }
+
+        protected override void ArrivedAtNewLocation()
+        {
+            base.ArrivedAtNewLocation();
+
+            if (Location.HasComponent<TownComponent>() && !Location.HasComponentThatIsNot(creatureComponent))
+            {
+                if (!Location.GetComponent<TownComponent>().Town.PlayerOwned)
+                {
+                    BattleStarter.StartBattle(this);
+                }
+            }
         }
 
         protected override int ResetMovement()
