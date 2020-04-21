@@ -26,6 +26,7 @@ namespace SwordAndBored.Battlefield.TurnMechanism
         public TextMeshProUGUI text;
 
         public Image actionsLeft;
+        public ParticleController particleController;
         [HideInInspector]
         public List<GameObject> enemies = new List<GameObject>();
 

@@ -25,6 +25,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
             burnChance = abilityStats.StatusConditionsAttack.Fire_Chance;
             freezeChance = abilityStats.StatusConditionsAttack.Freeze_Chance;
             stunChance = abilityStats.StatusConditionsAttack.Stun_Chance;
+            particle = abilityStats.Particle;
         }
 
         UnitAbilitiesContainer container;
@@ -42,7 +43,8 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
         public int burnChance;
         public int freezeChance;
         public int bleedChance;
-        public ParticleSystem particle;
+        public string particle;
+        public ParticleController particleController;
         GameObject shape;
         Renderer shapeRend;
 
@@ -70,7 +72,10 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         public override bool TriggerAbility(RaycastHit hit)
         {
-
+            if (particleController)
+            {
+                particleController.PlayParticleEffect(particle, hit.transform.position);
+            }
             if (!aoe)
             {
                 return pointAttack(hit);
@@ -83,12 +88,7 @@ namespace SwordAndBored.Battlefield.CreaturScripts {
 
         void aoeAttack(RaycastHit hit)
         {
-            if (particle)
-            {
-                particle.transform.position = hit.transform.position;
-                particle.Stop();
-                particle.Play();
-            }
+            
             if (range == 0)
             {
                 switch (aoeShape)
