@@ -56,6 +56,10 @@ namespace SwordAndBored.Strategy.Squads
                     BattleStarter.StartBattle(this);
                 }
             }
+
+            SquadData.X = Location.Position.GridPoint.X;
+            SquadData.Y = Location.Position.GridPoint.Y;
+            SquadData.Save();
         }
 
         protected override int ResetMovement()
