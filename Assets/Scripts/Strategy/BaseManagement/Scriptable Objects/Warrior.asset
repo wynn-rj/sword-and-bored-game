@@ -15,4 +15,4 @@ MonoBehaviour:
   roleName: Warrior
   roleDescription: A tank unit...
   roleCost: 10
-  roleArtwork: {fileID: 21300000, guid: 98230a8f88be3e64c99ff20fe1c8dd82, type: 3}
+  roleArtwork: {fileID: 0}
