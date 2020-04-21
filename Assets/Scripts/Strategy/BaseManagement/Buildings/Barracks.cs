@@ -92,7 +92,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Buildings
             GameObject unitEntryObject = Instantiate(unitEntryPrefab) as GameObject;
             unitEntryObject.transform.SetParent(unitListPanel.transform);
             unitEntryObject.transform.localRotation = Quaternion.identity;
-            unitEntryObject.transform.localScale = new Vector3(2, 1, .8f);
+            unitEntryObject.transform.localScale = new Vector3(1, 1, .8f);
 
             unitEntryObject.GetComponent<UnitEntryDisplay>().unitEntry = unitEntryData;
             unitEntryObject.GetComponent<UnitEntryDisplay>().SetDisplay();
