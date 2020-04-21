@@ -28,6 +28,10 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.Terrain
 
         private void ChangeCreepState(bool isActive)
         {
+            if (!tileHolder)
+            {
+                return;
+            }
             isCreepActive = isActive;
             foreach (Transform child in tileHolder.transform)
             {
