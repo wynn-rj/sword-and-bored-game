@@ -22,7 +22,7 @@ namespace SwordAndBored.Strategy.ProceduralTerrain.Map.TileComponents
         {
             float now = Time.time;
 
-            if (now - timeSinceLastClick < .5f)
+            if (now - timeSinceLastClick < 0.5f)
             {
                 townCanvasController.DisplayedTown = Town;
             }
