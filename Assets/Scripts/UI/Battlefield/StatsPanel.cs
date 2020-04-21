@@ -116,11 +116,11 @@ namespace SwordAndBored.UI.Battlefield
             }
             else
             {
-                statusText.faceColor = Color.black;
-                mDefenseText.faceColor = Color.black;
-                pAttackText.faceColor = Color.black;
-                pDefenseText.faceColor = Color.black;
-                movementText.faceColor = Color.black;
+                statusText.faceColor = Color.white;
+                mDefenseText.faceColor = Color.white;
+                pAttackText.faceColor = Color.white;
+                pDefenseText.faceColor = Color.white;
+                movementText.faceColor = Color.white;
                 return "Healthy";
             }
         }
