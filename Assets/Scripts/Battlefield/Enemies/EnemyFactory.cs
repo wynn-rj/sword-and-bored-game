@@ -6,7 +6,7 @@ using SwordAndBored.Battlefield;
 using Cinemachine;
 using SwordAndBored.Battlefield.CameraUtilities;
 using SwordAndBored.Battlefield.TurnMechanism;
-using SwordAndBored.GameData.Database;
+using SwordAndBored.GameData;
 using SwordAndBored.GameData.Units;
 using SwordAndBored.Battlefield.MovementSystemScripts;
 using SwordAndBored.GameData.Abilities;
@@ -31,11 +31,17 @@ namespace SwordAndBored.Battlefield
 
         void Awake()
         {
-
-            grid = tileManager.grid;
-            for (int numUnits=0; numUnits < 3; numUnits++)
+            int difficulty = ResourceHelper.GetTurnNumber() / 20 + 1;
+            difficulty = difficulty > 3 ? 3 : difficulty; 
+            int enemies = difficulty + 1 + ResourceHelper.GetTurnNumber() / 20;
+            if (enemies > 6)
             {
-                IEnemy enemyData = Enemy.GetEnemyFromTier(1);
+                enemies = 6;
+            }
+            grid = tileManager.grid;
+            for (int numUnits=0; numUnits < enemies; numUnits++)
+            {
+                IEnemy enemyData = Enemy.GetEnemyFromTier(difficulty);
 
                 GameObject unit = Instantiate(playerPrefab, new Vector3(numUnits, 1.5f, 5), Quaternion.identity);
                 UniqueCreature uniqueCreature = unit.GetComponent<UniqueCreature>();
