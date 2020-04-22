@@ -35,7 +35,7 @@ namespace SwordAndBored.StrategyView.BaseManagement.Towns
 
             foreach (ITown town in townsList)
             {
-                if (town.PlayerOwned)
+                if (town.PlayerOwned && town.Name != "Player Base")
                 {
                     ownedTowns.Add(town);
                     townEntriesList.Add(CreateTownEntry(town));
