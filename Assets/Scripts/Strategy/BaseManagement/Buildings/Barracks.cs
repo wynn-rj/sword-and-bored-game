@@ -41,8 +41,11 @@ namespace SwordAndBored.Strategy.BaseManagement.Buildings
 
             foreach (IUnit unit in activeUnitsList)
             {
-                GameObject entry = CreateUnitEntry(unit);
-                unitEntriesList.Add(entry);
+                if (!unit.IsDead)
+                {
+                    GameObject entry = CreateUnitEntry(unit);
+                    unitEntriesList.Add(entry);
+                }
             }
 
             activeEntry = unitEntriesList[0];
