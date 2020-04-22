@@ -21,7 +21,7 @@ namespace SwordAndBored.Strategy.Inventory
             GetComponent<Button>().onClick.AddListener(OnClick);
         }
 
-        public void SetItem(IInventoryItem item)
+        public bool SetItem(IInventoryItem item)
         {
             this.item = item;
             int quant = item.Quantity;
@@ -40,8 +40,14 @@ namespace SwordAndBored.Strategy.Inventory
                 itemName = item.SpellBook.Name;
                 itemType = ItemType.SPELLBOOK;
             }
+            else
+            {
+                Destroy(gameObject);
+                return false;
+            }
 
             textMesh.text = $"{itemType} : {itemName} : {quant}";
+            return true;
         }
 
         public void OnClick()

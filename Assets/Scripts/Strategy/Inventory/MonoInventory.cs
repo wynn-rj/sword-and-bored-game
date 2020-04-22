@@ -76,11 +76,14 @@ namespace SwordAndBored.Strategy.Inventory
         private void CreateButton(IInventoryItem item)
         {
             GameObject buttonObject = Instantiate(buttonTemplate) as GameObject;
-            buttons.Add(buttonObject);
             InventoryItemButton button = buttonObject.GetComponent<InventoryItemButton>();
-            button.SetItem(item);
-            buttonObject.transform.SetParent(buttonTemplate.transform.parent, false);
-            buttonObject.SetActive(true);
+            bool ret = button.SetItem(item);
+            if (ret)
+            {
+                buttons.Add(buttonObject);
+                buttonObject.transform.SetParent(buttonTemplate.transform.parent, false);
+                buttonObject.SetActive(true);
+            }
         }
 
         public void EquipArmor(IInventoryItem itemName)
