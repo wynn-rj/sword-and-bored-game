@@ -5065,6 +5065,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f6017328c5fa75a4fb8a29cc54c8cc1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: f6017328c5fa75a4fb8a29cc54c8cc1e, type: 3}
       propertyPath: looping
       value: 1
@@ -5565,6 +5569,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: d1912b480b82d6441a8d97bc2836a977, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d1912b480b82d6441a8d97bc2836a977, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: d1912b480b82d6441a8d97bc2836a977, type: 3}
       propertyPath: looping
