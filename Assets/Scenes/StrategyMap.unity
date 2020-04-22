@@ -963,6 +963,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2664338707293779018, guid: 7db008da3023f064ebeffe5f73d08152,
+        type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664338707293779019, guid: 7db008da3023f064ebeffe5f73d08152,
+        type: 3}
+      propertyPath: m_HorizontalFit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2664338707293779028, guid: 7db008da3023f064ebeffe5f73d08152,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -1011,7 +1021,7 @@ PrefabInstance:
     - target: {fileID: 2664338708638447099, guid: 7db008da3023f064ebeffe5f73d08152,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2664338708638447103, guid: 7db008da3023f064ebeffe5f73d08152,
         type: 3}
@@ -1143,9 +1153,24 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3779281039216273132, guid: 7db008da3023f064ebeffe5f73d08152,
+        type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779281039216273133, guid: 7db008da3023f064ebeffe5f73d08152,
+        type: 3}
+      propertyPath: m_HorizontalFit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3779281039216273134, guid: 7db008da3023f064ebeffe5f73d08152,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779281039216273134, guid: 7db008da3023f064ebeffe5f73d08152,
+        type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
