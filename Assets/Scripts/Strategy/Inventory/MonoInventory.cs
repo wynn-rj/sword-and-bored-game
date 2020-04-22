@@ -2,6 +2,8 @@
 using UnityEngine;
 using SwordAndBored.GameData.Equipment;
 using SwordAndBored.GameData.Units;
+using SwordAndBored.Strategy.BaseManagement.Buildings;
+using SwordAndBored.Strategy.BaseManagement;
 
 namespace SwordAndBored.Strategy.Inventory
 {
@@ -14,16 +16,17 @@ namespace SwordAndBored.Strategy.Inventory
         private List<IInventoryItem> equipmentList = new List<IInventoryItem>();
         private List<GameObject> buttons = new List<GameObject>();
 
-
+        [SerializeField] private GameObject barracksView;
         [SerializeField] private GameObject buttonTemplate;
         [SerializeField] private UnitEquipmentView unitEquipmentView;
+        [SerializeField] private CameraManager cameraManager;
 
         private void Awake()
         {
             if (!Instance)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+                //DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -31,15 +34,13 @@ namespace SwordAndBored.Strategy.Inventory
             }
         }
 
-        private void Start()
-        {
-            gameObject.SetActive(false);
-        }
-
         public void OpenInventory(IUnit unit)
         {
-            CurrentUnit = unit;
+            cameraManager.UnFocusOnModel();
+            barracksView.gameObject.SetActive(false);
             gameObject.SetActive(true);
+            CurrentUnit = unit;
+            
             unitEquipmentView.gameObject.SetActive(true);
             DestroyAllButtons();
             ReadInventoryFromDatabaseAndProcess();
@@ -50,6 +51,8 @@ namespace SwordAndBored.Strategy.Inventory
             DestroyAllButtons();
             unitEquipmentView.gameObject.SetActive(false);
             gameObject.SetActive(false);
+            barracksView.gameObject.SetActive(true);
+            cameraManager.FocusOnModel();
         }
 
         private void ReadInventoryFromDatabaseAndProcess()
