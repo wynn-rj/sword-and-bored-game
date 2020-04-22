@@ -32,6 +32,9 @@ public class ParticleController : MonoBehaviour
             case "Fire Pop":
                 firePop.Play();
                 break;
+            case "Fire Ball":
+                fireball.Play();
+                break;
             case "Fire Rain":
                 fireRain.Play();
                 break;
@@ -42,6 +45,7 @@ public class ParticleController : MonoBehaviour
                 bigElectric.Play();
                 break;
             case "Light Ray":
+                Debug.Log("Play");
                 lightRay.Play();
                 break;
             case "Ice Ring":
