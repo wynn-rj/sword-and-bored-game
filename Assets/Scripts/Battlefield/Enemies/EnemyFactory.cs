@@ -29,6 +29,8 @@ namespace SwordAndBored.Battlefield
 
         public Vector2 startCoords;
 
+        public Material[] mat;
+
         void Awake()
         {
             int difficulty = ResourceHelper.GetTurnNumber() / 20 + 1;
@@ -91,6 +93,8 @@ namespace SwordAndBored.Battlefield
                 stats.magicDefenseMax = enemyData.Stats.Magic_Defense;
                 stats.movementMax = enemyData.Stats.Movement;
                 stats.speedIntitMax = enemyData.Stats.Initiative;
+
+                unit.GetComponent<ModelSwitching>().SetColor(mat[0], mat[1], new GameObject());
 
                 //brain
                 brain.tileIndictor = indicator;

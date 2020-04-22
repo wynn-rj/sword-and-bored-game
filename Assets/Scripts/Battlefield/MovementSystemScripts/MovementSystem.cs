@@ -187,7 +187,21 @@ namespace SwordAndBored.Battlefield.MovementSystemScripts
 
         public void Move(Tile tile)
         {
-            Move(tile, false);
+            if (checkValidity(tile))
+            {
+                Move(tile, false);
+            }
+        }
+
+        bool checkValidity(Tile tile)
+        {
+            if (grid[tile.x, tile.y] && grid[tile.x, tile.y].walkable)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }
