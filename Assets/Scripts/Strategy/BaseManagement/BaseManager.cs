@@ -10,14 +10,14 @@ namespace SwordAndBored.Strategy.BaseManagement
         private Canvas activeCanvas;
         private Canvas previouslyActiveCanvas;
 
-        [SerializeField] private GameObject StrongholdCanvas;
+        //[SerializeField] private GameObject StrongholdCanvas;
 
-        public BuildingsManager BuildingManager;
+        //public BuildingsManager BuildingManager;
 
         private void Awake()
         {
-            activeCanvas = StrongholdCanvas.GetComponent<Canvas>();
-            previouslyActiveCanvas = StrongholdCanvas.GetComponent<Canvas>();
+            /*activeCanvas = StrongholdCanvas.GetComponent<Canvas>();
+            previouslyActiveCanvas = StrongholdCanvas.GetComponent<Canvas>();*/
 
             UnitManager.Instance.GetAllData();
         }
@@ -45,7 +45,7 @@ namespace SwordAndBored.Strategy.BaseManagement
 
         public void UnloadStrongholdCanvas()
         {
-            StrongholdCanvas.SetActive(false);
+            //StrongholdCanvas.SetActive(false);
         }
     }
 }
