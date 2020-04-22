@@ -9,7 +9,7 @@ namespace SwordAndBored.Strategy.BaseManagement
 
         private void Start()
         {
-            UnFocusOnModel();
+            FocusOnModel();
         }
 
         public void FocusOnModel()

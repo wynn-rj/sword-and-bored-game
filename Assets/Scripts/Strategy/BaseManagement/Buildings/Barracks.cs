@@ -14,6 +14,7 @@ namespace SwordAndBored.Strategy.BaseManagement.Buildings
         [SerializeField] private GameObject trainUnitCanvas;
         [SerializeField] private GameObject dispatchUnitCanvas;
         [SerializeField] private GameObject unitListPanel;
+        [SerializeField] private GameObject inventoryCanvas;
 
         [SerializeField] private Button trainUnitButton;
         [SerializeField] private Button dispatchUnitButton;
@@ -126,7 +127,8 @@ namespace SwordAndBored.Strategy.BaseManagement.Buildings
 
         public void OpenInventory()
         {
-            MonoInventory.Instance.OpenInventory(activeEntry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+            inventoryCanvas.GetComponent<MonoInventory>().OpenInventory(activeEntry.GetComponent<UnitEntryDisplay>().unitEntry.unit);
+
         }
     }
 
