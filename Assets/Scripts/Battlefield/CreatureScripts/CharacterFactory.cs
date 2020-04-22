@@ -26,6 +26,12 @@ namespace SwordAndBored.Battlefield
         public Material active;
         public Material inactive;
 
+        public Material[] warriorMat;
+        public Material[] rangerMat;
+        public Material[] mageMat;
+
+        public GameObject hat;
+
         void Awake()
         {
             AssertHelper.Assert(SceneSharing.squadID != -1, "No squad ID set, defaulting to all units", this);
@@ -103,6 +109,19 @@ namespace SwordAndBored.Battlefield
                     ab.active = active;
                     ab.inactive = inactive;
                     abilities.abilities.Add(ab);
+                }
+
+                switch (dataUnit.Role.Name)
+                {
+                    case "Mage":
+                        unit.GetComponent<ModelSwitching>().SetColor(mageMat[0], mageMat[1], hat);
+                        break;
+                    case "Scout":
+                        unit.GetComponent<ModelSwitching>().SetColor(rangerMat[0], rangerMat[1], new GameObject());
+                        break;
+                    case "Warrior":
+                        unit.GetComponent<ModelSwitching>().SetColor(warriorMat[0], warriorMat[1], new GameObject());
+                        break;
                 }
 
                 //brain

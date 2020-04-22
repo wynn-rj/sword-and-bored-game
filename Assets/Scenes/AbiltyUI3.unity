@@ -67472,6 +67472,9 @@ MonoBehaviour:
   unitHolder: {fileID: 404761842}
   indicator: {fileID: 1655949900}
   startCoords: {x: 25, y: 35}
+  mat:
+  - {fileID: 2100000, guid: 8c0f1354f37f41d49830089d7a37f8e7, type: 2}
+  - {fileID: 2100000, guid: b78d9401febc7b84593f6ab6a1d951d6, type: 2}
 --- !u!114 &5165644636434992688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67582,6 +67585,16 @@ MonoBehaviour:
   startCoords: {x: 25, y: 18}
   active: {fileID: 2100000, guid: 0d3d9c96cbb6c2e4bbabcc1d6fcdc2e1, type: 2}
   inactive: {fileID: 2100000, guid: 355f53c38fe295f4b9e7fac8dbc81ef6, type: 2}
+  warriorMat:
+  - {fileID: 2541457280464432744, guid: 938bebf327837e24f8e85875cae2fa0f, type: 3}
+  - {fileID: -3159968637834881728, guid: 464d64290c65bf9498622573b433881b, type: 3}
+  rangerMat:
+  - {fileID: 2100000, guid: 283de1beb3aedd045a5a80e606de63c6, type: 2}
+  - {fileID: 2100000, guid: 41543f25990715d47b8829388b91cd6a, type: 2}
+  mageMat:
+  - {fileID: 2100000, guid: c438e5c679f1be040a135443008e2fce, type: 2}
+  - {fileID: 2100000, guid: 0ced3246a91b81040818786e38f7002e, type: 2}
+  hat: {fileID: 100000, guid: 08fb3e8132368a441a20e2438897039f, type: 3}
 --- !u!114 &5165644637075364240
 MonoBehaviour:
   m_ObjectHideFlags: 0
